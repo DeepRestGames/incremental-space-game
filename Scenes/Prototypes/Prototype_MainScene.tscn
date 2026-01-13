@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://bii40dmux8sxx"]
+
+[ext_resource type="Texture2D" uid="uid://dck8ousv4t6ru" path="res://Assets/Sprites/WhiteSprites.png" id="1_brj1q"]
+[ext_resource type="PackedScene" uid="uid://bcvxlujlsdn7w" path="res://Scenes/Player/Player.tscn" id="2_wpc3r"]
+
+[node name="PrototypeMainScene" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0.246421, 0.246421, 0.246421, 1)
+scale = Vector2(200, 200)
+texture = ExtResource("1_brj1q")
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+modulate = Color(0.385303, 0.107771, 0.378933, 1)
+position = Vector2(-1412, -1241)
+scale = Vector2(39.19, 20.77)
+texture = ExtResource("1_brj1q")
+
+[node name="Player" parent="." instance=ExtResource("2_wpc3r")]

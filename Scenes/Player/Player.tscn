@@ -1,0 +1,54 @@
+[gd_scene load_steps=9 format=3 uid="uid://bcvxlujlsdn7w"]
+
+[ext_resource type="Script" uid="uid://3u5as0enhnvs" path="res://Scripts/Player/Player.gd" id="1_kyqiw"]
+[ext_resource type="Texture2D" uid="uid://d3w6yyyfejaxw" path="res://icon.svg" id="2_ft8w5"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ude3g"]
+radius = 65.0
+
+[sub_resource type="Animation" id="Animation_t26db"]
+resource_name = "Idle"
+length = 0.4
+loop_mode = 1
+
+[sub_resource type="Animation" id="Animation_4wape"]
+length = 0.001
+
+[sub_resource type="Animation" id="Animation_fk5o5"]
+resource_name = "RunLeft"
+length = 0.6
+loop_mode = 1
+
+[sub_resource type="Animation" id="Animation_jmcll"]
+resource_name = "RunRight"
+length = 0.6
+loop_mode = 1
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_fk5o5"]
+_data = {
+&"Idle": SubResource("Animation_t26db"),
+&"RESET": SubResource("Animation_4wape"),
+&"RunLeft": SubResource("Animation_fk5o5"),
+&"RunRight": SubResource("Animation_jmcll")
+}
+
+[node name="Player" type="CharacterBody2D" groups=["Player"]]
+collision_mask = 4
+script = ExtResource("1_kyqiw")
+
+[node name="PlayerSprite" type="Sprite2D" parent="."]
+texture = ExtResource("2_ft8w5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_ude3g")
+
+[node name="PlayerCamera" type="Camera2D" parent="."]
+process_mode = 3
+zoom = Vector2(0.6, 0.6)
+
+[node name="CameraZoom" type="Node2D" parent="PlayerCamera"]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_fk5o5")
+}
