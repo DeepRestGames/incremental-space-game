@@ -11,3 +11,6 @@ extends Node
 
 # Resources
 @warning_ignore("unused_signal") signal add_resource(resource_number)
+
+# Deposit box
+@warning_ignore("unused_signal") signal player_enter_deposit_box

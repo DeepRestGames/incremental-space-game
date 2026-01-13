@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 EventBus="*res://Scripts/GameManagers/EventBus.gd"
 InputManager="*res://Scripts/GameManagers/InputManager.gd"
+GameManager="*res://Scripts/GameManagers/GameManager.gd"
 
 [global_group]
 
