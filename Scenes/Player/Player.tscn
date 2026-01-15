@@ -1,11 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://bcvxlujlsdn7w"]
+[gd_scene load_steps=10 format=3 uid="uid://bcvxlujlsdn7w"]
 
 [ext_resource type="Script" uid="uid://3u5as0enhnvs" path="res://Scripts/Player/Player.gd" id="1_kyqiw"]
 [ext_resource type="Texture2D" uid="uid://d3w6yyyfejaxw" path="res://icon.svg" id="2_ft8w5"]
 [ext_resource type="PackedScene" uid="uid://beyb44q40vqlr" path="res://Scenes/UI/HUD.tscn" id="3_ude3g"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ude3g"]
-radius = 65.0
+radius = 72.0
 
 [sub_resource type="Animation" id="Animation_t26db"]
 resource_name = "Idle"
@@ -36,12 +36,13 @@ _data = {
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
 collision_mask = 4
 script = ExtResource("1_kyqiw")
-
-[node name="PlayerSprite" type="Sprite2D" parent="."]
-texture = ExtResource("2_ft8w5")
+movement_speed = 700.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_ude3g")
+
+[node name="PlayerSprite" type="Sprite2D" parent="."]
+texture = ExtResource("2_ft8w5")
 
 [node name="PlayerCamera" type="Camera2D" parent="."]
 process_mode = 3

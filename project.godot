@@ -24,6 +24,8 @@ GameManager="*res://Scripts/GameManagers/GameManager.gd"
 [global_group]
 
 Player=""
+DepositBox=""
+ExpeditionShip=""
 
 [input]
 

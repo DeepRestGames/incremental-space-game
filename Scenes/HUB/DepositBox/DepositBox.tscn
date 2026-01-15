@@ -9,7 +9,7 @@ radius = 200.0
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_x1isb"]
 size = Vector2(90, 90)
 
-[node name="DepositBox" type="Area2D"]
+[node name="DepositBox" type="Area2D" groups=["DepositBox"]]
 script = ExtResource("1_67gvw")
 
 [node name="DepositBoxInteractionArea" type="CollisionShape2D" parent="."]

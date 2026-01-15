@@ -7,4 +7,4 @@ func _on_body_entered(body: Node2D) -> void:
 		
 		print("Player entered deposit box")
 		
-		EventBus.emit_signal("player_enter_deposit_box")
+		EventBus.emit_signal("player_enter_deposit_box_area")

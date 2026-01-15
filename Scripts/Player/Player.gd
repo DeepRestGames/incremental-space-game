@@ -16,7 +16,7 @@ var invincibilityCooldown := .5
 var currentInvincibilityCooldown: float
 
 # Movement
-var movement_speed: float = 300
+@export var movement_speed: float = 300
 var looking_direction = Vector2.ZERO
 const ROTATION_SPEED: float = 2
 
