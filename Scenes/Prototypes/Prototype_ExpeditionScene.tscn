@@ -1,0 +1,54 @@
+[gd_scene load_steps=5 format=3 uid="uid://dcs13n8jpor6j"]
+
+[ext_resource type="Texture2D" uid="uid://dck8ousv4t6ru" path="res://Assets/Sprites/WhiteSprites.png" id="1_jg6gw"]
+[ext_resource type="PackedScene" uid="uid://bcvxlujlsdn7w" path="res://Scenes/Player/Player.tscn" id="2_4kqnn"]
+[ext_resource type="PackedScene" uid="uid://ccmhp41okc8g0" path="res://Scenes/HUB/ExpeditionShip/ExpeditionShip.tscn" id="3_dnqbe"]
+[ext_resource type="PackedScene" uid="uid://k5air2e7arh4" path="res://Scenes/Resources/BasePickup.tscn" id="4_4kqnn"]
+
+[node name="PrototypeExpeditionScene" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0.246421, 0.246421, 0.246421, 1)
+scale = Vector2(200, 200)
+texture = ExtResource("1_jg6gw")
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+modulate = Color(0.385303, 0.107771, 0.378933, 1)
+position = Vector2(-1412, -1241)
+scale = Vector2(39.19, 20.77)
+texture = ExtResource("1_jg6gw")
+
+[node name="Player" parent="." instance=ExtResource("2_4kqnn")]
+
+[node name="ExpeditionShip" parent="." instance=ExtResource("3_dnqbe")]
+position = Vector2(1009, -557)
+
+[node name="BasePickup" parent="." instance=ExtResource("4_4kqnn")]
+position = Vector2(767, -73)
+
+[node name="BasePickup2" parent="." instance=ExtResource("4_4kqnn")]
+position = Vector2(602, 181)
+
+[node name="BasePickup3" parent="." instance=ExtResource("4_4kqnn")]
+position = Vector2(-709, -1468)
+
+[node name="BasePickup4" parent="." instance=ExtResource("4_4kqnn")]
+position = Vector2(-874, -1214)
+
+[node name="BasePickup5" parent="." instance=ExtResource("4_4kqnn")]
+position = Vector2(-1374, 244)
+
+[node name="BasePickup6" parent="." instance=ExtResource("4_4kqnn")]
+position = Vector2(-1539, 498)
+
+[node name="BasePickup7" parent="." instance=ExtResource("4_4kqnn")]
+position = Vector2(308, 727)
+
+[node name="BasePickup8" parent="." instance=ExtResource("4_4kqnn")]
+position = Vector2(143, 981)
+
+[node name="BasePickup9" parent="." instance=ExtResource("4_4kqnn")]
+position = Vector2(813, -1713)
+
+[node name="BasePickup10" parent="." instance=ExtResource("4_4kqnn")]
+position = Vector2(648, -1459)

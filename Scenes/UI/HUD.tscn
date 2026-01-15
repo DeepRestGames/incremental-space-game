@@ -1,0 +1,49 @@
+[gd_scene load_steps=2 format=3 uid="uid://beyb44q40vqlr"]
+
+[ext_resource type="Script" uid="uid://dl6hms7n2jhi" path="res://Scripts/UI/HUD/ExpeditionShipInteractionPrompt.gd" id="1_omqfp"]
+
+[node name="HUD" type="Control"]
+custom_minimum_size = Vector2(1152, 648)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="ExpeditionShipInteractionPrompt" type="Label" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -73.0
+offset_top = -88.0
+offset_right = 73.0
+offset_bottom = -65.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "START EXPEDITION"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("1_omqfp")
+
+[node name="KeyHint" type="Label" parent="ExpeditionShipInteractionPrompt"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -1.0
+offset_right = 20.0
+offset_bottom = 22.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "(E)"
+horizontal_alignment = 1
+vertical_alignment = 1

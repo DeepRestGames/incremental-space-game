@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://ccmhp41okc8g0"]
+
+[ext_resource type="Script" uid="uid://chct5ii1ti3m5" path="res://Scripts/HUB/ExpeditionShip/ExpeditionShip.gd" id="1_keioi"]
+[ext_resource type="Texture2D" uid="uid://d3w6yyyfejaxw" path="res://icon.svg" id="2_q2n55"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_wpc3r"]
+radius = 200.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x1isb"]
+size = Vector2(90, 90)
+
+[node name="ExpeditionShip" type="Area2D" groups=["ExpeditionShip"]]
+script = ExtResource("1_keioi")
+
+[node name="ExpeditionShipInteractionArea" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_wpc3r")
+
+[node name="ExpeditionShipBody" type="StaticBody2D" parent="."]
+
+[node name="ExpeditionShipCollisionShape" type="CollisionShape2D" parent="ExpeditionShipBody"]
+shape = SubResource("RectangleShape2D_x1isb")
+
+[node name="ExpeditionShipBodySprite" type="Sprite2D" parent="ExpeditionShipBody"]
+modulate = Color(1, 0.720177, 0.426246, 1)
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("2_q2n55")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

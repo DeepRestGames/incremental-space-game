@@ -1,7 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://bii40dmux8sxx"]
+[gd_scene load_steps=6 format=3 uid="uid://bii40dmux8sxx"]
 
 [ext_resource type="Texture2D" uid="uid://dck8ousv4t6ru" path="res://Assets/Sprites/WhiteSprites.png" id="1_brj1q"]
 [ext_resource type="PackedScene" uid="uid://bcvxlujlsdn7w" path="res://Scenes/Player/Player.tscn" id="2_wpc3r"]
+[ext_resource type="PackedScene" uid="uid://k5air2e7arh4" path="res://Scenes/Resources/BasePickup.tscn" id="3_wpc3r"]
+[ext_resource type="PackedScene" uid="uid://csht05sstrhwi" path="res://Scenes/HUB/DepositBox/DepositBox.tscn" id="4_x1isb"]
+[ext_resource type="PackedScene" uid="uid://ccmhp41okc8g0" path="res://Scenes/HUB/ExpeditionShip/ExpeditionShip.tscn" id="5_a3inl"]
 
 [node name="PrototypeMainScene" type="Node2D"]
 
@@ -17,3 +20,15 @@ scale = Vector2(39.19, 20.77)
 texture = ExtResource("1_brj1q")
 
 [node name="Player" parent="." instance=ExtResource("2_wpc3r")]
+
+[node name="BasePickup" parent="." instance=ExtResource("3_wpc3r")]
+position = Vector2(767, -73)
+
+[node name="BasePickup2" parent="." instance=ExtResource("3_wpc3r")]
+position = Vector2(602, 181)
+
+[node name="DepositBox" parent="." instance=ExtResource("4_x1isb")]
+position = Vector2(-208, -753)
+
+[node name="ExpeditionShip" parent="." instance=ExtResource("5_a3inl")]
+position = Vector2(1009, -557)

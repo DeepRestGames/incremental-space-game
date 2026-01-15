@@ -36,6 +36,9 @@ func _unhandled_input(event: InputEvent) -> void:
 	if prevent_inputs:
 		return
 
+	if event.is_action_pressed("interact"):
+		EventBus.emit_signal("action_trigger_interact")
+	
 	# Handle looking direction
 	#if using_mouse:
 		#var mouse_position = get_viewport().get_mouse_position()
