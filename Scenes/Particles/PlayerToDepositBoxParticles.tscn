@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://cnmiukq20xuav"]
+
+[ext_resource type="Texture2D" uid="uid://d3eqklqyx08sb" path="res://Assets/Sprites/kenney_particle-pack/PNG (Transparent)/magic_05.png" id="1_os63j"]
+[ext_resource type="Script" uid="uid://dvkcv3ktoddvy" path="res://Scripts/Particles/PlayerToDepositBoxParticles.gd" id="2_p5m5a"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_jmcll"]
+particle_flag_disable_z = true
+spread = 0.0
+initial_velocity_min = 300.0
+initial_velocity_max = 600.0
+gravity = Vector3(0, 0, 0)
+scale_min = 0.1
+scale_max = 0.2
+
+[node name="PlayerToDepositBoxParticles" type="GPUParticles2D"]
+amount = 600
+texture = ExtResource("1_os63j")
+lifetime = 20.0
+process_material = SubResource("ParticleProcessMaterial_jmcll")
+script = ExtResource("2_p5m5a")
