@@ -27,8 +27,26 @@ position = Vector2(767, -73)
 [node name="BasePickup2" parent="." instance=ExtResource("3_wpc3r")]
 position = Vector2(602, 181)
 
-[node name="DepositBox" parent="." instance=ExtResource("4_x1isb")]
-position = Vector2(-208, -753)
+[node name="BasePickup3" parent="." instance=ExtResource("3_wpc3r")]
+position = Vector2(560, -417)
+
+[node name="BasePickup4" parent="." instance=ExtResource("3_wpc3r")]
+position = Vector2(395, -163)
+
+[node name="BasePickup5" parent="." instance=ExtResource("3_wpc3r")]
+position = Vector2(-421, -260)
+
+[node name="BasePickup6" parent="." instance=ExtResource("3_wpc3r")]
+position = Vector2(-586, -6)
+
+[node name="BasePickup7" parent="." instance=ExtResource("3_wpc3r")]
+position = Vector2(236, 190)
+
+[node name="BasePickup8" parent="." instance=ExtResource("3_wpc3r")]
+position = Vector2(71, 444)
 
 [node name="ExpeditionShip" parent="." instance=ExtResource("5_a3inl")]
 position = Vector2(1009, -557)
+
+[node name="DepositBox" parent="." instance=ExtResource("4_x1isb")]
+position = Vector2(252, -829)

@@ -17,6 +17,9 @@ var expedition_started: bool = false
 
 
 func _ready() -> void:
+	
+	DEBUG_add_player_resources()
+	
 	# Level initialization
 	# TODO Add logic to handle the menus navigation (e.g. in the start menu the node Player doesn't exist, but the GameManager singleton does
 	player = get_tree().get_first_node_in_group("Player")
@@ -30,6 +33,11 @@ func _ready() -> void:
 	EventBus.connect("expedition_started", on_expedition_started)
 	EventBus.connect("expedition_ended", on_expedition_ended)
 
+
+func DEBUG_add_player_resources() -> void:
+	current_player_resource = 200
+
+
 func add_resource(resource_amount: int) -> void:
 	current_player_resource += resource_amount
 	
@@ -38,6 +46,11 @@ func add_resource(resource_amount: int) -> void:
 
 
 func add_resource_deposit_box() -> void:
+	if current_player_resource <= 0:
+		return
+	
+	EventBus.emit_signal("start_resource_transfer_animation_to_deposit_box", current_player_resource)
+	
 	current_deposit_box_resource += current_player_resource
 	current_player_resource = 0
 	

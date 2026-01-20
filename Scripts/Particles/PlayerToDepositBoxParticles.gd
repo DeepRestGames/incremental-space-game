@@ -8,7 +8,7 @@ var target_position: Vector2
 func _ready() -> void:
 	target_position = GameManager.deposit_box_position
 	
-	EventBus.connect("player_enter_deposit_box_area", start_animation)
+	EventBus.connect("start_resource_transfer_animation_to_deposit_box", start_animation)
 
 
 func _physics_process(delta: float) -> void:
@@ -19,8 +19,8 @@ func _physics_process(delta: float) -> void:
 	process_material.direction = Vector3(direction.x, direction.y, 0)
 
 
-func start_animation() -> void:
-	if GameManager.current_player_resource > 0:
-		amount = GameManager.current_player_resource
+func start_animation(resource_value: int) -> void:
+	if resource_value > 0:
+		amount = resource_value
+		# speed_scale = 50 / amount
 		restart()
-		emitting = true

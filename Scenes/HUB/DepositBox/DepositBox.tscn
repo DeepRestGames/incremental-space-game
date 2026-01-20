@@ -1,10 +1,13 @@
-[gd_scene load_steps=5 format=3 uid="uid://csht05sstrhwi"]
+[gd_scene load_steps=6 format=3 uid="uid://csht05sstrhwi"]
 
 [ext_resource type="Texture2D" uid="uid://d3w6yyyfejaxw" path="res://icon.svg" id="1_1rdt8"]
-[ext_resource type="Script" uid="uid://ctxiqbtacvp3i" path="res://Scripts/HUB/DepositBox/DepositBox.gd" id="1_67gvw"]
+[ext_resource type="Script" uid="uid://cr0i4r37fcp5f" path="res://Scripts/HUB/DepositBox/DepositBox.gd" id="1_67gvw"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_wpc3r"]
 radius = 200.0
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_67gvw"]
+polygon = PackedVector2Array(-45, -45, 45, -45, 45, 45, -45, 45)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_x1isb"]
 size = Vector2(90, 90)
@@ -16,6 +19,9 @@ script = ExtResource("1_67gvw")
 shape = SubResource("CircleShape2D_wpc3r")
 
 [node name="DepositBoxBody" type="StaticBody2D" parent="."]
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="DepositBoxBody"]
+occluder = SubResource("OccluderPolygon2D_67gvw")
 
 [node name="DepositBoxBodyCollisionShape" type="CollisionShape2D" parent="DepositBoxBody"]
 shape = SubResource("RectangleShape2D_x1isb")

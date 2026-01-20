@@ -15,6 +15,7 @@ extends Node
 
 # Deposit box
 @warning_ignore("unused_signal") signal player_enter_deposit_box_area
+@warning_ignore("unused_signal") signal start_resource_transfer_animation_to_deposit_box(resource_number)
 
 # Expedition ship
 @warning_ignore("unused_signal") signal player_enter_expedition_ship_area
