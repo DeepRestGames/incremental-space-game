@@ -15,10 +15,14 @@ var current_deposit_box_resource: int = 0
 # Expedition
 var expedition_started: bool = false
 
+# Paasing time
+var current_day: int = 0
+
 
 func _ready() -> void:
 	# Level initialization
 	# TODO Add logic to handle the menus navigation (e.g. in the start menu the node Player doesn't exist, but the GameManager singleton does
+	# TODO Handle null reference case
 	player = get_tree().get_first_node_in_group("Player")
 	deposit_box_position = get_tree().get_first_node_in_group("DepositBox").global_position
 	
@@ -29,6 +33,7 @@ func _ready() -> void:
 	
 	EventBus.connect("expedition_started", on_expedition_started)
 	EventBus.connect("expedition_ended", on_expedition_ended)
+
 
 func add_resource(resource_amount: int) -> void:
 	current_player_resource += resource_amount

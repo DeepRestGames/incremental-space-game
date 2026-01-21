@@ -1,0 +1,158 @@
+[gd_scene load_steps=10 format=3 uid="uid://bw8v2tjtpwrwd"]
+
+[ext_resource type="Texture2D" uid="uid://d3w6yyyfejaxw" path="res://icon.svg" id="1_5qc62"]
+[ext_resource type="Shader" uid="uid://b0ipclsyu8vug" path="res://Shaders/UI/Shader_Test.gdshader" id="2_3gvb5"]
+[ext_resource type="Script" uid="uid://b8i7v5jtyte6x" path="res://Scripts/UI/SkillNode.gd" id="3_jj15x"]
+[ext_resource type="Script" uid="uid://8l131evptacm" path="res://Scripts/UI/SkillAcquisitionPanel.gd" id="4_5wppg"]
+[ext_resource type="Texture2D" uid="uid://p8o5i655niqs" path="res://Assets/Sprites/kenney_particle-pack/PNG (Transparent)/window_04.png" id="4_p2n7p"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_3gvb5"]
+noise_type = 0
+frequency = 0.0012
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_jj15x"]
+noise = SubResource("FastNoiseLite_3gvb5")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5wppg"]
+shader = ExtResource("2_3gvb5")
+shader_parameter/noise_texture = SubResource("NoiseTexture2D_jj15x")
+shader_parameter/colormodifier = 0.9
+shader_parameter/progress = 0.695
+shader_parameter/bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3gvb5"]
+atlas = ExtResource("1_5qc62")
+region = Rect2(56.2895, 39.6403, 17.1742, 11.5663)
+
+[node name="UI_SkillTree" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Background" type="TextureRect" parent="."]
+visible = false
+material = SubResource("ShaderMaterial_5wppg")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AtlasTexture_3gvb5")
+metadata/_edit_use_anchors_ = true
+
+[node name="SkillNodesParent" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="SkillNode" type="Control" parent="SkillNodesParent"]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 1
+anchors_preset = 0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("3_jj15x")
+metadata/_edit_use_anchors_ = true
+
+[node name="SkillNodeTexture" type="TextureRect" parent="SkillNodesParent/SkillNode"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("4_p2n7p")
+expand_mode = 3
+
+[node name="SkillInfoPanel" type="Panel" parent="SkillNodesParent/SkillNode"]
+visible = false
+layout_mode = 0
+offset_left = 41.0
+offset_top = 27.0
+offset_right = 182.0
+offset_bottom = 137.0
+mouse_filter = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="SkillNodesParent/SkillNode/SkillInfoPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="SkillName" type="RichTextLabel" parent="SkillNodesParent/SkillNode/SkillInfoPanel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+mouse_filter = 2
+text = "Skill name"
+fit_content = true
+scroll_active = false
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SkillDescription" type="RichTextLabel" parent="SkillNodesParent/SkillNode/SkillInfoPanel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+mouse_filter = 2
+text = "Skill description"
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="SkillAcquisitionPanel" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("4_5wppg")
+metadata/_edit_use_anchors_ = true
+
+[node name="Panel" type="Panel" parent="SkillAcquisitionPanel"]
+custom_minimum_size = Vector2(600, 300)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="SkillAcquisitionPanel/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 0
+metadata/_edit_use_anchors_ = true
+
+[node name="PanelTitle" type="RichTextLabel" parent="SkillAcquisitionPanel/Panel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+text = "Acquire skill?"
+fit_content = true
+scroll_active = false
+horizontal_alignment = 1
+vertical_alignment = 1
