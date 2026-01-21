@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://beyb44q40vqlr"]
+[gd_scene load_steps=4 format=3 uid="uid://beyb44q40vqlr"]
 
-[ext_resource type="Script" uid="uid://dl6hms7n2jhi" path="res://Scripts/UI/HUD/ExpeditionShipInteractionPrompt.gd" id="1_omqfp"]
+[ext_resource type="Script" uid="uid://dpykn5lx31kye" path="res://Scripts/UI/HUD/ExpeditionShipInteractionPrompt.gd" id="1_omqfp"]
+[ext_resource type="Texture2D" uid="uid://d3w6yyyfejaxw" path="res://icon.svg" id="2_qc5w2"]
+[ext_resource type="Script" uid="uid://cpsphmvsiuh1u" path="res://Scripts/UI/HUD/ResourceCounter.gd" id="2_xaom8"]
 
 [node name="HUD" type="Control"]
 custom_minimum_size = Vector2(1152, 648)
@@ -13,7 +15,6 @@ grow_vertical = 2
 metadata/_edit_use_anchors_ = true
 
 [node name="ExpeditionShipInteractionPrompt" type="Label" parent="."]
-visible = false
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -47,3 +48,35 @@ grow_vertical = 0
 text = "(E)"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="ResourcesCounter" type="Control" parent="."]
+custom_minimum_size = Vector2(300, 50)
+layout_mode = 1
+anchor_left = 0.711806
+anchor_top = 0.0462963
+anchor_right = 0.972222
+anchor_bottom = 0.123457
+grow_horizontal = 0
+script = ExtResource("2_xaom8")
+metadata/_edit_use_anchors_ = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ResourcesCounter"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 10
+alignment = 2
+
+[node name="Value" type="Label" parent="ResourcesCounter/HBoxContainer"]
+layout_mode = 2
+text = "000000"
+
+[node name="ResourceIcon" type="TextureRect" parent="ResourcesCounter/HBoxContainer"]
+modulate = Color(1, 1, 0, 1)
+layout_mode = 2
+texture = ExtResource("2_qc5w2")
+expand_mode = 3
+stretch_mode = 5
