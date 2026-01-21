@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://bii40dmux8sxx"]
+[gd_scene load_steps=7 format=3 uid="uid://bii40dmux8sxx"]
 
 [ext_resource type="Texture2D" uid="uid://dck8ousv4t6ru" path="res://Assets/Sprites/WhiteSprites.png" id="1_brj1q"]
 [ext_resource type="PackedScene" uid="uid://bcvxlujlsdn7w" path="res://Scenes/Player/Player.tscn" id="2_wpc3r"]
 [ext_resource type="PackedScene" uid="uid://k5air2e7arh4" path="res://Scenes/Resources/BasePickup.tscn" id="3_wpc3r"]
 [ext_resource type="PackedScene" uid="uid://csht05sstrhwi" path="res://Scenes/HUB/DepositBox/DepositBox.tscn" id="4_x1isb"]
 [ext_resource type="PackedScene" uid="uid://ccmhp41okc8g0" path="res://Scenes/HUB/ExpeditionShip/ExpeditionShip.tscn" id="5_a3inl"]
+[ext_resource type="PackedScene" uid="uid://crrb27a44kdne" path="res://Scenes/Environment/CaptureArea.tscn" id="6_a3inl"]
 
 [node name="PrototypeMainScene" type="Node2D"]
 
@@ -50,3 +51,7 @@ position = Vector2(1009, -557)
 
 [node name="DepositBox" parent="." instance=ExtResource("4_x1isb")]
 position = Vector2(252, -829)
+
+[node name="CaptureArea" parent="." instance=ExtResource("6_a3inl")]
+position = Vector2(-1173, -1039)
+scale = Vector2(3, 3)
