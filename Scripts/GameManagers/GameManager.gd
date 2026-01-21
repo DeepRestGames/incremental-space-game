@@ -43,6 +43,8 @@ func add_resource(resource_amount: int) -> void:
 	
 	print("Added resource")
 	print("Total resources: " + str(current_player_resource))
+	
+	EventBus.emit_signal("update_HUD")
 
 
 func add_resource_deposit_box() -> void:
@@ -66,3 +68,4 @@ func on_expedition_started() -> void:
 func on_expedition_ended() -> void:
 	get_tree().change_scene_to_packed(main_scene)
 	expedition_started = false
+	
