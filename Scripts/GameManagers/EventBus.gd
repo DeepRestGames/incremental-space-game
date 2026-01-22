@@ -24,3 +24,9 @@ extends Node
 # Expedition
 @warning_ignore("unused_signal") signal expedition_started
 @warning_ignore("unused_signal") signal expedition_ended
+
+# Capture area
+@warning_ignore("unused_signal") signal player_enter_capture_area
+@warning_ignore("unused_signal") signal player_exit_capture_area
+
+@warning_ignore("unused_signal") signal update_HUD
