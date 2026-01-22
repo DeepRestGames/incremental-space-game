@@ -8,6 +8,7 @@ func _ready() -> void:
 	EventBus.connect("expedition_started", on_expedition_started)
 	EventBus.connect("expedition_ended", on_expedition_ended)
 	
+	hide()
 	on_expedition_ended()
 
 

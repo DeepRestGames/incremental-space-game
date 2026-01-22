@@ -4,8 +4,9 @@
 [ext_resource type="Texture2D" uid="uid://d3w6yyyfejaxw" path="res://icon.svg" id="2_qc5w2"]
 [ext_resource type="Script" uid="uid://cpsphmvsiuh1u" path="res://Scripts/UI/HUD/ResourceCounter.gd" id="2_xaom8"]
 
-[node name="HUD" type="Control"]
-custom_minimum_size = Vector2(1152, 648)
+[node name="HUDCanvasLayer" type="CanvasLayer"]
+
+[node name="HUD" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -14,7 +15,7 @@ grow_horizontal = 2
 grow_vertical = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="ExpeditionShipInteractionPrompt" type="Label" parent="."]
+[node name="ExpeditionShipInteractionPrompt" type="Label" parent="HUD"]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -32,7 +33,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 script = ExtResource("1_omqfp")
 
-[node name="KeyHint" type="Label" parent="ExpeditionShipInteractionPrompt"]
+[node name="KeyHint" type="Label" parent="HUD/ExpeditionShipInteractionPrompt"]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -49,7 +50,7 @@ text = "(E)"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="ResourcesCounter" type="Control" parent="."]
+[node name="ResourcesCounter" type="Control" parent="HUD"]
 custom_minimum_size = Vector2(300, 50)
 layout_mode = 1
 anchor_left = 0.711806
@@ -60,7 +61,7 @@ grow_horizontal = 0
 script = ExtResource("2_xaom8")
 metadata/_edit_use_anchors_ = true
 
-[node name="HBoxContainer" type="HBoxContainer" parent="ResourcesCounter"]
+[node name="HBoxContainer" type="HBoxContainer" parent="HUD/ResourcesCounter"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -70,11 +71,11 @@ grow_vertical = 2
 theme_override_constants/separation = 10
 alignment = 2
 
-[node name="Value" type="Label" parent="ResourcesCounter/HBoxContainer"]
+[node name="Value" type="Label" parent="HUD/ResourcesCounter/HBoxContainer"]
 layout_mode = 2
 text = "000000"
 
-[node name="ResourceIcon" type="TextureRect" parent="ResourcesCounter/HBoxContainer"]
+[node name="ResourceIcon" type="TextureRect" parent="HUD/ResourcesCounter/HBoxContainer"]
 modulate = Color(1, 1, 0, 1)
 layout_mode = 2
 texture = ExtResource("2_qc5w2")

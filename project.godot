@@ -21,6 +21,10 @@ EventBus="*res://Scripts/GameManagers/EventBus.gd"
 InputManager="*res://Scripts/GameManagers/InputManager.gd"
 GameManager="*res://Scripts/GameManagers/GameManager.gd"
 
+[display]
+
+window/stretch/mode="viewport"
+
 [global_group]
 
 Player=""

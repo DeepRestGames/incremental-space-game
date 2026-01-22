@@ -71,12 +71,6 @@ libraries = {
 &"": SubResource("AnimationLibrary_fk5o5")
 }
 
-[node name="HUD" parent="." instance=ExtResource("3_ude3g")]
-offset_left = -576.0
-offset_top = -324.0
-offset_right = 576.0
-offset_bottom = 324.0
-
 [node name="ResourceToDepositBoxParticles" type="GPUParticles2D" parent="."]
 emitting = false
 amount = 20
@@ -88,3 +82,5 @@ explosiveness = 0.8
 collision_base_size = 0.1
 process_material = SubResource("ParticleProcessMaterial_t26db")
 script = ExtResource("5_4wape")
+
+[node name="HUD" parent="." instance=ExtResource("3_ude3g")]
