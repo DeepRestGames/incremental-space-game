@@ -12,7 +12,8 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
-	source_position = GameManager.player.global_position
+	if GameManager.player:
+		source_position = GameManager.player.global_position
 	
 	var direction = source_position.direction_to(target_position)
 	
