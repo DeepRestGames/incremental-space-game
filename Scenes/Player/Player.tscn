@@ -1,10 +1,11 @@
-[gd_scene load_steps=12 format=3 uid="uid://bcvxlujlsdn7w"]
+[gd_scene load_steps=18 format=3 uid="uid://bcvxlujlsdn7w"]
 
-[ext_resource type="Script" uid="uid://bsp3uk4kfids8" path="res://Scripts/Player/Player.gd" id="1_kyqiw"]
+[ext_resource type="Script" uid="uid://dwdyuhl8uoahx" path="res://Scripts/Player/Player.gd" id="1_kyqiw"]
 [ext_resource type="Texture2D" uid="uid://d3w6yyyfejaxw" path="res://icon.svg" id="2_ft8w5"]
-[ext_resource type="Script" uid="uid://bjqtfvcnr6x2s" path="res://Scripts/Player/player_state_machine.gd" id="2_jmcll"]
-[ext_resource type="Script" uid="uid://bl0t3lsi4056p" path="res://Scripts/Camera/ScreenShake.gd" id="3_jmcll"]
+[ext_resource type="Script" uid="uid://bga10udjicrif" path="res://Scripts/Player/player_state_machine.gd" id="2_jmcll"]
+[ext_resource type="Script" uid="uid://bjontewb356qy" path="res://Scripts/Camera/ScreenShake.gd" id="3_jmcll"]
 [ext_resource type="PackedScene" uid="uid://beyb44q40vqlr" path="res://Scenes/UI/HUD.tscn" id="3_ude3g"]
+[ext_resource type="Texture2D" uid="uid://b8k587am8xmnh" path="res://Assets/Sprites/player/PlayerSpriteSheet.png" id="4_4wape"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ude3g"]
 radius = 72.0
@@ -35,6 +36,116 @@ _data = {
 &"RunRight": SubResource("Animation_jmcll")
 }
 
+[sub_resource type="Animation" id="Animation_825xp"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerSpriteSheet:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PlayerSpriteSheet:frame_coords")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2i(0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_ji083"]
+resource_name = "RunRight"
+length = 0.64
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerSpriteSheet:frame_coords")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.32),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [Vector2i(0, 1), Vector2i(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PlayerSpriteSheet:scale")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.0333333, 0.193333, 0.353333, 0.513333),
+"transitions": PackedFloat32Array(0.5, 1, 0.5, 1),
+"update": 0,
+"values": [Vector2(0.95, 1.07), Vector2(1.08, 0.93), Vector2(0.95, 1.07), Vector2(1.08, 0.93)]
+}
+
+[sub_resource type="Animation" id="Animation_0kmp4"]
+resource_name = "IdleRight"
+length = 0.64
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerSpriteSheet:scale")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.16, 0.48),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0.97, 1.05), Vector2(1.03, 0.95)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PlayerSpriteSheet:frame_coords")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2i(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_i5acl"]
+resource_name = "DrillRight"
+length = 0.24
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerSpriteSheet:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.08, 0.16),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [Vector2i(0, 2), Vector2i(1, 2), Vector2i(2, 2)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_i5acl"]
+_data = {
+&"DrillRight": SubResource("Animation_i5acl"),
+&"IdleRight": SubResource("Animation_0kmp4"),
+&"RESET": SubResource("Animation_825xp"),
+&"RunRight": SubResource("Animation_ji083")
+}
+
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
 collision_mask = 4
 script = ExtResource("1_kyqiw")
@@ -47,7 +158,16 @@ script = ExtResource("2_jmcll")
 shape = SubResource("CircleShape2D_ude3g")
 
 [node name="PlayerSprite" type="Sprite2D" parent="."]
+visible = false
 texture = ExtResource("2_ft8w5")
+
+[node name="PlayerSpriteSheet" type="Sprite2D" parent="."]
+modulate = Color(0, 0.6, 0.9, 1)
+texture = ExtResource("4_4wape")
+offset = Vector2(13, -64)
+hframes = 5
+vframes = 6
+frame = 5
 
 [node name="PlayerCamera" type="Camera2D" parent="."]
 process_mode = 3
@@ -62,3 +182,9 @@ libraries = {
 }
 
 [node name="HUD" parent="." instance=ExtResource("3_ude3g")]
+
+[node name="AnimationPlayerSpriteSheet" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_i5acl")
+}
+autoplay = "IdleRight"
