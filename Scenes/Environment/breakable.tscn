@@ -1,8 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://c6qwwmff8anwx"]
+[gd_scene load_steps=12 format=3 uid="uid://c6qwwmff8anwx"]
 
 [ext_resource type="Script" uid="uid://dnrt30vluvdw8" path="res://Scripts/Environment/breakable.gd" id="1_om1mr"]
 [ext_resource type="Texture2D" uid="uid://bmn7mspg2bic0" path="res://Assets/Sprites/environment/rock.png" id="2_4xvkv"]
-[ext_resource type="Texture2D" uid="uid://dck8ousv4t6ru" path="res://Assets/Sprites/WhiteSprites.png" id="3_4xvkv"]
+[ext_resource type="AudioStream" uid="uid://cl6u3yq7buxfh" path="res://Assets/Audio/SFX/abdalrahman_bm-8-bit-gravel-footsteps-1-408582.mp3" id="4_5gjhx"]
+[ext_resource type="AudioStream" uid="uid://8ekwcbtftlvh" path="res://Assets/Audio/SFX/freesound_community-8-bit-explosion-95847.mp3" id="5_2om3j"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_v5ktr"]
 radius = 50.0
@@ -31,24 +32,18 @@ expand_margin_top = 5.0
 expand_margin_right = 5.0
 expand_margin_bottom = 5.0
 
-[sub_resource type="Curve" id="Curve_4xvkv"]
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.649466, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
-point_count = 3
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_5gjhx"]
+polygon = PackedVector2Array(281, -86, 104, 131, -200, 127, -329, -59, -231, 172, 138, 172)
 
-[sub_resource type="CurveTexture" id="CurveTexture_oq4pq"]
-curve = SubResource("Curve_4xvkv")
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_r5n5c"]
+random_pitch = 3.0
+streams_count = 1
+stream_0/stream = ExtResource("4_5gjhx")
 
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_oq4pq"]
-particle_flag_disable_z = true
-angle_min = -20.0
-angle_max = 20.0
-direction = Vector3(0, -5, 0)
-initial_velocity_min = 400.0
-initial_velocity_max = 700.0
-gravity = Vector3(0, 2000, 0)
-scale_min = 0.0
-scale_max = 0.4
-alpha_curve = SubResource("CurveTexture_oq4pq")
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_qituv"]
+random_pitch = 3.0
+streams_count = 1
+stream_0/stream = ExtResource("5_2om3j")
 
 [node name="Breakable" type="StaticBody2D"]
 collision_layer = 4
@@ -59,13 +54,14 @@ position = Vector2(0, -39)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_v5ktr")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(-15, -100)
+[node name="Sprite2D" type="Sprite2D" parent="CollisionShape2D"]
+position = Vector2(-60.9999, 15.0002)
+rotation = -1.5708
 texture = SubResource("AtlasTexture_v5ktr")
 
-[node name="Area2D" type="Area2D" parent="Sprite2D"]
+[node name="Area2D" type="Area2D" parent="CollisionShape2D/Sprite2D"]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CollisionShape2D/Sprite2D/Area2D"]
 shape = SubResource("CircleShape2D_5m1wr")
 
 [node name="Control" type="Control" parent="."]
@@ -92,16 +88,20 @@ grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_mu2bs")
 metadata/_edit_use_anchors_ = true
 
-[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
-modulate = Color(0.834614, 0.834614, 0.834614, 1)
-position = Vector2(0, -176)
-emitting = false
-texture = ExtResource("3_4xvkv")
-lifetime = 0.5
-one_shot = true
-explosiveness = 1.0
-local_coords = true
-process_material = SubResource("ParticleProcessMaterial_oq4pq")
+[node name="RockParticlesParent" type="Node2D" parent="."]
+position = Vector2(-13, -142)
 
-[connection signal="body_entered" from="Sprite2D/Area2D" to="." method="_on_area_2d_body_entered"]
-[connection signal="body_exited" from="Sprite2D/Area2D" to="." method="_on_area_2d_body_exited"]
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+position = Vector2(18, -67)
+occluder = SubResource("OccluderPolygon2D_5gjhx")
+
+[node name="Audio" type="Node2D" parent="."]
+
+[node name="Hit" type="AudioStreamPlayer" parent="Audio"]
+stream = SubResource("AudioStreamRandomizer_r5n5c")
+
+[node name="Destroy" type="AudioStreamPlayer" parent="Audio"]
+stream = SubResource("AudioStreamRandomizer_qituv")
+
+[connection signal="body_entered" from="CollisionShape2D/Sprite2D/Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="CollisionShape2D/Sprite2D/Area2D" to="." method="_on_area_2d_body_exited"]

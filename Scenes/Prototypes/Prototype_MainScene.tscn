@@ -62,3 +62,18 @@ scale = Vector2(3, 3)
 
 [node name="Breakable" parent="." instance=ExtResource("8_mu2bs")]
 position = Vector2(869, -1078)
+
+[node name="Breakable2" parent="." instance=ExtResource("8_mu2bs")]
+position = Vector2(439, -1415)
+
+[node name="Breakable3" parent="." instance=ExtResource("8_mu2bs")]
+position = Vector2(2466, -1279)
+
+[node name="Breakable4" parent="." instance=ExtResource("8_mu2bs")]
+position = Vector2(-253, -1006)
+
+[node name="Breakable5" parent="." instance=ExtResource("8_mu2bs")]
+position = Vector2(-418, -456)
+
+[node name="Breakable6" parent="." instance=ExtResource("8_mu2bs")]
+position = Vector2(1625, -28)
