@@ -96,11 +96,11 @@ shape = SubResource("CircleShape2D_56pls")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 modulate = Color(0, 0.796078, 0.584314, 1)
 texture = ExtResource("2_2qmmm")
+offset = Vector2(0, -6)
 
 [node name="Circle05" type="Sprite2D" parent="."]
 modulate = Color(1, 1, 1, 0.498039)
 material = SubResource("CanvasItemMaterial_khskt")
-position = Vector2(0, 5.7)
 scale = Vector2(0.2, 0.2)
 texture = ExtResource("3_yvhsf")
 

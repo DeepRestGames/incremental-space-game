@@ -30,7 +30,7 @@ func _ready() -> void:
 	#var tween = create_tween().set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_SINE).set_loops()
 	#tween.tween_property(sprite, "offset", -hover_animation_movement_vector, hover_animation_cycle_duration)
 	#tween.chain().tween_property(sprite, "offset", hover_animation_movement_vector, hover_animation_cycle_duration)
-	
+	sprite.rotation = randi_range(-180, 180)
 	#Initialize glowing animation
 	animation_player.play()
 	var random_time = randf_range(0.0, 0.7)
