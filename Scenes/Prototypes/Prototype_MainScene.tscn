@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://bii40dmux8sxx"]
+[gd_scene load_steps=10 format=3 uid="uid://bii40dmux8sxx"]
 
 [ext_resource type="Texture2D" uid="uid://dck8ousv4t6ru" path="res://Assets/Sprites/WhiteSprites.png" id="1_brj1q"]
 [ext_resource type="PackedScene" uid="uid://bcvxlujlsdn7w" path="res://Scenes/Player/Player.tscn" id="2_wpc3r"]
@@ -6,8 +6,9 @@
 [ext_resource type="PackedScene" uid="uid://csht05sstrhwi" path="res://Scenes/HUB/DepositBox/DepositBox.tscn" id="4_x1isb"]
 [ext_resource type="PackedScene" uid="uid://ccmhp41okc8g0" path="res://Scenes/HUB/ExpeditionShip/ExpeditionShip.tscn" id="5_a3inl"]
 [ext_resource type="PackedScene" uid="uid://crrb27a44kdne" path="res://Scenes/Environment/CaptureArea.tscn" id="6_a3inl"]
-[ext_resource type="PackedScene" uid="uid://ble6jrlokbqme" path="res://Scenes/Particles/ResourceToDepositBoxParticles.tscn" id="7_svxod"]
-[ext_resource type="PackedScene" uid="uid://c6qwwmff8anwx" path="res://Scenes/Environment/breakable.tscn" id="8_mu2bs"]
+[ext_resource type="PackedScene" uid="uid://cnmiukq20xuav" path="res://Scenes/Particles/PlayerToDepositBoxParticles.tscn" id="7_svxod"]
+[ext_resource type="PackedScene" uid="uid://c6qwwmff8anwx" path="res://Scenes/Environment/breakable_small.tscn" id="8_mu2bs"]
+[ext_resource type="PackedScene" uid="uid://yat7dirw16l5" path="res://Scenes/Environment/breakable_big.tscn" id="9_v5ktr"]
 
 [node name="PrototypeMainScene" type="Node2D"]
 
@@ -59,6 +60,7 @@ position = Vector2(-1173, -1039)
 scale = Vector2(3, 3)
 
 [node name="ResourceToDepositBoxParticles" parent="." instance=ExtResource("7_svxod")]
+visible = false
 
 [node name="Breakable" parent="." instance=ExtResource("8_mu2bs")]
 position = Vector2(869, -1078)
@@ -77,3 +79,6 @@ position = Vector2(-418, -456)
 
 [node name="Breakable6" parent="." instance=ExtResource("8_mu2bs")]
 position = Vector2(1625, -28)
+
+[node name="BreakableBig" parent="." instance=ExtResource("9_v5ktr")]
+position = Vector2(1342, -899)

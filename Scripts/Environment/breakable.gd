@@ -16,9 +16,18 @@ var player_is_in_range: bool = false
 @onready var rock_particles = preload("res://Scenes/Particles/rock_particles.tscn")
 var last_rock_particles_node: GPUParticles2D
 
+@onready var sprite_2d: Sprite2D = $CollisionShape2D/Sprite2D
+@export var rock_sprites: Array[Texture2D]
+
+@onready var resource_drop_scene: PackedScene = preload("res://Scenes/Resources/BasePickup.tscn")
+@export var min_resource_drop: int = 3
+@export var max_resource_drop: int = 6
+
 
 func _ready() -> void:
 	currentHP = totalHP
+	
+	sprite_2d.texture = rock_sprites.pick_random()
 	
 	EventBus.connect("action_trigger_interact", on_interacted)
 
@@ -33,9 +42,20 @@ func on_interacted() -> void:
 	last_rock_particles_node
 	if currentHP <= 0:
 		destroy.play()
+		spawn_resource_drops()
 		defer_destroy_object()
 	else:
 		hit.play()
+
+
+func spawn_resource_drops() -> void:
+	var actual_resource_drop_number = randi_range(min_resource_drop, max_resource_drop)
+	
+	for i in actual_resource_drop_number:
+		var resource_drop_node = resource_drop_scene.instantiate() as BasePickup
+		resource_drop_node.global_position = self.global_position
+		get_tree().root.add_child(resource_drop_node)
+		resource_drop_node.randomize_spawn_direction()
 
 
 func play_rock_particles() -> void:

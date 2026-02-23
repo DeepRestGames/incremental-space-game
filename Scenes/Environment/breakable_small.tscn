@@ -1,17 +1,18 @@
-[gd_scene load_steps=12 format=3 uid="uid://c6qwwmff8anwx"]
+[gd_scene load_steps=16 format=3 uid="uid://c6qwwmff8anwx"]
 
-[ext_resource type="Script" uid="uid://dnrt30vluvdw8" path="res://Scripts/Environment/breakable.gd" id="1_om1mr"]
-[ext_resource type="Texture2D" uid="uid://bmn7mspg2bic0" path="res://Assets/Sprites/environment/rock.png" id="2_4xvkv"]
-[ext_resource type="AudioStream" uid="uid://cl6u3yq7buxfh" path="res://Assets/Audio/SFX/abdalrahman_bm-8-bit-gravel-footsteps-1-408582.mp3" id="4_5gjhx"]
-[ext_resource type="AudioStream" uid="uid://8ekwcbtftlvh" path="res://Assets/Audio/SFX/freesound_community-8-bit-explosion-95847.mp3" id="5_2om3j"]
+[ext_resource type="Script" uid="uid://cvsef4mnyubft" path="res://Scripts/Environment/breakable.gd" id="1_4ng74"]
+[ext_resource type="Texture2D" uid="uid://dq0ww0v8actmk" path="res://Assets/Sprites/environment/rock_1.png" id="2_s777y"]
+[ext_resource type="Texture2D" uid="uid://bgcnjmoxfsp2n" path="res://Assets/Sprites/environment/rock_2.png" id="3_o1sp6"]
+[ext_resource type="Texture2D" uid="uid://b55ltj8wrrbag" path="res://Assets/Sprites/environment/rock_3.png" id="4_oih5c"]
+[ext_resource type="Texture2D" uid="uid://cp0j4lvnx2qy7" path="res://Assets/Sprites/environment/rock_4.png" id="5_nkjps"]
+[ext_resource type="Texture2D" uid="uid://cq450xheijdcf" path="res://Assets/Sprites/environment/rock_5.png" id="6_00jem"]
+[ext_resource type="Texture2D" uid="uid://bvwyvtefe060y" path="res://Assets/Sprites/environment/rock_6.png" id="7_m8p8b"]
+[ext_resource type="AudioStream" uid="uid://cl6u3yq7buxfh" path="res://Assets/Audio/SFX/abdalrahman_bm-8-bit-gravel-footsteps-1-408582.mp3" id="8_5j6il"]
+[ext_resource type="AudioStream" uid="uid://8ekwcbtftlvh" path="res://Assets/Audio/SFX/freesound_community-8-bit-explosion-95847.mp3" id="9_sqqoc"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_v5ktr"]
 radius = 50.0
 height = 200.0
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_v5ktr"]
-atlas = ExtResource("2_4xvkv")
-region = Rect2(71, 70, 234, 232)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_5m1wr"]
 radius = 200.0
@@ -38,16 +39,17 @@ polygon = PackedVector2Array(281, -86, 104, 131, -200, 127, -329, -59, -231, 172
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_r5n5c"]
 random_pitch = 3.0
 streams_count = 1
-stream_0/stream = ExtResource("4_5gjhx")
+stream_0/stream = ExtResource("8_5j6il")
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_qituv"]
 random_pitch = 3.0
 streams_count = 1
-stream_0/stream = ExtResource("5_2om3j")
+stream_0/stream = ExtResource("9_sqqoc")
 
-[node name="Breakable" type="StaticBody2D"]
+[node name="BreakableSmall" type="StaticBody2D"]
 collision_layer = 4
-script = ExtResource("1_om1mr")
+script = ExtResource("1_4ng74")
+rock_sprites = Array[Texture2D]([ExtResource("2_s777y"), ExtResource("3_o1sp6"), ExtResource("4_oih5c"), ExtResource("5_nkjps"), ExtResource("6_00jem"), ExtResource("7_m8p8b")])
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -39)
@@ -55,9 +57,10 @@ rotation = 1.5708
 shape = SubResource("CapsuleShape2D_v5ktr")
 
 [node name="Sprite2D" type="Sprite2D" parent="CollisionShape2D"]
-position = Vector2(-60.9999, 15.0002)
+position = Vector2(-47.335, 0)
 rotation = -1.5708
-texture = SubResource("AtlasTexture_v5ktr")
+scale = Vector2(1.2, 1.2)
+texture = ExtResource("2_s777y")
 
 [node name="Area2D" type="Area2D" parent="CollisionShape2D/Sprite2D"]
 
@@ -68,12 +71,10 @@ shape = SubResource("CircleShape2D_5m1wr")
 visible = false
 layout_mode = 3
 anchors_preset = 0
-offset_left = -132.0
-offset_top = -215.0
-offset_right = 103.0
-offset_bottom = 15.0
-grow_horizontal = 2
-grow_vertical = 2
+offset_left = -100.0
+offset_top = -180.0
+offset_right = 100.0
+offset_bottom = 20.0
 size_flags_horizontal = 4
 size_flags_vertical = 4
 metadata/_edit_use_anchors_ = true

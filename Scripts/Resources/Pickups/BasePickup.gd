@@ -12,6 +12,10 @@ extends Area2D
 @export var pickup_name: String
 @export var pickup_amount: int = 1
 
+@export_group("Player attraction")
+var player_in_attraction_area: bool = false
+@export var movement_speed: float = 200
+
 
 func _ready() -> void:
 	var tween = create_tween().set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_SINE).set_loops()
@@ -26,3 +30,30 @@ func _on_body_entered(body: Node2D) -> void:
 		
 		EventBus.emit_signal("add_resource", pickup_amount)
 		queue_free()
+
+
+func _physics_process(delta: float) -> void:
+	if player_in_attraction_area:
+		global_position = global_position.move_toward(GameManager.player.global_position, delta * movement_speed)
+
+
+func _on_move_to_player_area_2d_body_entered(body: Node2D) -> void:
+	if body.is_in_group("Player"):
+		player_in_attraction_area = true
+
+
+func _on_move_to_player_area_2d_body_exited(body: Node2D) -> void:
+	if body.is_in_group("Player"):
+		player_in_attraction_area = false
+
+
+func randomize_spawn_direction() -> void:
+	var direction = Vector2(randf_range(-1, 1), randf_range(-1, 1))
+	var spawn_velocity = randi_range(120, 200)
+	var spawn_duration = randf_range(.5, 1)
+	
+	var tween_y = get_tree().create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_BOUNCE)
+	tween_y.tween_property(self, "position:y", position.y + (direction.y * spawn_velocity), spawn_duration)
+	
+	var tween_x = get_tree().create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
+	tween_x.tween_property(self, "position:x", position.x + (direction.x * spawn_velocity), spawn_duration)

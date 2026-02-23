@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://k5air2e7arh4"]
+[gd_scene load_steps=8 format=3 uid="uid://k5air2e7arh4"]
 
 [ext_resource type="Script" uid="uid://c07j7prp5s1i7" path="res://Scripts/Resources/Pickups/BasePickup.gd" id="1_2qmmm"]
 [ext_resource type="Texture2D" uid="uid://d3w6yyyfejaxw" path="res://icon.svg" id="1_dofg7"]
@@ -44,6 +44,9 @@ _data = {
 &"hover": SubResource("Animation_56pls")
 }
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_2qmmm"]
+radius = 150.0
+
 [node name="BasePickup" type="Area2D"]
 collision_layer = 0
 monitorable = false
@@ -62,4 +65,12 @@ libraries = {
 &"": SubResource("AnimationLibrary_gmi6t")
 }
 
+[node name="MoveToPlayerArea2D" type="Area2D" parent="."]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MoveToPlayerArea2D"]
+shape = SubResource("CircleShape2D_2qmmm")
+
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_entered" from="MoveToPlayerArea2D" to="." method="_on_move_to_player_area_2d_body_entered"]
+[connection signal="body_exited" from="MoveToPlayerArea2D" to="." method="_on_move_to_player_area_2d_body_exited"]
