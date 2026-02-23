@@ -1,20 +1,17 @@
 [gd_scene load_steps=12 format=3 uid="uid://c6qwwmff8anwx"]
 
-[ext_resource type="Script" uid="uid://dnrt30vluvdw8" path="res://Scripts/Environment/breakable.gd" id="1_om1mr"]
-[ext_resource type="Texture2D" uid="uid://bmn7mspg2bic0" path="res://Assets/Sprites/environment/rock.png" id="2_4xvkv"]
+[ext_resource type="Script" uid="uid://drrysm44lf0k8" path="res://Scripts/Environment/breakable.gd" id="1_om1mr"]
+[ext_resource type="Texture2D" uid="uid://dv5onwoojupco" path="res://Assets/Sprites/environment/Rock1.png" id="2_oq4pq"]
+[ext_resource type="Texture2D" uid="uid://d0tgqaan4xcle" path="res://Assets/Sprites/environment/5Chips1.png" id="3_5gjhx"]
 [ext_resource type="AudioStream" uid="uid://cl6u3yq7buxfh" path="res://Assets/Audio/SFX/abdalrahman_bm-8-bit-gravel-footsteps-1-408582.mp3" id="4_5gjhx"]
 [ext_resource type="AudioStream" uid="uid://8ekwcbtftlvh" path="res://Assets/Audio/SFX/freesound_community-8-bit-explosion-95847.mp3" id="5_2om3j"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_v5ktr"]
-radius = 50.0
-height = 200.0
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_v5ktr"]
-atlas = ExtResource("2_4xvkv")
-region = Rect2(71, 70, 234, 232)
+radius = 24.0
+height = 150.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_5m1wr"]
-radius = 200.0
+radius = 406.07
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mu2bs"]
 draw_center = false
@@ -48,21 +45,31 @@ stream_0/stream = ExtResource("5_2om3j")
 [node name="Breakable" type="StaticBody2D"]
 collision_layer = 4
 script = ExtResource("1_om1mr")
+totalHP = 6
+spawn_pickup_chance = 0.3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -39)
 rotation = 1.5708
+scale = Vector2(2, 2)
 shape = SubResource("CapsuleShape2D_v5ktr")
 
 [node name="Sprite2D" type="Sprite2D" parent="CollisionShape2D"]
-position = Vector2(-60.9999, 15.0002)
+modulate = Color(0.415328, 0.486884, 0.711358, 1)
+position = Vector2(-32.45, 0)
 rotation = -1.5708
-texture = SubResource("AtlasTexture_v5ktr")
+texture = ExtResource("2_oq4pq")
 
 [node name="Area2D" type="Area2D" parent="CollisionShape2D/Sprite2D"]
+scale = Vector2(0.337566, 0.337566)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CollisionShape2D/Sprite2D/Area2D"]
 shape = SubResource("CircleShape2D_5m1wr")
+
+[node name="5Chips1" type="Sprite2D" parent="CollisionShape2D"]
+modulate = Color(1.05888e-06, 0.796834, 0.58397, 1)
+position = Vector2(-49, 2.00018)
+rotation = -1.5708
+texture = ExtResource("3_5gjhx")
 
 [node name="Control" type="Control" parent="."]
 visible = false
@@ -80,9 +87,11 @@ metadata/_edit_use_anchors_ = true
 
 [node name="Panel" type="Panel" parent="Control"]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchors_preset = -1
+anchor_left = 0.0638298
+anchor_top = 0.252174
+anchor_right = 1.06383
+anchor_bottom = 1.25217
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_mu2bs")
@@ -92,7 +101,8 @@ metadata/_edit_use_anchors_ = true
 position = Vector2(-13, -142)
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="."]
-position = Vector2(18, -67)
+position = Vector2(28, -29)
+scale = Vector2(0.852913, 0.852913)
 occluder = SubResource("OccluderPolygon2D_5gjhx")
 
 [node name="Audio" type="Node2D" parent="."]

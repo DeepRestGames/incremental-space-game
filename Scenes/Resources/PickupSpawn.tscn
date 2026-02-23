@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://cgoo4dv0oy4c5"]
+
+[ext_resource type="Script" uid="uid://drr66sph82dwq" path="res://Scripts/Resources/Pickups/PickupSpawn.gd" id="1_0da6k"]
+[ext_resource type="PackedScene" uid="uid://k5air2e7arh4" path="res://Scenes/Resources/BasePickup.tscn" id="2_g3app"]
+
+[node name="PickUpSpawn" type="Node2D"]
+script = ExtResource("1_0da6k")
+spawned_pickup_scene = ExtResource("2_g3app")
+acceleration_min = 1500.0
+acceleration_max = 3000.0
