@@ -1,6 +1,6 @@
 [gd_scene load_steps=12 format=3 uid="uid://bcvxlujlsdn7w"]
 
-[ext_resource type="Script" uid="uid://3u5as0enhnvs" path="res://Scripts/Player/Player.gd" id="1_kyqiw"]
+[ext_resource type="Script" uid="uid://bdnd5psgkd0uv" path="res://Scenes/Player/player_input.gd" id="2_4wape"]
 [ext_resource type="Texture2D" uid="uid://d3w6yyyfejaxw" path="res://icon.svg" id="2_ft8w5"]
 [ext_resource type="Script" uid="uid://cjifrmqkcmg6q" path="res://Scripts/Player/player_state_machine.gd" id="2_jmcll"]
 [ext_resource type="Script" uid="uid://shryjncp67wa" path="res://Scripts/Camera/ScreenShake.gd" id="3_jmcll"]
@@ -39,6 +39,9 @@ _data = {
 collision_mask = 4
 script = ExtResource("1_kyqiw")
 movement_speed = 700.0
+
+[node name="PlayerInput" type="Node2D" parent="."]
+script = ExtResource("2_4wape")
 
 [node name="PlayerStateMachine" type="Node2D" parent="."]
 script = ExtResource("2_jmcll")
