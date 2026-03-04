@@ -8,6 +8,8 @@ var default_camera_zoom = Vector2.ONE
 # Graphics
 @onready var player_sprite = $PlayerSprite
 @onready var animation_player = $AnimationPlayer
+@onready var animation_tree: AnimationTree = $AnimationTree
+
 
 # HP
 var currentHP: int = 3
@@ -18,6 +20,7 @@ var currentInvincibilityCooldown: float
 # Movement
 @export var movement_speed: float = 300
 var looking_direction = Vector2.ZERO
+var movement_direction = Vector2.ZERO
 const ROTATION_SPEED: float = 2
 
 # Consumables
@@ -39,6 +42,9 @@ func _ready() -> void:
 	# Input signals
 	#EventBus.connect("looking_direction_changed", update_looking_direction)
 	EventBus.connect("player_movement", update_movement_direction)
+	
+	# Animations
+	animation_tree.active = true
 
 
 func update_looking_direction(new_looking_direction: Vector2) -> void:
@@ -47,11 +53,13 @@ func update_looking_direction(new_looking_direction: Vector2) -> void:
 
 func update_movement_direction(new_movement_direction: Vector2) -> void:
 	velocity = new_movement_direction * movement_speed
+	movement_direction = new_movement_direction
 
 
 func _process(delta: float) -> void:
 	if currentInvincibilityCooldown > 0:
 		currentInvincibilityCooldown -= delta
+	update_animation_parameters()
 
 
 func _physics_process(_delta: float) -> void:
@@ -158,3 +166,22 @@ func hide_player(value) -> void:
 	else:
 		show()
 		EventBus.emit_signal("set_prevent_inputs", false)
+
+func update_animation_parameters():
+	if (velocity == Vector2.ZERO):
+		animation_tree["parameters/conditions/idle"] = true
+		animation_tree["parameters/conditions/is_moving"] = false
+	else:
+		animation_tree["parameters/conditions/idle"] = false
+		animation_tree["parameters/conditions/is_moving"] = true
+	if Input.is_action_pressed("interact") :
+		animation_tree["parameters/conditions/drilling"] = true
+		animation_tree["parameters/conditions/idle"] = false
+		animation_tree["parameters/conditions/is_moving"] = false
+	else :
+		animation_tree["parameters/conditions/drilling"] = false
+	
+	if movement_direction != Vector2.ZERO:
+		animation_tree["parameters/Idle/blend_position"] = movement_direction
+		animation_tree["parameters/Run/blend_position"] = movement_direction
+		animation_tree["parameters/Drill/blend_position"] = movement_direction
