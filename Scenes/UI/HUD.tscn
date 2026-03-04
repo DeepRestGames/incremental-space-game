@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://beyb44q40vqlr"]
 
-[ext_resource type="Script" uid="uid://dpykn5lx31kye" path="res://Scripts/UI/HUD/ExpeditionShipInteractionPrompt.gd" id="1_omqfp"]
+[ext_resource type="Script" uid="uid://dl6hms7n2jhi" path="res://Scripts/UI/HUD/ExpeditionShipInteractionPrompt.gd" id="1_omqfp"]
 [ext_resource type="Texture2D" uid="uid://d3w6yyyfejaxw" path="res://icon.svg" id="2_qc5w2"]
-[ext_resource type="Script" uid="uid://cpsphmvsiuh1u" path="res://Scripts/UI/HUD/ResourceCounter.gd" id="2_xaom8"]
+[ext_resource type="Script" uid="uid://cdus6xyrv3snd" path="res://Scripts/UI/HUD/ResourceCounter.gd" id="2_xaom8"]
 
 [node name="HUDCanvasLayer" type="CanvasLayer"]
 

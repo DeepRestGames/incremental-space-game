@@ -1,6 +1,6 @@
 [gd_scene load_steps=10 format=3 uid="uid://k5air2e7arh4"]
 
-[ext_resource type="Script" uid="uid://dtpk60kgunemw" path="res://Scripts/Resources/Pickups/BasePickup.gd" id="1_2qmmm"]
+[ext_resource type="Script" uid="uid://c07j7prp5s1i7" path="res://Scripts/Resources/Pickups/BasePickup.gd" id="1_2qmmm"]
 [ext_resource type="Texture2D" uid="uid://c3ntwkug8888f" path="res://Assets/Sprites/environment/ChipTriangle.png" id="2_2qmmm"]
 [ext_resource type="Texture2D" uid="uid://cudg8ldkwnlxw" path="res://Assets/Sprites/kenney_particle-pack/PNG (Transparent)/circle_05.png" id="3_yvhsf"]
 

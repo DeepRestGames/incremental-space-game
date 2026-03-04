@@ -1,10 +1,10 @@
 [gd_scene load_steps=45 format=3 uid="uid://bcvxlujlsdn7w"]
 
-[ext_resource type="Script" uid="uid://bsp3uk4kfids8" path="res://Scripts/Player/Player.gd" id="1_kyqiw"]
-[ext_resource type="Script" uid="uid://bdnd5psgkd0uv" path="res://Scenes/Player/player_input.gd" id="2_4wape"]
+[ext_resource type="Script" uid="uid://3u5as0enhnvs" path="res://Scripts/Player/Player.gd" id="1_kyqiw"]
+[ext_resource type="Script" uid="uid://cwebbiwcba2kb" path="res://Scenes/Player/player_input.gd" id="2_4wape"]
 [ext_resource type="Texture2D" uid="uid://d3w6yyyfejaxw" path="res://icon.svg" id="2_ft8w5"]
-[ext_resource type="Script" uid="uid://bjqtfvcnr6x2s" path="res://Scripts/Player/player_state_machine.gd" id="2_jmcll"]
-[ext_resource type="Script" uid="uid://bl0t3lsi4056p" path="res://Scripts/Camera/ScreenShake.gd" id="3_jmcll"]
+[ext_resource type="Script" uid="uid://cjifrmqkcmg6q" path="res://Scripts/Player/player_state_machine.gd" id="2_jmcll"]
+[ext_resource type="Script" uid="uid://shryjncp67wa" path="res://Scripts/Camera/ScreenShake.gd" id="3_jmcll"]
 [ext_resource type="PackedScene" uid="uid://beyb44q40vqlr" path="res://Scenes/UI/HUD.tscn" id="3_ude3g"]
 [ext_resource type="Texture2D" uid="uid://b8k587am8xmnh" path="res://Assets/Sprites/player/PlayerSpriteSheet.png" id="4_4wape"]
 

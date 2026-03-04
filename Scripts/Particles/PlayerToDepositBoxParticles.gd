@@ -11,7 +11,7 @@ func _ready() -> void:
 	EventBus.connect("start_resource_transfer_animation_to_deposit_box", start_animation)
 
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	if GameManager.player:
 		source_position = GameManager.player.global_position
 	

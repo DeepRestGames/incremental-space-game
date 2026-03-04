@@ -1,6 +1,6 @@
 [gd_scene load_steps=10 format=3 uid="uid://yat7dirw16l5"]
 
-[ext_resource type="Script" uid="uid://dnrt30vluvdw8" path="res://Scripts/Environment/breakable.gd" id="1_om1mr"]
+[ext_resource type="Script" uid="uid://cvsef4mnyubft" path="res://Scripts/Environment/breakable.gd" id="1_om1mr"]
 [ext_resource type="Texture2D" uid="uid://dv5onwoojupco" path="res://Assets/Sprites/environment/Rock1.png" id="2_oq4pq"]
 [ext_resource type="Texture2D" uid="uid://d0tgqaan4xcle" path="res://Assets/Sprites/environment/5Chips1.png" id="3_5gjhx"]
 
@@ -43,7 +43,8 @@ collision_layer = 4
 script = ExtResource("1_om1mr")
 totalHP = 6
 rock_sprites = Array[Texture2D]([ExtResource("2_oq4pq")])
-spawn_pickup_chance = 0.3
+min_resource_number = 10
+max_resource_number = 20
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 rotation = 1.5708
