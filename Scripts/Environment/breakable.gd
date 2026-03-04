@@ -19,17 +19,16 @@ var last_rock_particles_node: GPUParticles2D
 @onready var sprite_2d: Sprite2D = $CollisionShape2D/Sprite2D
 @export var rock_sprites: Array[Texture2D]
 
-@onready var resource_drop_scene: PackedScene = preload("res://Scenes/Resources/BasePickup.tscn")
-@export var min_resource_drop: int = 3
-@export var max_resource_drop: int = 6
-@onready var pickup_spawner_scene = preload("uid://cgoo4dv0oy4c5")
-var pickup_spawner: Node2D = pickup_spawner_scene
-@export var spawn_pickup_chance = 0.5
-@export var drop_amount: int = 5
+@onready var resource_scene: PackedScene = preload("res://Scenes/Resources/BasePickup.tscn")
+@export var min_resource_number: int = 4
+@export var max_resource_number: int = 10
+var current_resource_number: int
+@export var resource_spawn_chance_on_damaged: float = 0.9
 
 
 func _ready() -> void:
 	currentHP = totalHP
+	current_resource_number = randi_range(min_resource_number, max_resource_number)
 	
 	sprite_2d.texture = rock_sprites.pick_random()
 	
@@ -43,26 +42,28 @@ func on_interacted() -> void:
 	EventBus.emit_signal("breakable_damaged")
 	play_rock_particles()
 	
-	spawn_chips()
+	if randf_range(0, 1) < resource_spawn_chance_on_damaged:
+		spawn_resource_drops(1)
 	
 	currentHP -= 1
-	last_rock_particles_node
+	
 	if currentHP <= 0:
 		destroy.play()
-		spawn_resource_drops()
+		spawn_resource_drops(current_resource_number)
 		defer_destroy_object()
 	else:
 		hit.play()
 
 
-func spawn_resource_drops() -> void:
-	var actual_resource_drop_number = randi_range(min_resource_drop, max_resource_drop)
-	
-	for i in actual_resource_drop_number:
-		var resource_drop_node = resource_drop_scene.instantiate() as BasePickup
-		resource_drop_node.global_position = self.global_position
+func spawn_resource_drops(resource_number: int) -> void:
+	for i in resource_number:
+		var resource_drop_node = resource_scene.instantiate() as BasePickup
+		var random_offset = Vector2(randf_range(-20, 20), randf_range(-20, 20))
+		resource_drop_node.global_position = self.global_position + random_offset
 		get_tree().root.add_child(resource_drop_node)
 		resource_drop_node.randomize_spawn_direction()
+	
+	current_resource_number -= resource_number
 
 
 func play_rock_particles() -> void:
@@ -74,9 +75,6 @@ func play_rock_particles() -> void:
 func defer_destroy_object() -> void:
 	collision_shape_2d.call_deferred("queue_free")
 	control.hide()
-	
-	drop_loot()
-		
 	await last_rock_particles_node.finished
 	
 	call_deferred("queue_free")
@@ -93,21 +91,3 @@ func _on_area_2d_body_exited(body: Node2D) -> void:
 		control.hide()
 		player_is_in_range = false
 		
-
-func spawn_chips():
-	#occasionally drop chips while mining
-	var pickup_chance_roll = randf_range(0.0, 1.0)
-	if pickup_chance_roll <= spawn_pickup_chance:
-		pickup_spawner = pickup_spawner_scene.instantiate() as Node2D
-		get_parent().add_child(pickup_spawner)
-		pickup_spawner.global_position = global_position
-		pickup_spawner.initialize()
-
-func drop_loot():
-	#drop chips when destroyed
-	for i in drop_amount:
-		pickup_spawner = pickup_spawner_scene.instantiate() as Node2D
-		get_parent().add_child(pickup_spawner)
-		var offset = Vector2(randf_range(-20,20), randf_range(-20,20))
-		pickup_spawner.global_position = global_position + offset
-		pickup_spawner.initialize()
