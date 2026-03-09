@@ -1,10 +1,16 @@
-[gd_scene load_steps=4 format=3 uid="uid://beyb44q40vqlr"]
+[gd_scene load_steps=5 format=3 uid="uid://beyb44q40vqlr"]
 
-[ext_resource type="Script" uid="uid://dpykn5lx31kye" path="res://Scripts/UI/HUD/ExpeditionShipInteractionPrompt.gd" id="1_omqfp"]
+[ext_resource type="Texture2D" uid="uid://cqwlreb6f151w" path="res://Assets/Sprites/particles/Vignette.png" id="1_4bm6u"]
+[ext_resource type="Script" uid="uid://mcvf683b2t30" path="res://Scripts/UI/HUD/ExpeditionShipInteractionPrompt.gd" id="1_omqfp"]
 [ext_resource type="Texture2D" uid="uid://d3w6yyyfejaxw" path="res://icon.svg" id="2_qc5w2"]
-[ext_resource type="Script" uid="uid://cpsphmvsiuh1u" path="res://Scripts/UI/HUD/ResourceCounter.gd" id="2_xaom8"]
+[ext_resource type="Script" uid="uid://dkioq7vpu1p3l" path="res://Scripts/UI/HUD/ResourceCounter.gd" id="2_xaom8"]
 
 [node name="HUDCanvasLayer" type="CanvasLayer"]
+
+[node name="Vignette" type="Sprite2D" parent="."]
+position = Vector2(575.895, 331)
+scale = Vector2(0.617946, 0.617946)
+texture = ExtResource("1_4bm6u")
 
 [node name="HUD" type="Control" parent="."]
 layout_mode = 3
