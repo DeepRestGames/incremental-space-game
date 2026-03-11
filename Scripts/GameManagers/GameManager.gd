@@ -56,8 +56,7 @@ func add_resource_deposit_box() -> void:
 	current_deposit_box_resource += current_player_resource
 	current_player_resource = 0
 	
-	print("Deposit box filled")
-	print("Total deposit box resources: " + str(current_deposit_box_resource))
+	EventBus.emit_signal("update_HUD")
 
 
 func on_expedition_started() -> void:
