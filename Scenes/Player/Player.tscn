@@ -433,7 +433,6 @@ visible = false
 shape = SubResource("CircleShape2D_ude3g")
 
 [node name="PlayerSprite" type="Sprite2D" parent="."]
-modulate = Color(0, 0.6, 0.9, 1)
 texture = ExtResource("4_4wape")
 offset = Vector2(13, -64)
 flip_h = true

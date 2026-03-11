@@ -11,7 +11,6 @@ var spawned_pickup: Node2D
 @export var rotation_acceleration_max = 100
 @export var animation_duration_min = 0.2
 @export var animation_duration_max = 0.5
-var animation_duration: float
 var elapsed_time: float = 0.0
 
 

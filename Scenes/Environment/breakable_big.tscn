@@ -2,14 +2,16 @@
 
 [ext_resource type="Script" uid="uid://cvsef4mnyubft" path="res://Scripts/Environment/breakable.gd" id="1_om1mr"]
 [ext_resource type="Texture2D" uid="uid://dv5onwoojupco" path="res://Assets/Sprites/environment/Rock1.png" id="2_oq4pq"]
-[ext_resource type="Texture2D" uid="uid://d0tgqaan4xcle" path="res://Assets/Sprites/environment/5Chips1.png" id="3_5gjhx"]
+[ext_resource type="Texture2D" uid="uid://bhrm3cbrxppqm" path="res://Assets/Sprites/environment/5Chip1_Green.png" id="3_5gjhx"]
+[ext_resource type="AudioStream" uid="uid://cl6u3yq7buxfh" path="res://Assets/Audio/SFX/abdalrahman_bm-8-bit-gravel-footsteps-1-408582.mp3" id="4_5gjhx"]
+[ext_resource type="AudioStream" uid="uid://8ekwcbtftlvh" path="res://Assets/Audio/SFX/freesound_community-8-bit-explosion-95847.mp3" id="5_2om3j"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_v5ktr"]
 radius = 24.0
 height = 150.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_5m1wr"]
-radius = 406.07
+radius = 800.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mu2bs"]
 draw_center = false
@@ -48,11 +50,9 @@ max_resource_number = 20
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 rotation = 1.5708
-scale = Vector2(2, 2)
 shape = SubResource("CapsuleShape2D_v5ktr")
 
 [node name="Sprite2D" type="Sprite2D" parent="CollisionShape2D"]
-modulate = Color(0.415328, 0.486884, 0.711358, 1)
 position = Vector2(-32.45, 0)
 rotation = -1.5708
 scale = Vector2(1.2, 1.2)
@@ -64,10 +64,8 @@ scale = Vector2(0.337566, 0.337566)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CollisionShape2D/Sprite2D/Area2D"]
 shape = SubResource("CircleShape2D_5m1wr")
 
-[node name="5Chips1" type="Sprite2D" parent="CollisionShape2D"]
-modulate = Color(1.05888e-06, 0.796834, 0.58397, 1)
-position = Vector2(-49, 2.00018)
-rotation = -1.5708
+[node name="5Chip1Green" type="Sprite2D" parent="CollisionShape2D"]
+position = Vector2(-54, 6.00018)
 texture = ExtResource("3_5gjhx")
 
 [node name="Control" type="Control" parent="."]

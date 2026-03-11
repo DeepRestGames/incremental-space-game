@@ -1,7 +1,8 @@
 class_name BasePickup
 extends Area2D
 
-@onready var animation_player = $AnimationPlayer
+@onready var animation_player_glow = $AnimationPlayerGlow
+@onready var animation_player_shine_spikes = $AnimationPlayerShineSpikes
 @onready var sprite = $Sprite2D
 
 @export_group("Animation")
@@ -22,12 +23,40 @@ func _ready() -> void:
 	#tween.tween_property(sprite, "offset", -hover_animation_movement_vector, hover_animation_cycle_duration)
 	#tween.chain().tween_property(sprite, "offset", hover_animation_movement_vector, hover_animation_cycle_duration)
 	#Initialize glowing animation
-	animation_player.play()
-	var random_time = randf_range(0.0, 0.7)
-	var random_speed = randf_range(0.9, 1.1)
-	animation_player.seek(random_time, true)
-	animation_player.speed_scale = random_speed
+	play_randomized_animation (animation_player_glow)
+	play_randomized_animation (animation_player_shine_spikes)
 
+
+func _process(delta: float) -> void:
+	if damping_time <= 0.0:
+		return
+
+	elapsed_time += delta
+	
+	var t : float = clamp(elapsed_time / damping_time, 0.0, 1.0)
+	var damping : float = 1.0 - t
+	
+	# Apply movement
+	velocity = direction * acceleration * damping
+	rotation_velocity = rotation_acceleration * damping
+	
+	position += velocity * delta
+	rotation += rotation_velocity * delta
+	
+	# Stop completely when done
+	if t >= 1.0:
+		acceleration = 0.0
+		rotation_acceleration = 0.0
+		damping_time = 0.0
+
+
+func play_randomized_animation (aniamtion: AnimationPlayer):
+	var random_time = randf_range(0.0, aniamtion.current_animation_length)
+	var random_speed = randf_range(0.9, 1.1)
+	aniamtion.seek(random_time, true)
+	aniamtion.speed_scale = random_speed
+	aniamtion.play()
+	
 
 func _on_body_entered(body: Node2D) -> void:
 	if body.is_in_group("Player"):
