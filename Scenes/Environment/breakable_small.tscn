@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://c6qwwmff8anwx"]
+[gd_scene load_steps=17 format=3 uid="uid://c6qwwmff8anwx"]
 
 [ext_resource type="Script" uid="uid://cvsef4mnyubft" path="res://Scripts/Environment/breakable.gd" id="1_4ng74"]
 [ext_resource type="Texture2D" uid="uid://dq0ww0v8actmk" path="res://Assets/Sprites/environment/rock_1.png" id="2_s777y"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://cq450xheijdcf" path="res://Assets/Sprites/environment/rock_5.png" id="6_00jem"]
 [ext_resource type="Texture2D" uid="uid://bvwyvtefe060y" path="res://Assets/Sprites/environment/rock_6.png" id="7_m8p8b"]
 [ext_resource type="AudioStream" uid="uid://cl6u3yq7buxfh" path="res://Assets/Audio/SFX/abdalrahman_bm-8-bit-gravel-footsteps-1-408582.mp3" id="8_5j6il"]
+[ext_resource type="Texture2D" uid="uid://dv5onwoojupco" path="res://Assets/Sprites/environment/Rock1.png" id="8_s777y"]
 [ext_resource type="AudioStream" uid="uid://8ekwcbtftlvh" path="res://Assets/Audio/SFX/freesound_community-8-bit-explosion-95847.mp3" id="9_sqqoc"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_v5ktr"]
@@ -60,7 +61,7 @@ shape = SubResource("CapsuleShape2D_v5ktr")
 position = Vector2(-47.335, 0)
 rotation = -1.5708
 scale = Vector2(1.2, 1.2)
-texture = ExtResource("2_s777y")
+texture = ExtResource("8_s777y")
 
 [node name="Area2D" type="Area2D" parent="CollisionShape2D/Sprite2D"]
 

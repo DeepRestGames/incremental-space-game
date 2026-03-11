@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://bii40dmux8sxx"]
+[gd_scene load_steps=10 format=3 uid="uid://bii40dmux8sxx"]
 
 [ext_resource type="Texture2D" uid="uid://dck8ousv4t6ru" path="res://Assets/Sprites/WhiteSprites.png" id="1_brj1q"]
 [ext_resource type="PackedScene" uid="uid://bcvxlujlsdn7w" path="res://Scenes/Player/Player.tscn" id="2_wpc3r"]

@@ -3,8 +3,6 @@
 [ext_resource type="Script" uid="uid://cvsef4mnyubft" path="res://Scripts/Environment/breakable.gd" id="1_om1mr"]
 [ext_resource type="Texture2D" uid="uid://dv5onwoojupco" path="res://Assets/Sprites/environment/Rock1.png" id="2_oq4pq"]
 [ext_resource type="Texture2D" uid="uid://bhrm3cbrxppqm" path="res://Assets/Sprites/environment/5Chip1_Green.png" id="3_5gjhx"]
-[ext_resource type="AudioStream" uid="uid://cl6u3yq7buxfh" path="res://Assets/Audio/SFX/abdalrahman_bm-8-bit-gravel-footsteps-1-408582.mp3" id="4_5gjhx"]
-[ext_resource type="AudioStream" uid="uid://8ekwcbtftlvh" path="res://Assets/Audio/SFX/freesound_community-8-bit-explosion-95847.mp3" id="5_2om3j"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_v5ktr"]
 radius = 24.0

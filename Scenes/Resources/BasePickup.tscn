@@ -1,6 +1,6 @@
-[gd_scene load_steps=13 format=3 uid="uid://k5air2e7arh4"]
+[gd_scene load_steps=14 format=3 uid="uid://k5air2e7arh4"]
 
-[ext_resource type="Script" uid="uid://cwicapnr3rhoc" path="res://Scripts/Resources/Pickups/BasePickup.gd" id="1_2qmmm"]
+[ext_resource type="Script" uid="uid://c07j7prp5s1i7" path="res://Scripts/Resources/Pickups/BasePickup.gd" id="1_2qmmm"]
 [ext_resource type="Texture2D" uid="uid://vb7o8svadhxn" path="res://Assets/Sprites/environment/ChipTriangle_Green.png" id="2_yvhsf"]
 [ext_resource type="Texture2D" uid="uid://bsnhljy1tngvp" path="res://Assets/Sprites/particles/chipGlow.png" id="3_khskt"]
 [ext_resource type="Texture2D" uid="uid://bm56nmmyof0jr" path="res://Assets/Sprites/particles/ShineSpikes.png" id="4_khskt"]
@@ -111,6 +111,7 @@ _data = {
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_2qmmm"]
 radius = 150.0
+
 [sub_resource type="Animation" id="Animation_l6lxc"]
 length = 0.001
 tracks/0/type = "value"
@@ -233,6 +234,7 @@ collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="MoveToPlayerArea2D"]
 shape = SubResource("CircleShape2D_2qmmm")
+
 [node name="AnimationPlayerShineSpikes" type="AnimationPlayer" parent="."]
 libraries = {
 &"": SubResource("AnimationLibrary_kfmtd")

@@ -27,27 +27,27 @@ func _ready() -> void:
 	play_randomized_animation (animation_player_shine_spikes)
 
 
-func _process(delta: float) -> void:
-	if damping_time <= 0.0:
-		return
-
-	elapsed_time += delta
-	
-	var t : float = clamp(elapsed_time / damping_time, 0.0, 1.0)
-	var damping : float = 1.0 - t
-	
-	# Apply movement
-	velocity = direction * acceleration * damping
-	rotation_velocity = rotation_acceleration * damping
-	
-	position += velocity * delta
-	rotation += rotation_velocity * delta
-	
-	# Stop completely when done
-	if t >= 1.0:
-		acceleration = 0.0
-		rotation_acceleration = 0.0
-		damping_time = 0.0
+#func _process(delta: float) -> void:
+	#if damping_time <= 0.0:
+		#return
+#
+	#elapsed_time += delta
+	#
+	#var t : float = clamp(elapsed_time / damping_time, 0.0, 1.0)
+	#var damping : float = 1.0 - t
+	#
+	## Apply movement
+	#velocity = direction * acceleration * damping
+	#rotation_velocity = rotation_acceleration * damping
+	#
+	#position += velocity * delta
+	#rotation += rotation_velocity * delta
+	#
+	## Stop completely when done
+	#if t >= 1.0:
+		#acceleration = 0.0
+		#rotation_acceleration = 0.0
+		#damping_time = 0.0
 
 
 func play_randomized_animation (aniamtion: AnimationPlayer):
