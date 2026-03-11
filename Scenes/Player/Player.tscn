@@ -1,8 +1,7 @@
-[gd_scene load_steps=45 format=3 uid="uid://bcvxlujlsdn7w"]
+[gd_scene format=3 uid="uid://bcvxlujlsdn7w"]
 
 [ext_resource type="Script" uid="uid://3u5as0enhnvs" path="res://Scripts/Player/Player.gd" id="1_kyqiw"]
 [ext_resource type="Script" uid="uid://cwebbiwcba2kb" path="res://Scenes/Player/player_input.gd" id="2_4wape"]
-[ext_resource type="Texture2D" uid="uid://d3w6yyyfejaxw" path="res://icon.svg" id="2_ft8w5"]
 [ext_resource type="Script" uid="uid://cjifrmqkcmg6q" path="res://Scripts/Player/player_state_machine.gd" id="2_jmcll"]
 [ext_resource type="Script" uid="uid://shryjncp67wa" path="res://Scripts/Camera/ScreenShake.gd" id="3_jmcll"]
 [ext_resource type="PackedScene" uid="uid://beyb44q40vqlr" path="res://Scenes/UI/HUD.tscn" id="3_ude3g"]
@@ -389,50 +388,24 @@ states/Run/node = SubResource("AnimationNodeBlendSpace2D_fk5o5")
 states/Run/position = Vector2(553.333, 103.556)
 states/Start/position = Vector2(198, 102.568)
 transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_825xp"), "Idle", "Run", SubResource("AnimationNodeStateMachineTransition_ji083"), "Run", "Idle", SubResource("AnimationNodeStateMachineTransition_0kmp4"), "Idle", "Drill", SubResource("AnimationNodeStateMachineTransition_i5acl"), "Drill", "Idle", SubResource("AnimationNodeStateMachineTransition_epg6k"), "Run", "Drill", SubResource("AnimationNodeStateMachineTransition_0u84n"), "Drill", "Run", SubResource("AnimationNodeStateMachineTransition_esmjy")]
-graph_offset = Vector2(10, -68)
+graph_offset = Vector2(-40, -61)
 
-[sub_resource type="Animation" id="Animation_t26db"]
-resource_name = "Idle"
-length = 0.4
-loop_mode = 1
-
-[sub_resource type="Animation" id="Animation_4wape"]
-length = 0.001
-
-[sub_resource type="Animation" id="Animation_fk5o5"]
-resource_name = "RunLeft"
-length = 0.6
-loop_mode = 1
-
-[sub_resource type="Animation" id="Animation_jmcll"]
-resource_name = "RunRight"
-length = 0.6
-loop_mode = 1
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_fk5o5"]
-_data = {
-&"Idle": SubResource("Animation_t26db"),
-&"RESET": SubResource("Animation_4wape"),
-&"RunLeft": SubResource("Animation_fk5o5"),
-&"RunRight": SubResource("Animation_jmcll")
-}
-
-[node name="Player" type="CharacterBody2D" groups=["Player"]]
+[node name="Player" type="CharacterBody2D" unique_id=1034631766 groups=["Player"]]
 collision_mask = 4
 script = ExtResource("1_kyqiw")
 movement_speed = 700.0
 
-[node name="PlayerInput" type="Node2D" parent="."]
+[node name="PlayerInput" type="Node2D" parent="." unique_id=1419996874]
 script = ExtResource("2_4wape")
 
-[node name="PlayerStateMachine" type="Node2D" parent="."]
+[node name="PlayerStateMachine" type="Node2D" parent="." unique_id=705475930]
 script = ExtResource("2_jmcll")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=571910561]
 visible = false
 shape = SubResource("CircleShape2D_ude3g")
 
-[node name="PlayerSprite" type="Sprite2D" parent="."]
+[node name="PlayerSprite" type="Sprite2D" parent="." unique_id=725788908]
 texture = ExtResource("4_4wape")
 offset = Vector2(13, -64)
 flip_h = true
@@ -440,38 +413,25 @@ hframes = 5
 vframes = 6
 frame = 5
 
-[node name="PlayerCamera" type="Camera2D" parent="."]
+[node name="PlayerCamera" type="Camera2D" parent="." unique_id=481504141]
 process_mode = 3
 zoom = Vector2(0.6, 0.6)
 
-[node name="ScreenShake" type="Node2D" parent="PlayerCamera"]
+[node name="ScreenShake" type="Node2D" parent="PlayerCamera" unique_id=1061838693]
 script = ExtResource("3_jmcll")
 
-[node name="HUD" parent="." instance=ExtResource("3_ude3g")]
+[node name="HUD" parent="." unique_id=1682648843 instance=ExtResource("3_ude3g")]
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_i5acl")
-}
-autoplay = "IdleRight"
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=510835633]
+libraries/ = SubResource("AnimationLibrary_i5acl")
+autoplay = &"IdleRight"
 
-[node name="AnimationTree" type="AnimationTree" parent="."]
+[node name="AnimationTree" type="AnimationTree" parent="." unique_id=641591571]
 tree_root = SubResource("AnimationNodeStateMachine_6tu5v")
 anim_player = NodePath("../AnimationPlayer")
 parameters/conditions/drilling = false
-parameters/conditions/idle = 0.401309
+parameters/conditions/idle = false
 parameters/conditions/is_moving = false
 parameters/Drill/blend_position = Vector2(0, 0)
 parameters/Idle/blend_position = Vector2(0, 0)
 parameters/Run/blend_position = Vector2(0, 0)
-
-[node name="_backup_" type="Node" parent="."]
-
-[node name="AnimationPlayer_bak" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_fk5o5")
-}
-
-[node name="PlayerSprite_bak" type="Sprite2D" parent="."]
-visible = false
-texture = ExtResource("2_ft8w5")
