@@ -1,12 +1,6 @@
-[gd_scene load_steps=17 format=3 uid="uid://c6qwwmff8anwx"]
+[gd_scene format=3 uid="uid://c6qwwmff8anwx"]
 
 [ext_resource type="Script" uid="uid://cvsef4mnyubft" path="res://Scripts/Environment/breakable.gd" id="1_4ng74"]
-[ext_resource type="Texture2D" uid="uid://dq0ww0v8actmk" path="res://Assets/Sprites/environment/rock_1.png" id="2_s777y"]
-[ext_resource type="Texture2D" uid="uid://bgcnjmoxfsp2n" path="res://Assets/Sprites/environment/rock_2.png" id="3_o1sp6"]
-[ext_resource type="Texture2D" uid="uid://b55ltj8wrrbag" path="res://Assets/Sprites/environment/rock_3.png" id="4_oih5c"]
-[ext_resource type="Texture2D" uid="uid://cp0j4lvnx2qy7" path="res://Assets/Sprites/environment/rock_4.png" id="5_nkjps"]
-[ext_resource type="Texture2D" uid="uid://cq450xheijdcf" path="res://Assets/Sprites/environment/rock_5.png" id="6_00jem"]
-[ext_resource type="Texture2D" uid="uid://bvwyvtefe060y" path="res://Assets/Sprites/environment/rock_6.png" id="7_m8p8b"]
 [ext_resource type="AudioStream" uid="uid://cl6u3yq7buxfh" path="res://Assets/Audio/SFX/abdalrahman_bm-8-bit-gravel-footsteps-1-408582.mp3" id="8_5j6il"]
 [ext_resource type="Texture2D" uid="uid://dv5onwoojupco" path="res://Assets/Sprites/environment/Rock1.png" id="8_s777y"]
 [ext_resource type="AudioStream" uid="uid://8ekwcbtftlvh" path="res://Assets/Audio/SFX/freesound_community-8-bit-explosion-95847.mp3" id="9_sqqoc"]
@@ -47,28 +41,28 @@ random_pitch = 3.0
 streams_count = 1
 stream_0/stream = ExtResource("9_sqqoc")
 
-[node name="BreakableSmall" type="StaticBody2D"]
+[node name="BreakableSmall" type="StaticBody2D" unique_id=1949437542]
 collision_layer = 4
 script = ExtResource("1_4ng74")
-rock_sprites = Array[Texture2D]([ExtResource("2_s777y"), ExtResource("3_o1sp6"), ExtResource("4_oih5c"), ExtResource("5_nkjps"), ExtResource("6_00jem"), ExtResource("7_m8p8b")])
+rock_sprites = Array[Texture2D]([ExtResource("8_s777y")])
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=762273956]
 position = Vector2(0, -39)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_v5ktr")
 
-[node name="Sprite2D" type="Sprite2D" parent="CollisionShape2D"]
-position = Vector2(-47.335, 0)
+[node name="Sprite2D" type="Sprite2D" parent="CollisionShape2D" unique_id=699384529]
+position = Vector2(-38, 0.0001375596)
 rotation = -1.5708
-scale = Vector2(1.2, 1.2)
+scale = Vector2(0.8, 0.8)
 texture = ExtResource("8_s777y")
 
-[node name="Area2D" type="Area2D" parent="CollisionShape2D/Sprite2D"]
+[node name="Area2D" type="Area2D" parent="CollisionShape2D/Sprite2D" unique_id=127977022]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CollisionShape2D/Sprite2D/Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CollisionShape2D/Sprite2D/Area2D" unique_id=609356485]
 shape = SubResource("CircleShape2D_5m1wr")
 
-[node name="Control" type="Control" parent="."]
+[node name="Control" type="Control" parent="." unique_id=1706542853]
 visible = false
 layout_mode = 3
 anchors_preset = 0
@@ -80,7 +74,7 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 metadata/_edit_use_anchors_ = true
 
-[node name="Panel" type="Panel" parent="Control"]
+[node name="Panel" type="Panel" parent="Control" unique_id=485183509]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -90,19 +84,19 @@ grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_mu2bs")
 metadata/_edit_use_anchors_ = true
 
-[node name="RockParticlesParent" type="Node2D" parent="."]
+[node name="RockParticlesParent" type="Node2D" parent="." unique_id=451479391]
 position = Vector2(-13, -142)
 
-[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+[node name="LightOccluder2D" type="LightOccluder2D" parent="." unique_id=1515593806]
 position = Vector2(18, -67)
 occluder = SubResource("OccluderPolygon2D_5gjhx")
 
-[node name="Audio" type="Node2D" parent="."]
+[node name="Audio" type="Node2D" parent="." unique_id=1529390252]
 
-[node name="Hit" type="AudioStreamPlayer" parent="Audio"]
+[node name="Hit" type="AudioStreamPlayer" parent="Audio" unique_id=1907235834]
 stream = SubResource("AudioStreamRandomizer_r5n5c")
 
-[node name="Destroy" type="AudioStreamPlayer" parent="Audio"]
+[node name="Destroy" type="AudioStreamPlayer" parent="Audio" unique_id=124195570]
 stream = SubResource("AudioStreamRandomizer_qituv")
 
 [connection signal="body_entered" from="CollisionShape2D/Sprite2D/Area2D" to="." method="_on_area_2d_body_entered"]

@@ -6,6 +6,8 @@ class_name PlayerInput
 var current_drill_cooldown: float = 0
 var drill_action_pressed: bool = false
 
+@onready var bomb_spawner: BombSpawner = $"../BombSpawner"
+
 
 func _process(delta: float) -> void:
 	if current_drill_cooldown > 0:
@@ -22,3 +24,6 @@ func _unhandled_input(event: InputEvent) -> void:
 
 	if event.is_action_released("interact"):
 		drill_action_pressed = false
+	
+	if event.is_action_pressed("place_bomb"):
+		bomb_spawner.spawn_bomb(global_position)

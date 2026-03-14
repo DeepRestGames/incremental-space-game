@@ -1,3 +1,4 @@
+class_name Breakable
 extends StaticBody2D
 
 
@@ -39,13 +40,19 @@ func on_interacted() -> void:
 	if not player_is_in_range:
 		return
 	
+	take_damage(1)
+
+
+func take_damage(damage_value: int) -> void:
 	EventBus.emit_signal("breakable_damaged")
-	play_rock_particles()
 	
-	if randf_range(0, 1) < resource_spawn_chance_on_damaged:
-		spawn_resource_drops(1)
+	for i in damage_value:
+		play_rock_particles()
+		
+		if randf_range(0, 1) < resource_spawn_chance_on_damaged:
+			spawn_resource_drops(1)
 	
-	currentHP -= 1
+	currentHP -= damage_value
 	
 	if currentHP <= 0:
 		destroy.play()
