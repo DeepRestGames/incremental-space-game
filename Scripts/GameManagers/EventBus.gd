@@ -3,6 +3,7 @@ extends Node
 
 # Globals
 @warning_ignore("unused_signal") signal on_player_ready(player_reference)
+@warning_ignore("unused_signal") signal on_deposit_box_ready(deposit_box_reference)
 
 # Inputs
 @warning_ignore("unused_signal") signal action_trigger_interact

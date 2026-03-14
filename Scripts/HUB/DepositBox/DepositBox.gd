@@ -7,6 +7,8 @@ extends Area2D
 func _ready() -> void:
 	resource_number_label.text = "0"
 	EventBus.connect("update_HUD", update_HUD)
+	
+	EventBus.emit_signal("on_deposit_box_ready", self)
 
 
 func _on_body_entered(body: Node2D) -> void:

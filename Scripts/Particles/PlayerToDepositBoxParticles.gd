@@ -4,7 +4,7 @@ var target_position: Vector2
 
 
 func _ready() -> void:
-	target_position = GameManager.deposit_box_position
+	target_position = GameManager.deposit_box.global_position
 	EventBus.connect("start_resource_transfer_animation_to_deposit_box", start_animation)
 
 

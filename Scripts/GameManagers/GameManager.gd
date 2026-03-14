@@ -9,7 +9,7 @@ var player: Player
 var current_player_resource: int = 0
 
 # DepositBox
-var deposit_box_position: Vector2
+var deposit_box: DepositBox
 var current_deposit_box_resource: int = 0
 
 # Expedition
@@ -22,11 +22,9 @@ func _ready() -> void:
 	
 	# Level initialization
 	# TODO Add logic to handle the menus navigation (e.g. in the start menu the node Player doesn't exist, but the GameManager singleton does
-	deposit_box_position = get_tree().get_first_node_in_group("DepositBox").global_position
-	
-	print("Deposit box position: " + str(deposit_box_position))
 	
 	EventBus.connect("on_player_ready", on_player_ready)
+	EventBus.connect("on_deposit_box_ready", on_deposit_box_ready)
 	
 	EventBus.connect("add_resource", add_resource)
 	EventBus.connect("player_enter_deposit_box_area", add_resource_deposit_box)
@@ -41,6 +39,10 @@ func DEBUG_add_player_resources() -> void:
 
 func on_player_ready(player_reference: Player) -> void:
 	player = player_reference
+
+
+func on_deposit_box_ready(deposit_box_reference: DepositBox) -> void:
+	deposit_box = deposit_box_reference
 
 
 func add_resource(resource_amount: int) -> void:
