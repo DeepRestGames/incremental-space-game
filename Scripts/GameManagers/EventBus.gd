@@ -1,6 +1,9 @@
 # warnings-disable
 extends Node
 
+# Globals
+@warning_ignore("unused_signal") signal on_player_ready(player_reference)
+
 # Inputs
 @warning_ignore("unused_signal") signal action_trigger_interact
 @warning_ignore("unused_signal") signal player_movement(movement_direction)

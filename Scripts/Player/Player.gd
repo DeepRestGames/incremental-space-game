@@ -45,6 +45,8 @@ func _ready() -> void:
 	
 	# Animations
 	animation_tree.active = true
+	
+	EventBus.emit_signal("on_player_ready", self)
 
 
 func update_looking_direction(new_looking_direction: Vector2) -> void:
