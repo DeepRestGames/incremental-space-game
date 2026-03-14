@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://w7h5832edy6i"]
+
+[ext_resource type="PackedScene" uid="uid://gx4f5wal3t4g" path="res://Scenes/UI/skill_node.tscn" id="1_c1qs3"]
+
+[node name="SkillTree" type="Control" unique_id=1912863450]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SkillNode" parent="." unique_id=351642366 node_paths=PackedStringArray("parent_node") instance=ExtResource("1_c1qs3")]
+layout_mode = 0
+offset_left = 716.0
+offset_top = 464.0
+offset_right = 780.0
+offset_bottom = 528.0
+parent_node = NodePath("../SkillNodeParent")
+
+[node name="SkillNodeParent" parent="." unique_id=598205317 node_paths=PackedStringArray("parent_node") instance=ExtResource("1_c1qs3")]
+layout_mode = 0
+offset_left = 460.0
+offset_top = 464.0
+offset_right = 524.0
+offset_bottom = 528.0
+parent_node = NodePath("../SkillNodeParent2")
+
+[node name="SkillNodeParent2" parent="." unique_id=430100635 instance=ExtResource("1_c1qs3")]
+layout_mode = 0
+offset_left = 320.0
+offset_right = 384.0
