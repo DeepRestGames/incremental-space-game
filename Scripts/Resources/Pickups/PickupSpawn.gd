@@ -23,15 +23,17 @@ func initialize() -> void:
 	get_parent().add_child(spawned_pickup)
 	spawned_pickup.global_position = global_position
 	
-	var starting_acceleration = randf_range(acceleration_min, acceleration_max)
-	var starting_direction: Vector2 = Vector2(randf_range(-1, 1), randf_range(-1, 1)).normalized()
-	var starting_rotation_acceleration = randf_range(rotation_acceleration_min, rotation_acceleration_max)
-	var animation_duration = randf_range(animation_duration_min, animation_duration_max)
-
-	# Assign starting values (must exist in pickup script)
-	spawned_pickup.acceleration = starting_acceleration
-	spawned_pickup.direction = starting_direction
-	spawned_pickup.rotation_acceleration = starting_rotation_acceleration
-	spawned_pickup.damping_time = animation_duration
+	# var starting_acceleration = randf_range(acceleration_min, acceleration_max)
+	# var starting_direction: Vector2 = Vector2(randf_range(-1, 1), randf_range(-1, 1)).normalized()
+	# var starting_rotation_acceleration = randf_range(rotation_acceleration_min, rotation_acceleration_max)
+	# var animation_duration = randf_range(animation_duration_min, animation_duration_max)
+#
+	# # Assign starting values (must exist in pickup script)
+	# spawned_pickup.acceleration = starting_acceleration
+	# spawned_pickup.direction = starting_direction
+	# spawned_pickup.rotation_acceleration = starting_rotation_acceleration
+	# spawned_pickup.damping_time = animation_duration
+	if spawned_pickup.has_method("randomize_spawn_direction"):
+		spawned_pickup.randomize_spawn_direction()
 	
 	queue_free()
