@@ -1,0 +1,72 @@
+[gd_scene format=3 uid="uid://ceo6v666mpirk"]
+
+[ext_resource type="Script" uid="uid://cc41gqduwepch" path="res://Scripts/UI/MainMenu.gd" id="1_mainmenu"]
+
+[node name="MainMenu" type="Control" unique_id=1566417360]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_mainmenu")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1693791089]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.08, 0.08, 0.12, 1)
+
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=1730205180]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer" unique_id=30797617]
+layout_mode = 2
+theme_override_constants/separation = 15
+alignment = 1
+
+[node name="TitleLabel" type="Label" parent="CenterContainer/VBoxContainer" unique_id=1150046483]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0.8, 1, 1)
+theme_override_font_sizes/font_size = 32
+text = "INCREMENTAL SPACE GAME"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Spacer" type="Control" parent="CenterContainer/VBoxContainer" unique_id=1684435519]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+
+[node name="ContinueButton" type="Button" parent="CenterContainer/VBoxContainer" unique_id=1564055637]
+custom_minimum_size = Vector2(250, 45)
+layout_mode = 2
+disabled = true
+text = "Continue"
+
+[node name="NewGameButton" type="Button" parent="CenterContainer/VBoxContainer" unique_id=324368072]
+custom_minimum_size = Vector2(250, 45)
+layout_mode = 2
+text = "New Game"
+
+[node name="SkillTreeTestButton" type="Button" parent="CenterContainer/VBoxContainer" unique_id=2112247874]
+custom_minimum_size = Vector2(250, 45)
+layout_mode = 2
+text = "Skill Tree Test"
+
+[node name="QuitButton" type="Button" parent="CenterContainer/VBoxContainer" unique_id=338835027]
+custom_minimum_size = Vector2(250, 45)
+layout_mode = 2
+text = "Quit"
+
+[connection signal="pressed" from="CenterContainer/VBoxContainer/ContinueButton" to="." method="_on_continue_button_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/NewGameButton" to="." method="_on_new_game_button_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/SkillTreeTestButton" to="." method="_on_skill_tree_test_button_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
