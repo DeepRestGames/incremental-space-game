@@ -14,6 +14,8 @@ var current_deposit_box_resource: int = 0
 
 # Expedition
 var expedition_started: bool = false
+var previous_scene_path: String = ""
+
 
 
 func _ready() -> void:
