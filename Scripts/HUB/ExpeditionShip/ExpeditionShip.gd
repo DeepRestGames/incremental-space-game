@@ -11,7 +11,7 @@ func _ready() -> void:
 
 func check_ship_interaction() -> void:
 	if player_in_area:
-		if GameManager.expedition_started:
+		if GameManager.expedition_started and get_tree().current_scene.name != "Lobby":
 			EventBus.emit_signal("expedition_ended")
 		else:
 			# In the lobby, interacting with the ship opens the Level Select UI

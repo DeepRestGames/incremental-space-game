@@ -1,7 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://w7h5832edy6i"]
+[gd_scene format=3 uid="uid://w7h5832edy6i"]
 
 [ext_resource type="PackedScene" uid="uid://gx4f5wal3t4g" path="res://Scenes/UI/skill_node.tscn" id="1_c1qs3"]
-[ext_resource type="Script" path="res://Scripts/UI/skill_tree.gd" id="2_skilltree"]
+[ext_resource type="Script" uid="uid://ljldu32b7v7x" path="res://Scripts/UI/skill_tree.gd" id="2_skilltree"]
 
 [node name="SkillTree" type="Control" unique_id=1912863450]
 layout_mode = 3
@@ -12,23 +12,34 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("2_skilltree")
 
+[node name="BackgroundOverlay" type="ColorRect" parent="." unique_id=1097356005]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.588235)
+
 [node name="SkillNode" parent="." unique_id=351642366 node_paths=PackedStringArray("parent_node") instance=ExtResource("1_c1qs3")]
 layout_mode = 0
-offset_left = 716.0
-offset_top = 464.0
-offset_right = 780.0
-offset_bottom = 528.0
+offset_left = 1156.0
+offset_top = 640.0
+offset_right = 1220.0
+offset_bottom = 704.0
 parent_node = NodePath("../SkillNodeParent")
 
 [node name="SkillNodeParent" parent="." unique_id=598205317 node_paths=PackedStringArray("parent_node") instance=ExtResource("1_c1qs3")]
 layout_mode = 0
-offset_left = 460.0
-offset_top = 464.0
-offset_right = 524.0
-offset_bottom = 528.0
+offset_left = 900.0
+offset_top = 640.0
+offset_right = 964.0
+offset_bottom = 704.0
 parent_node = NodePath("../SkillNodeParent2")
 
 [node name="SkillNodeParent2" parent="." unique_id=430100635 instance=ExtResource("1_c1qs3")]
 layout_mode = 0
-offset_left = 320.0
-offset_right = 384.0
+offset_left = 760.0
+offset_top = 176.0
+offset_right = 824.0
+offset_bottom = 240.0

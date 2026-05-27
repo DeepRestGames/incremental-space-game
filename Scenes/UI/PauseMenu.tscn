@@ -50,16 +50,11 @@ custom_minimum_size = Vector2(250, 45)
 layout_mode = 2
 text = "Resume"
 
-[node name="SkillTreeButton" type="Button" parent="CenterContainer/VBoxContainer" unique_id=2118204004]
-custom_minimum_size = Vector2(250, 45)
-layout_mode = 2
-text = "Skill Tree"
-
 [node name="BackToMenuButton" type="Button" parent="CenterContainer/VBoxContainer" unique_id=462782924]
 custom_minimum_size = Vector2(250, 45)
 layout_mode = 2
 text = "Back to Menu"
 
 [connection signal="pressed" from="CenterContainer/VBoxContainer/ResumeButton" to="." method="_on_resume_button_pressed"]
-[connection signal="pressed" from="CenterContainer/VBoxContainer/SkillTreeButton" to="." method="_on_skill_tree_button_pressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/BackToMenuButton" to="." method="_on_back_to_menu_button_pressed"]
+

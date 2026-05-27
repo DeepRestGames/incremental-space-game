@@ -56,11 +56,6 @@ custom_minimum_size = Vector2(250, 45)
 layout_mode = 2
 text = "New Game"
 
-[node name="SkillTreeTestButton" type="Button" parent="CenterContainer/VBoxContainer" unique_id=2112247874]
-custom_minimum_size = Vector2(250, 45)
-layout_mode = 2
-text = "Skill Tree Test"
-
 [node name="QuitButton" type="Button" parent="CenterContainer/VBoxContainer" unique_id=338835027]
 custom_minimum_size = Vector2(250, 45)
 layout_mode = 2
@@ -68,5 +63,5 @@ text = "Quit"
 
 [connection signal="pressed" from="CenterContainer/VBoxContainer/ContinueButton" to="." method="_on_continue_button_pressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/NewGameButton" to="." method="_on_new_game_button_pressed"]
-[connection signal="pressed" from="CenterContainer/VBoxContainer/SkillTreeTestButton" to="." method="_on_skill_tree_test_button_pressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
+

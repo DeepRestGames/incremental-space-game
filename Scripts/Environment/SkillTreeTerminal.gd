@@ -14,9 +14,12 @@ func _ready() -> void:
 
 func check_interaction() -> void:
 	if player_in_area:
-		# Save current Lobby path as previous scene before transitioning
-		GameManager.previous_scene_path = get_tree().current_scene.scene_file_path
-		get_tree().change_scene_to_file("res://Scenes/UI/skill_tree.tscn")
+		var ui = get_tree().current_scene.get_node_or_null("CanvasLayer/SkillTree")
+		if ui:
+			if ui.visible:
+				ui.close()
+			else:
+				ui.open()
 
 
 func _on_body_entered(body: Node2D) -> void:
@@ -29,3 +32,8 @@ func _on_body_exited(body: Node2D) -> void:
 	if body.is_in_group("Player"):
 		player_in_area = false
 		prompt.hide()
+		
+		# Close the Skill Tree if the player flies away
+		var ui = get_tree().current_scene.get_node_or_null("CanvasLayer/SkillTree")
+		if ui and ui.visible:
+			ui.close()

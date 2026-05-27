@@ -9,6 +9,8 @@ func _ready() -> void:
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_cancel"):
+		if GameManager.level_select_open or GameManager.skill_tree_open:
+			return
 		toggle_pause()
 
 
@@ -22,18 +24,10 @@ func _on_resume_button_pressed() -> void:
 	toggle_pause()
 
 
-func _on_skill_tree_button_pressed() -> void:
-	# Unpause the engine so the loaded scene processes normally
-	get_tree().paused = false
-	
-	# Save the current scene's path before transitioning
-	GameManager.previous_scene_path = get_tree().current_scene.scene_file_path
-	
-	# Change to the skill tree scene
-	get_tree().change_scene_to_file("res://Scenes/UI/skill_tree.tscn")
-
-
 func _on_back_to_menu_button_pressed() -> void:
 	# Unpause the engine before loading the main menu
 	get_tree().paused = false
+	GameManager.expedition_started = false
+	GameManager.skill_tree_open = false
+	GameManager.level_select_open = false
 	get_tree().change_scene_to_file("res://Scenes/Levels/MainMenu.tscn")

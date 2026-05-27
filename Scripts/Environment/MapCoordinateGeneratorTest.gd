@@ -43,17 +43,12 @@ func _ready() -> void:
 	generator.cluster_spread = 150.0
 	
 	# Define spawnable breakable resources programmatically
-	var item_small := SpawnableItem.new()
-	item_small.name = "Small Breakable"
-	item_small.weight = 8.0 # 80% weight
-	item_small.scene = load("res://Scenes/Environment/breakable_small.tscn")
-	
-	var item_big := SpawnableItem.new()
-	item_big.name = "Big Breakable"
-	item_big.weight = 2.0 # 20% weight
-	item_big.scene = load("res://Scenes/Environment/breakable_big.tscn")
-	
-	generator.spawnable_items = [item_small, item_big]
+	var small_scene = load("res://Scenes/Environment/breakable_small.tscn")
+	var big_scene = load("res://Scenes/Environment/breakable_big.tscn")
+	generator.spawn_distribution = {
+		small_scene: 8.0,
+		big_scene: 2.0
+	}
 	
 	# Run initial generation
 	run_generation()
@@ -97,9 +92,10 @@ func update_ui() -> void:
 	var small_count := 0
 	var big_count := 0
 	for pt in generated_points:
-		if pt.item and pt.item.name == "Small Breakable":
+		var scene: PackedScene = pt.scene
+		if scene and scene.resource_path.contains("breakable_small"):
 			small_count += 1
-		elif pt.item and pt.item.name == "Big Breakable":
+		elif scene and scene.resource_path.contains("breakable_big"):
 			big_count += 1
 			
 	var total := generated_points.size()
@@ -141,12 +137,12 @@ func _draw() -> void:
 	# Draw generated coordinates
 	for pt in generated_points:
 		var pos: Vector2 = pt.position
-		var item: SpawnableItem = pt.item
+		var scene: PackedScene = pt.scene
 		
-		if item == null:
+		if scene == null:
 			continue
 			
-		if item.name == "Small Breakable":
+		if scene.resource_path.contains("breakable_small"):
 			# Draw Small Breakable (Emerald green circle)
 			draw_circle(pos, 8.0, Color(0.08, 0.75, 0.45))
 			draw_circle(pos, 8.0, Color.WHITE, false, 1.0)

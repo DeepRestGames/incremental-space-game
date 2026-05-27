@@ -15,6 +15,10 @@ var current_deposit_box_resource: int = 0
 # Expedition
 var expedition_started: bool = false
 var previous_scene_path: String = ""
+var skill_tree_open: bool = false
+var level_select_open: bool = false
+
+
 
 
 

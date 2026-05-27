@@ -7,24 +7,19 @@ extends Node2D
 
 func _ready() -> void:
 	# Fallback configuration in code if the array is empty in the Inspector
-	if coordinate_generator.spawnable_items.is_empty():
+	if coordinate_generator.spawn_distribution.is_empty():
 		_setup_default_spawnable_items()
 		
 	spawn_level_objects()
 
 
 func _setup_default_spawnable_items() -> void:
-	var item_small := SpawnableItem.new()
-	item_small.name = "Small Breakable"
-	item_small.weight = 8.0 # 80% small rocks
-	item_small.scene = load("res://Scenes/Environment/breakable_small.tscn")
-	
-	var item_big := SpawnableItem.new()
-	item_big.name = "Big Breakable"
-	item_big.weight = 2.0 # 20% big rocks
-	item_big.scene = load("res://Scenes/Environment/breakable_big.tscn")
-	
-	coordinate_generator.spawnable_items = [item_small, item_big]
+	var small_scene = load("res://Scenes/Environment/breakable_small.tscn")
+	var big_scene = load("res://Scenes/Environment/breakable_big.tscn")
+	coordinate_generator.spawn_distribution = {
+		small_scene: 8.0,
+		big_scene: 2.0
+	}
 
 
 func spawn_level_objects() -> void:
@@ -36,12 +31,12 @@ func spawn_level_objects() -> void:
 	var spawned_count := 0
 	for point in spawn_points:
 		var pos: Vector2 = point.position
-		var item: SpawnableItem = point.item
+		var scene: PackedScene = point.scene
 		
-		if item == null or item.scene == null:
+		if scene == null:
 			continue
 			
-		var instance := item.scene.instantiate() as Node2D
+		var instance := scene.instantiate() as Node2D
 		
 		# Translate generator top-left (0 to map_size) coords to centered level coords (-map_size/2 to +map_size/2)
 		instance.global_position = pos - (map_size / 2.0)

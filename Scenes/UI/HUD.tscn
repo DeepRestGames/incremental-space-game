@@ -1,19 +1,19 @@
-[gd_scene load_steps=6 format=3 uid="uid://beyb44q40vqlr"]
+[gd_scene format=3 uid="uid://beyb44q40vqlr"]
 
 [ext_resource type="Texture2D" uid="uid://cqwlreb6f151w" path="res://Assets/Sprites/particles/Vignette.png" id="1_4bm6u"]
-[ext_resource type="Script" uid="uid://dl6hms7n2jhi" path="res://Scripts/UI/HUD/ExpeditionShipInteractionPrompt.gd" id="1_omqfp"]
+[ext_resource type="Script" uid="uid://mcvf683b2t30" path="res://Scripts/UI/HUD/ExpeditionShipInteractionPrompt.gd" id="1_omqfp"]
 [ext_resource type="Texture2D" uid="uid://d3w6yyyfejaxw" path="res://icon.svg" id="2_qc5w2"]
-[ext_resource type="Script" uid="uid://cdus6xyrv3snd" path="res://Scripts/UI/HUD/ResourceCounter.gd" id="2_xaom8"]
-[ext_resource type="PackedScene" path="res://Scenes/UI/PauseMenu.tscn" id="3_pausemenu"]
+[ext_resource type="Script" uid="uid://dkioq7vpu1p3l" path="res://Scripts/UI/HUD/ResourceCounter.gd" id="2_xaom8"]
+[ext_resource type="PackedScene" uid="uid://d3ixveovn637y" path="res://Scenes/UI/PauseMenu.tscn" id="3_pausemenu"]
 
-[node name="HUDCanvasLayer" type="CanvasLayer"]
+[node name="HUDCanvasLayer" type="CanvasLayer" unique_id=1829917660]
 
-[node name="Vignette" type="Sprite2D" parent="."]
-position = Vector2(575.895, 331)
-scale = Vector2(0.617946, 0.617946)
+[node name="Vignette" type="Sprite2D" parent="." unique_id=1335446882]
+position = Vector2(960.00006, 541.49994)
+scale = Vector2(0.99999994, 1.00185)
 texture = ExtResource("1_4bm6u")
 
-[node name="HUD" type="Control" parent="."]
+[node name="HUD" type="Control" parent="." unique_id=899302714]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -22,7 +22,7 @@ grow_horizontal = 2
 grow_vertical = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="ExpeditionShipInteractionPrompt" type="Label" parent="HUD"]
+[node name="ExpeditionShipInteractionPrompt" type="Label" parent="HUD" unique_id=1193440688]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -40,7 +40,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 script = ExtResource("1_omqfp")
 
-[node name="KeyHint" type="Label" parent="HUD/ExpeditionShipInteractionPrompt"]
+[node name="KeyHint" type="Label" parent="HUD/ExpeditionShipInteractionPrompt" unique_id=240960219]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -57,7 +57,7 @@ text = "(E)"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="ResourcesCounter" type="Control" parent="HUD"]
+[node name="ResourcesCounter" type="Control" parent="HUD" unique_id=915960098]
 custom_minimum_size = Vector2(300, 50)
 layout_mode = 1
 anchor_left = 0.711806
@@ -68,7 +68,7 @@ grow_horizontal = 0
 script = ExtResource("2_xaom8")
 metadata/_edit_use_anchors_ = true
 
-[node name="HBoxContainer" type="HBoxContainer" parent="HUD/ResourcesCounter"]
+[node name="HBoxContainer" type="HBoxContainer" parent="HUD/ResourcesCounter" unique_id=1396422376]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -78,16 +78,15 @@ grow_vertical = 2
 theme_override_constants/separation = 10
 alignment = 2
 
-[node name="Value" type="Label" parent="HUD/ResourcesCounter/HBoxContainer"]
+[node name="Value" type="Label" parent="HUD/ResourcesCounter/HBoxContainer" unique_id=237583456]
 layout_mode = 2
 text = "000000"
 
-[node name="ResourceIcon" type="TextureRect" parent="HUD/ResourcesCounter/HBoxContainer"]
+[node name="ResourceIcon" type="TextureRect" parent="HUD/ResourcesCounter/HBoxContainer" unique_id=1053525953]
 modulate = Color(1, 1, 0, 1)
 layout_mode = 2
 texture = ExtResource("2_qc5w2")
 expand_mode = 3
 stretch_mode = 5
 
-[node name="PauseMenu" parent="." instance=ExtResource("3_pausemenu")]
-
+[node name="PauseMenu" parent="." unique_id=105724579 instance=ExtResource("3_pausemenu")]
