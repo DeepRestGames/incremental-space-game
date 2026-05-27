@@ -18,6 +18,14 @@ var previous_scene_path: String = ""
 var skill_tree_open: bool = false
 var level_select_open: bool = false
 
+# Expedition Stats & Persistence
+var open_level_select_on_lobby_load: bool = false
+var expedition_time_spent: float = 0.0
+var expedition_destroyed_nodes: int = 0
+var expedition_resources_collected: int = 0
+var _expedition_start_time_msec: int = 0
+
+
 
 
 
@@ -67,6 +75,8 @@ func add_resource_deposit_box() -> void:
 	EventBus.emit_signal("start_resource_transfer_animation_to_deposit_box", current_player_resource)
 	
 	current_deposit_box_resource += current_player_resource
+	if expedition_started:
+		expedition_resources_collected += current_player_resource
 	current_player_resource = 0
 	
 	EventBus.emit_signal("update_HUD")
@@ -75,9 +85,34 @@ func add_resource_deposit_box() -> void:
 func on_expedition_started() -> void:
 	get_tree().change_scene_to_file(selected_level_path)
 	expedition_started = true
+	_expedition_start_time_msec = Time.get_ticks_msec()
+	expedition_destroyed_nodes = 0
+	expedition_resources_collected = 0
 
 
 func on_expedition_ended() -> void:
 	get_tree().change_scene_to_packed(lobby_scene)
 	expedition_started = false
+
+
+func end_expedition() -> void:
+	if not expedition_started:
+		return
+		
+	# Calculate stats
+	expedition_time_spent = (Time.get_ticks_msec() - _expedition_start_time_msec) / 1000.0
+	
+	# Discard inventory resources (only deposited ones are saved)
+	current_player_resource = 0
+	
+	get_tree().paused = false
+	get_tree().change_scene_to_file("res://Scenes/UI/expedition_ended.tscn")
+	expedition_started = false
+
+
+func get_oxygen_skill_multiplier() -> float:
+	# Skill upgrades can modify this in the future (e.g. 0.8 for 20% slower depletion)
+	return 1.0
+
+
 	

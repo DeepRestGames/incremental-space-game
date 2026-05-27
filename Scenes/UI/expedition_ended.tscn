@@ -1,0 +1,232 @@
+[gd_scene format=3 uid="uid://dmey4x1v84j3c"]
+
+[ext_resource type="Script" uid="uid://c5s1w45d3l1q2" path="res://Scripts/UI/expedition_ended.gd" id="1_script"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_panel"]
+bg_color = Color(0.08, 0.08, 0.11, 0.96)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0.8, 1, 0.3)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+shadow_color = Color(0, 0, 0, 0.5)
+shadow_size = 15
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_btn_normal"]
+bg_color = Color(0.12, 0.12, 0.16, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0, 0.8, 1, 0.4)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_btn_hover"]
+bg_color = Color(0, 0.8, 1, 0.15)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0.8, 1, 0.8)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_btn_pressed"]
+bg_color = Color(0, 0.8, 1, 0.3)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0.8, 1, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[node name="ExpeditionEnded" type="Control" unique_id=73982163]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_script")
+
+[node name="BackgroundDim" type="ColorRect" parent="." unique_id=89237645]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.04, 0.04, 0.06, 0.85)
+
+[node name="MainPanel" type="Panel" parent="." unique_id=98712345]
+custom_minimum_size = Vector2(700, 420)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -350.0
+offset_top = -210.0
+offset_right = 350.0
+offset_bottom = 210.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_panel")
+
+[node name="TitleLabel" type="Label" parent="MainPanel" unique_id=12398457]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -200.0
+offset_top = 25.0
+offset_right = 200.0
+offset_bottom = 60.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0, 0.8, 1, 1)
+theme_override_font_sizes/font_size = 28
+text = "EXPEDITION ENDED"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ColumnsContainer" type="HBoxContainer" parent="MainPanel" unique_id=3459812]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -300.0
+offset_top = -110.0
+offset_right = 300.0
+offset_bottom = 90.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 40
+alignment = 1
+
+[node name="StatsContainer" type="VBoxContainer" parent="MainPanel/ColumnsContainer" unique_id=984521]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 15
+
+[node name="StatsTitle" type="Label" parent="MainPanel/ColumnsContainer/StatsContainer" unique_id=741029]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0.8, 1, 0.7)
+theme_override_font_sizes/font_size = 20
+text = "STATS"
+
+[node name="TimeLabel" type="Label" parent="MainPanel/ColumnsContainer/StatsContainer" unique_id=329048]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "• Time Spent: 00:00"
+
+[node name="DestroyedLabel" type="Label" parent="MainPanel/ColumnsContainer/StatsContainer" unique_id=489201]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "• Asteroids Destroyed: 0"
+
+[node name="VSeparator" type="VSeparator" parent="MainPanel/ColumnsContainer" unique_id=5610293]
+layout_mode = 2
+theme_override_constants/separation = 1
+
+[node name="InventoryContainer" type="VBoxContainer" parent="MainPanel/ColumnsContainer" unique_id=230985]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 15
+
+[node name="InventoryTitle" type="Label" parent="MainPanel/ColumnsContainer/InventoryContainer" unique_id=102938]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0.8, 1, 0.7)
+theme_override_font_sizes/font_size = 20
+text = "INVENTORY"
+
+[node name="TriangleRow" type="HBoxContainer" parent="MainPanel/ColumnsContainer/InventoryContainer" unique_id=782103]
+layout_mode = 2
+
+[node name="ResourceTriangleLabel" type="Label" parent="MainPanel/ColumnsContainer/InventoryContainer/TriangleRow" unique_id=782104]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.2, 0.9, 0.4, 1)
+theme_override_font_sizes/font_size = 18
+text = "∇  0"
+
+[node name="CircleRow" type="HBoxContainer" parent="MainPanel/ColumnsContainer/InventoryContainer" unique_id=239841]
+layout_mode = 2
+
+[node name="ResourceCircleLabel" type="Label" parent="MainPanel/ColumnsContainer/InventoryContainer/CircleRow" unique_id=239842]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.2, 0.6, 0.9, 1)
+theme_override_font_sizes/font_size = 18
+text = "◯  0"
+
+[node name="SquareRow" type="HBoxContainer" parent="MainPanel/ColumnsContainer/InventoryContainer" unique_id=102934]
+layout_mode = 2
+
+[node name="ResourceSquareLabel" type="Label" parent="MainPanel/ColumnsContainer/InventoryContainer/SquareRow" unique_id=102935]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.9, 0.3, 0.3, 1)
+theme_override_font_sizes/font_size = 18
+text = "▢  0"
+
+[node name="ButtonsContainer" type="HBoxContainer" parent="MainPanel" unique_id=903487]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -220.0
+offset_top = -80.0
+offset_right = 220.0
+offset_bottom = -35.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="HangarButton" type="Button" parent="MainPanel/ButtonsContainer" unique_id=238941]
+custom_minimum_size = Vector2(200, 45)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(0, 0.8, 1, 1)
+theme_override_colors/font_hover_color = Color(0, 0.8, 1, 1)
+theme_override_font_sizes/font_size = 16
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn_normal")
+theme_override_styles/hover = SubResource("StyleBoxFlat_btn_hover")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_btn_pressed")
+text = "HANGAR"
+
+[node name="AgainButton" type="Button" parent="MainPanel/ButtonsContainer" unique_id=890234]
+custom_minimum_size = Vector2(200, 45)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(0, 0.8, 1, 1)
+theme_override_colors/font_hover_color = Color(0, 0.8, 1, 1)
+theme_override_font_sizes/font_size = 16
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn_normal")
+theme_override_styles/hover = SubResource("StyleBoxFlat_btn_hover")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_btn_pressed")
+text = "AGAIN"
+
+[connection signal="pressed" from="MainPanel/ButtonsContainer/HangarButton" to="." method="_on_hangar_pressed"]
+[connection signal="pressed" from="MainPanel/ButtonsContainer/AgainButton" to="." method="_on_again_pressed"]

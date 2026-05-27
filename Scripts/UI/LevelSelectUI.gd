@@ -32,6 +32,9 @@ func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	_load_dynamic_level_data()
 	update_ui()
+	if GameManager.open_level_select_on_lobby_load:
+		GameManager.open_level_select_on_lobby_load = false
+		call_deferred("open")
 
 
 func _load_dynamic_level_data() -> void:

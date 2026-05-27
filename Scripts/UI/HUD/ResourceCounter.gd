@@ -11,4 +11,7 @@ func _ready() -> void:
 
 
 func update_resource_counter_value() -> void:
-	value.text = str(GameManager.current_player_resource)
+	if GameManager.expedition_started:
+		value.text = str(GameManager.current_player_resource)
+	else:
+		value.text = str(GameManager.current_deposit_box_resource)

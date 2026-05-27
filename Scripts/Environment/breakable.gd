@@ -55,6 +55,8 @@ func take_damage(damage_value: int) -> void:
 	currentHP -= damage_value
 	
 	if currentHP <= 0:
+		if GameManager.expedition_started:
+			GameManager.expedition_destroyed_nodes += 1
 		destroy.play()
 		spawn_resource_drops(current_resource_number)
 		defer_destroy_object()
@@ -67,7 +69,7 @@ func spawn_resource_drops(resource_number: int) -> void:
 		var resource_drop_node = resource_scene.instantiate() as BasePickup
 		var random_offset = Vector2(randf_range(-20, 20), randf_range(-20, 20))
 		resource_drop_node.global_position = self.global_position + random_offset
-		get_tree().root.add_child(resource_drop_node)
+		get_tree().current_scene.add_child(resource_drop_node)
 		resource_drop_node.randomize_spawn_direction()
 	
 	current_resource_number -= resource_number

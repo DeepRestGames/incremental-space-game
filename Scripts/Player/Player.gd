@@ -27,6 +27,12 @@ const ROTATION_SPEED: float = 2
 var fabricator_material_quantity: int = 100
 var powerup_chips_quantity: int = 0
 
+# Oxygen
+@export var max_oxygen: float = 100.0
+@export var base_oxygen_drain_rate: float = 6.67 ## 100 / 15 seconds
+var current_oxygen: float = 100.0
+
+
 
 func _ready() -> void:	
 	#EventBus.connect("add_fabricator_material", add_fabricator_material)
@@ -62,6 +68,25 @@ func _process(delta: float) -> void:
 	if currentInvincibilityCooldown > 0:
 		currentInvincibilityCooldown -= delta
 	update_animation_parameters()
+
+	if GameManager.expedition_started:
+		var skill_multiplier := 1.0
+		if GameManager.has_method("get_oxygen_skill_multiplier"):
+			skill_multiplier = GameManager.get_oxygen_skill_multiplier()
+			
+		var level_modifier := 1.0
+		var current_scene = get_tree().current_scene
+		if current_scene and "oxygen_drain_modifier" in current_scene:
+			level_modifier = current_scene.oxygen_drain_modifier
+			
+		var actual_drain = base_oxygen_drain_rate * skill_multiplier * level_modifier
+		current_oxygen = max(current_oxygen - actual_drain * delta, 0.0)
+		
+		EventBus.emit_signal("update_oxygen_HUD", current_oxygen, max_oxygen)
+		
+		if current_oxygen <= 0.0 and currentHP > 0:
+			remove_hp(currentHP)
+
 
 
 func _physics_process(_delta: float) -> void:
@@ -111,6 +136,8 @@ func remove_hp(value) -> void:
 		clearConsumables()
 		EventBus.emit_signal("player_death")
 		call_deferred("set_process_mode", Node.PROCESS_MODE_DISABLED)
+		if GameManager.expedition_started:
+			GameManager.end_expedition()
 
 
 func clearConsumables() -> void:
@@ -176,7 +203,7 @@ func update_animation_parameters():
 	else:
 		animation_tree["parameters/conditions/idle"] = false
 		animation_tree["parameters/conditions/is_moving"] = true
-	if Input.is_action_pressed("interact") :
+	if Input.is_action_pressed("interact") and GameManager.expedition_started:
 		animation_tree["parameters/conditions/drilling"] = true
 		animation_tree["parameters/conditions/idle"] = false
 		animation_tree["parameters/conditions/is_moving"] = false
