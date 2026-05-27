@@ -1,8 +1,8 @@
 extends Node
 
 # Scenes
-var expedition_scene = preload("res://Scenes/Prototypes/Prototype_ExpeditionScene.tscn")
-var main_scene = preload("res://Scenes/Prototypes/Prototype_MainScene.tscn")
+var lobby_scene = preload("res://Scenes/Levels/Lobby.tscn")
+var selected_level_path: String = "res://Scenes/Levels/Moon1234.tscn"
 
 # Player
 var player: Player
@@ -69,11 +69,11 @@ func add_resource_deposit_box() -> void:
 
 
 func on_expedition_started() -> void:
-	get_tree().change_scene_to_packed(expedition_scene)
+	get_tree().change_scene_to_file(selected_level_path)
 	expedition_started = true
 
 
 func on_expedition_ended() -> void:
-	get_tree().change_scene_to_packed(main_scene)
+	get_tree().change_scene_to_packed(lobby_scene)
 	expedition_started = false
 	

@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://csht05sstrhwi"]
 
 [ext_resource type="Script" uid="uid://ps2rybtivmrd" path="res://Scripts/HUB/DepositBox/DepositBox.gd" id="1_67gvw"]
-[ext_resource type="Texture2D" uid="uid://c33j2r1hfsnm6" path="res://Assets/PLACEHOLDERS/Drop.svg" id="2_67gvw"]
+[ext_resource type="Texture2D" uid="uid://c5mcg1o8r1dgc" path="res://Assets/PLACEHOLDERS/Ship_Dropsite.svg" id="2_67gvw"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_wpc3r"]
 radius = 200.0
@@ -28,7 +28,8 @@ shape = SubResource("RectangleShape2D_x1isb")
 
 [node name="DepositBoxBodySprite" type="Sprite2D" parent="DepositBoxBody" unique_id=699303013]
 modulate = Color(1, 1, 0, 1)
-scale = Vector2(0.7, 0.7)
+position = Vector2(98.21136, -58.474995)
+scale = Vector2(1.0076928, 1.0059766)
 texture = ExtResource("2_67gvw")
 
 [node name="ResourceNumberLabel" type="Label" parent="." unique_id=1931036236]

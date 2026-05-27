@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://dtacxugcd46bu"]
+
+[ext_resource type="Script" uid="uid://t7s5bltqvlab" path="res://Scripts/Environment/SkillTreeTerminal.gd" id="1_script"]
+[ext_resource type="Texture2D" uid="uid://d3w6yyyfejaxw" path="res://icon.svg" id="2_icon"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_terminal"]
+radius = 160.0
+
+[node name="LevelSelectTerminal" type="Area2D" unique_id=1327899866]
+script = ExtResource("1_script")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1062931710]
+shape = SubResource("CircleShape2D_terminal")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=723155817]
+modulate = Color(0, 0.8, 1, 1)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_icon")
+
+[node name="PromptLabel" type="Label" parent="." unique_id=840904060]
+offset_left = -100.0
+offset_top = -65.0
+offset_right = 100.0
+offset_bottom = -40.0
+theme_override_colors/font_color = Color(0, 0.8, 1, 1)
+theme_override_font_sizes/font_size = 14
+text = "[E] Select Destination"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

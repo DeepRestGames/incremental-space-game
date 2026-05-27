@@ -3,7 +3,6 @@
 [ext_resource type="Script" uid="uid://bcahdecao3ehq" path="res://Scripts/Environment/BaseLevel.gd" id="1_baselevel"]
 [ext_resource type="PackedScene" uid="uid://bcvxlujlsdn7w" path="res://Scenes/Player/Player.tscn" id="3_wpc3r"]
 [ext_resource type="PackedScene" uid="uid://csht05sstrhwi" path="res://Scenes/HUB/DepositBox/DepositBox.tscn" id="5_x1isb"]
-[ext_resource type="PackedScene" uid="uid://ccmhp41okc8g0" path="res://Scenes/HUB/ExpeditionShip/ExpeditionShip.tscn" id="6_a3inl"]
 [ext_resource type="PackedScene" uid="uid://cnmiukq20xuav" path="res://Scenes/Particles/PlayerToDepositBoxParticles.tscn" id="8_svxod"]
 [ext_resource type="Script" uid="uid://dmpnsdi0m0l88" path="res://Scripts/Environment/MapCoordinateGenerator.gd" id="9_generator"]
 
@@ -11,9 +10,6 @@
 script = ExtResource("1_baselevel")
 
 [node name="Player" parent="." unique_id=102267496 instance=ExtResource("3_wpc3r")]
-
-[node name="ExpeditionShip" parent="." unique_id=179261242 instance=ExtResource("6_a3inl")]
-position = Vector2(-288, -99)
 
 [node name="DepositBox" parent="." unique_id=2138939744 instance=ExtResource("5_x1isb")]
 position = Vector2(306, -114)

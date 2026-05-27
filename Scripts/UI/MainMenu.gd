@@ -8,7 +8,7 @@ func _on_continue_button_pressed() -> void:
 
 func _on_new_game_button_pressed() -> void:
 	# Start a new game
-	get_tree().change_scene_to_file("res://Scenes/Levels/Moon1234.tscn")
+	get_tree().change_scene_to_file("res://Scenes/Levels/Lobby.tscn")
 
 
 func _on_skill_tree_test_button_pressed() -> void:
