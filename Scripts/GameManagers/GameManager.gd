@@ -20,7 +20,7 @@ var previous_scene_path: String = ""
 
 func _ready() -> void:
 	
-	DEBUG_add_player_resources()
+	# DEBUG_add_player_resources()
 	
 	# Level initialization
 	# TODO Add logic to handle the menus navigation (e.g. in the start menu the node Player doesn't exist, but the GameManager singleton does

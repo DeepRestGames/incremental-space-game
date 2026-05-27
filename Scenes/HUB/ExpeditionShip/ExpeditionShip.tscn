@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://ccmhp41okc8g0"]
 
 [ext_resource type="Script" uid="uid://chct5ii1ti3m5" path="res://Scripts/HUB/ExpeditionShip/ExpeditionShip.gd" id="1_keioi"]
-[ext_resource type="Texture2D" uid="uid://d3w6yyyfejaxw" path="res://icon.svg" id="2_q2n55"]
+[ext_resource type="Texture2D" path="res://Assets/PLACEHOLDERS/Ship.svg" id="2_q2n55"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_wpc3r"]
 radius = 200.0

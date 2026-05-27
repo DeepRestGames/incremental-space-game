@@ -16,6 +16,9 @@ extends Node
 @export var max_spawn_count: int = 150
 @export var num_seeds: int = 6                      ## The number of "Seed" points around which actual objects will cluster.
 @export var cluster_spread: float = 180.0           ## STD for Gaussian distribution around seeds (higher = more spread out, lower = tightly packed)
+@export var center_safe_radius: float = 400.0      ## Safe zone radius around the center (where player spawns) where nothing can spawn.
+@export var custom_exclusion_points: Array[Vector2] = [] ## Custom level-space exclusion points (e.g., ship, deposit box positions relative to center).
+@export var custom_exclusion_radius: float = 400.0   ## Safe radius around custom exclusion points.
 ## / ----- ALGORITHM PARAMETERS -----
 
 ## Configured list of spawnable items with their respective relative weights.
@@ -108,6 +111,20 @@ func _is_position_valid(pos: Vector2, accepted_positions: Array[Vector2]) -> boo
 		return false
 	if pos.y < border_margin or pos.y > map_size.y - border_margin:
 		return false
+		
+	# Center safe zone check (prevent spawning on player at level center)
+	if center_safe_radius > 0.0:
+		var center := map_size / 2.0
+		if pos.distance_squared_to(center) < center_safe_radius * center_safe_radius:
+			return false
+			
+	# Custom exclusion zones check (prevent spawning on ship/deposit box)
+	if not custom_exclusion_points.is_empty():
+		var excl_radius_sq := custom_exclusion_radius * custom_exclusion_radius
+		for excl_pos in custom_exclusion_points:
+			var generator_excl_pos := excl_pos + (map_size / 2.0)
+			if pos.distance_squared_to(generator_excl_pos) < excl_radius_sq:
+				return false
 		
 	# Minimum spacing check (squared comparison for performance)
 	var min_dist_sq := min_distance * min_distance

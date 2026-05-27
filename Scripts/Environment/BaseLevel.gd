@@ -7,6 +7,14 @@ extends Node2D
 @onready var coordinate_generator: MapCoordinateGenerator = $MapCoordinateGenerator
 
 func _ready() -> void:
+	# Gather dynamic positions of central structures as spawning exclusion zones
+	var exclusions: Array[Vector2] = []
+	for node_name in ["ExpeditionShip", "DepositBox", "CaptureArea"]:
+		var structure := get_node_or_null(node_name) as Node2D
+		if structure:
+			exclusions.append(structure.position)
+	coordinate_generator.custom_exclusion_points = exclusions
+
 	# Fallback configuration in code if the array is empty in the Inspector
 	if coordinate_generator.spawnable_items.is_empty():
 		_setup_default_spawnable_items()
