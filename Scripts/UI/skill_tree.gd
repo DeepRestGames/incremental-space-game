@@ -8,4 +8,4 @@ func _unhandled_input(event: InputEvent) -> void:
 			get_tree().change_scene_to_file(GameManager.previous_scene_path)
 		else:
 			# Fallback to Main Menu if no previous path was recorded
-			get_tree().change_scene_to_file("res://Scenes/UI/MainMenu.tscn")
+			get_tree().change_scene_to_file("res://Scenes/Levels/MainMenu.tscn")

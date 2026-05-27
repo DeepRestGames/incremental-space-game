@@ -36,4 +36,4 @@ func _on_skill_tree_button_pressed() -> void:
 func _on_back_to_menu_button_pressed() -> void:
 	# Unpause the engine before loading the main menu
 	get_tree().paused = false
-	get_tree().change_scene_to_file("res://Scenes/UI/MainMenu.tscn")
+	get_tree().change_scene_to_file("res://Scenes/Levels/MainMenu.tscn")
