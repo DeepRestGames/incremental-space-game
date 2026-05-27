@@ -1,7 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://ccmhp41okc8g0"]
+[gd_scene format=3 uid="uid://ccmhp41okc8g0"]
 
-[ext_resource type="Script" uid="uid://chct5ii1ti3m5" path="res://Scripts/HUB/ExpeditionShip/ExpeditionShip.gd" id="1_keioi"]
-[ext_resource type="Texture2D" path="res://Assets/PLACEHOLDERS/Ship.svg" id="2_q2n55"]
+[ext_resource type="Script" uid="uid://bavhlefa83ey2" path="res://Scripts/HUB/ExpeditionShip/ExpeditionShip.gd" id="1_keioi"]
+[ext_resource type="Texture2D" uid="uid://ctr1dt8inn3o1" path="res://Assets/PLACEHOLDERS/Ship.svg" id="2_q2n55"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_wpc3r"]
 radius = 200.0
@@ -9,20 +9,21 @@ radius = 200.0
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_x1isb"]
 size = Vector2(90, 90)
 
-[node name="ExpeditionShip" type="Area2D" groups=["ExpeditionShip"]]
+[node name="ExpeditionShip" type="Area2D" unique_id=644122719 groups=["ExpeditionShip"]]
 script = ExtResource("1_keioi")
 
-[node name="ExpeditionShipInteractionArea" type="CollisionShape2D" parent="."]
+[node name="ExpeditionShipInteractionArea" type="CollisionShape2D" parent="." unique_id=556325045]
 shape = SubResource("CircleShape2D_wpc3r")
 
-[node name="ExpeditionShipBody" type="StaticBody2D" parent="."]
+[node name="ExpeditionShipBody" type="StaticBody2D" parent="." unique_id=1630404455]
 
-[node name="ExpeditionShipCollisionShape" type="CollisionShape2D" parent="ExpeditionShipBody"]
+[node name="ExpeditionShipCollisionShape" type="CollisionShape2D" parent="ExpeditionShipBody" unique_id=1817506810]
 shape = SubResource("RectangleShape2D_x1isb")
 
-[node name="ExpeditionShipBodySprite" type="Sprite2D" parent="ExpeditionShipBody"]
+[node name="ExpeditionShipBodySprite" type="Sprite2D" parent="ExpeditionShipBody" unique_id=690489644]
 modulate = Color(1, 0.720177, 0.426246, 1)
-scale = Vector2(0.7, 0.7)
+position = Vector2(2.0000038, -3.0000076)
+scale = Vector2(0.98100436, 1.2092056)
 texture = ExtResource("2_q2n55")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

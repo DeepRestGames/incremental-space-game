@@ -21,12 +21,26 @@ extends Node
 @export var custom_exclusion_radius: float = 400.0   ## Safe radius around custom exclusion points.
 ## / ----- ALGORITHM PARAMETERS -----
 
-## Configured list of spawnable items with their respective relative weights.
-@export var spawnable_items: Array[SpawnableItem] = []
+var spawn_distribution: Dictionary:
+	get:
+		var dist_node = get_node_or_null("SpawnDistribution")
+		if dist_node:
+			return dist_node.spawn_distribution
+		return _spawn_distribution_fallback
+	set(value):
+		var dist_node = get_node_or_null("SpawnDistribution")
+		if dist_node:
+			dist_node.spawn_distribution = value
+		else:
+			_spawn_distribution_fallback = value
+
+var _spawn_distribution_fallback: Dictionary = {}
+
 
 # Cached weight distribution data
 var _total_weight: float = 0.0
 var _cumulative_weights: Array[float] = []
+var _scenes_pool: Array[PackedScene] = []
 
 ## Runs the coordinate generation synchronously on the current thread.
 ## Returns an array of dictionaries in the format: [{"position": Vector2, "item": SpawnableItem}]
@@ -34,8 +48,8 @@ func generate_sync() -> Array[Dictionary]:
 	var results: Array[Dictionary] = []
 	var accepted_positions: Array[Vector2] = []
 	
-	if spawnable_items.is_empty():
-		push_error("MapCoordinateGenerator: Spawnable items array is empty. Cannot generate coordinates.")
+	if spawn_distribution.is_empty():
+		push_error("MapCoordinateGenerator: Spawning distribution is empty. Cannot generate coordinates.")
 		return results
 		
 	# Select a random target count within the range
@@ -67,11 +81,11 @@ func generate_sync() -> Array[Dictionary]:
 			var pos: Vector2 = seed_point + offset
 			
 			if _is_position_valid(pos, accepted_positions):
-				var selected_item := _pick_weighted_item()
+				var selected_scene := _pick_weighted_item()
 				accepted_positions.append(pos)
 				results.append({
 					"position": pos,
-					"item": selected_item
+					"scene": selected_scene
 				})
 				placed = true
 				break
@@ -149,22 +163,24 @@ func _rand_normal(mean: float, stddev: float) -> float:
 func _prepare_weight_distribution() -> void:
 	_total_weight = 0.0
 	_cumulative_weights.clear()
+	_scenes_pool.clear()
 	
-	for item in spawnable_items:
-		if item == null:
-			continue
-		_total_weight += max(item.weight, 0.0)
-		_cumulative_weights.append(_total_weight)
+	for scene in spawn_distribution:
+		if scene is PackedScene:
+			var weight: float = spawn_distribution[scene]
+			_total_weight += max(weight, 0.0)
+			_cumulative_weights.append(_total_weight)
+			_scenes_pool.append(scene)
 
 
-# Helper: Weighted pick of a SpawnableItem
-func _pick_weighted_item() -> SpawnableItem:
-	if spawnable_items.is_empty() or _total_weight <= 0.0:
+# Helper: Weighted pick of a PackedScene
+func _pick_weighted_item() -> PackedScene:
+	if _scenes_pool.is_empty() or _total_weight <= 0.0:
 		return null
 		
 	var r := randf_range(0.0, _total_weight)
 	for i in range(_cumulative_weights.size()):
 		if r <= _cumulative_weights[i]:
-			return spawnable_items[i]
+			return _scenes_pool[i]
 			
-	return spawnable_items.back()
+	return _scenes_pool.back()

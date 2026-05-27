@@ -2,8 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://bcvxlujlsdn7w" path="res://Scenes/Player/Player.tscn" id="2_wpc3r"]
 [ext_resource type="PackedScene" uid="uid://ccmhp41okc8g0" path="res://Scenes/HUB/ExpeditionShip/ExpeditionShip.tscn" id="4_ship"]
-
-[ext_resource type="PackedScene" path="res://Scenes/Levels/SkillTreeTerminal.tscn" id="8_terminal"]
+[ext_resource type="PackedScene" uid="uid://bngmoa84fkagd" path="res://Scenes/Levels/SkillTreeTerminal.tscn" id="8_terminal"]
 [ext_resource type="PackedScene" uid="uid://b76okat8058e5" path="res://Scenes/UI/LevelSelectUI.tscn" id="9_ui"]
 
 [node name="Lobby" type="Node2D" unique_id=1759954739]
@@ -11,11 +10,10 @@
 [node name="Player" parent="." unique_id=111262784 instance=ExtResource("2_wpc3r")]
 
 [node name="ExpeditionShip" parent="." unique_id=1704699913 instance=ExtResource("4_ship")]
-position = Vector2(1009, -557)
-
+position = Vector2(828, -173)
 
 [node name="SkillTreeTerminal" parent="." unique_id=553144318 instance=ExtResource("8_terminal")]
-position = Vector2(-300, -300)
+position = Vector2(-416, -98)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1382719696]
 

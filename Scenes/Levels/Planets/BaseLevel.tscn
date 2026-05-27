@@ -5,6 +5,9 @@
 [ext_resource type="PackedScene" uid="uid://csht05sstrhwi" path="res://Scenes/HUB/DepositBox/DepositBox.tscn" id="5_x1isb"]
 [ext_resource type="PackedScene" uid="uid://cnmiukq20xuav" path="res://Scenes/Particles/PlayerToDepositBoxParticles.tscn" id="8_svxod"]
 [ext_resource type="Script" uid="uid://dmpnsdi0m0l88" path="res://Scripts/Environment/MapCoordinateGenerator.gd" id="9_generator"]
+[ext_resource type="PackedScene" uid="uid://c6qwwmff8anwx" path="res://Scenes/Environment/breakable_small.tscn" id="10_small"]
+[ext_resource type="PackedScene" uid="uid://yat7dirw16l5" path="res://Scenes/Environment/breakable_big.tscn" id="11_big"]
+[ext_resource type="Script" path="res://Scripts/Environment/SpawnDistribution.gd" id="12_distribution"]
 
 [node name="BaseLevel" type="Node2D" unique_id=705757094]
 script = ExtResource("1_baselevel")
@@ -26,3 +29,12 @@ min_spawn_count = 120
 max_spawn_count = 200
 num_seeds = 12
 cluster_spread = 280.0
+
+[node name="SpawnDistribution" type="Node" parent="MapCoordinateGenerator" unique_id=987654321]
+script = ExtResource("12_distribution")
+spawn_distribution = {
+ExtResource("10_small"): 8.0,
+ExtResource("11_big"): 2.0
+}
+
+

@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://co522yyv0i0v3"]
+
+[ext_resource type="PackedScene" uid="uid://cl1025m5bhlxa" path="res://Scenes/Levels/Planets/BaseLevel.tscn" id="1_tgogl"]
+[ext_resource type="PackedScene" uid="uid://yat7dirw16l5" path="res://Scenes/Environment/breakable_big.tscn" id="2_big"]
+
+[node name="BaseLevel" unique_id=705757094 instance=ExtResource("1_tgogl")]
+
+[node name="DepositBox" parent="." index="1" unique_id=2138939744]
+position = Vector2(75, -451)
+
+[node name="SpawnDistribution" parent="MapCoordinateGenerator" index="0"]
+spawn_distribution = {
+ExtResource("2_big"): 1.0
+}
+
+

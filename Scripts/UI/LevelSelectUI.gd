@@ -4,38 +4,19 @@ extends Control
 ## Displays available level variants, their resource weight percentages, and spawning conditions.
 
 signal level_selected(level_path: String)
+var base_planet_path: String = "res://Scenes/Levels/Planets/"
 
 # Level database representing all available sectors/worlds
 var levels: Array[Dictionary] = [
 	{
 		"name": "MOON 1234",
-		"scene_path": "res://Scenes/Levels/Moon1234.tscn",
-		"planet_color": Color(0.65, 0.68, 0.72), # Dusty grey celestial body
-		"resources": [
-			{"name": "Small Breakable", "pct": 80},
-			{"name": "Big Breakable", "pct": 20}
-		],
-		"conditions": [
-			{"label": "Spawning Area", "val": "6000x6000px"},
-			{"label": "Safe Spacing", "val": "100px"},
-			{"label": "Clump Radius", "val": "320px"},
-			{"label": "Safe Spawn", "val": "1200px (Player)"}
-		]
+		"scene_path": base_planet_path + "Moon1234.tscn",
+		"planet_color": Color(0.65, 0.68, 0.72)
 	},
 	{
 		"name": "NEBULA ALPHA",
-		"scene_path": "res://Scenes/Levels/Moon1234.tscn", # Reuses scene for now as Moon is our only dynamic scene
-		"planet_color": Color(0.9, 0.25, 0.6), # Neon pink/violet theme
-		"resources": [
-			{"name": "Small Breakable", "pct": 60},
-			{"name": "Big Breakable", "pct": 40}
-		],
-		"conditions": [
-			{"label": "Spawning Area", "val": "6000x6000px"},
-			{"label": "Safe Spacing", "val": "100px"},
-			{"label": "Clump Radius", "val": "320px"},
-			{"label": "Safe Spawn", "val": "1200px (Player)"}
-		]
+		"scene_path": base_planet_path + "NebulaAlpha2345.tscn", 
+		"planet_color": Color(0.9, 0.25, 0.6)
 	}
 ]
 
@@ -49,7 +30,56 @@ var current_index: int = 0
 func _ready() -> void:
 	hide()
 	process_mode = Node.PROCESS_MODE_ALWAYS
+	_load_dynamic_level_data()
 	update_ui()
+
+
+func _load_dynamic_level_data() -> void:
+	for lvl in levels:
+		var scene_path: String = lvl["scene_path"]
+		var scene_pack = load(scene_path) as PackedScene
+		if not scene_pack:
+			push_error("LevelSelectUI: Failed to load scene path " + scene_path)
+			continue
+			
+		var temp_instance = scene_pack.instantiate()
+		var gen = temp_instance.get_node_or_null("MapCoordinateGenerator")
+		if gen:
+			# Calculate percentages
+			var dist: Dictionary = gen.spawn_distribution
+			var total_w := 0.0
+			for sc in dist:
+				if sc:
+					total_w += dist[sc]
+				
+			var items_pct: Array[Dictionary] = []
+			for sc in dist:
+				if not sc:
+					continue
+				if total_w > 0:
+					var pct = (dist[sc] / total_w) * 100.0
+					var raw_name = sc.resource_path.get_file().get_basename()
+					var name_clean = raw_name.replace("breakable_", "").capitalize() + " Breakable"
+					items_pct.append({"name": name_clean, "pct": int(pct)})
+			
+			# Sort resources to have a consistent UI display
+			items_pct.sort_custom(func(a, b): return a["name"] < b["name"])
+			lvl["resources"] = items_pct
+			
+			# Build dynamic conditions from MapCoordinateGenerator properties
+			var conditions_list: Array[Dictionary] = []
+			conditions_list.append({"label": "Area Size", "val": "%dx%d" % [gen.map_size.x, gen.map_size.y]})
+			conditions_list.append({"label": "Density", "val": "%d - %d" % [gen.min_spawn_count, gen.max_spawn_count]})
+			conditions_list.append({"label": "Min Distance", "val": "%d px" % gen.min_distance})
+			conditions_list.append({"label": "Safe Area", "val": "%d px" % gen.center_safe_radius})
+			conditions_list.append({"label": "Seeds / Spread", "val": "%d / %d px" % [gen.num_seeds, gen.cluster_spread]})
+			lvl["conditions"] = conditions_list
+		else:
+			lvl["resources"] = []
+			lvl["conditions"] = []
+			
+		temp_instance.free()
+
 
 
 func open() -> void:

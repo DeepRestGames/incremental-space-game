@@ -2,7 +2,7 @@ extends Node
 
 # Scenes
 var lobby_scene = preload("res://Scenes/Levels/Lobby.tscn")
-var selected_level_path: String = "res://Scenes/Levels/Moon1234.tscn"
+var selected_level_path: String = "res://Scenes/Levels/Planets/Moon1234.tscn"
 
 # Player
 var player: Player
