@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://jvaljc4pfau3"]
 
-[ext_resource type="Script" uid="uid://dbwm07xcciudk" path="res://Scripts/Environment/MapCoordinateGeneratorTest.gd" id="1_test"]
+[ext_resource type="Script" uid="uid://dbwm07xcciudk" path="res://Scripts/Tests/MapCoordinateGeneratorTest.gd" id="1_test"]
 
 [node name="MapGeneratorTest" type="Node2D" unique_id=1465550003]
 script = ExtResource("1_test")

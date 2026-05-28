@@ -1,13 +1,13 @@
 [gd_scene format=3 uid="uid://cl1025m5bhlxa"]
 
-[ext_resource type="Script" uid="uid://bcahdecao3ehq" path="res://Scripts/Environment/BaseLevel.gd" id="1_baselevel"]
+[ext_resource type="Script" uid="uid://bcahdecao3ehq" path="res://Scripts/Levels/BaseLevel.gd" id="1_baselevel"]
 [ext_resource type="PackedScene" uid="uid://bcvxlujlsdn7w" path="res://Scenes/Player/Player.tscn" id="3_wpc3r"]
 [ext_resource type="PackedScene" uid="uid://csht05sstrhwi" path="res://Scenes/HUB/DepositBox/DepositBox.tscn" id="5_x1isb"]
 [ext_resource type="PackedScene" uid="uid://cnmiukq20xuav" path="res://Scenes/Particles/PlayerToDepositBoxParticles.tscn" id="8_svxod"]
-[ext_resource type="Script" uid="uid://dmpnsdi0m0l88" path="res://Scripts/Environment/MapCoordinateGenerator.gd" id="9_generator"]
+[ext_resource type="Script" uid="uid://dmpnsdi0m0l88" path="res://Scripts/Levels/MapCoordinateGenerator.gd" id="9_generator"]
 [ext_resource type="PackedScene" uid="uid://c6qwwmff8anwx" path="res://Scenes/Environment/breakable_small.tscn" id="10_small"]
 [ext_resource type="PackedScene" uid="uid://yat7dirw16l5" path="res://Scenes/Environment/breakable_big.tscn" id="11_big"]
-[ext_resource type="Script" path="res://Scripts/Environment/SpawnDistribution.gd" id="12_distribution"]
+[ext_resource type="Script" path="res://Scripts/Levels/SpawnDistribution.gd" id="12_distribution"]
 
 [node name="BaseLevel" type="Node2D" unique_id=705757094]
 script = ExtResource("1_baselevel")

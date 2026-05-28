@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://bcvxlujlsdn7w"]
 
 [ext_resource type="Script" uid="uid://cn3sju73je58y" path="res://Scripts/Player/Player.gd" id="1_kyqiw"]
-[ext_resource type="Script" uid="uid://d4l1g5pd3h07t" path="res://Scenes/Player/player_input.gd" id="2_4wape"]
+[ext_resource type="Script" uid="uid://d4l1g5pd3h07t" path="res://Scripts/Player/player_input.gd" id="2_4wape"]
 [ext_resource type="Script" uid="uid://bga10udjicrif" path="res://Scripts/Player/player_state_machine.gd" id="2_jmcll"]
 [ext_resource type="Script" uid="uid://bjontewb356qy" path="res://Scripts/Camera/ScreenShake.gd" id="3_jmcll"]
 [ext_resource type="Script" uid="uid://q2mkqd6f05cm" path="res://Scripts/Player/bomb_spawner.gd" id="3_t26db"]
