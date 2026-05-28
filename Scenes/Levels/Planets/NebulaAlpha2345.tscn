@@ -13,4 +13,9 @@ spawn_distribution = {
 ExtResource("2_big"): 1.0
 }
 
+[node name="Modifiers" parent="." index="4"]
+drain_rate_multiplier = 1.5
+conditions = Array[String](["Corrosive Solar Storms", "Accelerated Oxygen Depletion (1.5x)", "Rich Dense Dust Clouds"])
+
+
 

@@ -69,13 +69,26 @@ func _load_dynamic_level_data() -> void:
 			items_pct.sort_custom(func(a, b): return a["name"] < b["name"])
 			lvl["resources"] = items_pct
 			
-			# Build dynamic conditions from MapCoordinateGenerator properties
+			# Build dynamic conditions from Modifiers node or fallback to MapCoordinateGenerator
 			var conditions_list: Array[Dictionary] = []
-			conditions_list.append({"label": "Area Size", "val": "%dx%d" % [gen.map_size.x, gen.map_size.y]})
-			conditions_list.append({"label": "Density", "val": "%d - %d" % [gen.min_spawn_count, gen.max_spawn_count]})
-			conditions_list.append({"label": "Min Distance", "val": "%d px" % gen.min_distance})
-			conditions_list.append({"label": "Safe Area", "val": "%d px" % gen.center_safe_radius})
-			conditions_list.append({"label": "Seeds / Spread", "val": "%d / %d px" % [gen.num_seeds, gen.cluster_spread]})
+			var modifiers = temp_instance.get_node_or_null("Modifiers")
+			if modifiers:
+				if "conditions" in modifiers:
+					var cond_array = modifiers.conditions
+					if cond_array.is_empty():
+						conditions_list.append({"label": "", "val": "NONE SET"})
+					else:
+						for cond in cond_array:
+							conditions_list.append({"label": "", "val": cond})
+							
+			# Fallback if no custom modifiers node is present
+			if conditions_list.is_empty() and gen:
+				conditions_list.append({"label": "Area Size", "val": "%dx%d" % [gen.map_size.x, gen.map_size.y]})
+				conditions_list.append({"label": "Density", "val": "%d - %d" % [gen.min_spawn_count, gen.max_spawn_count]})
+				conditions_list.append({"label": "Min Distance", "val": "%d px" % gen.min_distance})
+				conditions_list.append({"label": "Safe Area", "val": "%d px" % gen.center_safe_radius})
+				conditions_list.append({"label": "Seeds / Spread", "val": "%d / %d px" % [gen.num_seeds, gen.cluster_spread]})
+				
 			lvl["conditions"] = conditions_list
 		else:
 			lvl["resources"] = []
@@ -126,7 +139,10 @@ func update_ui() -> void:
 	var cond_text := "CONDITIONS\n"
 	cond_text += "-------------------\n"
 	for cond in lvl["conditions"]:
-		cond_text += "• %s: %s\n" % [cond["label"], cond["val"]]
+		if cond["label"] == "":
+			cond_text += "• %s\n" % cond["val"]
+		else:
+			cond_text += "• %s: %s\n" % [cond["label"], cond["val"]]
 	conditions_label.text = cond_text
 
 

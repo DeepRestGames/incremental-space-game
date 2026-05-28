@@ -5,7 +5,7 @@ extends Node2D
 ## and dynamic spawning using the MapCoordinateGenerator.
 
 @onready var coordinate_generator: MapCoordinateGenerator = $MapCoordinateGenerator
-@export var oxygen_drain_modifier: float = 1.0
+
 
 
 func _ready() -> void:

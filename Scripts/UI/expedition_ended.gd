@@ -1,10 +1,10 @@
 extends Control
 
-@onready var time_label: Label = %TimeLabel
-@onready var destroyed_label: Label = %DestroyedLabel
-@onready var resource_triangle_label: Label = %ResourceTriangleLabel
-@onready var resource_circle_label: Label = %ResourceCircleLabel
-@onready var resource_square_label: Label = %ResourceSquareLabel
+@export var time_label: Label
+@export var destroyed_label: Label
+@export var resource_triangle_label: Label
+@export var resource_circle_label: Label
+@export var resource_square_label: Label
 
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
@@ -16,9 +16,9 @@ func _ready() -> void:
 	time_label.text = "• Time Spent: %02d:%02d" % [minutes, seconds]
 	
 	destroyed_label.text = "• Asteroids Destroyed: %d" % GameManager.expedition_destroyed_nodes
-	resource_triangle_label.text = "∇  %d" % GameManager.expedition_resources_collected
-	resource_circle_label.text = "◯  0"
-	resource_square_label.text = "▢  0"
+	resource_triangle_label.text = "x %d" % GameManager.expedition_resources_collected
+	resource_circle_label.text = "x 0"
+	resource_square_label.text = "x 0"
 
 
 func _on_hangar_pressed() -> void:

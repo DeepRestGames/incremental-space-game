@@ -9,3 +9,7 @@ min_spawn_count = 150
 max_spawn_count = 250
 num_seeds = 16
 cluster_spread = 320.0
+
+[node name="Modifiers" parent="." index="4"]
+conditions = Array[String](["Low Gravity Environment", "Standard Depletion Rate", "Scattered Asteroid Belts"])
+

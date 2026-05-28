@@ -137,7 +137,7 @@ grow_horizontal = 2
 grow_vertical = 0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/font_size = 22
-text = "MOON 1234"
+text = "PLANET NAME"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -221,10 +221,9 @@ grow_vertical = 0
 theme_override_font_sizes/font_size = 14
 text = "CONDITIONS
 -------------------
-• Area: 6000x6000px
-• Spacing: 100px
-• Clump: 320px
-• Safe Spawn: 1200px"
+X
+Y
+Z"
 autowrap_mode = 2
 
 [node name="SelectButton" type="Button" parent="Panel" unique_id=1106219488]
