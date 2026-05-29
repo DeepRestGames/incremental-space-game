@@ -53,7 +53,7 @@ corner_radius_top_right = 6
 corner_radius_bottom_right = 6
 corner_radius_bottom_left = 6
 
-[node name="ExpeditionEnded" type="Control" unique_id=73982163]
+[node name="ExpeditionEnded" type="Control" unique_id=73982163 node_paths=PackedStringArray("time_label", "destroyed_label", "resource_triangle_label", "resource_circle_label", "resource_square_label")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -61,6 +61,11 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_script")
+time_label = NodePath("MainPanel/ColumnsContainer/StatsContainer/TimeLabel")
+destroyed_label = NodePath("MainPanel/ColumnsContainer/StatsContainer/DestroyedLabel")
+resource_triangle_label = NodePath("MainPanel/ColumnsContainer/InventoryContainer/TriangleRow/ResourceTriangleLabel")
+resource_circle_label = NodePath("MainPanel/ColumnsContainer/InventoryContainer/CircleRow/ResourceCircleLabel")
+resource_square_label = NodePath("MainPanel/ColumnsContainer/InventoryContainer/SquareRow/ResourceSquareLabel")
 
 [node name="BackgroundDim" type="ColorRect" parent="." unique_id=89237645]
 layout_mode = 1
