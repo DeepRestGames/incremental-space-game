@@ -19,9 +19,7 @@ func _ready() -> void:
 	# Add to the MiningReticle group so Breakables can identify it
 	add_to_group("MiningReticle")
 	
-	# Read the inner_radius dynamically from the editor-configured shape
-	if collision_shape and collision_shape.shape is CircleShape2D:
-		inner_radius = collision_shape.shape.radius
+	update_reticle_size()
 	
 	# Default state is inactive and hidden
 	visible = false
@@ -32,9 +30,31 @@ func _ready() -> void:
 	set_process(true)
 
 
+func update_reticle_size() -> void:
+	var base_radius = BaseValuesDB.DRILL_AREA_SIZE
+	if collision_shape and collision_shape.shape is CircleShape2D:
+		base_radius = collision_shape.shape.radius
+		
+	var extra_size = 0.0
+	if GameManager.has_method("get_stat_modifier"):
+		extra_size = GameManager.get_stat_modifier("drill_area_size")
+		
+	inner_radius = base_radius + extra_size
+	
+	# Update collision shape radius
+	if collision_shape and collision_shape.shape is CircleShape2D:
+		collision_shape.shape.radius = inner_radius
+		
+	# Update visual sprite scale dynamically (512x512 texture base)
+	if digging_circle:
+		var new_scale = (2.0 * inner_radius) / 512.0
+		digging_circle.scale = Vector2(new_scale, new_scale)
+
+
 func activate() -> void:
 	is_active = true
 	visible = true
+	update_reticle_size()
 	if collision_shape:
 		collision_shape.disabled = false
 

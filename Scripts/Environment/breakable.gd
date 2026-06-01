@@ -21,10 +21,10 @@ var last_rock_particles_node: GPUParticles2D
 @export var rock_sprites: Array[Texture2D]
 
 @onready var resource_scene: PackedScene = preload("res://Scenes/Resources/BasePickup.tscn")
-@export var min_resource_number: int = 4
-@export var max_resource_number: int = 10
+@export var min_resource_number: int = BaseValuesDB.MIN_RESOURCE_NUMBER
+@export var max_resource_number: int = BaseValuesDB.MAX_RESOURCE_NUMBER
 var current_resource_number: int
-@export var resource_spawn_chance_on_damaged: float = 0.9
+@export var resource_spawn_chance_on_damaged: float = BaseValuesDB.RESOURCE_SPAWN_CHANCE_ON_DAMAGED
 
 
 func _ready() -> void:
@@ -45,16 +45,31 @@ func on_interacted() -> void:
 	if not player_is_in_range:
 		return
 	
-	take_damage(1)
+	var damage = int(BaseValuesDB.DRILL_DAMAGE_PER_TICK)
+	if GameManager.has_method("get_modified_stat"):
+		damage = int(GameManager.get_modified_stat("drill_damage_per_tick", BaseValuesDB.DRILL_DAMAGE_PER_TICK))
+		
+		# Crit chance check
+		var crit_chance = GameManager.get_modified_stat("drill_crit_chance", BaseValuesDB.DRILL_CRIT_CHANCE)
+		if randf() < crit_chance:
+			var crit_mult = GameManager.get_modified_stat("drill_crit_damage", BaseValuesDB.DRILL_CRIT_DAMAGE)
+			damage = int(damage * crit_mult)
+	
+	take_damage(damage)
 
 
 func take_damage(damage_value: int) -> void:
 	EventBus.emit_signal("breakable_damaged")
 	
+	var drop_chance = resource_spawn_chance_on_damaged
+	if GameManager.has_method("get_modified_stat"):
+		# drop_chance_per_tick adds to base drop chance
+		drop_chance += GameManager.get_stat_modifier("drop_chance_per_tick")
+		
 	for i in damage_value:
 		play_rock_particles()
 		
-		if randf_range(0, 1) < resource_spawn_chance_on_damaged:
+		if randf() < drop_chance:
 			spawn_resource_drops(1)
 	
 	currentHP -= damage_value
@@ -63,7 +78,13 @@ func take_damage(damage_value: int) -> void:
 		if GameManager.expedition_started:
 			GameManager.expedition_destroyed_nodes += 1
 		destroy.play()
-		spawn_resource_drops(current_resource_number)
+		
+		# Extra drops on destruction from skill upgrades
+		var extra_drops = 0
+		if GameManager.has_method("get_stat_modifier"):
+			extra_drops = int(GameManager.get_stat_modifier("drops_on_destruction"))
+			
+		spawn_resource_drops(current_resource_number + extra_drops)
 		defer_destroy_object()
 	else:
 		hit.play()

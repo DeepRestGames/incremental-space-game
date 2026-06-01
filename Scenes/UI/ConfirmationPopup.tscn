@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://cx4f5wal3t4pa"]
 
-[ext_resource type="Script" uid="uid://tecf3onopkeg" path="res://Scripts/UI/ConfirmationPopup.gd" id="1_script"]
+[ext_resource type="Script" path="res://Scripts/UI/ConfirmationPopup.gd" id="1_script"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_panel"]
 bg_color = Color(0.08, 0.08, 0.11, 0.96)

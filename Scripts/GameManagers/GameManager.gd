@@ -26,9 +26,11 @@ var expedition_resources_collected: int = 0
 var _expedition_start_time_msec: int = 0
 var expedition_success: bool = true
 
+# Skill levels (skill_id -> current_points)
+var skill_levels: Dictionary = {}
 
-
-
+# Base skills database (imported from SkillDB class)
+var skill_db: Dictionary = SkillDB.DATABASE
 
 
 func _ready() -> void:
@@ -128,6 +130,32 @@ func end_expedition(success: bool = true) -> void:
 func get_oxygen_skill_multiplier() -> float:
 	# Skill upgrades can modify this in the future (e.g. 0.8 for 20% slower depletion)
 	return 1.0
+
+
+func get_skill_points(skill_id: String) -> int:
+	return skill_levels.get(skill_id, 0)
+
+
+func set_skill_points(skill_id: String, points: int) -> void:
+	skill_levels[skill_id] = points
+	EventBus.emit_signal("update_HUD")
+	if player and player.has_method("update_stats"):
+		player.update_stats()
+
+
+func get_stat_modifier(stat_name: String) -> float:
+	var total = 0.0
+	for skill_id in skill_levels:
+		var points = skill_levels[skill_id]
+		var skill_info = skill_db.get(skill_id, {})
+		var effects = skill_info.get("effects", {})
+		if stat_name in effects:
+			total += effects[stat_name] * points
+	return total
+
+
+func get_modified_stat(stat_name: String, base_value: float) -> float:
+	return base_value + get_stat_modifier(stat_name)
 
 
 	

@@ -17,29 +17,76 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 64.0
+offset_top = 64.0
+offset_right = -56.0
+offset_bottom = -48.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 0.588235)
 
-[node name="SkillNode" parent="." unique_id=351642366 node_paths=PackedStringArray("parent_node") instance=ExtResource("1_c1qs3")]
+[node name="MoveSpeed1" parent="." unique_id=351642366 node_paths=PackedStringArray("parent_node") instance=ExtResource("1_c1qs3")]
 layout_mode = 0
 offset_left = 1156.0
 offset_top = 640.0
 offset_right = 1220.0
 offset_bottom = 704.0
-parent_node = NodePath("../SkillNodeParent")
+skill_id = "move_speed"
+parent_node = NodePath("../OxygenCapacity1")
 
-[node name="SkillNodeParent" parent="." unique_id=598205317 node_paths=PackedStringArray("parent_node") instance=ExtResource("1_c1qs3")]
+[node name="OxygenCapacity1" parent="." unique_id=598205317 node_paths=PackedStringArray("parent_node") instance=ExtResource("1_c1qs3")]
 layout_mode = 0
 offset_left = 900.0
 offset_top = 640.0
 offset_right = 964.0
 offset_bottom = 704.0
-parent_node = NodePath("../SkillNodeParent2")
+skill_id = "oxygen_capacity"
+parent_node = NodePath("../DrillDamage1")
 
-[node name="SkillNodeParent2" parent="." unique_id=430100635 instance=ExtResource("1_c1qs3")]
+[node name="DrillDamage1" parent="." unique_id=430100635 instance=ExtResource("1_c1qs3")]
 layout_mode = 0
 offset_left = 760.0
 offset_top = 176.0
 offset_right = 824.0
 offset_bottom = 240.0
+skill_id = "drill_damage"
+
+[node name="DetailPanel" type="PanelContainer" parent="." unique_id=1122334455]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.49600002
+anchor_top = 1.0
+anchor_right = 0.49600002
+anchor_bottom = 1.0
+offset_left = -312.32007
+offset_top = -232.0
+offset_right = 327.67993
+offset_bottom = -56.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="DetailPanel" unique_id=223344556]
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="SkillName" type="Label" parent="DetailPanel/VBoxContainer" unique_id=334455667]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0.8, 1, 1)
+theme_override_font_sizes/font_size = 20
+text = "Skill Name"
+horizontal_alignment = 1
+
+[node name="SkillPoints" type="Label" parent="DetailPanel/VBoxContainer" unique_id=445566778]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.2, 0.9, 0.2, 1)
+theme_override_font_sizes/font_size = 14
+text = "Level: 0 / 5"
+horizontal_alignment = 1
+
+[node name="SkillDesc" type="Label" parent="DetailPanel/VBoxContainer" unique_id=556677889]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+text = "Skill Description goes here."
+horizontal_alignment = 1
+autowrap_mode = 3

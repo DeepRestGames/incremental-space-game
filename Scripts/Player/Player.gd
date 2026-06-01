@@ -12,28 +12,28 @@ var default_camera_zoom = Vector2.ONE
 
 
 # HP
-var currentHP: int = 3
-@export var maxHP: int = 3
-var invincibilityCooldown := .5
+@export var maxHP: int = BaseValuesDB.MAX_HP
+var currentHP: int = BaseValuesDB.MAX_HP
+var invincibilityCooldown: float = BaseValuesDB.INVINCIBILITY_COOLDOWN
 var currentInvincibilityCooldown: float
 
 # Movement
-@export var movement_speed: float = 300
-@export var mining_speed_multiplier: float = 0.0
+@export var movement_speed: float = BaseValuesDB.MOVEMENT_SPEED
+@export var mining_speed_multiplier: float = BaseValuesDB.MINING_SPEED_MULTIPLIER
 var looking_direction = Vector2.ZERO
 var movement_direction = Vector2.ZERO
-const ROTATION_SPEED: float = 2
+const ROTATION_SPEED: float = BaseValuesDB.ROTATION_SPEED
 var inside_interactable_area: bool = false
 var mining_reticle: Area2D
 
 # Consumables
-var fabricator_material_quantity: int = 100
-var powerup_chips_quantity: int = 0
+var fabricator_material_quantity: int = BaseValuesDB.STARTING_FABRICATOR_MATERIAL
+var powerup_chips_quantity: int = BaseValuesDB.STARTING_POWERUP_CHIPS
 
 # Oxygen
-@export var max_oxygen: float = 100.0
-@export var base_oxygen_drain_rate: float = 6.67 ## 100 / 15 seconds
-var current_oxygen: float = 100.0
+@export var max_oxygen: float = BaseValuesDB.OXYGEN_TANK_CAPACITY
+@export var base_oxygen_drain_rate: float = BaseValuesDB.BASE_OXYGEN_DRAIN_RATE
+var current_oxygen: float = BaseValuesDB.OXYGEN_TANK_CAPACITY
 
 
 
@@ -55,10 +55,21 @@ func _ready() -> void:
 	# Reference existing MiningReticle child node
 	mining_reticle = $MiningReticle
 	
+	update_stats()
+	
 	# Animations
 	animation_tree.active = true
 	
 	EventBus.emit_signal("on_player_ready", self)
+
+
+func update_stats() -> void:
+	if GameManager.has_method("get_modified_stat"):
+		movement_speed = GameManager.get_modified_stat("movement_speed", BaseValuesDB.MOVEMENT_SPEED)
+		var old_max = max_oxygen
+		max_oxygen = GameManager.get_modified_stat("oxygen_tank_capacity", BaseValuesDB.OXYGEN_TANK_CAPACITY)
+		if max_oxygen != old_max:
+			current_oxygen = max_oxygen
 
 
 func update_looking_direction(new_looking_direction: Vector2) -> void:
