@@ -35,6 +35,10 @@ var powerup_chips_quantity: int = BaseValuesDB.STARTING_POWERUP_CHIPS
 @export var base_oxygen_drain_rate: float = BaseValuesDB.BASE_OXYGEN_DRAIN_RATE
 var current_oxygen: float = BaseValuesDB.OXYGEN_TANK_CAPACITY
 
+# Bombs
+var max_bombs: int = 0
+var current_bombs: int = 0
+
 
 
 func _ready() -> void:	
@@ -56,6 +60,8 @@ func _ready() -> void:
 	mining_reticle = $MiningReticle
 	
 	update_stats()
+	current_bombs = max_bombs
+	EventBus.emit_signal("update_bomb_HUD", current_bombs, max_bombs)
 	
 	# Animations
 	animation_tree.active = true
@@ -70,6 +76,22 @@ func update_stats() -> void:
 		max_oxygen = GameManager.get_modified_stat("oxygen_tank_capacity", BaseValuesDB.OXYGEN_TANK_CAPACITY)
 		if max_oxygen != old_max:
 			current_oxygen = max_oxygen
+		
+		# Recalculate max bombs based on skill tree upgrades
+		max_bombs = int(GameManager.get_modified_stat("bomb_charges", BaseValuesDB.BOMB_CHARGES))
+		EventBus.emit_signal("update_bomb_HUD", current_bombs, max_bombs)
+
+
+func can_use_bomb() -> bool:
+	return current_bombs > 0
+
+
+func use_bomb() -> bool:
+	if can_use_bomb():
+		current_bombs -= 1
+		EventBus.emit_signal("update_bomb_HUD", current_bombs, max_bombs)
+		return true
+	return false
 
 
 func update_looking_direction(new_looking_direction: Vector2) -> void:

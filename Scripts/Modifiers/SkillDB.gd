@@ -1,6 +1,12 @@
 class_name SkillDB
 
 const DATABASE: Dictionary = {
+	"center_node" : {
+		"name": "Exosuit",
+		"description": "Your amazing drilling suit.",
+		"max_points": 1,
+		"effects": {}
+	},
 	"drill_damage": {
 		"name": "Drill Power",
 		"description": "Increases drill damage per tick.",

@@ -1,3 +1,4 @@
+@tool
 extends Control
 
 @onready var detail_panel: PanelContainer = $DetailPanel
@@ -6,9 +7,35 @@ extends Control
 @onready var detail_desc: Label = $DetailPanel/VBoxContainer/SkillDesc
 
 func _ready() -> void:
+	if Engine.is_editor_hint():
+		return
 	hide()
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	clear_skill_info()
+
+
+func _process(_delta: float) -> void:
+	queue_redraw()
+
+
+func _draw() -> void:
+	for child in get_children():
+		if "parent_node" in child and child.parent_node != null:
+			var start_pos = child.position + child.size / 2.0
+			var end_pos = child.parent_node.position + child.parent_node.size / 2.0
+			
+			var current_pts = 0
+			var parent_pts = 0
+			if not Engine.is_editor_hint():
+				current_pts = GameManager.get_skill_points(child.skill_id)
+				parent_pts = GameManager.get_skill_points(child.parent_node.skill_id)
+			
+			var line_color = Color(0.45, 0.45, 0.45, 1.0) # Brighter grey for visibility
+			if current_pts > 0 and parent_pts > 0:
+				line_color = Color(0.2, 0.9, 0.2, 1.0) # Active green line
+				
+			var line_width = child.width if "width" in child else 6
+			draw_line(start_pos, end_pos, line_color, line_width, true)
 
 
 func open() -> void:
@@ -33,6 +60,8 @@ func _unhandled_input(event: InputEvent) -> void:
 
 
 func display_skill_info(skill_id: String) -> void:
+	if Engine.is_editor_hint():
+		return
 	if skill_id == "" or not GameManager.skill_db.has(skill_id):
 		clear_skill_info()
 		return
@@ -55,5 +84,7 @@ func display_skill_info(skill_id: String) -> void:
 
 
 func clear_skill_info() -> void:
+	if Engine.is_editor_hint():
+		return
 	if detail_panel:
 		detail_panel.hide()

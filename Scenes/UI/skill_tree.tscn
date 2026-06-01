@@ -25,31 +25,112 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 0.588235)
 
-[node name="MoveSpeed1" parent="." unique_id=351642366 node_paths=PackedStringArray("parent_node") instance=ExtResource("1_c1qs3")]
+[node name="Core" parent="." unique_id=351642366 instance=ExtResource("1_c1qs3")]
 layout_mode = 0
-offset_left = 1156.0
-offset_top = 640.0
-offset_right = 1220.0
-offset_bottom = 704.0
-skill_id = "move_speed"
-parent_node = NodePath("../OxygenCapacity1")
+offset_left = 936.0
+offset_top = 496.0
+offset_right = 1000.0
+offset_bottom = 560.0
+skill_id = "center_node"
 
-[node name="OxygenCapacity1" parent="." unique_id=598205317 node_paths=PackedStringArray("parent_node") instance=ExtResource("1_c1qs3")]
+[node name="DrillDamageNode" parent="." node_paths=PackedStringArray("parent_node") instance=ExtResource("1_c1qs3")]
+layout_mode = 0
+offset_left = 1186.0
+offset_top = 496.0
+offset_right = 1250.0
+offset_bottom = 560.0
+skill_id = "drill_damage"
+parent_node = NodePath("../Core")
+
+[node name="DrillSpeedNode" parent="." node_paths=PackedStringArray("parent_node") instance=ExtResource("1_c1qs3")]
+layout_mode = 0
+offset_left = 1146.0
+offset_top = 631.0
+offset_right = 1210.0
+offset_bottom = 695.0
+skill_id = "drill_speed"
+parent_node = NodePath("../Core")
+
+[node name="DrillCritNode" parent="." node_paths=PackedStringArray("parent_node") instance=ExtResource("1_c1qs3")]
+layout_mode = 0
+offset_left = 1039.0
+offset_top = 723.0
+offset_right = 1103.0
+offset_bottom = 787.0
+skill_id = "drill_crit"
+parent_node = NodePath("../Core")
+
+[node name="DrillCritDamageNode" parent="." node_paths=PackedStringArray("parent_node") instance=ExtResource("1_c1qs3")]
 layout_mode = 0
 offset_left = 900.0
-offset_top = 640.0
+offset_top = 743.0
 offset_right = 964.0
-offset_bottom = 704.0
-skill_id = "oxygen_capacity"
-parent_node = NodePath("../DrillDamage1")
+offset_bottom = 807.0
+skill_id = "drill_crit_damage"
+parent_node = NodePath("../Core")
 
-[node name="DrillDamage1" parent="." unique_id=430100635 instance=ExtResource("1_c1qs3")]
+[node name="DrillAreaNode" parent="." node_paths=PackedStringArray("parent_node") instance=ExtResource("1_c1qs3")]
 layout_mode = 0
-offset_left = 760.0
-offset_top = 176.0
-offset_right = 824.0
-offset_bottom = 240.0
-skill_id = "drill_damage"
+offset_left = 772.0
+offset_top = 685.0
+offset_right = 836.0
+offset_bottom = 749.0
+skill_id = "drill_area"
+parent_node = NodePath("../Core")
+
+[node name="OxygenCapacityNode" parent="." node_paths=PackedStringArray("parent_node") instance=ExtResource("1_c1qs3")]
+layout_mode = 0
+offset_left = 696.0
+offset_top = 609.0
+offset_right = 760.0
+offset_bottom = 673.0
+skill_id = "oxygen_capacity"
+parent_node = NodePath("../Core")
+
+[node name="NodesLandingNode" parent="." node_paths=PackedStringArray("parent_node") instance=ExtResource("1_c1qs3")]
+layout_mode = 0
+offset_left = 696.0
+offset_top = 447.0
+offset_right = 760.0
+offset_bottom = 511.0
+skill_id = "nodes_landing"
+parent_node = NodePath("../Core")
+
+[node name="DropChanceNode" parent="." node_paths=PackedStringArray("parent_node") instance=ExtResource("1_c1qs3")]
+layout_mode = 0
+offset_left = 772.0
+offset_top = 307.0
+offset_right = 836.0
+offset_bottom = 371.0
+skill_id = "drop_chance"
+parent_node = NodePath("../Core")
+
+[node name="DestroyDropsNode" parent="." node_paths=PackedStringArray("parent_node") instance=ExtResource("1_c1qs3")]
+layout_mode = 0
+offset_left = 900.0
+offset_top = 248.0
+offset_right = 964.0
+offset_bottom = 312.0
+skill_id = "destroy_drops"
+parent_node = NodePath("../Core")
+
+[node name="MoveSpeedNode" parent="." node_paths=PackedStringArray("parent_node") instance=ExtResource("1_c1qs3")]
+layout_mode = 0
+offset_left = 1039.0
+offset_top = 268.0
+offset_right = 1103.0
+offset_bottom = 332.0
+skill_id = "move_speed"
+parent_node = NodePath("../Core")
+
+[node name="BombChargesNode" parent="." node_paths=PackedStringArray("parent_node") instance=ExtResource("1_c1qs3")]
+layout_mode = 0
+offset_left = 1146.0
+offset_top = 361.0
+offset_right = 1210.0
+offset_bottom = 425.0
+skill_id = "bomb_charges"
+parent_node = NodePath("../Core")
 
 [node name="DetailPanel" type="PanelContainer" parent="." unique_id=1122334455]
 layout_mode = 1

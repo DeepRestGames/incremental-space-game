@@ -6,6 +6,7 @@ const OXYGEN_TANK_CAPACITY: float = 100.0
 const MAX_HP: int = 3
 const INVINCIBILITY_COOLDOWN: float = 0.5
 const BASE_OXYGEN_DRAIN_RATE: float = 6.67
+const BOMB_CHARGES: float = 0.0
 
 # Player Movement
 const ROTATION_SPEED: float = 2.0

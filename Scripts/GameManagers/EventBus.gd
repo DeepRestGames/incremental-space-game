@@ -38,6 +38,7 @@ extends Node
 # HUD
 @warning_ignore("unused_signal") signal update_HUD
 @warning_ignore("unused_signal") signal update_oxygen_HUD(current, max_val)
+@warning_ignore("unused_signal") signal update_bomb_HUD(current, max_val)
 @warning_ignore("unused_signal") signal update_current_hp_HUD(hp_amount)
 @warning_ignore("unused_signal") signal player_death
 

@@ -19,4 +19,7 @@ func _process(delta: float) -> void:
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("place_bomb"):
-		bomb_spawner.spawn_bomb(global_position)
+		var player = get_parent()
+		if player and player.has_method("use_bomb"):
+			if player.use_bomb():
+				bomb_spawner.spawn_bomb(global_position)

@@ -27,7 +27,9 @@ var _expedition_start_time_msec: int = 0
 var expedition_success: bool = true
 
 # Skill levels (skill_id -> current_points)
-var skill_levels: Dictionary = {}
+var skill_levels: Dictionary = {
+	"center_node": 1
+}
 
 # Base skills database (imported from SkillDB class)
 var skill_db: Dictionary = SkillDB.DATABASE

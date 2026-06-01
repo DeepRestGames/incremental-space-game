@@ -43,28 +43,6 @@ func _on_mouse_exited() -> void:
 		skill_tree.clear_skill_info()
 
 
-func _process(_delta: float) -> void:
-	queue_redraw()
-
-
-func _draw() -> void:
-	if parent_node != null:
-		var pivot_point = Vector2(size.x / 2.0, size.y / 2.0)
-		var parent_position = Vector2(parent_node.position - position) + pivot_point
-		
-		# Determine line color: green if both connected nodes are active (points > 0), grey otherwise
-		var current_pts = 0
-		var parent_pts = 0
-		if not Engine.is_editor_hint():
-			current_pts = GameManager.get_skill_points(skill_id)
-			parent_pts = GameManager.get_skill_points(parent_node.skill_id)
-		
-		var line_color = Color(0.3, 0.3, 0.3, 1.0) # Grey by default
-		if current_pts > 0 and parent_pts > 0:
-			line_color = Color(0.2, 0.9, 0.2, 1.0) # Active green line
-			
-		draw_line(pivot_point, parent_position, line_color, width, true)
-
 
 func _gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.pressed:
@@ -112,10 +90,12 @@ func add_point() -> void:
 			node.update_appearance()
 			node.update_tooltip()
 			
-		# Refresh the detail hover panel in real time
+		# Refresh the parent tree drawing and hover detail panel in real time
 		var skill_tree = get_parent()
-		if skill_tree and skill_tree.has_method("display_skill_info"):
-			skill_tree.display_skill_info(skill_id)
+		if skill_tree:
+			skill_tree.queue_redraw()
+			if skill_tree.has_method("display_skill_info"):
+				skill_tree.display_skill_info(skill_id)
 
 
 func remove_point() -> void:
@@ -132,10 +112,12 @@ func remove_point() -> void:
 			node.update_appearance()
 			node.update_tooltip()
 			
-		# Refresh the detail hover panel in real time
+		# Refresh the parent tree drawing and hover detail panel in real time
 		var skill_tree = get_parent()
-		if skill_tree and skill_tree.has_method("display_skill_info"):
-			skill_tree.display_skill_info(skill_id)
+		if skill_tree:
+			skill_tree.queue_redraw()
+			if skill_tree.has_method("display_skill_info"):
+				skill_tree.display_skill_info(skill_id)
 
 
 func update_appearance() -> void:
