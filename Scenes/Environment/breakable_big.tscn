@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://yat7dirw16l5"]
 
-[ext_resource type="Script" uid="uid://cvsef4mnyubft" path="res://Scripts/Environment/breakable.gd" id="1_om1mr"]
+[ext_resource type="Script" uid="uid://bnf3jb8j85osy" path="res://Scripts/Environment/breakable.gd" id="1_om1mr"]
 [ext_resource type="Texture2D" uid="uid://dv5onwoojupco" path="res://Assets/Sprites/environment/Rock1.png" id="2_oq4pq"]
 [ext_resource type="Texture2D" uid="uid://bhrm3cbrxppqm" path="res://Assets/Sprites/environment/5Chip1_Green.png" id="3_5gjhx"]
 
@@ -9,7 +9,7 @@ radius = 24.0
 height = 150.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_5m1wr"]
-radius = 800.0
+radius = 360.68335
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mu2bs"]
 draw_center = false

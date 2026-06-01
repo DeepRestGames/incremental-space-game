@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://c6qwwmff8anwx"]
 
-[ext_resource type="Script" uid="uid://cvsef4mnyubft" path="res://Scripts/Environment/breakable.gd" id="1_4ng74"]
+[ext_resource type="Script" uid="uid://bnf3jb8j85osy" path="res://Scripts/Environment/breakable.gd" id="1_4ng74"]
 [ext_resource type="AudioStream" uid="uid://cl6u3yq7buxfh" path="res://Assets/Audio/SFX/abdalrahman_bm-8-bit-gravel-footsteps-1-408582.mp3" id="8_5j6il"]
 [ext_resource type="Texture2D" uid="uid://dv5onwoojupco" path="res://Assets/Sprites/environment/Rock1.png" id="8_s777y"]
 [ext_resource type="AudioStream" uid="uid://8ekwcbtftlvh" path="res://Assets/Audio/SFX/freesound_community-8-bit-explosion-95847.mp3" id="9_sqqoc"]
@@ -10,7 +10,7 @@ radius = 50.0
 height = 200.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_5m1wr"]
-radius = 200.0
+radius = 115.02716
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mu2bs"]
 draw_center = false

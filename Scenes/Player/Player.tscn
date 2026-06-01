@@ -7,6 +7,9 @@
 [ext_resource type="Script" uid="uid://q2mkqd6f05cm" path="res://Scripts/Player/bomb_spawner.gd" id="3_t26db"]
 [ext_resource type="PackedScene" uid="uid://beyb44q40vqlr" path="res://Scenes/UI/HUD.tscn" id="3_ude3g"]
 [ext_resource type="Texture2D" uid="uid://b8k587am8xmnh" path="res://Assets/Sprites/player/PlayerSpriteSheet.png" id="4_4wape"]
+[ext_resource type="Script" uid="uid://ciqygt8de7rrm" path="res://Scripts/Player/MiningReticle.gd" id="5_reticle"]
+[ext_resource type="Texture2D" uid="uid://cudg8ldkwnlxw" path="res://Assets/Sprites/kenney_particle-pack/PNG (Transparent)/circle_05.png" id="6_outer_circle"]
+[ext_resource type="Texture2D" uid="uid://dqjra4emyvxfc" path="res://Assets/Sprites/kenney_particle-pack/PNG (Transparent)/circle_03.png" id="7_inner_circle"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ude3g"]
 radius = 72.0
@@ -391,6 +394,9 @@ states/Start/position = Vector2(198, 102.568)
 transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_825xp"), "Idle", "Run", SubResource("AnimationNodeStateMachineTransition_ji083"), "Run", "Idle", SubResource("AnimationNodeStateMachineTransition_0kmp4"), "Idle", "Drill", SubResource("AnimationNodeStateMachineTransition_i5acl"), "Drill", "Idle", SubResource("AnimationNodeStateMachineTransition_epg6k"), "Run", "Drill", SubResource("AnimationNodeStateMachineTransition_0u84n"), "Drill", "Run", SubResource("AnimationNodeStateMachineTransition_esmjy")]
 graph_offset = Vector2(-40, -61)
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_reticle"]
+radius = 30.0
+
 [node name="Player" type="CharacterBody2D" unique_id=1034631766 groups=["Player"]]
 collision_mask = 4
 script = ExtResource("1_kyqiw")
@@ -439,3 +445,26 @@ parameters/conditions/is_moving = false
 parameters/Drill/blend_position = Vector2(0, 0)
 parameters/Idle/blend_position = Vector2(0, 0)
 parameters/Run/blend_position = Vector2(0, 0)
+
+[node name="MiningReticle" type="Area2D" parent="." unique_id=987654321]
+script = ExtResource("5_reticle")
+
+[node name="OuterCircle" type="Sprite2D" parent="MiningReticle" unique_id=111111111]
+modulate = Color(0, 0.8, 1, 0.4)
+scale = Vector2(0.46875, 0.46875)
+texture = ExtResource("6_outer_circle")
+
+[node name="GuideLine" type="Line2D" parent="MiningReticle" unique_id=222222222]
+points = PackedVector2Array(0, 0, 120, 0)
+width = 2.0
+default_color = Color(0, 0.8, 1, 0.5)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MiningReticle" unique_id=123456789]
+position = Vector2(120, 0)
+shape = SubResource("CircleShape2D_reticle")
+
+[node name="DiggingCircle" type="Sprite2D" parent="MiningReticle" unique_id=444444444]
+modulate = Color(1, 0.3, 0.3, 0.8)
+position = Vector2(120, 0)
+scale = Vector2(0.1171875, 0.1171875)
+texture = ExtResource("7_inner_circle")

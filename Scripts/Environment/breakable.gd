@@ -34,6 +34,11 @@ func _ready() -> void:
 	sprite_2d.texture = rock_sprites.pick_random()
 	
 	EventBus.connect("action_trigger_interact", on_interacted)
+	
+	var area2d = get_node_or_null("CollisionShape2D/Sprite2D/Area2D")
+	if area2d:
+		area2d.area_entered.connect(_on_area_entered)
+		area2d.area_exited.connect(_on_area_exited)
 
 
 func on_interacted() -> void:
@@ -89,14 +94,22 @@ func defer_destroy_object() -> void:
 	call_deferred("queue_free")
 
 
-func _on_area_2d_body_entered(body: Node2D) -> void:
-	if body.is_in_group("Player"):
+func _on_area_2d_body_entered(_body: Node2D) -> void:
+	pass
+
+
+func _on_area_2d_body_exited(_body: Node2D) -> void:
+	pass
+
+
+func _on_area_entered(area: Area2D) -> void:
+	if area.is_in_group("MiningReticle"):
 		control.show()
 		player_is_in_range = true
 
 
-func _on_area_2d_body_exited(body: Node2D) -> void:
-	if body.is_in_group("Player"):
+func _on_area_exited(area: Area2D) -> void:
+	if area.is_in_group("MiningReticle"):
 		control.hide()
 		player_is_in_range = false
 		

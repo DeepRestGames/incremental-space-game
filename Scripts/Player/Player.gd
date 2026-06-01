@@ -24,6 +24,7 @@ var looking_direction = Vector2.ZERO
 var movement_direction = Vector2.ZERO
 const ROTATION_SPEED: float = 2
 var inside_interactable_area: bool = false
+var mining_reticle: Area2D
 
 # Consumables
 var fabricator_material_quantity: int = 100
@@ -50,6 +51,9 @@ func _ready() -> void:
 	# Input signals
 	#EventBus.connect("looking_direction_changed", update_looking_direction)
 	EventBus.connect("player_movement", update_movement_direction)
+	
+	# Reference existing MiningReticle child node
+	mining_reticle = $MiningReticle
 	
 	# Animations
 	animation_tree.active = true
@@ -99,6 +103,11 @@ func _physics_process(_delta: float) -> void:
 	var is_drilling = Input.is_action_pressed("interact") and GameManager.expedition_started and not inside_interactable_area
 	if is_drilling:
 		speed_multiplier = mining_speed_multiplier
+		if mining_reticle and not mining_reticle.is_active:
+			mining_reticle.activate()
+	else:
+		if mining_reticle and mining_reticle.is_active:
+			mining_reticle.deactivate()
 		
 	velocity = movement_direction * (movement_speed * speed_multiplier)
 	move_and_slide()
@@ -218,6 +227,10 @@ func update_animation_parameters():
 		animation_tree["parameters/conditions/drilling"] = true
 		animation_tree["parameters/conditions/idle"] = false
 		animation_tree["parameters/conditions/is_moving"] = false
+		if mining_reticle:
+			var drill_dir = Vector2.from_angle(mining_reticle.reticle_angle)
+			animation_tree["parameters/Drill/blend_position"] = drill_dir
+			animation_tree["parameters/Idle/blend_position"] = drill_dir
 	else :
 		animation_tree["parameters/conditions/drilling"] = false
 	
