@@ -1,4 +1,5 @@
 @tool
+@icon ("res://Addons/at-icons/control/triangle.svg")
 class_name SkillNode
 extends Control
 
