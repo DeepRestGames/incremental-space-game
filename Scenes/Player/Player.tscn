@@ -1,13 +1,13 @@
 [gd_scene format=3 uid="uid://bcvxlujlsdn7w"]
 
-[ext_resource type="Script" uid="uid://cn3sju73je58y" path="res://Scripts/Player/Player.gd" id="1_kyqiw"]
-[ext_resource type="Script" uid="uid://d4l1g5pd3h07t" path="res://Scripts/Player/player_input.gd" id="2_4wape"]
+[ext_resource type="Script" uid="uid://bsjbrn4rboja3" path="res://Scripts/Player/Player.gd" id="1_kyqiw"]
+[ext_resource type="Script" uid="uid://bf4uvurvujv63" path="res://Scripts/Player/player_input.gd" id="2_4wape"]
 [ext_resource type="Script" uid="uid://bga10udjicrif" path="res://Scripts/Player/player_state_machine.gd" id="2_jmcll"]
 [ext_resource type="Script" uid="uid://bjontewb356qy" path="res://Scripts/Camera/ScreenShake.gd" id="3_jmcll"]
 [ext_resource type="Script" uid="uid://q2mkqd6f05cm" path="res://Scripts/Player/bomb_spawner.gd" id="3_t26db"]
 [ext_resource type="PackedScene" uid="uid://beyb44q40vqlr" path="res://Scenes/UI/HUD.tscn" id="3_ude3g"]
 [ext_resource type="Texture2D" uid="uid://b8k587am8xmnh" path="res://Assets/Sprites/player/PlayerSpriteSheet.png" id="4_4wape"]
-[ext_resource type="Script" uid="uid://ciqygt8de7rrm" path="res://Scripts/Player/MiningReticle.gd" id="5_reticle"]
+[ext_resource type="Script" uid="uid://dgjxtrxxs5cmk" path="res://Scripts/Player/MiningReticle.gd" id="5_reticle"]
 [ext_resource type="Texture2D" uid="uid://cudg8ldkwnlxw" path="res://Assets/Sprites/kenney_particle-pack/PNG (Transparent)/circle_05.png" id="6_outer_circle"]
 [ext_resource type="Texture2D" uid="uid://dqjra4emyvxfc" path="res://Assets/Sprites/kenney_particle-pack/PNG (Transparent)/circle_03.png" id="7_inner_circle"]
 
@@ -400,7 +400,6 @@ radius = 30.0
 [node name="Player" type="CharacterBody2D" unique_id=1034631766 groups=["Player"]]
 collision_mask = 4
 script = ExtResource("1_kyqiw")
-movement_speed = 700.0
 
 [node name="PlayerInput" type="Node2D" parent="." unique_id=1419996874]
 script = ExtResource("2_4wape")

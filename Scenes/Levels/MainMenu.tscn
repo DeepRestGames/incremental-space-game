@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://ceo6v666mpirk"]
 
-[ext_resource type="Script" path="res://Scripts/UI/MainMenu.gd" id="1_mainmenu"]
+[ext_resource type="Script" uid="uid://bcvgbysdhn3we" path="res://Scripts/UI/MainMenu.gd" id="1_mainmenu"]
 
 [node name="MainMenu" type="Control" unique_id=1566417360]
 layout_mode = 3
@@ -64,4 +64,3 @@ text = "Quit"
 [connection signal="pressed" from="CenterContainer/VBoxContainer/ContinueButton" to="." method="_on_continue_button_pressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/NewGameButton" to="." method="_on_new_game_button_pressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
-
