@@ -2,9 +2,9 @@ extends Control
 
 @export var time_label: Label
 @export var destroyed_label: Label
-@export var resource_triangle_label: Label
-@export var resource_circle_label: Label
-@export var resource_square_label: Label
+@export var resource_triangle_label: RichTextLabel
+@export var resource_circle_label: RichTextLabel
+@export var resource_square_label: RichTextLabel
 
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
@@ -16,9 +16,21 @@ func _ready() -> void:
 	time_label.text = "• Time Spent: %02d:%02d" % [minutes, seconds]
 	
 	destroyed_label.text = "• Asteroids Destroyed: %d" % GameManager.expedition_destroyed_nodes
-	resource_triangle_label.text = "x %d" % GameManager.expedition_resources_collected
-	resource_circle_label.text = "x 0"
-	resource_square_label.text = "x 0"
+	
+	_set_resource_text(resource_triangle_label, GameManager.expedition_resources_collected)
+	_set_resource_text(resource_circle_label, 0)
+	_set_resource_text(resource_square_label, 0)
+
+
+func _set_resource_text(label: RichTextLabel, amount: int) -> void:
+	if GameManager.expedition_success:
+		label.text = "x %d" % amount
+	else:
+		if amount > 0:
+			var final_amount = int(amount * 0.2)
+			label.text = "x %d [color=#ff5555](-80%%)[/color] = %d" % [amount, final_amount]
+		else:
+			label.text = "x 0"
 
 
 func _on_hangar_pressed() -> void:

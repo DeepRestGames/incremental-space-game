@@ -38,10 +38,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -25.0
-offset_top = -91.0
-offset_right = 26.0
-offset_bottom = -49.0
+offset_left = -28.0
+offset_top = -278.0
+offset_right = 23.0
+offset_bottom = -236.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
@@ -51,3 +51,4 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

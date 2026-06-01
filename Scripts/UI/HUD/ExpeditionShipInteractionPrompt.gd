@@ -2,19 +2,20 @@ extends Label
 
 
 func _ready() -> void:
-	EventBus.connect("player_enter_expedition_ship_area", show)
+	EventBus.connect("player_enter_expedition_ship_area", on_enter_lobby_ship)
 	EventBus.connect("player_exit_expedition_ship_area", hide)
 	
-	EventBus.connect("expedition_started", on_expedition_started)
-	EventBus.connect("expedition_ended", on_expedition_ended)
+	EventBus.connect("player_enter_expedition_return_area", on_enter_expedition_ship)
+	EventBus.connect("player_exit_expedition_return_area", hide)
 	
 	hide()
-	on_expedition_ended()
 
 
-func on_expedition_started() -> void:
-	text = "Return to base"
-
-
-func on_expedition_ended() -> void:
+func on_enter_lobby_ship() -> void:
 	text = "Start expedition"
+	show()
+
+
+func on_enter_expedition_ship() -> void:
+	text = "Return to base"
+	show()

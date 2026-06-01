@@ -19,9 +19,11 @@ var currentInvincibilityCooldown: float
 
 # Movement
 @export var movement_speed: float = 300
+@export var mining_speed_multiplier: float = 0.0
 var looking_direction = Vector2.ZERO
 var movement_direction = Vector2.ZERO
 const ROTATION_SPEED: float = 2
+var inside_interactable_area: bool = false
 
 # Consumables
 var fabricator_material_quantity: int = 100
@@ -60,7 +62,6 @@ func update_looking_direction(new_looking_direction: Vector2) -> void:
 
 
 func update_movement_direction(new_movement_direction: Vector2) -> void:
-	velocity = new_movement_direction * movement_speed
 	movement_direction = new_movement_direction
 
 
@@ -94,6 +95,12 @@ func _process(delta: float) -> void:
 
 
 func _physics_process(_delta: float) -> void:
+	var speed_multiplier := 1.0
+	var is_drilling = Input.is_action_pressed("interact") and GameManager.expedition_started and not inside_interactable_area
+	if is_drilling:
+		speed_multiplier = mining_speed_multiplier
+		
+	velocity = movement_direction * (movement_speed * speed_multiplier)
 	move_and_slide()
 
 
@@ -141,7 +148,7 @@ func remove_hp(value) -> void:
 		EventBus.emit_signal("player_death")
 		call_deferred("set_process_mode", Node.PROCESS_MODE_DISABLED)
 		if GameManager.expedition_started:
-			GameManager.end_expedition()
+			GameManager.end_expedition(false)
 
 
 func clearConsumables() -> void:
@@ -207,7 +214,7 @@ func update_animation_parameters():
 	else:
 		animation_tree["parameters/conditions/idle"] = false
 		animation_tree["parameters/conditions/is_moving"] = true
-	if Input.is_action_pressed("interact") and GameManager.expedition_started:
+	if Input.is_action_pressed("interact") and GameManager.expedition_started and not inside_interactable_area:
 		animation_tree["parameters/conditions/drilling"] = true
 		animation_tree["parameters/conditions/idle"] = false
 		animation_tree["parameters/conditions/is_moving"] = false

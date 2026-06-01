@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://dkioq7vpu1p3l" path="res://Scripts/UI/HUD/ResourceCounter.gd" id="2_xaom8"]
 [ext_resource type="PackedScene" uid="uid://d3ixveovn637y" path="res://Scenes/UI/PauseMenu.tscn" id="3_pausemenu"]
 [ext_resource type="Script" path="res://Scripts/UI/HUD/OxygenCounter.gd" id="4_oxygen"]
+[ext_resource type="PackedScene" uid="uid://cx4f5wal3t4pa" path="res://Scenes/UI/ConfirmationPopup.tscn" id="5_confirmationpopup"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bg"]
 bg_color = Color(0.12, 0.12, 0.16, 0.7)
@@ -150,4 +151,7 @@ text = "100%"
 vertical_alignment = 1
 
 [node name="PauseMenu" parent="." unique_id=105724579 instance=ExtResource("3_pausemenu")]
+
+[node name="ConfirmationPopup" parent="." unique_id=105724580 instance=ExtResource("5_confirmationpopup")]
+
 

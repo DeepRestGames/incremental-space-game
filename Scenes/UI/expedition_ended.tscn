@@ -174,11 +174,16 @@ texture = ExtResource("2_icon")
 expand_mode = 3
 stretch_mode = 5
 
-[node name="ResourceTriangleLabel" type="Label" parent="MainPanel/ColumnsContainer/InventoryContainer/TriangleRow" unique_id=782104]
+[node name="ResourceTriangleLabel" type="RichTextLabel" parent="MainPanel/ColumnsContainer/InventoryContainer/TriangleRow" unique_id=782104]
 unique_name_in_owner = true
 layout_mode = 2
-theme_override_font_sizes/font_size = 18
+size_flags_horizontal = 3
+theme_override_font_sizes/normal_font_size = 18
+bbcode_enabled = true
 text = "x 0"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
 
 [node name="CircleRow" type="HBoxContainer" parent="MainPanel/ColumnsContainer/InventoryContainer" unique_id=239841]
 layout_mode = 2
@@ -192,11 +197,16 @@ texture = ExtResource("2_icon")
 expand_mode = 3
 stretch_mode = 5
 
-[node name="ResourceCircleLabel" type="Label" parent="MainPanel/ColumnsContainer/InventoryContainer/CircleRow" unique_id=239842]
+[node name="ResourceCircleLabel" type="RichTextLabel" parent="MainPanel/ColumnsContainer/InventoryContainer/CircleRow" unique_id=239842]
 unique_name_in_owner = true
 layout_mode = 2
-theme_override_font_sizes/font_size = 18
+size_flags_horizontal = 3
+theme_override_font_sizes/normal_font_size = 18
+bbcode_enabled = true
 text = "x 0"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
 
 [node name="SquareRow" type="HBoxContainer" parent="MainPanel/ColumnsContainer/InventoryContainer" unique_id=102934]
 layout_mode = 2
@@ -210,11 +220,16 @@ texture = ExtResource("2_icon")
 expand_mode = 3
 stretch_mode = 5
 
-[node name="ResourceSquareLabel" type="Label" parent="MainPanel/ColumnsContainer/InventoryContainer/SquareRow" unique_id=102935]
+[node name="ResourceSquareLabel" type="RichTextLabel" parent="MainPanel/ColumnsContainer/InventoryContainer/SquareRow" unique_id=102935]
 unique_name_in_owner = true
 layout_mode = 2
-theme_override_font_sizes/font_size = 18
+size_flags_horizontal = 3
+theme_override_font_sizes/normal_font_size = 18
+bbcode_enabled = true
 text = "x 0"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
 
 [node name="ButtonsContainer" type="HBoxContainer" parent="MainPanel" unique_id=903487]
 layout_mode = 1

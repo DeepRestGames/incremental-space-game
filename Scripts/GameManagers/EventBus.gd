@@ -24,6 +24,8 @@ extends Node
 # Expedition ship
 @warning_ignore("unused_signal") signal player_enter_expedition_ship_area
 @warning_ignore("unused_signal") signal player_exit_expedition_ship_area
+@warning_ignore("unused_signal") signal player_enter_expedition_return_area
+@warning_ignore("unused_signal") signal player_exit_expedition_return_area
 
 # Expedition
 @warning_ignore("unused_signal") signal expedition_started

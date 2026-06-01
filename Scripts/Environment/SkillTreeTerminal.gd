@@ -25,12 +25,16 @@ func check_interaction() -> void:
 func _on_body_entered(body: Node2D) -> void:
 	if body.is_in_group("Player"):
 		player_in_area = true
+		if "inside_interactable_area" in body:
+			body.inside_interactable_area = true
 		prompt.show()
 
 
 func _on_body_exited(body: Node2D) -> void:
 	if body.is_in_group("Player"):
 		player_in_area = false
+		if "inside_interactable_area" in body:
+			body.inside_interactable_area = false
 		prompt.hide()
 		
 		# Close the Skill Tree if the player flies away
