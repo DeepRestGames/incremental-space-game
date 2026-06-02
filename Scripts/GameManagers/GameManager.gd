@@ -8,8 +8,7 @@ var selected_level_path: String = "res://Scenes/Levels/Planets/Moon1234.tscn"
 var player: Player
 var current_player_resource: int = 0
 
-# DepositBox
-var deposit_box: DepositBox
+# Base stashed resources
 var current_deposit_box_resource: int = 0
 
 # Expedition
@@ -43,10 +42,7 @@ func _ready() -> void:
 	# TODO Add logic to handle the menus navigation (e.g. in the start menu the node Player doesn't exist, but the GameManager singleton does
 	
 	EventBus.connect("on_player_ready", on_player_ready)
-	EventBus.connect("on_deposit_box_ready", on_deposit_box_ready)
-	
 	EventBus.connect("add_resource", add_resource)
-	EventBus.connect("player_enter_deposit_box_area", add_resource_deposit_box)
 	
 	EventBus.connect("expedition_started", on_expedition_started)
 	EventBus.connect("expedition_ended", on_expedition_ended)
@@ -58,12 +54,6 @@ func DEBUG_add_player_resources() -> void:
 
 func on_player_ready(player_reference: Player) -> void:
 	player = player_reference
-
-
-func on_deposit_box_ready(deposit_box_reference: DepositBox) -> void:
-	deposit_box = deposit_box_reference
-
-
 func add_resource(resource_amount: int) -> void:
 	current_player_resource += resource_amount
 	
@@ -71,25 +61,6 @@ func add_resource(resource_amount: int) -> void:
 	print("Total resources: " + str(current_player_resource))
 	
 	EventBus.emit_signal("update_HUD")
-
-
-func add_resource_deposit_box() -> void:
-	if current_player_resource <= 0:
-		return
-	
-	EventBus.emit_signal("start_resource_transfer_animation_to_deposit_box", current_player_resource)
-	
-	if expedition_started:
-		# During expedition, deposit to the temporary "potential" stash
-		expedition_resources_collected += current_player_resource
-	else:
-		# In lobby, deposit directly to base stash
-		current_deposit_box_resource += current_player_resource
-		
-	current_player_resource = 0
-	EventBus.emit_signal("update_HUD")
-
-
 func on_expedition_started() -> void:
 	get_tree().change_scene_to_file(selected_level_path)
 	expedition_started = true

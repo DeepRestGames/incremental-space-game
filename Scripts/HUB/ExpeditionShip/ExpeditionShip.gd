@@ -2,11 +2,15 @@ class_name ExpeditionShip
 extends Area2D
 
 
+@export var custom_texture: Texture2D
+
 var player_in_area: bool = false
 
 
 func _ready() -> void:
 	EventBus.connect("action_trigger_interact", check_ship_interaction)
+	if custom_texture:
+		$ExpeditionShipBody/ExpeditionShipBodySprite.texture = custom_texture
 
 
 func check_ship_interaction() -> void:
@@ -36,7 +40,10 @@ func _on_body_entered(body: Node2D) -> void:
 		player_in_area = true
 		if "inside_interactable_area" in body:
 			body.inside_interactable_area = true
-		EventBus.emit_signal("player_enter_expedition_ship_area")
+		if GameManager.expedition_started:
+			EventBus.emit_signal("player_enter_expedition_return_area")
+		else:
+			EventBus.emit_signal("player_enter_expedition_ship_area")
 
 
 func _on_body_exited(body: Node2D) -> void:
@@ -44,7 +51,10 @@ func _on_body_exited(body: Node2D) -> void:
 		player_in_area = false
 		if "inside_interactable_area" in body:
 			body.inside_interactable_area = false
-		EventBus.emit_signal("player_exit_expedition_ship_area")
+		if GameManager.expedition_started:
+			EventBus.emit_signal("player_exit_expedition_return_area")
+		else:
+			EventBus.emit_signal("player_exit_expedition_ship_area")
 		
 		# Close the Level Select UI if the player flies away
 		var ui := get_tree().current_scene.get_node_or_null("CanvasLayer/LevelSelectUI")

@@ -4,12 +4,12 @@
 
 [node name="Moon1234" unique_id=119943232 instance=ExtResource("1_base")]
 
-[node name="MapCoordinateGenerator" parent="." index="3" unique_id=1573320358]
+[node name="MapCoordinateGenerator" parent="." index="2" unique_id=1573320358]
 min_spawn_count = 150
 max_spawn_count = 250
 num_seeds = 16
 cluster_spread = 320.0
 
-[node name="Modifiers" parent="." index="4"]
+[node name="Modifiers" parent="." index="3"]
 conditions = Array[String](["Low Gravity Environment", "Standard Depletion Rate", "Scattered Asteroid Belts"])
 

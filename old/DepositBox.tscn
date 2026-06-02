@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://csht05sstrhwi"]
 
-[ext_resource type="Script" uid="uid://ps2rybtivmrd" path="res://Scripts/HUB/DepositBox/DepositBox.gd" id="1_67gvw"]
+[ext_resource type="Script" path="res://old/DepositBox.gd" id="1_67gvw"]
 [ext_resource type="Texture2D" uid="uid://c5mcg1o8r1dgc" path="res://Assets/PLACEHOLDERS/Ship_Dropsite.svg" id="2_67gvw"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_wpc3r"]
