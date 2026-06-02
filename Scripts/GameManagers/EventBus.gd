@@ -27,6 +27,10 @@ extends Node
 @warning_ignore("unused_signal") signal player_enter_expedition_return_area
 @warning_ignore("unused_signal") signal player_exit_expedition_return_area
 
+# Skill tree terminal
+@warning_ignore("unused_signal") signal player_enter_skill_terminal_area
+@warning_ignore("unused_signal") signal player_exit_skill_terminal_area
+
 # Expedition
 @warning_ignore("unused_signal") signal expedition_started
 @warning_ignore("unused_signal") signal expedition_ended

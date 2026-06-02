@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://ceo6v666mpirk"]
 
-[ext_resource type="Script" uid="uid://bcvgbysdhn3we" path="res://Scripts/UI/MainMenu.gd" id="1_mainmenu"]
+[ext_resource type="Script" uid="uid://cc41gqduwepch" path="res://Scripts/UI/MainMenu.gd" id="1_mainmenu"]
 
 [node name="MainMenu" type="Control" unique_id=1566417360]
 layout_mode = 3
@@ -25,6 +25,8 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 384.0
+offset_right = -384.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -48,20 +50,20 @@ layout_mode = 2
 [node name="ContinueButton" type="Button" parent="CenterContainer/VBoxContainer" unique_id=1564055637]
 custom_minimum_size = Vector2(250, 45)
 layout_mode = 2
-theme_override_font_sizes/font_size = 22
+theme_override_font_sizes/font_size = 34
 disabled = true
 text = "Continue"
 
 [node name="NewGameButton" type="Button" parent="CenterContainer/VBoxContainer" unique_id=324368072]
 custom_minimum_size = Vector2(250, 45)
 layout_mode = 2
-theme_override_font_sizes/font_size = 22
+theme_override_font_sizes/font_size = 34
 text = "New Game"
 
 [node name="QuitButton" type="Button" parent="CenterContainer/VBoxContainer" unique_id=338835027]
 custom_minimum_size = Vector2(250, 45)
 layout_mode = 2
-theme_override_font_sizes/font_size = 22
+theme_override_font_sizes/font_size = 34
 text = "Quit"
 
 [connection signal="pressed" from="CenterContainer/VBoxContainer/ContinueButton" to="." method="_on_continue_button_pressed"]

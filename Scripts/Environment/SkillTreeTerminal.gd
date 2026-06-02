@@ -5,10 +5,7 @@ extends Area2D
 
 var player_in_area: bool = false
 
-@onready var prompt: Label = $PromptLabel
-
 func _ready() -> void:
-	prompt.hide()
 	EventBus.connect("action_trigger_interact", check_interaction)
 
 
@@ -27,7 +24,7 @@ func _on_body_entered(body: Node2D) -> void:
 		player_in_area = true
 		if "inside_interactable_area" in body:
 			body.inside_interactable_area = true
-		prompt.show()
+		EventBus.emit_signal("player_enter_skill_terminal_area")
 
 
 func _on_body_exited(body: Node2D) -> void:
@@ -35,7 +32,7 @@ func _on_body_exited(body: Node2D) -> void:
 		player_in_area = false
 		if "inside_interactable_area" in body:
 			body.inside_interactable_area = false
-		prompt.hide()
+		EventBus.emit_signal("player_exit_skill_terminal_area")
 		
 		# Close the Skill Tree if the player flies away
 		var ui = get_tree().current_scene.get_node_or_null("CanvasLayer/SkillTree")
