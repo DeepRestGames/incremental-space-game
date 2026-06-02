@@ -45,15 +45,13 @@ func on_interacted() -> void:
 	if not player_is_in_range:
 		return
 	
-	var damage = int(BaseValuesDB.DRILL_DAMAGE_PER_TICK)
-	if GameManager.has_method("get_modified_stat"):
-		damage = int(GameManager.get_modified_stat("drill_damage_per_tick", BaseValuesDB.DRILL_DAMAGE_PER_TICK))
-		
-		# Crit chance check
-		var crit_chance = GameManager.get_modified_stat("drill_crit_chance", BaseValuesDB.DRILL_CRIT_CHANCE)
-		if randf() < crit_chance:
-			var crit_mult = GameManager.get_modified_stat("drill_crit_damage", BaseValuesDB.DRILL_CRIT_DAMAGE)
-			damage = int(damage * crit_mult)
+	var damage = int(SkillModifiers.get_drill_damage_per_tick())
+	
+	# Crit chance check
+	var crit_chance = SkillModifiers.get_drill_crit_chance()
+	if randf() < crit_chance:
+		var crit_mult = SkillModifiers.get_drill_crit_damage()
+		damage = int(damage * crit_mult)
 	
 	take_damage(damage)
 
@@ -61,10 +59,8 @@ func on_interacted() -> void:
 func take_damage(damage_value: int) -> void:
 	EventBus.emit_signal("breakable_damaged")
 	
-	var drop_chance = resource_spawn_chance_on_damaged
-	if GameManager.has_method("get_modified_stat"):
-		# drop_chance_per_tick adds to base drop chance
-		drop_chance += GameManager.get_stat_modifier("drop_chance_per_tick")
+	# drop_chance_per_tick adds to base drop chance
+	var drop_chance = SkillModifiers.get_drop_chance_per_tick(resource_spawn_chance_on_damaged)
 		
 	for i in damage_value:
 		play_rock_particles()
@@ -80,9 +76,7 @@ func take_damage(damage_value: int) -> void:
 		destroy.play()
 		
 		# Extra drops on destruction from skill upgrades
-		var extra_drops = 0
-		if GameManager.has_method("get_stat_modifier"):
-			extra_drops = int(GameManager.get_stat_modifier("drops_on_destruction"))
+		var extra_drops = int(SkillModifiers.get_drops_on_destruction())
 			
 		spawn_resource_drops(current_resource_number + extra_drops)
 		defer_destroy_object()

@@ -70,16 +70,15 @@ func _ready() -> void:
 
 
 func update_stats() -> void:
-	if GameManager.has_method("get_modified_stat"):
-		movement_speed = GameManager.get_modified_stat("movement_speed", BaseValuesDB.MOVEMENT_SPEED)
-		var old_max = max_oxygen
-		max_oxygen = GameManager.get_modified_stat("oxygen_tank_capacity", BaseValuesDB.OXYGEN_TANK_CAPACITY)
-		if max_oxygen != old_max:
-			current_oxygen = max_oxygen
-		
-		# Recalculate max bombs based on skill tree upgrades
-		max_bombs = int(GameManager.get_modified_stat("bomb_charges", BaseValuesDB.BOMB_CHARGES))
-		EventBus.emit_signal("update_bomb_HUD", current_bombs, max_bombs)
+	movement_speed = SkillModifiers.get_movement_speed()
+	var old_max = max_oxygen
+	max_oxygen = SkillModifiers.get_oxygen_tank_capacity()
+	if max_oxygen != old_max:
+		current_oxygen = max_oxygen
+	
+	# Recalculate max bombs based on skill tree upgrades
+	max_bombs = int(SkillModifiers.get_bomb_charges())
+	EventBus.emit_signal("update_bomb_HUD", current_bombs, max_bombs)
 
 
 func can_use_bomb() -> bool:

@@ -5,6 +5,7 @@ extends Control
 
 @export var skill_id: String = ""
 @export var parent_node: SkillNode
+@export var is_connector: bool = false
 var width: int = 6
 
 @onready var background: TextureRect = $Background
@@ -14,15 +15,26 @@ func _ready() -> void:
 	# Add to SkillNodes group to allow dependency traversal
 	add_to_group("SkillNodes")
 	
-	# Enforce mouse filters so parent receives hover/input and tooltips work
-	mouse_filter = Control.MOUSE_FILTER_STOP
-	if background:
-		background.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	if skill_icon:
-		skill_icon.mouse_filter = Control.MOUSE_FILTER_IGNORE
-		
+	if is_connector:
+		mouse_filter = Control.MOUSE_FILTER_IGNORE
+		if background:
+			background.mouse_filter = Control.MOUSE_FILTER_IGNORE
+			background.visible = Engine.is_editor_hint()
+		if skill_icon:
+			skill_icon.mouse_filter = Control.MOUSE_FILTER_IGNORE
+			skill_icon.visible = false
+		if Engine.is_editor_hint():
+			modulate.a = 0.4
+	else:
+		# Enforce mouse filters so parent receives hover/input and tooltips work
+		mouse_filter = Control.MOUSE_FILTER_STOP
+		if background:
+			background.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		if skill_icon:
+			skill_icon.mouse_filter = Control.MOUSE_FILTER_IGNORE
+			
 	# Connect hover signals
-	if not Engine.is_editor_hint():
+	if not Engine.is_editor_hint() and not is_connector:
 		if not mouse_entered.is_connected(_on_mouse_entered):
 			mouse_entered.connect(_on_mouse_entered)
 		if not mouse_exited.is_connected(_on_mouse_exited):
@@ -33,19 +45,24 @@ func _ready() -> void:
 
 
 func _on_mouse_entered() -> void:
-	var skill_tree = get_parent()
+	if is_connector:
+		return
+	var skill_tree = get_skill_tree()
 	if skill_tree and skill_tree.has_method("display_skill_info"):
 		skill_tree.display_skill_info(skill_id)
 
 
 func _on_mouse_exited() -> void:
-	var skill_tree = get_parent()
+	if is_connector:
+		return
+	var skill_tree = get_skill_tree()
 	if skill_tree and skill_tree.has_method("clear_skill_info"):
 		skill_tree.clear_skill_info()
 
 
-
 func _gui_input(event: InputEvent) -> void:
+	if is_connector:
+		return
 	if event is InputEventMouseButton and event.pressed:
 		if event.button_index == MOUSE_BUTTON_LEFT:
 			add_point()
@@ -53,29 +70,63 @@ func _gui_input(event: InputEvent) -> void:
 			remove_point()
 
 
+func get_skill_tree() -> Node:
+	var current = get_parent()
+	while current != null:
+		if current.has_method("get_all_skill_nodes"):
+			return current
+		current = current.get_parent()
+	return null
+
+
+func get_nearest_standard_ancestor() -> SkillNode:
+	var current = parent_node
+	while current != null:
+		if not current.is_connector:
+			return current
+		current = current.parent_node
+	return null
+
+
+func get_child_standard_descendants() -> Array[SkillNode]:
+	var result: Array[SkillNode] = []
+	var tree = get_skill_tree()
+	if not tree:
+		return result
+	for child in tree.get_all_skill_nodes():
+		if child is SkillNode and child.parent_node == self:
+			if tree.has_method("get_nearest_standard_descendants"):
+				result.append_array(tree.get_nearest_standard_descendants(child))
+	return result
+
+
 func can_add_point() -> bool:
-	if parent_node != null:
-		# Can only add points if parent has at least 1 point
+	if is_connector:
+		return false
+	var ancestor = get_nearest_standard_ancestor()
+	if ancestor != null:
+		# Can only add points if standard ancestor has at least 1 point
 		if Engine.is_editor_hint():
 			return false
-		return GameManager.get_skill_points(parent_node.skill_id) > 0
+		return GameManager.get_skill_points(ancestor.skill_id) > 0
 	return true
 
 
 func can_remove_point() -> bool:
+	if is_connector:
+		return false
 	var current_pts = GameManager.get_skill_points(skill_id)
-	# If removing the last point (going to 0), ensure no child node is active
+	# If removing the last point (going to 0), ensure no standard descendant of child paths is active
 	if current_pts == 1:
-		var all_nodes = get_tree().get_nodes_in_group("SkillNodes")
-		for node in all_nodes:
-			if node != self and node.parent_node == self:
-				if GameManager.get_skill_points(node.skill_id) > 0:
-					return false
+		var descendants = get_child_standard_descendants()
+		for desc in descendants:
+			if GameManager.get_skill_points(desc.skill_id) > 0:
+				return false
 	return true
 
 
 func add_point() -> void:
-	if skill_id == "":
+	if is_connector or skill_id == "":
 		return
 		
 	var skill_info = GameManager.skill_db.get(skill_id, {})
@@ -92,7 +143,7 @@ func add_point() -> void:
 			node.update_tooltip()
 			
 		# Refresh the parent tree drawing and hover detail panel in real time
-		var skill_tree = get_parent()
+		var skill_tree = get_skill_tree()
 		if skill_tree:
 			skill_tree.queue_redraw()
 			if skill_tree.has_method("display_skill_info"):
@@ -100,7 +151,7 @@ func add_point() -> void:
 
 
 func remove_point() -> void:
-	if skill_id == "":
+	if is_connector or skill_id == "":
 		return
 		
 	var current_points = GameManager.get_skill_points(skill_id)
@@ -114,7 +165,7 @@ func remove_point() -> void:
 			node.update_tooltip()
 			
 		# Refresh the parent tree drawing and hover detail panel in real time
-		var skill_tree = get_parent()
+		var skill_tree = get_skill_tree()
 		if skill_tree:
 			skill_tree.queue_redraw()
 			if skill_tree.has_method("display_skill_info"):
@@ -126,6 +177,14 @@ func update_appearance() -> void:
 		return
 		
 	if not background or not skill_icon:
+		return
+		
+	if is_connector:
+		background.visible = Engine.is_editor_hint()
+		skill_icon.visible = false
+		if Engine.is_editor_hint():
+			modulate.a = 0.4
+			background.modulate = Color(0.6, 0.6, 0.6, 1.0)
 		return
 		
 	if skill_id == "":
@@ -162,6 +221,9 @@ func update_appearance() -> void:
 func update_tooltip() -> void:
 	if Engine.is_editor_hint():
 		return
+	if is_connector:
+		tooltip_text = ""
+		return
 	if skill_id == "":
 		tooltip_text = "Unassigned Skill Node"
 		return
@@ -174,8 +236,9 @@ func update_tooltip() -> void:
 	
 	# Check lock status for display
 	var lock_status = ""
-	if parent_node != null and GameManager.get_skill_points(parent_node.skill_id) == 0:
-		var parent_name = GameManager.skill_db.get(parent_node.skill_id, {}).get("name", "Parent Skill")
-		lock_status = "\n[LOCKED - Requires 1 point in %s]" % parent_name
+	var ancestor = get_nearest_standard_ancestor()
+	if ancestor != null and GameManager.get_skill_points(ancestor.skill_id) == 0:
+		var ancestor_name = GameManager.skill_db.get(ancestor.skill_id, {}).get("name", "Parent Skill")
+		lock_status = "\n[LOCKED - Requires 1 point in %s]" % ancestor_name
 		
 	tooltip_text = "%s%s\n%s\nPoints: %d/%d" % [s_name, lock_status, s_desc, points, max_pts]

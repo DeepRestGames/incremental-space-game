@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://w7h5832edy6i"]
 
 [ext_resource type="PackedScene" uid="uid://gx4f5wal3t4g" path="res://Scenes/UI/skill_node.tscn" id="1_c1qs3"]
-[ext_resource type="Script" uid="uid://dooyr4d6xu87b" path="res://Scripts/UI/skill_tree.gd" id="2_skilltree"]
+[ext_resource type="Script" uid="uid://ljldu32b7v7x" path="res://Scripts/UI/skill_tree.gd" id="2_skilltree"]
 
 [node name="SkillTree" type="Control" unique_id=1912863450]
 layout_mode = 3
@@ -32,6 +32,7 @@ offset_top = 512.0
 offset_right = 1024.0
 offset_bottom = 576.0
 skill_id = "center_node"
+is_connector = null
 
 [node name="DrillDamageNode" parent="." unique_id=588326199 node_paths=PackedStringArray("parent_node") instance=ExtResource("1_c1qs3")]
 layout_mode = 0
@@ -41,6 +42,7 @@ offset_right = 1216.0
 offset_bottom = 576.0
 skill_id = "drill_damage"
 parent_node = NodePath("../Core")
+is_connector = null
 
 [node name="DrillSpeedNode" parent="." unique_id=1042965464 node_paths=PackedStringArray("parent_node") instance=ExtResource("1_c1qs3")]
 layout_mode = 0
@@ -50,6 +52,7 @@ offset_right = 1216.0
 offset_bottom = 768.0
 skill_id = "drill_speed"
 parent_node = NodePath("../Core")
+is_connector = null
 
 [node name="DrillCritNode" parent="." unique_id=1448534516 node_paths=PackedStringArray("parent_node") instance=ExtResource("1_c1qs3")]
 layout_mode = 0
@@ -59,6 +62,7 @@ offset_right = 1344.0
 offset_bottom = 704.0
 skill_id = "drill_crit"
 parent_node = NodePath("../Core")
+is_connector = null
 
 [node name="DrillCritDamageNode" parent="." unique_id=866751269 node_paths=PackedStringArray("parent_node") instance=ExtResource("1_c1qs3")]
 layout_mode = 0
@@ -68,6 +72,7 @@ offset_right = 1024.0
 offset_bottom = 768.0
 skill_id = "drill_crit_damage"
 parent_node = NodePath("../Core")
+is_connector = null
 
 [node name="DrillAreaNode" parent="." unique_id=945436568 node_paths=PackedStringArray("parent_node") instance=ExtResource("1_c1qs3")]
 layout_mode = 0
@@ -77,6 +82,7 @@ offset_right = 832.0
 offset_bottom = 768.0
 skill_id = "drill_area"
 parent_node = NodePath("../Core")
+is_connector = null
 
 [node name="OxygenCapacityNode" parent="." unique_id=591214117 node_paths=PackedStringArray("parent_node") instance=ExtResource("1_c1qs3")]
 layout_mode = 0
@@ -86,6 +92,7 @@ offset_right = 704.0
 offset_bottom = 704.0
 skill_id = "oxygen_capacity"
 parent_node = NodePath("../Core")
+is_connector = null
 
 [node name="NodesLandingNode" parent="." unique_id=463258676 node_paths=PackedStringArray("parent_node") instance=ExtResource("1_c1qs3")]
 layout_mode = 0
@@ -95,24 +102,46 @@ offset_right = 832.0
 offset_bottom = 576.0
 skill_id = "nodes_landing"
 parent_node = NodePath("../Core")
+is_connector = null
 
-[node name="DropChanceNode" parent="." unique_id=526779672 node_paths=PackedStringArray("parent_node") instance=ExtResource("1_c1qs3")]
+[node name="DropChanceNode2" parent="." unique_id=1111836776 node_paths=PackedStringArray("parent_node") instance=ExtResource("1_c1qs3")]
 layout_mode = 0
-offset_left = 640.0
+offset_left = 440.0
 offset_top = 384.0
-offset_right = 704.0
+offset_right = 504.0
 offset_bottom = 448.0
 skill_id = "drop_chance"
-parent_node = NodePath("../Core")
+parent_node = NodePath("ConnectorNode")
+
+[node name="ConnectorNode" parent="DropChanceNode2" unique_id=526779672 node_paths=PackedStringArray("parent_node") instance=ExtResource("1_c1qs3")]
+layout_mode = 0
+offset_left = 200.0
+offset_top = 0.0
+offset_right = 264.0
+offset_bottom = 64.0
+parent_node = NodePath("../../Core")
+is_connector = true
 
 [node name="DestroyDropsNode" parent="." unique_id=1036982031 node_paths=PackedStringArray("parent_node") instance=ExtResource("1_c1qs3")]
 layout_mode = 0
-offset_left = 768.0
-offset_top = 320.0
-offset_right = 832.0
-offset_bottom = 384.0
+offset_left = 832.0
+offset_top = 192.0
+offset_right = 896.0
+offset_bottom = 256.0
 skill_id = "destroy_drops"
-parent_node = NodePath("../Core")
+parent_node = NodePath("ConnectorNode")
+is_connector = null
+
+[node name="ConnectorNode" parent="DestroyDropsNode" unique_id=2032420070 node_paths=PackedStringArray("parent_node") instance=ExtResource("1_c1qs3")]
+modulate = Color(1, 1, 1, 0.4)
+layout_mode = 0
+offset_left = 0.0
+offset_top = 128.0
+offset_right = 64.0
+offset_bottom = 192.0
+mouse_filter = 2
+parent_node = NodePath("../../Core")
+is_connector = true
 
 [node name="MoveSpeedNode" parent="." unique_id=758992368 node_paths=PackedStringArray("parent_node") instance=ExtResource("1_c1qs3")]
 layout_mode = 0
@@ -122,15 +151,28 @@ offset_right = 1024.0
 offset_bottom = 384.0
 skill_id = "move_speed"
 parent_node = NodePath("../Core")
+is_connector = null
 
 [node name="BombChargesNode" parent="." unique_id=280241640 node_paths=PackedStringArray("parent_node") instance=ExtResource("1_c1qs3")]
 layout_mode = 0
-offset_left = 1152.0
-offset_top = 320.0
-offset_right = 1216.0
-offset_bottom = 384.0
+offset_left = 1280.0
+offset_top = 384.0
+offset_right = 1344.0
+offset_bottom = 448.0
 skill_id = "bomb_charges"
-parent_node = NodePath("../Core")
+parent_node = NodePath("ConnectorNode")
+is_connector = null
+
+[node name="ConnectorNode" parent="BombChargesNode" unique_id=1623927155 node_paths=PackedStringArray("parent_node") instance=ExtResource("1_c1qs3")]
+modulate = Color(1, 1, 1, 0.4)
+layout_mode = 0
+offset_left = -128.0
+offset_top = 0.0
+offset_right = -64.0
+offset_bottom = 64.0
+mouse_filter = 2
+parent_node = NodePath("../../Core")
+is_connector = true
 
 [node name="DetailPanel" type="PanelContainer" parent="." unique_id=1122334455]
 layout_mode = 1
@@ -146,28 +188,49 @@ offset_bottom = -56.0
 grow_horizontal = 2
 grow_vertical = 0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="DetailPanel" unique_id=223344556]
+[node name="HBoxContainer" type="HBoxContainer" parent="DetailPanel" unique_id=998877665]
 layout_mode = 2
-theme_override_constants/separation = 4
+theme_override_constants/separation = 16
 
-[node name="SkillName" type="Label" parent="DetailPanel/VBoxContainer" unique_id=334455667]
+[node name="DetailIcon" type="TextureRect" parent="DetailPanel/HBoxContainer" unique_id=998877666]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+size_flags_vertical = 4
+expand_mode = 1
+stretch_mode = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="DetailPanel/HBoxContainer" unique_id=223344556]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 2
+
+[node name="SkillName" type="Label" parent="DetailPanel/HBoxContainer/VBoxContainer" unique_id=334455667]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0.8, 1, 1)
 theme_override_font_sizes/font_size = 20
 text = "Skill Name"
-horizontal_alignment = 1
 
-[node name="SkillPoints" type="Label" parent="DetailPanel/VBoxContainer" unique_id=445566778]
+[node name="SkillPoints" type="Label" parent="DetailPanel/HBoxContainer/VBoxContainer" unique_id=445566778]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.2, 0.9, 0.2, 1)
 theme_override_font_sizes/font_size = 14
 text = "Level: 0 / 5"
-horizontal_alignment = 1
 
-[node name="SkillDesc" type="Label" parent="DetailPanel/VBoxContainer" unique_id=556677889]
+[node name="SkillDesc" type="Label" parent="DetailPanel/HBoxContainer/VBoxContainer" unique_id=556677889]
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
 theme_override_font_sizes/font_size = 14
 text = "Skill Description goes here."
-horizontal_alignment = 1
 autowrap_mode = 3
+
+[node name="SkillStatValue" type="Label" parent="DetailPanel/HBoxContainer/VBoxContainer" unique_id=556677890]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.9, 0.9, 0.9, 1)
+theme_override_font_sizes/font_size = 13
+text = "Effect: 0 -> 20%"
+
+[node name="SkillModifierType" type="Label" parent="DetailPanel/HBoxContainer/VBoxContainer" unique_id=556677891]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.6, 0.6, 0.6, 1)
+theme_override_font_sizes/font_size = 12
+text = "Modifier Type: Additive"

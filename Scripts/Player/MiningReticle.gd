@@ -32,14 +32,7 @@ func _ready() -> void:
 
 func update_reticle_size() -> void:
 	var base_radius = BaseValuesDB.DRILL_AREA_SIZE
-	if collision_shape and collision_shape.shape is CircleShape2D:
-		base_radius = collision_shape.shape.radius
-		
-	var extra_size = 0.0
-	if GameManager.has_method("get_stat_modifier"):
-		extra_size = GameManager.get_stat_modifier("drill_area_size")
-		
-	inner_radius = base_radius + extra_size
+	inner_radius = SkillModifiers.get_drill_area_size(base_radius)
 	
 	# Update collision shape radius
 	if collision_shape and collision_shape.shape is CircleShape2D:
