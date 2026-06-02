@@ -36,7 +36,7 @@ alignment = 1
 [node name="TitleLabel" type="Label" parent="CenterContainer/VBoxContainer" unique_id=1150046483]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0.8, 1, 1)
-theme_override_font_sizes/font_size = 32
+theme_override_font_sizes/font_size = 76
 text = "INCREMENTAL SPACE GAME"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -48,17 +48,20 @@ layout_mode = 2
 [node name="ContinueButton" type="Button" parent="CenterContainer/VBoxContainer" unique_id=1564055637]
 custom_minimum_size = Vector2(250, 45)
 layout_mode = 2
+theme_override_font_sizes/font_size = 22
 disabled = true
 text = "Continue"
 
 [node name="NewGameButton" type="Button" parent="CenterContainer/VBoxContainer" unique_id=324368072]
 custom_minimum_size = Vector2(250, 45)
 layout_mode = 2
+theme_override_font_sizes/font_size = 22
 text = "New Game"
 
 [node name="QuitButton" type="Button" parent="CenterContainer/VBoxContainer" unique_id=338835027]
 custom_minimum_size = Vector2(250, 45)
 layout_mode = 2
+theme_override_font_sizes/font_size = 22
 text = "Quit"
 
 [connection signal="pressed" from="CenterContainer/VBoxContainer/ContinueButton" to="." method="_on_continue_button_pressed"]

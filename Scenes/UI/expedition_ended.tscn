@@ -103,7 +103,7 @@ offset_right = 200.0
 offset_bottom = 60.0
 grow_horizontal = 2
 theme_override_colors/font_color = Color(0, 0.8, 1, 1)
-theme_override_font_sizes/font_size = 28
+theme_override_font_sizes/font_size = 36
 text = "EXPEDITION ENDED"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -132,19 +132,19 @@ theme_override_constants/separation = 15
 [node name="StatsTitle" type="Label" parent="MainPanel/ColumnsContainer/StatsContainer" unique_id=741029]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0.8, 1, 0.7)
-theme_override_font_sizes/font_size = 20
+theme_override_font_sizes/font_size = 24
 text = "STATS"
 
 [node name="TimeLabel" type="Label" parent="MainPanel/ColumnsContainer/StatsContainer" unique_id=329048]
 unique_name_in_owner = true
 layout_mode = 2
-theme_override_font_sizes/font_size = 16
+theme_override_font_sizes/font_size = 20
 text = "• Time Spent: 00:00"
 
 [node name="DestroyedLabel" type="Label" parent="MainPanel/ColumnsContainer/StatsContainer" unique_id=489201]
 unique_name_in_owner = true
 layout_mode = 2
-theme_override_font_sizes/font_size = 16
+theme_override_font_sizes/font_size = 20
 text = "• Rocks Destroyed: 0"
 
 [node name="VSeparator" type="VSeparator" parent="MainPanel/ColumnsContainer" unique_id=5610293]
@@ -159,7 +159,7 @@ theme_override_constants/separation = 15
 [node name="InventoryTitle" type="Label" parent="MainPanel/ColumnsContainer/InventoryContainer" unique_id=102938]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0.8, 1, 0.7)
-theme_override_font_sizes/font_size = 20
+theme_override_font_sizes/font_size = 24
 text = "INVENTORY"
 
 [node name="TriangleRow" type="HBoxContainer" parent="MainPanel/ColumnsContainer/InventoryContainer" unique_id=782103]
@@ -178,7 +178,7 @@ stretch_mode = 5
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_font_sizes/normal_font_size = 18
+theme_override_font_sizes/normal_font_size = 22
 bbcode_enabled = true
 text = "x 0"
 fit_content = true
@@ -201,7 +201,7 @@ stretch_mode = 5
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_font_sizes/normal_font_size = 18
+theme_override_font_sizes/normal_font_size = 22
 bbcode_enabled = true
 text = "x 0"
 fit_content = true
@@ -224,7 +224,7 @@ stretch_mode = 5
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_font_sizes/normal_font_size = 18
+theme_override_font_sizes/normal_font_size = 22
 bbcode_enabled = true
 text = "x 0"
 fit_content = true
@@ -254,7 +254,7 @@ theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
 theme_override_colors/font_pressed_color = Color(0, 0.8, 1, 1)
 theme_override_colors/font_hover_color = Color(0, 0.8, 1, 1)
-theme_override_font_sizes/font_size = 16
+theme_override_font_sizes/font_size = 22
 theme_override_styles/normal = SubResource("StyleBoxFlat_btn_normal")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_btn_pressed")
 theme_override_styles/hover = SubResource("StyleBoxFlat_btn_hover")
@@ -267,7 +267,7 @@ theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
 theme_override_colors/font_pressed_color = Color(0, 0.8, 1, 1)
 theme_override_colors/font_hover_color = Color(0, 0.8, 1, 1)
-theme_override_font_sizes/font_size = 16
+theme_override_font_sizes/font_size = 22
 theme_override_styles/normal = SubResource("StyleBoxFlat_btn_normal")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_btn_pressed")
 theme_override_styles/hover = SubResource("StyleBoxFlat_btn_hover")

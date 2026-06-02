@@ -1,6 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://cx4f5wal3t4pa"]
+[gd_scene format=3 uid="uid://cx4f5wal3t4pa"]
 
-[ext_resource type="Script" path="res://Scripts/UI/ConfirmationPopup.gd" id="1_script"]
+[ext_resource type="Script" uid="uid://bqr8w4bcd7jtk" path="res://Scripts/UI/ConfirmationPopup.gd" id="1_script"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_panel"]
 bg_color = Color(0.08, 0.08, 0.11, 0.96)
@@ -28,18 +28,6 @@ corner_radius_top_right = 6
 corner_radius_bottom_right = 6
 corner_radius_bottom_left = 6
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_btn_hover"]
-bg_color = Color(0, 0.8, 1, 0.15)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(0, 0.8, 1, 0.8)
-corner_radius_top_left = 6
-corner_radius_top_right = 6
-corner_radius_bottom_right = 6
-corner_radius_bottom_left = 6
-
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_btn_pressed"]
 bg_color = Color(0, 0.8, 1, 0.3)
 border_width_left = 2
@@ -47,6 +35,18 @@ border_width_top = 2
 border_width_right = 2
 border_width_bottom = 2
 border_color = Color(0, 0.8, 1, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_btn_hover"]
+bg_color = Color(0, 0.8, 1, 0.15)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0.8, 1, 0.8)
 corner_radius_top_left = 6
 corner_radius_top_right = 6
 corner_radius_bottom_right = 6
@@ -105,7 +105,7 @@ alignment = 1
 [node name="TitleLabel" type="Label" parent="MainPanel/VBoxContainer" unique_id=12398459]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0.8, 1, 1)
-theme_override_font_sizes/font_size = 24
+theme_override_font_sizes/font_size = 36
 text = "Return to base?"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -119,27 +119,27 @@ alignment = 1
 custom_minimum_size = Vector2(180, 45)
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_colors/font_hover_color = Color(0, 0.8, 1, 1)
-theme_override_colors/font_pressed_color = Color(0, 0.8, 1, 1)
 theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
-theme_override_font_sizes/font_size = 15
+theme_override_colors/font_pressed_color = Color(0, 0.8, 1, 1)
+theme_override_colors/font_hover_color = Color(0, 0.8, 1, 1)
+theme_override_font_sizes/font_size = 22
 theme_override_styles/normal = SubResource("StyleBoxFlat_btn_normal")
-theme_override_styles/hover = SubResource("StyleBoxFlat_btn_hover")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_btn_pressed")
+theme_override_styles/hover = SubResource("StyleBoxFlat_btn_hover")
 text = "Yes"
 
 [node name="NoButton" type="Button" parent="MainPanel/VBoxContainer/ButtonsContainer" unique_id=890237]
 custom_minimum_size = Vector2(220, 45)
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_colors/font_hover_color = Color(0, 0.8, 1, 1)
-theme_override_colors/font_pressed_color = Color(0, 0.8, 1, 1)
 theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
-theme_override_font_sizes/font_size = 15
+theme_override_colors/font_pressed_color = Color(0, 0.8, 1, 1)
+theme_override_colors/font_hover_color = Color(0, 0.8, 1, 1)
+theme_override_font_sizes/font_size = 22
 theme_override_styles/normal = SubResource("StyleBoxFlat_btn_normal")
-theme_override_styles/hover = SubResource("StyleBoxFlat_btn_hover")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_btn_pressed")
-text = "No (continue expedition)"
+theme_override_styles/hover = SubResource("StyleBoxFlat_btn_hover")
+text = "No (continue)"
 
 [connection signal="pressed" from="MainPanel/VBoxContainer/ButtonsContainer/YesButton" to="." method="_on_yes_button_pressed"]
 [connection signal="pressed" from="MainPanel/VBoxContainer/ButtonsContainer/NoButton" to="." method="_on_no_button_pressed"]
