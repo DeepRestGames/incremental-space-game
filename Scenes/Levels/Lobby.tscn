@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://m7nnkbbfo0he"]
 
+[ext_resource type="Script" uid="uid://rxpxamf5scpm" path="res://Scenes/Levels/Lobby.gd" id="1_pjh5x"]
 [ext_resource type="PackedScene" uid="uid://bcvxlujlsdn7w" path="res://Scenes/Player/Player.tscn" id="2_wpc3r"]
 [ext_resource type="PackedScene" uid="uid://ccmhp41okc8g0" path="res://Scenes/HUB/ExpeditionShip/ExpeditionShip.tscn" id="4_ship"]
 [ext_resource type="PackedScene" uid="uid://bngmoa84fkagd" path="res://Scenes/Levels/SkillTreeTerminal.tscn" id="8_terminal"]
@@ -7,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://w7h5832edy6i" path="res://Scenes/UI/skill_tree.tscn" id="10_skill_tree"]
 
 [node name="Lobby" type="Node2D" unique_id=1759954739]
+script = ExtResource("1_pjh5x")
 
 [node name="Player" parent="." unique_id=111262784 instance=ExtResource("2_wpc3r")]
 
@@ -23,4 +25,3 @@ visible = false
 
 [node name="SkillTree" parent="CanvasLayer" unique_id=1912863450 instance=ExtResource("10_skill_tree")]
 visible = false
-
