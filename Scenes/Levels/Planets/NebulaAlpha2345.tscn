@@ -4,6 +4,10 @@
 [ext_resource type="PackedScene" uid="uid://yat7dirw16l5" path="res://Scenes/Environment/breakable_big.tscn" id="2_big"]
 
 [node name="BaseLevel" unique_id=705757094 instance=ExtResource("1_tgogl")]
+y_sort_enabled = true
+
+[node name="ExpeditionShip" parent="." index="1" unique_id=1704699913]
+custom_texture = null
 
 [node name="SpawnDistribution" parent="MapCoordinateGenerator" parent_id_path=PackedInt32Array(1573320358) index="0" unique_id=987654321]
 spawn_distribution = {

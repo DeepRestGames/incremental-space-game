@@ -1,15 +1,25 @@
 [gd_scene format=3 uid="uid://5c3751t48a6v"]
 
 [ext_resource type="PackedScene" uid="uid://cl1025m5bhlxa" path="res://Scenes/Levels/Planets/BaseLevel.tscn" id="1_base"]
+[ext_resource type="Texture2D" uid="uid://cb8pqpfy5dg34" path="res://Assets/Sprites/environment/SeamlessBackground.png" id="2_lbst8"]
 
 [node name="Moon1234" unique_id=119943232 instance=ExtResource("1_base")]
 
-[node name="MapCoordinateGenerator" parent="." index="2" unique_id=1573320358]
+[node name="Parallax2D" type="Parallax2D" parent="." index="0" unique_id=1890857053]
+repeat_size = Vector2(3840, 2161)
+repeat_times = 3
+
+[node name="SeamlessBackground" type="Sprite2D" parent="Parallax2D" index="0" unique_id=993693161]
+texture = ExtResource("2_lbst8")
+
+[node name="ExpeditionShip" parent="." index="2" unique_id=1704699913]
+custom_texture = null
+
+[node name="MapCoordinateGenerator" parent="." index="3" unique_id=1573320358]
 min_spawn_count = 150
 max_spawn_count = 250
 num_seeds = 16
 cluster_spread = 320.0
 
-[node name="Modifiers" parent="." index="3"]
+[node name="Modifiers" parent="." index="4"]
 conditions = Array[String](["Low Gravity Environment", "Standard Depletion Rate", "Scattered Asteroid Belts"])
-

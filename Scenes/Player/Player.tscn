@@ -449,21 +449,25 @@ parameters/Run/blend_position = Vector2(0, 0)
 script = ExtResource("5_reticle")
 
 [node name="OuterCircle" type="Sprite2D" parent="MiningReticle" unique_id=111111111]
+visible = false
 modulate = Color(0, 0.8, 1, 0.4)
 scale = Vector2(0.46875, 0.46875)
 texture = ExtResource("6_outer_circle")
 
 [node name="GuideLine" type="Line2D" parent="MiningReticle" unique_id=222222222]
+visible = false
 points = PackedVector2Array(0, 0, 120, 0)
 width = 2.0
 default_color = Color(0, 0.8, 1, 0.5)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="MiningReticle" unique_id=123456789]
+visible = false
 position = Vector2(120, 0)
 shape = SubResource("CircleShape2D_reticle")
 
 [node name="DiggingCircle" type="Sprite2D" parent="MiningReticle" unique_id=444444444]
 modulate = Color(1, 0.3, 0.3, 0.8)
+z_index = 10
 position = Vector2(120, 0)
 scale = Vector2(0.1171875, 0.1171875)
 texture = ExtResource("7_inner_circle")

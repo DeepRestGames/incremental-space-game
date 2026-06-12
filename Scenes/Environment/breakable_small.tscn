@@ -6,8 +6,8 @@
 [ext_resource type="AudioStream" uid="uid://8ekwcbtftlvh" path="res://Assets/Audio/SFX/freesound_community-8-bit-explosion-95847.mp3" id="9_sqqoc"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_v5ktr"]
-radius = 50.0
-height = 200.0
+radius = 35.00004
+height = 188.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_5m1wr"]
 radius = 115.02716

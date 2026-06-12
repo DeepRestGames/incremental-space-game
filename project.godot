@@ -37,7 +37,8 @@ window/stretch/mode="viewport"
 folder_colors={
 "res://Addons/at-icons/control/": "green",
 "res://Addons/at-icons/node/": "gray",
-"res://Addons/at-icons/node3d/": "red"
+"res://Addons/at-icons/node3d/": "red",
+"res://Assets/": "yellow"
 }
 
 [global_group]
