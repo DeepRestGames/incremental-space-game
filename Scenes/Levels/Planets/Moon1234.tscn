@@ -3,6 +3,20 @@
 [ext_resource type="PackedScene" uid="uid://cl1025m5bhlxa" path="res://Scenes/Levels/Planets/BaseLevel.tscn" id="1_base"]
 [ext_resource type="Texture2D" uid="uid://cb8pqpfy5dg34" path="res://Assets/Sprites/environment/SeamlessBackground.png" id="2_lbst8"]
 
+[sub_resource type="Gradient" id="Gradient_lbst8"]
+offsets = PackedFloat32Array(0, 0.10301507, 0.19849247, 0.77135676, 1)
+colors = PackedColorArray(0.013875406, 0.022127165, 0.13066247, 1, 0.033433285, 0.08020166, 0.2089453, 1, 0.1, 0.165, 0.4, 1, 0.9482381, 0.7621531, 0.8487408, 1, 0.9780094, 0.9000213, 0.8842311, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_rdjf1"]
+gradient = SubResource("Gradient_lbst8")
+
+[sub_resource type="Environment" id="Environment_lbst8"]
+background_mode = 3
+glow_enabled = true
+glow_intensity = 0.7
+glow_strength = 2.0
+adjustment_color_correction = SubResource("GradientTexture1D_rdjf1")
+
 [node name="Moon1234" unique_id=119943232 instance=ExtResource("1_base")]
 
 [node name="Parallax2D" type="Parallax2D" parent="." index="0" unique_id=1890857053]
@@ -23,3 +37,6 @@ cluster_spread = 320.0
 
 [node name="Modifiers" parent="." index="4"]
 conditions = Array[String](["Low Gravity Environment", "Standard Depletion Rate", "Scattered Asteroid Belts"])
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." index="5" unique_id=248897781]
+environment = SubResource("Environment_lbst8")

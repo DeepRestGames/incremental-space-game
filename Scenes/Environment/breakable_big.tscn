@@ -68,6 +68,7 @@ position = Vector2(-54, 6.00018)
 texture = ExtResource("3_5gjhx")
 
 [node name="Control" type="Control" parent="." unique_id=1507279486]
+visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_left = -109.0
