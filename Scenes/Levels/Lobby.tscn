@@ -10,14 +10,6 @@
 [node name="Lobby" type="Node2D" unique_id=1759954739]
 script = ExtResource("1_pjh5x")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1382719696]
-
-[node name="LevelSelectUI" parent="CanvasLayer" unique_id=989327793 instance=ExtResource("9_ui")]
-visible = false
-
-[node name="SkillTree" parent="CanvasLayer" unique_id=1912863450 instance=ExtResource("10_skill_tree")]
-visible = false
-
 [node name="Objects" type="Node2D" parent="." unique_id=282882869]
 y_sort_enabled = true
 
@@ -28,3 +20,11 @@ position = Vector2(828, -173)
 
 [node name="SkillTreeTerminal" parent="Objects" unique_id=553144318 instance=ExtResource("8_terminal")]
 position = Vector2(-416, -98)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1382719696]
+
+[node name="LevelSelectUI" parent="CanvasLayer" unique_id=989327793 instance=ExtResource("9_ui")]
+visible = false
+
+[node name="SkillTree" parent="CanvasLayer" unique_id=1912863450 instance=ExtResource("10_skill_tree")]
+visible = false
