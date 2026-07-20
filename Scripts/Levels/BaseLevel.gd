@@ -4,7 +4,8 @@ extends Node2D
 ## Base Level class that handles common environment elements
 ## and dynamic spawning using the MapCoordinateGenerator.
 
-@onready var coordinate_generator: MapCoordinateGenerator = $MapCoordinateGenerator
+@onready var objects: Node2D = $Objects
+@onready var coordinate_generator: MapCoordinateGenerator = $Objects/MapCoordinateGenerator
 
 
 
@@ -53,7 +54,7 @@ func spawn_level_objects() -> void:
 		# Translate generator top-left (0 to map_size) coords to centered level coords (-map_size/2 to +map_size/2)
 		instance.global_position = pos - (map_size / 2.0)
 		
-		add_child(instance)
+		objects.add_child(instance)
 		spawned_count += 1
 		
 	var duration := Time.get_ticks_msec() - start_time

@@ -1,26 +1,28 @@
 [gd_scene format=3 uid="uid://cl1025m5bhlxa"]
 
-[ext_resource type="Script" uid="uid://bcahdecao3ehq" path="res://Scripts/Levels/BaseLevel.gd" id="1_baselevel"]
+[ext_resource type="Script" uid="uid://cffb1fgyna1hv" path="res://Scripts/Levels/BaseLevel.gd" id="1_baselevel"]
 [ext_resource type="PackedScene" uid="uid://bcvxlujlsdn7w" path="res://Scenes/Player/Player.tscn" id="3_wpc3r"]
 [ext_resource type="PackedScene" uid="uid://ccmhp41okc8g0" path="res://Scenes/HUB/ExpeditionShip/ExpeditionShip.tscn" id="5_ship"]
 [ext_resource type="Texture2D" uid="uid://c5mcg1o8r1dgc" path="res://Assets/PLACEHOLDERS/Ship_Dropsite.svg" id="6_ship_dropsite"]
-
-[ext_resource type="Script" uid="uid://dmpnsdi0m0l88" path="res://Scripts/Levels/MapCoordinateGenerator.gd" id="9_generator"]
+[ext_resource type="Script" uid="uid://bgj4pxkk5025l" path="res://Scripts/Levels/MapCoordinateGenerator.gd" id="9_generator"]
 [ext_resource type="PackedScene" uid="uid://c6qwwmff8anwx" path="res://Scenes/Environment/breakable_small.tscn" id="10_small"]
 [ext_resource type="PackedScene" uid="uid://yat7dirw16l5" path="res://Scenes/Environment/breakable_big.tscn" id="11_big"]
-[ext_resource type="Script" path="res://Scripts/Levels/SpawnDistribution.gd" id="12_distribution"]
-[ext_resource type="Script" path="res://Scripts/Levels/Modifiers/LevelModifiers.gd" id="13_modifiers"]
+[ext_resource type="Script" uid="uid://da20efwitnu52" path="res://Scripts/Levels/SpawnDistribution.gd" id="12_distribution"]
+[ext_resource type="Script" uid="uid://m824l3abeisw" path="res://Scripts/Levels/Modifiers/LevelModifiers.gd" id="13_modifiers"]
 
 [node name="BaseLevel" type="Node2D" unique_id=705757094]
 script = ExtResource("1_baselevel")
 
-[node name="Player" parent="." unique_id=102267496 instance=ExtResource("3_wpc3r")]
+[node name="Objects" type="Node2D" parent="." unique_id=1539187237]
+y_sort_enabled = true
 
-[node name="ExpeditionShip" parent="." unique_id=1704699913 instance=ExtResource("5_ship")]
+[node name="Player" parent="Objects" unique_id=102267496 instance=ExtResource("3_wpc3r")]
+
+[node name="ExpeditionShip" parent="Objects" unique_id=1704699913 instance=ExtResource("5_ship")]
 position = Vector2(306, -114)
 custom_texture = ExtResource("6_ship_dropsite")
 
-[node name="MapCoordinateGenerator" type="Node" parent="." unique_id=1573320358]
+[node name="MapCoordinateGenerator" type="Node" parent="Objects" unique_id=1573320358]
 script = ExtResource("9_generator")
 map_size = Vector2(6000, 6000)
 border_margin = 150.0
@@ -30,17 +32,12 @@ max_spawn_count = 200
 num_seeds = 12
 cluster_spread = 280.0
 
-[node name="SpawnDistribution" type="Node" parent="MapCoordinateGenerator" unique_id=987654321]
+[node name="SpawnDistribution" type="Node" parent="Objects/MapCoordinateGenerator" unique_id=987654321]
 script = ExtResource("12_distribution")
 spawn_distribution = {
 ExtResource("10_small"): 8.0,
 ExtResource("11_big"): 2.0
 }
 
-[node name="Modifiers" type="Node" parent="."]
+[node name="Modifiers" type="Node" parent="Objects" unique_id=1092594344]
 script = ExtResource("13_modifiers")
-
-
-
-
-
