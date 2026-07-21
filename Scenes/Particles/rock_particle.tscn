@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://bin76fh6ewvim"]
+
+[ext_resource type="Texture2D" uid="uid://ptexxxi1o7kt" path="res://Assets/PLACEHOLDERS/RockParticle.png" id="1_wibqb"]
+[ext_resource type="Script" uid="uid://dekru8mkploct" path="res://Scripts/Particles/RockParticle.gd" id="1_xaieh"]
+
+[node name="NewRockParticle" type="Node2D" unique_id=1275830464]
+script = ExtResource("1_xaieh")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1110685722]
+scale = Vector2(0.012800001, 0.012799993)
+texture = ExtResource("1_wibqb")
+region_rect = Rect2(0, 0, 2500, 2174)

@@ -13,9 +13,9 @@ var player_is_in_range: bool = false
 @onready var hit: AudioStreamPlayer = $Audio/Hit
 @onready var destroy: AudioStreamPlayer = $Audio/Destroy
 
-@onready var rock_particles_parent: Node2D = $RockParticlesParent
-@onready var rock_particles = preload("res://Scenes/Particles/rock_particles.tscn")
-var last_rock_particles_node: GPUParticles2D
+@onready var rock_particle = preload("res://Scenes/Particles/rock_particle.tscn")
+@export var min_rock_particles = 3
+@export var max_rock_particles = 7
 
 @onready var sprite_2d: Sprite2D = $CollisionShape2D/Sprite2D
 @export var rock_sprites: Array[Texture2D]
@@ -63,7 +63,7 @@ func take_damage(damage_value: int) -> void:
 	var drop_chance = SkillModifiers.get_drop_chance_per_tick(resource_spawn_chance_on_damaged)
 		
 	for i in damage_value:
-		play_rock_particles()
+		spawn_rock_particles(randi_range(min_rock_particles, max_rock_particles))
 		
 		if randf() < drop_chance:
 			spawn_resource_drops(1)
@@ -79,7 +79,7 @@ func take_damage(damage_value: int) -> void:
 		var extra_drops = int(SkillModifiers.get_drops_on_destruction())
 			
 		spawn_resource_drops(current_resource_number + extra_drops)
-		defer_destroy_object()
+		queue_free()
 	else:
 		hit.play()
 
@@ -95,18 +95,13 @@ func spawn_resource_drops(resource_number: int) -> void:
 	current_resource_number -= resource_number
 
 
-func play_rock_particles() -> void:
-	last_rock_particles_node = rock_particles.instantiate() as GPUParticles2D
-	rock_particles_parent.add_child(last_rock_particles_node)
-	last_rock_particles_node.restart()
-
-
-func defer_destroy_object() -> void:
-	collision_shape_2d.call_deferred("queue_free")
-	control.hide()
-	await last_rock_particles_node.finished
-	
-	call_deferred("queue_free")
+func spawn_rock_particles(rock_particles_number: int) -> void:
+	for i in rock_particles_number:
+		var rock_particle_node = rock_particle.instantiate() as RockParticle
+		var random_offset = Vector2(randf_range(-20, 20), randf_range(-20, 20))
+		rock_particle_node.global_position = self.global_position + random_offset
+		get_tree().current_scene.get_node("Objects/Particles").add_child(rock_particle_node)
+		rock_particle_node.randomize_spawn_direction()
 
 
 func _on_area_2d_body_entered(_body: Node2D) -> void:
