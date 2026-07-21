@@ -299,15 +299,19 @@ animation = &"DrillRight"
 animation = &"DrillRight"
 
 [sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_4wape"]
+blend_mode = 1
 blend_point_0/node = SubResource("AnimationNodeAnimation_4wape")
 blend_point_0/pos = Vector2(-1, 0)
+blend_point_0/name = &"0"
 blend_point_1/node = SubResource("AnimationNodeAnimation_t26db")
 blend_point_1/pos = Vector2(1, 0)
+blend_point_1/name = &"1"
 blend_point_2/node = SubResource("AnimationNodeAnimation_fk5o5")
 blend_point_2/pos = Vector2(0.1, 1)
+blend_point_2/name = &"2"
 blend_point_3/node = SubResource("AnimationNodeAnimation_esmjy")
 blend_point_3/pos = Vector2(0.1, -1)
-blend_mode = 1
+blend_point_3/name = &"3"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_825xp"]
 animation = &"IdleLeft"
@@ -322,15 +326,19 @@ animation = &"IdleRight"
 animation = &"IdleRight"
 
 [sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_t26db"]
+blend_mode = 1
 blend_point_0/node = SubResource("AnimationNodeAnimation_825xp")
 blend_point_0/pos = Vector2(-1, 0)
+blend_point_0/name = &"0"
 blend_point_1/node = SubResource("AnimationNodeAnimation_ji083")
 blend_point_1/pos = Vector2(1, 0)
+blend_point_1/name = &"1"
 blend_point_2/node = SubResource("AnimationNodeAnimation_0kmp4")
 blend_point_2/pos = Vector2(0.1, 1)
+blend_point_2/name = &"2"
 blend_point_3/node = SubResource("AnimationNodeAnimation_6tu5v")
 blend_point_3/pos = Vector2(0.1, -1)
-blend_mode = 1
+blend_point_3/name = &"3"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_i5acl"]
 animation = &"RunRight"
@@ -345,15 +353,19 @@ animation = &"RunLeft"
 animation = &"RunRight"
 
 [sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_fk5o5"]
+blend_mode = 1
 blend_point_0/node = SubResource("AnimationNodeAnimation_i5acl")
 blend_point_0/pos = Vector2(1, 0)
+blend_point_0/name = &"0"
 blend_point_1/node = SubResource("AnimationNodeAnimation_epg6k")
 blend_point_1/pos = Vector2(0.1, 1)
+blend_point_1/name = &"1"
 blend_point_2/node = SubResource("AnimationNodeAnimation_0u84n")
 blend_point_2/pos = Vector2(-1, 0)
+blend_point_2/name = &"2"
 blend_point_3/node = SubResource("AnimationNodeAnimation_spxdj")
 blend_point_3/pos = Vector2(0.1, -1)
-blend_mode = 1
+blend_point_3/name = &"3"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_825xp"]
 advance_mode = 2
@@ -424,7 +436,6 @@ frame = 5
 
 [node name="PlayerCamera" type="Camera2D" parent="." unique_id=481504141]
 process_mode = 3
-zoom = Vector2(0.6, 0.6)
 
 [node name="ScreenShake" type="Node2D" parent="PlayerCamera" unique_id=1061838693]
 script = ExtResource("3_jmcll")

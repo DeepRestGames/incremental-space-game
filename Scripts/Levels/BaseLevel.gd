@@ -10,7 +10,7 @@ extends Node2D
 
 
 func _ready() -> void:
-	MusicManager.play(preload("res://Assets/Audio/ST/ST_Expedition.wav"), "expedition")
+#	MusicManager.play(preload("res://Assets/Audio/ST/ST_Expedition.wav"), "expedition")
 	# Gather dynamic positions of central structures as spawning exclusion zones
 	var exclusions: Array[Vector2] = []
 	for node_name in ["ExpeditionShip", "DepositBox", "CaptureArea"]:

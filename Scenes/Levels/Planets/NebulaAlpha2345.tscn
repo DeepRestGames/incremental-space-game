@@ -2,18 +2,45 @@
 
 [ext_resource type="PackedScene" uid="uid://cl1025m5bhlxa" path="res://Scenes/Levels/Planets/BaseLevel.tscn" id="1_tgogl"]
 [ext_resource type="PackedScene" uid="uid://yat7dirw16l5" path="res://Scenes/Environment/breakable_big.tscn" id="2_big"]
+[ext_resource type="Texture2D" uid="uid://cb8pqpfy5dg34" path="res://Assets/Sprites/environment/SeamlessBackground.png" id="2_u0hgq"]
+
+[sub_resource type="Gradient" id="Gradient_u0hgq"]
+offsets = PackedFloat32Array(0, 0.49497488, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0.82525074, 0.48194855, 0.6902566, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_0d1xb"]
+gradient = SubResource("Gradient_u0hgq")
+
+[sub_resource type="Environment" id="Environment_qkxfq"]
+background_mode = 3
+glow_enabled = true
+glow_levels/2 = 1.0
+glow_levels/3 = 1.0
+glow_levels/4 = 0.5
+glow_levels/5 = 0.2
+glow_strength = 1.66
+adjustment_enabled = true
+adjustment_brightness = 1.15
+adjustment_contrast = 1.08
+adjustment_color_correction = SubResource("GradientTexture1D_0d1xb")
 
 [node name="BaseLevel" unique_id=705757094 instance=ExtResource("1_tgogl")]
 y_sort_enabled = true
 
-[node name="ExpeditionShip" parent="." index="1" unique_id=1704699913]
+[node name="Parallax2D" type="Parallax2D" parent="." index="0" unique_id=1542098949]
+repeat_size = Vector2(3840, 2161)
+repeat_times = 3
+
+[node name="SeamlessBackground" type="Sprite2D" parent="Parallax2D" index="0" unique_id=285107865]
+texture = ExtResource("2_u0hgq")
+
+[node name="ExpeditionShip" parent="Objects" parent_id_path=PackedInt32Array(1539187237) index="1" unique_id=1704699913]
 custom_texture = null
 
-[node name="SpawnDistribution" parent="MapCoordinateGenerator" parent_id_path=PackedInt32Array(1573320358) index="0" unique_id=987654321]
+[node name="SpawnDistribution" parent="Objects/MapCoordinateGenerator" parent_id_path=PackedInt32Array(1573320358) index="0" unique_id=987654321]
 spawn_distribution = {
 ExtResource("2_big"): 1.0
 }
 
-[node name="Modifiers" parent="." index="3"]
-drain_rate_multiplier = 1.5
-conditions = Array[String](["Corrosive Solar Storms", "Accelerated Oxygen Depletion (1.5x)", "Rich Dense Dust Clouds"])
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." index="2" unique_id=401950983]
+environment = SubResource("Environment_qkxfq")

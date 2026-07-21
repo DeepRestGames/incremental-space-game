@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://c1r84q4nh0up2" path="res://Scripts/Environment/breakable.gd" id="1_om1mr"]
 [ext_resource type="Texture2D" uid="uid://dv5onwoojupco" path="res://Assets/Sprites/environment/Rock1.png" id="2_oq4pq"]
 [ext_resource type="Texture2D" uid="uid://bhrm3cbrxppqm" path="res://Assets/Sprites/environment/5Chip1_Green.png" id="3_5gjhx"]
+[ext_resource type="Texture2D" uid="uid://bya50q67iyp8s" path="res://Assets/Sprites/environment/Rock2.png" id="3_ygini"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_v5ktr"]
 radius = 83.0
@@ -42,7 +43,7 @@ streams_count = 1
 collision_layer = 4
 script = ExtResource("1_om1mr")
 totalHP = 6
-rock_sprites = Array[Texture2D]([ExtResource("2_oq4pq")])
+rock_sprites = Array[Texture2D]([ExtResource("2_oq4pq"), ExtResource("3_ygini")])
 min_resource_number = 10
 max_resource_number = 20
 

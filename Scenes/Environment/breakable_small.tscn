@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://c6qwwmff8anwx"]
 
 [ext_resource type="Script" uid="uid://c1r84q4nh0up2" path="res://Scripts/Environment/breakable.gd" id="1_4ng74"]
+[ext_resource type="Texture2D" uid="uid://bya50q67iyp8s" path="res://Assets/Sprites/environment/Rock2.png" id="3_vnr7e"]
 [ext_resource type="AudioStream" uid="uid://cl6u3yq7buxfh" path="res://Assets/Audio/SFX/abdalrahman_bm-8-bit-gravel-footsteps-1-408582.mp3" id="8_5j6il"]
 [ext_resource type="Texture2D" uid="uid://dv5onwoojupco" path="res://Assets/Sprites/environment/Rock1.png" id="8_s777y"]
 [ext_resource type="AudioStream" uid="uid://8ekwcbtftlvh" path="res://Assets/Audio/SFX/freesound_community-8-bit-explosion-95847.mp3" id="9_sqqoc"]
@@ -44,7 +45,7 @@ stream_0/stream = ExtResource("9_sqqoc")
 [node name="BreakableSmall" type="StaticBody2D" unique_id=1949437542]
 collision_layer = 4
 script = ExtResource("1_4ng74")
-rock_sprites = Array[Texture2D]([ExtResource("8_s777y")])
+rock_sprites = Array[Texture2D]([ExtResource("8_s777y"), ExtResource("3_vnr7e")])
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=762273956]
 position = Vector2(0, -39)
