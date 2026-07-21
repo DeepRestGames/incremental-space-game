@@ -1,7 +1,13 @@
 class_name RockParticle
 extends Node2D
 
+@export var particle_sprites: Array[Texture2D]
+
+@onready var sprite_2d: Sprite2D = $Sprite2D
+
 func randomize_spawn_direction() -> void:
+	sprite_2d.texture = particle_sprites.pick_random()
+	
 	var direction = Vector2(randf_range(-1, 1), randf_range(-1, 1))
 	var spawn_linear_velocity = randi_range(120, 200)
 	var spawn_angular_velocity = randf_range(2, 5)
