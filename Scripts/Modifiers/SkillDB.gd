@@ -1,16 +1,23 @@
 class_name SkillDB
 
+## Money cost to buy one level of an upgrade when a skill does not define its own.
+## To change a single upgrade's price, edit its "cost" field below.
+## To change the price for every upgrade at once, edit this value.
+const DEFAULT_UPGRADE_COST: int = 100
+
 const DATABASE: Dictionary = {
 	"center_node" : {
 		"name": "Exosuit",
 		"description": "Your amazing drilling suit.",
 		"max_levels": 1,
+		"cost": 0,
 		"effects": {}
 	},
 	"drill_damage": {
 		"name": "Drill Power",
 		"description": "Increases drill damage per tick.",
 		"max_levels": 5,
+		"cost": 100,
 		"effects": {
 			"drill_damage_per_tick": {
 				"type": "FLAT",
@@ -22,6 +29,7 @@ const DATABASE: Dictionary = {
 		"name": "Drill Speed",
 		"description": "Increases drill attack speed.",
 		"max_levels": 5,
+		"cost": 100,
 		"effects": {
 			"drill_attack_speed": {
 				"type": "MULTIPLICATIVE",
@@ -33,6 +41,7 @@ const DATABASE: Dictionary = {
 		"name": "Lucky Strike",
 		"description": "Increases drill crit chance.",
 		"max_levels": 5,
+		"cost": 100,
 		"effects": {
 			"drill_crit_chance": {
 				"type": "FLAT",
@@ -44,6 +53,7 @@ const DATABASE: Dictionary = {
 		"name": "Crushing Blows",
 		"description": "Increases drill crit damage.",
 		"max_levels": 5,
+		"cost": 100,
 		"effects": {
 			"drill_crit_damage": {
 				"type": "ADDITIVE",
@@ -55,6 +65,7 @@ const DATABASE: Dictionary = {
 		"name": "Wide Reaches",
 		"description": "Increases drill area size.",
 		"max_levels": 5,
+		"cost": 100,
 		"effects": {
 			"drill_area_size": {
 				"type": "FLAT",
@@ -66,6 +77,7 @@ const DATABASE: Dictionary = {
 		"name": "Oxygen Reserve",
 		"description": "Increases oxygen tank capacity.",
 		"max_levels": 5,
+		"cost": 100,
 		"effects": {
 			"oxygen_tank_capacity": {
 				"type": "ADDITIVE",
@@ -77,6 +89,7 @@ const DATABASE: Dictionary = {
 		"name": "Node Locator",
 		"description": "Increases nodes found on landing.",
 		"max_levels": 5,
+		"cost": 100,
 		"effects": {
 			"nodes_on_landing": {
 				"type": "ADDITIVE",
@@ -88,6 +101,7 @@ const DATABASE: Dictionary = {
 		"name": "Lucky Drilling",
 		"description": "Increases chance to generate a drop per drilling tick.",
 		"max_levels": 5,
+		"cost": 100,
 		"effects": {
 			"drop_chance_per_tick": {
 				"type": "FLAT",
@@ -99,6 +113,7 @@ const DATABASE: Dictionary = {
 		"name": "Asteroid Shatterer",
 		"description": "Increases drops generated when a node is destroyed.",
 		"max_levels": 5,
+		"cost": 100,
 		"effects": {
 			"drops_on_destruction": {
 				"type": "FLAT",
@@ -110,6 +125,7 @@ const DATABASE: Dictionary = {
 		"name": "Thruster Tuning",
 		"description": "Increases movement speed.",
 		"max_levels": 5,
+		"cost": 100,
 		"effects": {
 			"movement_speed": {
 				"type": "ADDITIVE",
@@ -121,6 +137,7 @@ const DATABASE: Dictionary = {
 		"name": "Bomb Payload",
 		"description": "Increases number of bomb charges.",
 		"max_levels": 5,
+		"cost": 100,
 		"effects": {
 			"bomb_charges": {
 				"type": "FLAT",

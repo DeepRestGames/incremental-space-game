@@ -11,6 +11,9 @@ var current_player_resource: int = 0
 # Base stashed resources
 var current_deposit_box_resource: int = 0
 
+# Money (currency earned at the shop, spendable in the skill tree)
+var current_money: int = 0
+
 # Expedition
 var expedition_started: bool = false
 var previous_scene_path: String = ""
@@ -98,6 +101,40 @@ func end_expedition(success: bool = true) -> void:
 	get_tree().paused = false
 	get_tree().change_scene_to_file("res://Scenes/UI/expedition_ended.tscn")
 	expedition_started = false
+
+
+## Converts all stored deposit-box resources into money at the given rate.
+## Returns how much money was earned (0 if there was nothing to convert).
+func convert_resources_to_money(conversion_rate: float = 1.0) -> int:
+	if current_deposit_box_resource <= 0:
+		return 0
+
+	var earned := int(current_deposit_box_resource * conversion_rate)
+	current_deposit_box_resource = 0
+	current_money += earned
+
+	EventBus.emit_signal("update_HUD")
+	return earned
+
+
+## Money cost to buy one more level of the given skill.
+func get_skill_cost(skill_id: String) -> int:
+	var skill_info = skill_db.get(skill_id, {})
+	return int(skill_info.get("cost", SkillDB.DEFAULT_UPGRADE_COST))
+
+
+func can_afford(amount: int) -> bool:
+	return current_money >= amount
+
+
+func spend_money(amount: int) -> void:
+	current_money = max(current_money - amount, 0)
+	EventBus.emit_signal("update_HUD")
+
+
+func add_money(amount: int) -> void:
+	current_money += amount
+	EventBus.emit_signal("update_HUD")
 
 
 func get_oxygen_skill_multiplier() -> float:

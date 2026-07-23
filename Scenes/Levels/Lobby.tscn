@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://bngmoa84fkagd" path="res://Scenes/Levels/SkillTreeTerminal.tscn" id="8_terminal"]
 [ext_resource type="PackedScene" uid="uid://b76okat8058e5" path="res://Scenes/UI/LevelSelectUI.tscn" id="9_ui"]
 [ext_resource type="PackedScene" uid="uid://w7h5832edy6i" path="res://Scenes/UI/skill_tree.tscn" id="10_skill_tree"]
+[ext_resource type="PackedScene" path="res://Scenes/Levels/Shop.tscn" id="11_shop"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_g4v7s"]
 
@@ -72,6 +73,9 @@ position = Vector2(828, -173)
 
 [node name="SkillTreeTerminal" parent="Objects" unique_id=553144318 instance=ExtResource("8_terminal")]
 position = Vector2(1700, -489)
+
+[node name="Shop" parent="Objects" unique_id=1394191487 instance=ExtResource("11_shop")]
+position = Vector2(1571, 518)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1382719696]
 
