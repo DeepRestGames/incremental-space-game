@@ -14,7 +14,7 @@ func _ready() -> void:
 	# Gather dynamic positions of central structures as spawning exclusion zones
 	var exclusions: Array[Vector2] = []
 	for node_name in ["ExpeditionShip", "DepositBox", "CaptureArea"]:
-		var structure := get_node_or_null(node_name) as Node2D
+		var structure := objects.get_node_or_null(node_name) as Node2D
 		if structure:
 			exclusions.append(structure.position)
 	coordinate_generator.custom_exclusion_points = exclusions
@@ -48,7 +48,11 @@ func spawn_level_objects() -> void:
 		
 		if scene == null:
 			continue
-			
+
+		if not pos.is_finite():
+			push_warning("Skipped spawn point with non-finite position: %s" % pos)
+			continue
+
 		var instance := scene.instantiate() as Node2D
 		
 		# Translate generator top-left (0 to map_size) coords to centered level coords (-map_size/2 to +map_size/2)

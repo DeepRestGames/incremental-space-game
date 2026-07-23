@@ -151,7 +151,7 @@ func _is_position_valid(pos: Vector2, accepted_positions: Array[Vector2]) -> boo
 
 # Helper: Standard Normal (Gaussian) distribution generator using Box-Muller transform
 func _rand_normal(mean: float, stddev: float) -> float:
-	var u1 := randf() + 0.01 # Avoid log(0) which is undefined
+	var u1 := maxf(randf(), 1e-7)
 	var u2 := randf()
 	
 	var r := sqrt(-2.0 * log(u1))

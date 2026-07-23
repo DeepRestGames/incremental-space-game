@@ -412,6 +412,7 @@ radius = 30.0
 
 [node name="Player" type="CharacterBody2D" unique_id=1034631766 groups=["Player"]]
 collision_mask = 4
+motion_mode = 1
 script = ExtResource("1_kyqiw")
 
 [node name="PlayerInput" type="Node2D" parent="." unique_id=1419996874]
