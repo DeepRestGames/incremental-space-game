@@ -3,6 +3,7 @@ extends CharacterBody2D
 
 
 # Camera
+@onready var player_camera: Camera2D = $PlayerCamera
 var default_camera_zoom = Vector2.ONE
 
 # Graphics
@@ -42,6 +43,14 @@ var current_bombs: int = 0
 
 
 func _ready() -> void:	
+	
+	#Camera limits for lobby
+	if !GameManager.expedition_started:
+		player_camera.limit_left = -1100
+		player_camera.limit_right = 2800
+		player_camera.limit_top = -1200
+		player_camera.limit_bottom = 1100
+		
 	#EventBus.connect("add_fabricator_material", add_fabricator_material)
 	#EventBus.connect("remove_fabricator_material", remove_fabricator_material)
 	

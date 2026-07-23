@@ -11,8 +11,9 @@
 [ext_resource type="Texture2D" uid="uid://cudg8ldkwnlxw" path="res://Assets/Sprites/kenney_particle-pack/PNG (Transparent)/circle_05.png" id="6_outer_circle"]
 [ext_resource type="Texture2D" uid="uid://dqjra4emyvxfc" path="res://Assets/Sprites/kenney_particle-pack/PNG (Transparent)/circle_03.png" id="7_inner_circle"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_ude3g"]
-radius = 72.0
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ji083"]
+radius = 8.0
+height = 100.0
 
 [sub_resource type="Animation" id="Animation_0u84n"]
 resource_name = "DrillLeft"
@@ -423,8 +424,9 @@ script = ExtResource("3_t26db")
 script = ExtResource("2_jmcll")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=571910561]
-visible = false
-shape = SubResource("CircleShape2D_ude3g")
+position = Vector2(0, -2)
+rotation = 1.5707941
+shape = SubResource("CapsuleShape2D_ji083")
 
 [node name="PlayerSprite" type="Sprite2D" parent="." unique_id=725788908]
 texture = ExtResource("4_4wape")
@@ -436,6 +438,7 @@ frame = 5
 
 [node name="PlayerCamera" type="Camera2D" parent="." unique_id=481504141]
 process_mode = 3
+position = Vector2(0, -128)
 
 [node name="ScreenShake" type="Node2D" parent="PlayerCamera" unique_id=1061838693]
 script = ExtResource("3_jmcll")
