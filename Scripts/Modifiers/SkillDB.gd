@@ -16,8 +16,8 @@ const DATABASE: Dictionary = {
 	"drill_damage": {
 		"name": "Drill Power",
 		"description": "Increases drill damage per tick.",
-		"max_levels": 5,
-		"cost": 100,
+		"max_levels": 1,
+		"cost": 4,
 		"effects": {
 			"drill_damage_per_tick": {
 				"type": "FLAT",
@@ -65,7 +65,7 @@ const DATABASE: Dictionary = {
 		"name": "Wide Reaches",
 		"description": "Increases drill area size.",
 		"max_levels": 5,
-		"cost": 100,
+		"cost": 3,
 		"effects": {
 			"drill_area_size": {
 				"type": "FLAT",
@@ -76,8 +76,8 @@ const DATABASE: Dictionary = {
 	"oxygen_capacity": {
 		"name": "Oxygen Reserve",
 		"description": "Increases oxygen tank capacity.",
-		"max_levels": 5,
-		"cost": 100,
+		"max_levels": 1,
+		"cost": 1,
 		"effects": {
 			"oxygen_tank_capacity": {
 				"type": "ADDITIVE",

@@ -1,7 +1,7 @@
 class_name BaseValuesDB
 
 # Player Stats
-const MOVEMENT_SPEED: float = 700.0
+const MOVEMENT_SPEED: float = 600.0
 const OXYGEN_TANK_CAPACITY: float = 100.0
 const MAX_HP: int = 3
 const INVINCIBILITY_COOLDOWN: float = 0.5
@@ -23,6 +23,6 @@ const DRILL_CRIT_DAMAGE: float = 2.0
 const DRILL_AREA_SIZE: float = 30.0
 
 # Breakable / Resource Nodes Stats
-const RESOURCE_SPAWN_CHANCE_ON_DAMAGED: float = 0.9
-const MIN_RESOURCE_NUMBER: int = 4
-const MAX_RESOURCE_NUMBER: int = 10
+const RESOURCE_SPAWN_CHANCE_ON_DAMAGED: float = 0
+const MIN_RESOURCE_NUMBER: int = 1
+const MAX_RESOURCE_NUMBER: int = 2

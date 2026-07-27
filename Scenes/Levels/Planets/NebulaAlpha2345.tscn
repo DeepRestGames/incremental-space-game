@@ -5,8 +5,8 @@
 [ext_resource type="Texture2D" uid="uid://cb8pqpfy5dg34" path="res://Assets/Sprites/environment/SeamlessBackground.png" id="2_u0hgq"]
 
 [sub_resource type="Gradient" id="Gradient_u0hgq"]
-offsets = PackedFloat32Array(0, 0.49497488, 1)
-colors = PackedColorArray(0, 0, 0, 1, 0.82525074, 0.48194855, 0.6902566, 1, 1, 1, 1, 1)
+offsets = PackedFloat32Array(0, 0.19945355, 0.4398907, 0.7240437, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0.25146002, 0.19140002, 0.33, 1, 0.82525074, 0.48194855, 0.6902566, 1, 0.9, 0.79289997, 0.711, 1, 1, 1, 1, 1)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_0d1xb"]
 gradient = SubResource("Gradient_u0hgq")
@@ -34,7 +34,7 @@ repeat_times = 3
 [node name="SeamlessBackground" type="Sprite2D" parent="Parallax2D" index="0" unique_id=285107865]
 texture = ExtResource("2_u0hgq")
 
-[node name="ExpeditionShip" parent="Objects" parent_id_path=PackedInt32Array(1539187237) index="1" unique_id=1704699913]
+[node name="ExpeditionShip" parent="Objects" parent_id_path=PackedInt32Array(1539187237) index="2" unique_id=1704699913]
 custom_texture = null
 
 [node name="SpawnDistribution" parent="Objects/MapCoordinateGenerator" parent_id_path=PackedInt32Array(1573320358) index="0" unique_id=987654321]
