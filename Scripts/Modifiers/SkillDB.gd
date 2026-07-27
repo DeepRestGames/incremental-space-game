@@ -16,8 +16,8 @@ const DATABASE: Dictionary = {
 	"drill_damage": {
 		"name": "Drill Power",
 		"description": "Increases drill damage per tick.",
-		"max_levels": 5,
-		"cost": 100,
+		"max_levels": 10,
+		"cost": 1,
 		"effects": {
 			"drill_damage_per_tick": {
 				"type": "FLAT",

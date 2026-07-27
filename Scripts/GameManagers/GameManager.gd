@@ -27,6 +27,8 @@ var expedition_destroyed_nodes: int = 0
 var expedition_resources_collected: int = 0
 var _expedition_start_time_msec: int = 0
 var expedition_success: bool = true
+## Why the last expedition ended (e.g. "oxygen"). Empty when it ended normally.
+var expedition_end_reason: String = ""
 
 # Skill levels (skill_id -> current_points)
 var skill_levels: Dictionary = {
@@ -71,6 +73,7 @@ func on_expedition_started() -> void:
 	expedition_destroyed_nodes = 0
 	expedition_resources_collected = 0
 	expedition_success = true
+	expedition_end_reason = ""
 
 
 func on_expedition_ended() -> void:
@@ -78,11 +81,12 @@ func on_expedition_ended() -> void:
 	expedition_started = false
 
 
-func end_expedition(success: bool = true) -> void:
+func end_expedition(success: bool = true, reason: String = "") -> void:
 	if not expedition_started:
 		return
-		
+
 	expedition_success = success
+	expedition_end_reason = reason
 	
 	# Calculate stats
 	expedition_time_spent = (Time.get_ticks_msec() - _expedition_start_time_msec) / 1000.0
@@ -115,6 +119,12 @@ func convert_resources_to_money(conversion_rate: float = 1.0) -> int:
 
 	EventBus.emit_signal("update_HUD")
 	return earned
+
+
+## Maximum number of levels the given skill can be upgraded to.
+func get_skill_max_levels(skill_id: String) -> int:
+	var skill_info = skill_db.get(skill_id, {})
+	return int(skill_info.get("max_levels", 5))
 
 
 ## Money cost to buy one more level of the given skill.
