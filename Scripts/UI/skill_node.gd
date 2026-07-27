@@ -16,6 +16,7 @@ var width: int = 6
 
 @onready var background: TextureRect = $BackgroundEmpty
 @onready var skill_icon: TextureRect = $SkillIcon
+@onready var too_expensive_overlay: Panel = $TooExpensiveOverlay
 
 func _ready() -> void:
 	# Add to SkillNodes group to allow dependency traversal
@@ -45,6 +46,9 @@ func _ready() -> void:
 			mouse_entered.connect(_on_mouse_entered)
 		if not mouse_exited.is_connected(_on_mouse_exited):
 			mouse_exited.connect(_on_mouse_exited)
+
+		# Refresh the affordability outline whenever money changes
+		EventBus.connect("update_HUD", update_appearance)
 	
 	_apply_icon()
 	update_appearance()
@@ -144,10 +148,9 @@ func add_point() -> void:
 	if is_connector or skill_id == "":
 		return
 		
-	var skill_info = GameManager.skill_db.get(skill_id, {})
-	var max_points = skill_info.get("max_points", 5)
+	var max_points = GameManager.get_skill_max_levels(skill_id)
 	var current_points = GameManager.get_skill_points(skill_id)
-	
+
 	if current_points < max_points and can_add_point():
 		var cost := GameManager.get_skill_cost(skill_id)
 		if not GameManager.can_afford(cost):
@@ -192,13 +195,30 @@ func remove_point() -> void:
 				skill_tree.display_skill_info(skill_id)
 
 
+## True when this skill is unlocked and not maxed, but the player cannot
+## currently afford it. Drives the red "too expensive" outline.
+func _is_too_expensive() -> bool:
+	if Engine.is_editor_hint() or is_connector or skill_id == "":
+		return false
+
+	if GameManager.get_skill_points(skill_id) >= GameManager.get_skill_max_levels(skill_id):
+		return false
+	if not can_add_point():
+		return false
+
+	return not GameManager.can_afford(GameManager.get_skill_cost(skill_id))
+
+
 func update_appearance() -> void:
 	if not is_inside_tree():
 		return
 		
 	if not background or not skill_icon:
 		return
-		
+
+	if too_expensive_overlay:
+		too_expensive_overlay.visible = _is_too_expensive()
+
 	if is_connector:
 		background.visible = Engine.is_editor_hint()
 		skill_icon.visible = false
@@ -215,8 +235,7 @@ func update_appearance() -> void:
 	var max_points = 5
 	var current_points = 0
 	if not Engine.is_editor_hint():
-		var skill_info = GameManager.skill_db.get(skill_id, {})
-		max_points = skill_info.get("max_points", 5)
+		max_points = GameManager.get_skill_max_levels(skill_id)
 		current_points = GameManager.get_skill_points(skill_id)
 	
 	if current_points > 0:
@@ -252,8 +271,8 @@ func update_tooltip() -> void:
 	var s_name = skill_info.get("name", "Unknown Skill")
 	var s_desc = skill_info.get("description", "")
 	var points = GameManager.get_skill_points(skill_id)
-	var max_pts = skill_info.get("max_points", 5)
-	
+	var max_pts = GameManager.get_skill_max_levels(skill_id)
+
 	# Check lock status for display
 	var lock_status = ""
 	var ancestor = get_nearest_standard_ancestor()

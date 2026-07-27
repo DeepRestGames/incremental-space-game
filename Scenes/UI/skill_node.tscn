@@ -7,6 +7,18 @@
 [ext_resource type="Texture2D" uid="uid://hf5etkk0or5a" path="res://Assets/UI/skill tree/CircleProgressEmpty.svg" id="4_aeo0v"]
 [ext_resource type="Texture2D" uid="uid://cdphkut68yilu" path="res://Assets/UI/skill tree/CircleProgressComplete.png" id="5_bo5kg"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_too_expensive"]
+draw_center = false
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(1, 0.2, 0.2, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
 [node name="SkillNode" type="Control" unique_id=351642366]
 layout_mode = 3
 anchors_preset = 0
@@ -107,3 +119,32 @@ texture = ExtResource("2_x5hwc")
 expand_mode = 1
 stretch_mode = 5
 metadata/_edit_use_anchors_ = true
+
+[node name="TooExpensiveOverlay" type="Panel" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_too_expensive")
+metadata/_edit_use_anchors_ = true
+
+[node name="DollarSign" type="Label" parent="TooExpensiveOverlay"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -18.0
+offset_top = -6.0
+offset_right = 10.0
+offset_bottom = 26.0
+grow_horizontal = 0
+mouse_filter = 2
+theme_override_colors/font_color = Color(1, 0.2, 0.2, 1)
+theme_override_font_sizes/font_size = 22
+text = "$"
+horizontal_alignment = 1
+vertical_alignment = 1

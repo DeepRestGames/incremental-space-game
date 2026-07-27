@@ -36,6 +36,9 @@ var powerup_chips_quantity: int = BaseValuesDB.STARTING_POWERUP_CHIPS
 @export var base_oxygen_drain_rate: float = BaseValuesDB.BASE_OXYGEN_DRAIN_RATE
 var current_oxygen: float = BaseValuesDB.OXYGEN_TANK_CAPACITY
 
+# Why the player died, forwarded to the expedition summary (e.g. "oxygen")
+var death_reason: String = ""
+
 # Bombs
 var max_bombs: int = 0
 var current_bombs: int = 0
@@ -135,6 +138,7 @@ func _process(delta: float) -> void:
 		EventBus.emit_signal("update_oxygen_HUD", current_oxygen, max_oxygen)
 		
 		if current_oxygen <= 0.0 and currentHP > 0:
+			death_reason = "oxygen"
 			remove_hp(currentHP)
 
 
@@ -198,7 +202,7 @@ func remove_hp(value) -> void:
 		EventBus.emit_signal("player_death")
 		call_deferred("set_process_mode", Node.PROCESS_MODE_DISABLED)
 		if GameManager.expedition_started:
-			GameManager.end_expedition(false)
+			GameManager.end_expedition(false, death_reason)
 
 
 func clearConsumables() -> void:

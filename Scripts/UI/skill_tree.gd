@@ -100,9 +100,7 @@ func is_node_fully_upgraded(node: SkillNode) -> bool:
 	if not node or node.skill_id == "":
 		return false
 	var points = GameManager.get_skill_points(node.skill_id)
-	var skill_info = GameManager.skill_db.get(node.skill_id, {})
-	var max_points = skill_info.get("max_points", 5)
-	return points == max_points
+	return points >= GameManager.get_skill_max_levels(node.skill_id)
 
 
 func open() -> void:
@@ -137,7 +135,7 @@ func display_skill_info(skill_id: String) -> void:
 	var s_name = skill_info.get("name", "Unknown Skill")
 	var s_desc = skill_info.get("description", "")
 	var points = GameManager.get_skill_points(skill_id)
-	var max_pts = skill_info.get("max_points", 5)
+	var max_pts = GameManager.get_skill_max_levels(skill_id)
 	
 	if detail_name:
 		detail_name.text = s_name
