@@ -1,8 +1,11 @@
 [gd_scene format=3 uid="uid://gx4f5wal3t4g"]
 
-[ext_resource type="Texture2D" uid="uid://dqjra4emyvxfc" path="res://Assets/Sprites/kenney_particle-pack/PNG (Transparent)/circle_03.png" id="1_cowx8"]
 [ext_resource type="Script" uid="uid://sg7ebfs3xoyo" path="res://Scripts/UI/skill_node.gd" id="1_x5hwc"]
+[ext_resource type="Texture2D" uid="uid://blb5dh2831e4s" path="res://Assets/UI/skill tree/CircleEmpty.png" id="2_8j0vp"]
 [ext_resource type="Texture2D" uid="uid://c3ntwkug8888f" path="res://Assets/Sprites/environment/ChipTriangle.png" id="2_x5hwc"]
+[ext_resource type="Texture2D" uid="uid://cvikujjtk8n44" path="res://Assets/UI/skill tree/CircleFull.png" id="3_hditi"]
+[ext_resource type="Texture2D" uid="uid://hf5etkk0or5a" path="res://Assets/UI/skill tree/CircleProgressEmpty.svg" id="4_aeo0v"]
+[ext_resource type="Texture2D" uid="uid://cdphkut68yilu" path="res://Assets/UI/skill tree/CircleProgressComplete.png" id="5_bo5kg"]
 
 [node name="SkillNode" type="Control" unique_id=351642366]
 layout_mode = 3
@@ -13,8 +16,25 @@ offset_right = 640.0
 offset_bottom = 320.0
 script = ExtResource("1_x5hwc")
 
-[node name="Background" type="TextureRect" parent="." unique_id=1889510133]
-modulate = Color(0.4, 0.4, 0.4, 1)
+[node name="BackgroundEmpty" type="TextureRect" parent="." unique_id=1889510133]
+modulate = Color(0.050980393, 0.9490196, 0.9490196, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -0.25600433
+offset_right = 0.2559967
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("2_8j0vp")
+expand_mode = 3
+stretch_mode = 5
+metadata/_edit_use_anchors_ = true
+
+[node name="BackgroundFull" type="TextureRect" parent="." unique_id=405943773]
+visible = false
+modulate = Color(0.050980393, 0.9490196, 0.9490196, 1)
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -22,13 +42,57 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-texture = ExtResource("1_cowx8")
+texture = ExtResource("3_hditi")
+expand_mode = 3
+stretch_mode = 5
+metadata/_edit_use_anchors_ = true
+
+[node name="ProgressBarBackground" type="TextureRect" parent="." unique_id=1242222124]
+visible = false
+modulate = Color(0.050980393, 0.9490196, 0.9490196, 1)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.046875
+anchor_top = -0.046875
+anchor_right = 0.953125
+anchor_bottom = 0.953125
+offset_left = -1.5500002
+offset_top = -1.5500002
+offset_right = -1.5499992
+offset_bottom = -1.5499992
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.15, 1.149)
+mouse_filter = 2
+texture = ExtResource("4_aeo0v")
+expand_mode = 3
+stretch_mode = 5
+metadata/_edit_use_anchors_ = true
+
+[node name="ProgressBarProgress" type="TextureRect" parent="." unique_id=296402789]
+visible = false
+modulate = Color(0.050980393, 0.9490196, 0.9490196, 1)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.046875
+anchor_top = -0.046875
+anchor_right = 0.953125
+anchor_bottom = 0.953125
+offset_left = -1.5500002
+offset_top = -1.5500002
+offset_right = -1.5499992
+offset_bottom = -1.5499992
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.15, 1.149)
+mouse_filter = 2
+texture = ExtResource("5_bo5kg")
 expand_mode = 3
 stretch_mode = 5
 metadata/_edit_use_anchors_ = true
 
 [node name="SkillIcon" type="TextureRect" parent="." unique_id=394689513]
-modulate = Color(0.3, 0.3, 0.3, 1)
+modulate = Color(0.050980393, 0.9490196, 0.9490196, 1)
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 1
 anchors_preset = -1

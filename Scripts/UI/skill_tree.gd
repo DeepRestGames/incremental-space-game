@@ -28,7 +28,7 @@ func _draw() -> void:
 			var start_pos = (child.global_position - global_position) + child.size / 2.0
 			var end_pos = (child.parent_node.global_position - global_position) + child.parent_node.size / 2.0
 			
-			var line_color = Color(0.45, 0.45, 0.45, 1.0) # Brighter grey for visibility
+			var line_color = Color(0.05, 0.95, 0.95, 1.0) # Brighter grey for visibility
 			
 			if not Engine.is_editor_hint():
 				var a_std = get_nearest_standard_ancestor(child)

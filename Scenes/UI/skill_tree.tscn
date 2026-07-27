@@ -2,6 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://gx4f5wal3t4g" path="res://Scenes/UI/skill_node.tscn" id="1_c1qs3"]
 [ext_resource type="Script" uid="uid://ljldu32b7v7x" path="res://Scripts/UI/skill_tree.gd" id="2_skilltree"]
+[ext_resource type="Texture2D" uid="uid://dhpox23nkiyip" path="res://Assets/UI/skill tree/skill icons/Oxygen.png" id="3_ijdif"]
 
 [node name="SkillTree" type="Control" unique_id=1912863450]
 layout_mode = 3
@@ -13,6 +14,7 @@ grow_vertical = 2
 script = ExtResource("2_skilltree")
 
 [node name="BackgroundOverlay" type="ColorRect" parent="." unique_id=1097356005]
+z_index = -1
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -23,7 +25,7 @@ offset_right = -64.0
 offset_bottom = -48.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0, 0, 0, 0.588235)
+color = Color(0.08235294, 0.15686275, 0.2784314, 1)
 
 [node name="Core" parent="." unique_id=351642366 instance=ExtResource("1_c1qs3")]
 layout_mode = 0
@@ -32,7 +34,6 @@ offset_top = 512.0
 offset_right = 1024.0
 offset_bottom = 576.0
 skill_id = "center_node"
-is_connector = null
 
 [node name="DrillDamageNode" parent="." unique_id=588326199 node_paths=PackedStringArray("parent_node") instance=ExtResource("1_c1qs3")]
 layout_mode = 0
@@ -42,7 +43,6 @@ offset_right = 1216.0
 offset_bottom = 576.0
 skill_id = "drill_damage"
 parent_node = NodePath("../Core")
-is_connector = null
 
 [node name="DrillSpeedNode" parent="." unique_id=1042965464 node_paths=PackedStringArray("parent_node") instance=ExtResource("1_c1qs3")]
 layout_mode = 0
@@ -52,7 +52,6 @@ offset_right = 1216.0
 offset_bottom = 768.0
 skill_id = "drill_speed"
 parent_node = NodePath("../Core")
-is_connector = null
 
 [node name="DrillCritNode" parent="." unique_id=1448534516 node_paths=PackedStringArray("parent_node") instance=ExtResource("1_c1qs3")]
 layout_mode = 0
@@ -62,7 +61,6 @@ offset_right = 1344.0
 offset_bottom = 704.0
 skill_id = "drill_crit"
 parent_node = NodePath("../Core")
-is_connector = null
 
 [node name="DrillCritDamageNode" parent="." unique_id=866751269 node_paths=PackedStringArray("parent_node") instance=ExtResource("1_c1qs3")]
 layout_mode = 0
@@ -72,7 +70,6 @@ offset_right = 1024.0
 offset_bottom = 768.0
 skill_id = "drill_crit_damage"
 parent_node = NodePath("../Core")
-is_connector = null
 
 [node name="DrillAreaNode" parent="." unique_id=945436568 node_paths=PackedStringArray("parent_node") instance=ExtResource("1_c1qs3")]
 layout_mode = 0
@@ -82,17 +79,16 @@ offset_right = 832.0
 offset_bottom = 768.0
 skill_id = "drill_area"
 parent_node = NodePath("../Core")
-is_connector = null
 
 [node name="OxygenCapacityNode" parent="." unique_id=591214117 node_paths=PackedStringArray("parent_node") instance=ExtResource("1_c1qs3")]
 layout_mode = 0
 offset_left = 640.0
-offset_top = 640.0
+offset_top = 643.0
 offset_right = 704.0
-offset_bottom = 704.0
+offset_bottom = 707.0
 skill_id = "oxygen_capacity"
+icon = ExtResource("3_ijdif")
 parent_node = NodePath("../Core")
-is_connector = null
 
 [node name="NodesLandingNode" parent="." unique_id=463258676 node_paths=PackedStringArray("parent_node") instance=ExtResource("1_c1qs3")]
 layout_mode = 0
@@ -102,7 +98,6 @@ offset_right = 832.0
 offset_bottom = 576.0
 skill_id = "nodes_landing"
 parent_node = NodePath("../Core")
-is_connector = null
 
 [node name="DropChanceNode2" parent="." unique_id=1111836776 node_paths=PackedStringArray("parent_node") instance=ExtResource("1_c1qs3")]
 layout_mode = 0
@@ -114,11 +109,13 @@ skill_id = "drop_chance"
 parent_node = NodePath("ConnectorNode")
 
 [node name="ConnectorNode" parent="DropChanceNode2" unique_id=526779672 node_paths=PackedStringArray("parent_node") instance=ExtResource("1_c1qs3")]
+modulate = Color(1, 1, 1, 0.4)
 layout_mode = 0
 offset_left = 200.0
 offset_top = 0.0
 offset_right = 264.0
 offset_bottom = 64.0
+mouse_filter = 2
 parent_node = NodePath("../../Core")
 is_connector = true
 
@@ -130,7 +127,6 @@ offset_right = 896.0
 offset_bottom = 256.0
 skill_id = "destroy_drops"
 parent_node = NodePath("ConnectorNode")
-is_connector = null
 
 [node name="ConnectorNode" parent="DestroyDropsNode" unique_id=2032420070 node_paths=PackedStringArray("parent_node") instance=ExtResource("1_c1qs3")]
 modulate = Color(1, 1, 1, 0.4)
@@ -151,7 +147,6 @@ offset_right = 1024.0
 offset_bottom = 384.0
 skill_id = "move_speed"
 parent_node = NodePath("../Core")
-is_connector = null
 
 [node name="BombChargesNode" parent="." unique_id=280241640 node_paths=PackedStringArray("parent_node") instance=ExtResource("1_c1qs3")]
 layout_mode = 0
@@ -161,7 +156,6 @@ offset_right = 1344.0
 offset_bottom = 448.0
 skill_id = "bomb_charges"
 parent_node = NodePath("ConnectorNode")
-is_connector = null
 
 [node name="ConnectorNode" parent="BombChargesNode" unique_id=1623927155 node_paths=PackedStringArray("parent_node") instance=ExtResource("1_c1qs3")]
 modulate = Color(1, 1, 1, 0.4)

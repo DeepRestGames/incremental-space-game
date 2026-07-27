@@ -14,7 +14,7 @@ extends Control
 @export var is_connector: bool = false
 var width: int = 6
 
-@onready var background: TextureRect = $Background
+@onready var background: TextureRect = $BackgroundEmpty
 @onready var skill_icon: TextureRect = $SkillIcon
 
 func _ready() -> void:
