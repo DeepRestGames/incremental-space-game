@@ -4,6 +4,12 @@ class_name SkillNode
 extends Control
 
 @export var skill_id: String = ""
+## Icon shown inside this node. Leave empty to keep the default icon from the
+## SkillNode scene. Updates live in the editor.
+@export var icon: Texture2D:
+	set(value):
+		icon = value
+		_apply_icon()
 @export var parent_node: SkillNode
 @export var is_connector: bool = false
 var width: int = 6
@@ -40,8 +46,17 @@ func _ready() -> void:
 		if not mouse_exited.is_connected(_on_mouse_exited):
 			mouse_exited.connect(_on_mouse_exited)
 	
+	_apply_icon()
 	update_appearance()
 	update_tooltip()
+
+
+## Pushes the exported icon onto the child TextureRect. Safe to call before the
+## node is ready (it re-applies in _ready).
+func _apply_icon() -> void:
+	var icon_rect: TextureRect = skill_icon if skill_icon else get_node_or_null("SkillIcon")
+	if icon_rect and icon:
+		icon_rect.texture = icon
 
 
 func _on_mouse_entered() -> void:
