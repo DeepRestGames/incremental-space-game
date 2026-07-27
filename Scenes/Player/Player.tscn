@@ -9,7 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://b8k587am8xmnh" path="res://Assets/Sprites/player/PlayerSpriteSheet.png" id="4_4wape"]
 [ext_resource type="Script" uid="uid://dgjxtrxxs5cmk" path="res://Scripts/Player/MiningReticle.gd" id="5_reticle"]
 [ext_resource type="Texture2D" uid="uid://cudg8ldkwnlxw" path="res://Assets/Sprites/kenney_particle-pack/PNG (Transparent)/circle_05.png" id="6_outer_circle"]
-[ext_resource type="Texture2D" uid="uid://dqjra4emyvxfc" path="res://Assets/Sprites/kenney_particle-pack/PNG (Transparent)/circle_03.png" id="7_inner_circle"]
+[ext_resource type="Texture2D" uid="uid://lf15ab2rjk0" path="res://Assets/Sprites/kenney_particle-pack/PNG (Transparent)/magic_03.png" id="10_ji083"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ji083"]
 radius = 8.0
@@ -431,7 +431,7 @@ shape = SubResource("CapsuleShape2D_ji083")
 
 [node name="PlayerSprite" type="Sprite2D" parent="." unique_id=725788908]
 texture = ExtResource("4_4wape")
-offset = Vector2(13, -64)
+offset = Vector2(0, -64)
 flip_h = true
 hframes = 5
 vframes = 6
@@ -461,6 +461,7 @@ parameters/Idle/blend_position = Vector2(0, 0)
 parameters/Run/blend_position = Vector2(0, 0)
 
 [node name="MiningReticle" type="Area2D" parent="." unique_id=987654321]
+position = Vector2(0, -45)
 script = ExtResource("5_reticle")
 
 [node name="OuterCircle" type="Sprite2D" parent="MiningReticle" unique_id=111111111]
@@ -471,18 +472,19 @@ texture = ExtResource("6_outer_circle")
 
 [node name="GuideLine" type="Line2D" parent="MiningReticle" unique_id=222222222]
 visible = false
-points = PackedVector2Array(0, 0, 120, 0)
+points = PackedVector2Array(0, 0, 100, 0)
 width = 2.0
 default_color = Color(0, 0.8, 1, 0.5)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="MiningReticle" unique_id=123456789]
 visible = false
-position = Vector2(120, 0)
+position = Vector2(100, 0)
 shape = SubResource("CircleShape2D_reticle")
 
 [node name="DiggingCircle" type="Sprite2D" parent="MiningReticle" unique_id=444444444]
-modulate = Color(1, 0.3, 0.3, 0.8)
+modulate = Color(0.050980393, 0.9490196, 0.9490196, 1)
 z_index = 10
-position = Vector2(120, 0)
+position = Vector2(100, 0)
+rotation = 0.7853982
 scale = Vector2(0.1171875, 0.1171875)
-texture = ExtResource("7_inner_circle")
+texture = ExtResource("10_ji083")

@@ -23,7 +23,7 @@ func on_enter_lobby_ship() -> void:
 
 
 func on_enter_expedition_ship() -> void:
-	text = "Return to base"
+	text = "End expedition"
 	show()
 
 

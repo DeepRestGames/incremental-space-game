@@ -2,7 +2,7 @@ class_name MiningReticle
 extends Area2D
 
 # Config
-@export var outer_radius: float = 120.0
+@export var outer_radius: float = 100.0
 var inner_radius: float = 30.0
 
 # State

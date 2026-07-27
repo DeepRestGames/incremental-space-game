@@ -106,7 +106,7 @@ alignment = 1
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0.8, 1, 1)
 theme_override_font_sizes/font_size = 36
-text = "Return to base?"
+text = "End expedition?"
 horizontal_alignment = 1
 vertical_alignment = 1
 
