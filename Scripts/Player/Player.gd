@@ -11,7 +11,6 @@ var default_camera_zoom = Vector2.ONE
 @onready var animation_player = $AnimationPlayer
 @onready var animation_tree: AnimationTree = $AnimationTree
 
-
 # HP
 @export var maxHP: int = BaseValuesDB.MAX_HP
 var currentHP: int = BaseValuesDB.MAX_HP

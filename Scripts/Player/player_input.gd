@@ -2,13 +2,17 @@ extends Node2D
 class_name PlayerInput
 
 
-@export var drill_cooldown: float = 1
+var drill_cooldown: float = BaseValuesDB.DRILL_ATTACK_SPEED
 var current_drill_cooldown: float = 0
+var drill_attack_speed_updated:bool = false
 
 @onready var bomb_spawner: BombSpawner = $"../BombSpawner"
 
+func _ready() -> void:	
+	update_stats()
 
 func _process(delta: float) -> void:
+	
 	if current_drill_cooldown > 0:
 		current_drill_cooldown -= delta
 	
@@ -23,3 +27,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		if player and player.has_method("use_bomb"):
 			if player.use_bomb():
 				bomb_spawner.spawn_bomb(global_position)
+
+func update_stats() -> void:
+	drill_cooldown = 0.5**(SkillModifiers.get_drill_attack_speed()-1)
+	print (drill_cooldown)

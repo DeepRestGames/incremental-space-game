@@ -42,10 +42,10 @@ streams_count = 1
 [node name="BreakableBig" type="StaticBody2D" unique_id=1730300486]
 collision_layer = 4
 script = ExtResource("1_om1mr")
-totalHP = 6
+totalHP = 60
 rock_sprites = Array[Texture2D]([ExtResource("2_oq4pq"), ExtResource("3_ygini")])
-min_resource_number = 2
-max_resource_number = 4
+min_resource_number = 3
+max_resource_number = 6
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1333666049]
 position = Vector2(0, -83)

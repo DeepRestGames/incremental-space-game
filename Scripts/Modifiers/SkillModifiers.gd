@@ -87,7 +87,7 @@ static func get_drill_damage_per_tick(base_value: float = BaseValuesDB.DRILL_DAM
 	return get_modified_stat("drill_damage_per_tick", base_value)
 
 
-static func get_drill_attack_speed(base_value: float = 0.0) -> float:
+static func get_drill_attack_speed(base_value: float = BaseValuesDB.DRILL_ATTACK_SPEED) -> float:
 	return get_modified_stat("drill_attack_speed", base_value)
 
 

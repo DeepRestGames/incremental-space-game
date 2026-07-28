@@ -62,8 +62,10 @@ func take_damage(damage_value: int) -> void:
 	# drop_chance_per_tick adds to base drop chance
 	var drop_chance = SkillModifiers.get_drop_chance_per_tick(resource_spawn_chance_on_damaged)
 		
+	spawn_rock_particles(randi_range(min_rock_particles, max_rock_particles))
+		
 	for i in damage_value:
-		spawn_rock_particles(randi_range(min_rock_particles, max_rock_particles))
+		
 		
 		if randf() < drop_chance:
 			spawn_resource_drops(1)

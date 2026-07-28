@@ -17,11 +17,11 @@ const DATABASE: Dictionary = {
 		"name": "Drill Power",
 		"description": "Increases drill damage per tick.",
 		"max_levels": 1,
-		"cost": 4,
+		"cost": 6,
 		"effects": {
 			"drill_damage_per_tick": {
-				"type": "FLAT",
-				"value": 1.0
+				"type": "ADDITIVE",
+				"value": 0.5
 			}
 		}
 	},
@@ -29,11 +29,11 @@ const DATABASE: Dictionary = {
 		"name": "Drill Speed",
 		"description": "Increases drill attack speed.",
 		"max_levels": 5,
-		"cost": 100,
+		"cost": 10,
 		"effects": {
 			"drill_attack_speed": {
-				"type": "MULTIPLICATIVE",
-				"value": 0.15
+				"type": "ADDITIVE",
+				"value": .1
 			}
 		}
 	},
@@ -41,7 +41,7 @@ const DATABASE: Dictionary = {
 		"name": "Lucky Strike",
 		"description": "Increases drill crit chance.",
 		"max_levels": 5,
-		"cost": 100,
+		"cost": 16,
 		"effects": {
 			"drill_crit_chance": {
 				"type": "FLAT",
@@ -53,7 +53,7 @@ const DATABASE: Dictionary = {
 		"name": "Crushing Blows",
 		"description": "Increases drill crit damage.",
 		"max_levels": 5,
-		"cost": 100,
+		"cost": 20,
 		"effects": {
 			"drill_crit_damage": {
 				"type": "ADDITIVE",
@@ -64,12 +64,12 @@ const DATABASE: Dictionary = {
 	"drill_area": {
 		"name": "Wide Reaches",
 		"description": "Increases drill area size.",
-		"max_levels": 5,
-		"cost": 3,
+		"max_levels": 1,
+		"cost": 4,
 		"effects": {
 			"drill_area_size": {
-				"type": "FLAT",
-				"value": 10.0
+				"type": "ADDITIVE",
+				"value": 0.5
 			}
 		}
 	},
@@ -77,11 +77,11 @@ const DATABASE: Dictionary = {
 		"name": "Oxygen Reserve",
 		"description": "Increases oxygen tank capacity.",
 		"max_levels": 1,
-		"cost": 1,
+		"cost": 2,
 		"effects": {
 			"oxygen_tank_capacity": {
 				"type": "ADDITIVE",
-				"value": 0.20
+				"value": 0.15
 			}
 		}
 	},
@@ -89,7 +89,7 @@ const DATABASE: Dictionary = {
 		"name": "Node Locator",
 		"description": "Increases nodes found on landing.",
 		"max_levels": 5,
-		"cost": 100,
+		"cost": 25,
 		"effects": {
 			"nodes_on_landing": {
 				"type": "ADDITIVE",
@@ -100,8 +100,8 @@ const DATABASE: Dictionary = {
 	"drop_chance": {
 		"name": "Lucky Drilling",
 		"description": "Increases chance to generate a drop per drilling tick.",
-		"max_levels": 5,
-		"cost": 100,
+		"max_levels": 3,
+		"cost": 25,
 		"effects": {
 			"drop_chance_per_tick": {
 				"type": "FLAT",
@@ -110,22 +110,22 @@ const DATABASE: Dictionary = {
 		}
 	},
 	"destroy_drops": {
-		"name": "Asteroid Shatterer",
+		"name": "Precise Drilling",
 		"description": "Increases drops generated when a node is destroyed.",
-		"max_levels": 5,
-		"cost": 100,
+		"max_levels": 2,
+		"cost": 40,
 		"effects": {
 			"drops_on_destruction": {
-				"type": "FLAT",
-				"value": 2.0
+				"type": "ADDITIVE",
+				"value": 0.5
 			}
 		}
 	},
 	"move_speed": {
 		"name": "Thruster Tuning",
 		"description": "Increases movement speed.",
-		"max_levels": 5,
-		"cost": 100,
+		"max_levels": 1,
+		"cost": 50,
 		"effects": {
 			"movement_speed": {
 				"type": "ADDITIVE",
@@ -136,8 +136,8 @@ const DATABASE: Dictionary = {
 	"bomb_charges": {
 		"name": "Bomb Payload",
 		"description": "Increases number of bomb charges.",
-		"max_levels": 5,
-		"cost": 100,
+		"max_levels": 3,
+		"cost": 50,
 		"effects": {
 			"bomb_charges": {
 				"type": "FLAT",
