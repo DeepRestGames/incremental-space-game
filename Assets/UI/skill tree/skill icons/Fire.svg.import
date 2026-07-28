@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dhpox23nkiyip"
-path="res://.godot/imported/Oxygen.png-bfc5dd33f091d3bf1e3f78b308f82825.ctex"
+uid="uid://cafpgtt0yyhvw"
+path="res://.godot/imported/Fire.svg-85b7d8184edeea52eb457122076ea00c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/UI/skill tree/skill icons/Oxygen.png"
-dest_files=["res://.godot/imported/Oxygen.png-bfc5dd33f091d3bf1e3f78b308f82825.ctex"]
+source_file="res://Assets/UI/skill tree/skill icons/Fire.svg"
+dest_files=["res://.godot/imported/Fire.svg-85b7d8184edeea52eb457122076ea00c.ctex"]
 
 [params]
 
@@ -38,3 +38,6 @@ process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
 detect_3d/compress_to=1
+svg/scale=1.0
+editor/scale_with_editor_scale=false
+editor/convert_colors_with_editor_theme=false
