@@ -23,7 +23,7 @@ func _ready() -> void:
 	var seconds = int(total_seconds) % 60
 	time_label.text = "• Time Spent: %02d:%02d" % [minutes, seconds]
 	
-	destroyed_label.text = "• Asteroids Destroyed: %d" % GameManager.expedition_destroyed_nodes
+	destroyed_label.text = "• Nodes Mined: %d" % GameManager.expedition_destroyed_nodes
 	
 	_set_resource_text(resource_triangle_label, GameManager.expedition_resources_collected)
 	_set_resource_text(resource_circle_label, 0)
