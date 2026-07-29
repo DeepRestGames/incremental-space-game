@@ -9,7 +9,7 @@
 offsets = PackedFloat32Array(0, 0.18306011, 0.49497488, 0.7021858, 1)
 colors = PackedColorArray(0, 0, 0, 1, 0.17725334, 0.15640001, 0.23, 1, 0.42269343, 0.5126674, 0.6226976, 1, 0.5913, 0.70457166, 0.73, 1, 1, 1, 1, 1)
 
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_lbst8"]
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_wjtlv"]
 gradient = SubResource("Gradient_lbst8")
 
 [sub_resource type="Environment" id="Environment_lbst8"]
@@ -23,7 +23,7 @@ glow_strength = 1.66
 adjustment_enabled = true
 adjustment_brightness = 1.15
 adjustment_contrast = 1.08
-adjustment_color_correction = SubResource("GradientTexture1D_lbst8")
+adjustment_color_correction = SubResource("GradientTexture1D_wjtlv")
 
 [node name="Moon1234" unique_id=119943232 instance=ExtResource("1_base")]
 

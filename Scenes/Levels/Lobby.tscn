@@ -5,12 +5,87 @@
 [ext_resource type="Texture2D" uid="uid://dpmhsmpyxkrwo" path="res://Assets/Sprites/environment/lobby/Hangar_Background.png" id="2_tc811"]
 [ext_resource type="PackedScene" uid="uid://bcvxlujlsdn7w" path="res://Scenes/Player/Player.tscn" id="2_wpc3r"]
 [ext_resource type="PackedScene" uid="uid://ccmhp41okc8g0" path="res://Scenes/HUB/ExpeditionShip/ExpeditionShip.tscn" id="4_ship"]
+[ext_resource type="Texture2D" uid="uid://duq1gioflog65" path="res://Assets/Sprites/environment/lobby/BlueCircle.png" id="8_8haom"]
 [ext_resource type="PackedScene" uid="uid://bngmoa84fkagd" path="res://Scenes/Levels/SkillTreeTerminal.tscn" id="8_terminal"]
+[ext_resource type="Texture2D" uid="uid://c76txulc8ihss" path="res://Assets/Sprites/environment/lobby/BluePlus.png" id="9_n3su3"]
 [ext_resource type="PackedScene" uid="uid://b76okat8058e5" path="res://Scenes/UI/LevelSelectUI.tscn" id="9_ui"]
 [ext_resource type="PackedScene" uid="uid://w7h5832edy6i" path="res://Scenes/UI/skill_tree.tscn" id="10_skill_tree"]
 [ext_resource type="PackedScene" uid="uid://bapthsmhysjpt" path="res://Scenes/Levels/Shop.tscn" id="11_shop"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_g4v7s"]
+
+[sub_resource type="Animation" id="Animation_5b4ee"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../BlueCircle:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_dl8id"]
+resource_name = "pulse"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.35, 0.45, 0.5, 0.85, 0.95),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0.87058824), Color(1, 1, 1, 0.49803922), Color(1, 1, 1, 1), Color(1, 1, 1, 0.87058824), Color(1, 1, 1, 0.49803922)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../BlueCircle:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 6.2831855]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_flou3"]
+_data = {
+&"RESET": SubResource("Animation_5b4ee"),
+&"pulse": SubResource("Animation_dl8id")
+}
+
+[sub_resource type="Environment" id="Environment_8haom"]
+background_mode = 3
+glow_enabled = true
+glow_levels/2 = 2.5
+glow_levels/3 = 2.0
+glow_levels/4 = 1.0
+glow_levels/5 = 0.5
+glow_strength = 1.66
+adjustment_enabled = true
+adjustment_brightness = 1.15
+adjustment_contrast = 1.08
 
 [node name="Lobby" type="Node2D" unique_id=1759954739]
 script = ExtResource("1_pjh5x")
@@ -35,7 +110,7 @@ rotation = -3.926985
 shape = SubResource("WorldBoundaryShape2D_g4v7s")
 
 [node name="CollisionShape2D5" type="CollisionShape2D" parent="WallCollisions" unique_id=665350743]
-position = Vector2(-1733, 565)
+position = Vector2(-1694, 565)
 rotation = -4.7123823
 shape = SubResource("WorldBoundaryShape2D_g4v7s")
 
@@ -45,7 +120,7 @@ rotation = -2.3561912
 shape = SubResource("WorldBoundaryShape2D_g4v7s")
 
 [node name="CollisionShape2D6" type="CollisionShape2D" parent="WallCollisions" unique_id=977217783]
-position = Vector2(1740, 612)
+position = Vector2(1700, 612)
 rotation = -1.5707941
 shape = SubResource("WorldBoundaryShape2D_g4v7s")
 
@@ -66,16 +141,34 @@ texture = ExtResource("2_tc811")
 y_sort_enabled = true
 
 [node name="Player" parent="Objects" unique_id=111262784 instance=ExtResource("2_wpc3r")]
-position = Vector2(832, 256)
+position = Vector2(835, 8)
 
 [node name="ExpeditionShip" parent="Objects" unique_id=1704699913 instance=ExtResource("4_ship")]
-position = Vector2(828, -173)
+position = Vector2(259, -129)
 
 [node name="SkillTreeTerminal" parent="Objects" unique_id=553144318 instance=ExtResource("8_terminal")]
-position = Vector2(2060, -200)
+position = Vector2(832, -562)
 
 [node name="Shop" parent="Objects" unique_id=1394191487 instance=ExtResource("11_shop")]
-position = Vector2(1571, 518)
+position = Vector2(1397, 18)
+
+[node name="MonitorEffect" type="Node2D" parent="Objects" unique_id=1870331636]
+modulate = Color(1, 1, 1, 0.78431374)
+position = Vector2(831.99994, -606)
+scale = Vector2(0.83, 0.688)
+
+[node name="BlueCircle" type="Sprite2D" parent="Objects/MonitorEffect" unique_id=1019138947]
+scale = Vector2(0.465, 0.465)
+texture = ExtResource("8_8haom")
+
+[node name="BluePlus" type="Sprite2D" parent="Objects/MonitorEffect" unique_id=538782770]
+texture = ExtResource("9_n3su3")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Objects/MonitorEffect" unique_id=1576689228]
+root_node = NodePath("../BluePlus")
+libraries/ = SubResource("AnimationLibrary_flou3")
+autoplay = &"pulse"
+speed_scale = 0.4
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1382719696]
 
@@ -84,3 +177,6 @@ visible = false
 
 [node name="SkillTree" parent="CanvasLayer" unique_id=1912863450 instance=ExtResource("10_skill_tree")]
 visible = false
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=306583510]
+environment = SubResource("Environment_8haom")

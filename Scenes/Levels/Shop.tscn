@@ -3,14 +3,16 @@
 [ext_resource type="Script" uid="uid://tthwx78tpsd4" path="res://Scripts/Environment/Shop.gd" id="1_script"]
 [ext_resource type="Texture2D" uid="uid://ddounynn77s5p" path="res://Assets/PLACEHOLDERS/shop.svg" id="2_shop"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_shop"]
-radius = 91.214035
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_mttpf"]
+radius = 131.0
+height = 464.0
 
 [node name="Shop" type="Area2D" unique_id=1206467428]
 script = ExtResource("1_script")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1356233920]
-shape = SubResource("CircleShape2D_shop")
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_mttpf")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1495077441]
 modulate = Color(0.4, 1, 0.6, 1)

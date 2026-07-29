@@ -3,20 +3,20 @@
 [ext_resource type="Script" uid="uid://t7s5bltqvlab" path="res://Scripts/Environment/SkillTreeTerminal.gd" id="1_script"]
 [ext_resource type="Texture2D" uid="uid://c7dbrp1xg2oik" path="res://Assets/PLACEHOLDERS/SkillTerminal.svg" id="2_ji4bi"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_terminal"]
-radius = 91.214035
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4mlir"]
+size = Vector2(992, 140)
 
 [node name="SkillTreeTerminal" type="Area2D" unique_id=728734653]
 script = ExtResource("1_script")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=125842651]
-shape = SubResource("CircleShape2D_terminal")
+shape = SubResource("RectangleShape2D_4mlir")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1927775778]
+visible = false
 modulate = Color(1, 0.65, 0, 1)
 scale = Vector2(1.0890486, 0.8855088)
 texture = ExtResource("2_ji4bi")
-
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]
