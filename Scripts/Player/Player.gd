@@ -101,24 +101,27 @@ func _process(delta: float) -> void:
 	update_animation_parameters()
 
 	if GameManager.expedition_started:
-		var skill_multiplier := 1.0
-		if GameManager.has_method("get_oxygen_skill_multiplier"):
-			skill_multiplier = GameManager.get_oxygen_skill_multiplier()
-			
-		var level_modifier := 1.0
-		var current_scene = get_tree().current_scene
-		if current_scene:
-			var modifiers = current_scene.get_node_or_null("Modifiers")
-			if modifiers and modifiers.has_method("get_oxygen_drain_multiplier"):
-				level_modifier = modifiers.get_oxygen_drain_multiplier()
-			elif "oxygen_drain_modifier" in current_scene:
-				level_modifier = current_scene.oxygen_drain_modifier
-			
-		var actual_drain = base_oxygen_drain_rate * skill_multiplier * level_modifier
-		current_oxygen = max(current_oxygen - actual_drain * delta, 0.0)
-		
+		# During the opening grace period the tank stays full: the bar is still
+		# refreshed so it reads 100% instead of whatever the scene was authored with.
+		if GameManager.is_oxygen_draining():
+			var skill_multiplier := 1.0
+			if GameManager.has_method("get_oxygen_skill_multiplier"):
+				skill_multiplier = GameManager.get_oxygen_skill_multiplier()
+
+			var level_modifier := 1.0
+			var current_scene = get_tree().current_scene
+			if current_scene:
+				var modifiers = current_scene.get_node_or_null("Modifiers")
+				if modifiers and modifiers.has_method("get_oxygen_drain_multiplier"):
+					level_modifier = modifiers.get_oxygen_drain_multiplier()
+				elif "oxygen_drain_modifier" in current_scene:
+					level_modifier = current_scene.oxygen_drain_modifier
+
+			var actual_drain = base_oxygen_drain_rate * skill_multiplier * level_modifier
+			current_oxygen = max(current_oxygen - actual_drain * delta, 0.0)
+
 		EventBus.emit_signal("update_oxygen_HUD", current_oxygen, max_oxygen)
-		
+
 		if current_oxygen <= 0.0 and currentHP > 0:
 			death_reason = "oxygen"
 			remove_hp(currentHP)

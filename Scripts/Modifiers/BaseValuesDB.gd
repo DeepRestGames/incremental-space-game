@@ -8,6 +8,11 @@ const INVINCIBILITY_COOLDOWN: float = 0.5
 const BASE_OXYGEN_DRAIN_RATE: float = 1 # drain rate in O2units / seconds
 const BOMB_CHARGES: int = 0
 
+# Seconds of grace at the start of an expedition, before oxygen starts draining.
+# The player is free to move during it; it exists to let them get their bearings.
+# Sized to outlast the intro animation (~3.0s) with a beat of clean screen after it.
+const EXPEDITION_GRACE_PERIOD: float = 3.5
+
 # Player Movement
 const MINING_SPEED_MULTIPLIER: float = 0.0 # player movement speed while mining; 0 = they can't move while mining
 

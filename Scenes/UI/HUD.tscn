@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://cobs1d8020r3b" path="res://Assets/UI/HUD_mockup_clean_1.png" id="8_pydgx"]
 [ext_resource type="Script" uid="uid://d02rqtjowyuap" path="res://Scripts/UI/HUD/hud_mockup_animation.gd" id="9_pydgx"]
 [ext_resource type="Script" path="res://Scripts/UI/HUD/MoneyCounter.gd" id="10_money"]
+[ext_resource type="PackedScene" path="res://Scenes/UI/ExpeditionIntro.tscn" id="13_intro"]
 [ext_resource type="Texture2D" uid="uid://dcisudmqov3na" path="res://Assets/PLACEHOLDERS/rock_currency.svg" id="11_rock"]
 [ext_resource type="Texture2D" uid="uid://4tr34ksq0npv" path="res://Assets/PLACEHOLDERS/money_currency.svg" id="12_money"]
 
@@ -242,6 +243,8 @@ grow_vertical = 2
 texture = ExtResource("8_pydgx")
 script = ExtResource("9_pydgx")
 hud_mockup = NodePath(".")
+
+[node name="ExpeditionIntro" parent="." instance=ExtResource("13_intro")]
 
 [node name="PauseMenu" parent="." unique_id=105724579 instance=ExtResource("3_pausemenu")]
 

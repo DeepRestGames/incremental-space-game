@@ -2,7 +2,9 @@ extends Node
 
 # Scenes
 var lobby_scene = preload("res://Scenes/Levels/Lobby.tscn")
-var selected_level_path: String = "res://Scenes/Levels/Planets/Moon1234.tscn"
+## Which level the next expedition runs on. Only the id is stored: scene path and
+## display name are always looked up from LevelDB, so they cannot drift apart.
+var selected_level_id: String = LevelDB.DEFAULT_LEVEL_ID
 
 # Player
 var player: Player
@@ -16,6 +18,9 @@ var current_money: int = 0
 
 # Expedition
 var expedition_started: bool = false
+## Seconds left before oxygen starts draining. Counted down by _process while an
+## expedition is running; the player can already move and mine during it.
+var expedition_grace_remaining: float = 0.0
 var previous_scene_path: String = ""
 var skill_tree_open: bool = false
 var level_select_open: bool = false
@@ -92,9 +97,37 @@ func is_inventory_full() -> bool:
 	return get_free_inventory_space() <= 0
 
 
+func _process(delta: float) -> void:
+	if expedition_started and expedition_grace_remaining > 0.0:
+		expedition_grace_remaining = max(expedition_grace_remaining - delta, 0.0)
+
+
+## Records which level the next expedition will run on.
+func select_level(level_id: String) -> void:
+	if not LevelDB.has_level(level_id):
+		push_error("GameManager: cannot select unknown level '%s'." % level_id)
+		return
+	selected_level_id = level_id
+
+
+func get_selected_level_path() -> String:
+	return LevelDB.get_scene_path(selected_level_id)
+
+
+func get_selected_level_name() -> String:
+	return LevelDB.get_level_name(selected_level_id)
+
+
+## False during the opening grace period, so the player gets a moment to look
+## around before the countdown starts.
+func is_oxygen_draining() -> bool:
+	return expedition_started and expedition_grace_remaining <= 0.0
+
+
 func on_expedition_started() -> void:
-	get_tree().change_scene_to_file(selected_level_path)
+	get_tree().change_scene_to_file(get_selected_level_path())
 	expedition_started = true
+	expedition_grace_remaining = BaseValuesDB.EXPEDITION_GRACE_PERIOD
 	_expedition_start_time_msec = Time.get_ticks_msec()
 	expedition_destroyed_nodes = 0
 	expedition_resources_collected = 0
@@ -108,6 +141,7 @@ func end_expedition(success: bool = true, reason: String = "") -> void:
 
 	expedition_success = success
 	expedition_end_reason = reason
+	expedition_grace_remaining = 0.0
 	
 	# Calculate stats
 	expedition_time_spent = (Time.get_ticks_msec() - _expedition_start_time_msec) / 1000.0

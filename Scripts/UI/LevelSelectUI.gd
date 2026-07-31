@@ -4,21 +4,11 @@ extends Control
 ## Displays available level variants, their resource weight percentages, and spawning conditions.
 
 signal level_selected(level_path: String)
-var base_planet_path: String = "res://Scenes/Levels/Planets/"
 
-# Level database representing all available sectors/worlds
-var levels: Array[Dictionary] = [
-	{
-		"name": "MOON 1234",
-		"scene_path": base_planet_path + "Moon1234.tscn",
-		"planet_color": Color(0.65, 0.68, 0.72)
-	},
-	{
-		"name": "NEBULA ALPHA",
-		"scene_path": base_planet_path + "NebulaAlpha2345.tscn", 
-		"planet_color": Color(0.9, 0.25, 0.6)
-	}
-]
+# Level data itself lives in LevelDB. Kept here is only what has to be computed
+# by instancing each level scene: level id -> {"resources": [...], "conditions": [...]}
+var level_ids: Array = LevelDB.get_ids()
+var dynamic_data: Dictionary = {}
 
 var current_index: int = 0
 
@@ -38,13 +28,15 @@ func _ready() -> void:
 
 
 func _load_dynamic_level_data() -> void:
-	for lvl in levels:
-		var scene_path: String = lvl["scene_path"]
+	for level_id in level_ids:
+		dynamic_data[level_id] = {"resources": [], "conditions": []}
+
+		var scene_path: String = LevelDB.get_scene_path(level_id)
 		var scene_pack = load(scene_path) as PackedScene
 		if not scene_pack:
 			push_error("LevelSelectUI: Failed to load scene path " + scene_path)
 			continue
-			
+
 		var temp_instance = scene_pack.instantiate()
 		var gen = temp_instance.get_node_or_null("MapCoordinateGenerator")
 		if gen:
@@ -67,7 +59,7 @@ func _load_dynamic_level_data() -> void:
 			
 			# Sort resources to have a consistent UI display
 			items_pct.sort_custom(func(a, b): return a["name"] < b["name"])
-			lvl["resources"] = items_pct
+			dynamic_data[level_id]["resources"] = items_pct
 			
 			# Build dynamic conditions from Modifiers node or fallback to MapCoordinateGenerator
 			var conditions_list: Array[Dictionary] = []
@@ -89,11 +81,8 @@ func _load_dynamic_level_data() -> void:
 				conditions_list.append({"label": "Safe Area", "val": "%d px" % gen.center_safe_radius})
 				conditions_list.append({"label": "Seeds / Spread", "val": "%d / %d px" % [gen.num_seeds, gen.cluster_spread]})
 				
-			lvl["conditions"] = conditions_list
-		else:
-			lvl["resources"] = []
-			lvl["conditions"] = []
-			
+			dynamic_data[level_id]["conditions"] = conditions_list
+
 		temp_instance.free()
 
 
@@ -118,19 +107,21 @@ func _unhandled_input(event: InputEvent) -> void:
 
 
 func update_ui() -> void:
-	if levels.is_empty():
+	if level_ids.is_empty():
 		return
-		
-	var lvl := levels[current_index]
-	level_name_label.text = lvl["name"]
-	
+
+	var level_id: String = level_ids[current_index]
+	var extra: Dictionary = dynamic_data.get(level_id, {"resources": [], "conditions": []})
+
+	level_name_label.text = LevelDB.get_level_name(level_id)
+
 	# Modulate the circular visual representing the moon/planet
-	planet_visual.self_modulate = lvl["planet_color"]
-	
+	planet_visual.self_modulate = LevelDB.get_planet_color(level_id)
+
 	# Format Resources Text
 	var res_text := "RESOURCES\n"
 	res_text += "-------------------\n"
-	for res in lvl["resources"]:
+	for res in extra["resources"]:
 		var icon := "⬡" if res["name"] == "Small Breakable" else "⬢"
 		res_text += "%s %s: %d%%\n" % [icon, res["name"], res["pct"]]
 	resources_label.text = res_text
@@ -138,7 +129,7 @@ func update_ui() -> void:
 	# Format Conditions Text
 	var cond_text := "CONDITIONS\n"
 	cond_text += "-------------------\n"
-	for cond in lvl["conditions"]:
+	for cond in extra["conditions"]:
 		if cond["label"] == "":
 			cond_text += "• %s\n" % cond["val"]
 		else:
@@ -147,19 +138,19 @@ func update_ui() -> void:
 
 
 func _on_left_button_pressed() -> void:
-	current_index = (current_index - 1 + levels.size()) % levels.size()
+	current_index = (current_index - 1 + level_ids.size()) % level_ids.size()
 	update_ui()
 
 
 func _on_right_button_pressed() -> void:
-	current_index = (current_index + 1) % levels.size()
+	current_index = (current_index + 1) % level_ids.size()
 	update_ui()
 
 
 func _on_select_button_pressed() -> void:
-	var selected_path: String = levels[current_index]["scene_path"]
-	GameManager.selected_level_path = selected_path
-	emit_signal("level_selected", selected_path)
+	var level_id: String = level_ids[current_index]
+	GameManager.select_level(level_id)
+	emit_signal("level_selected", LevelDB.get_scene_path(level_id))
 	close()
 	EventBus.emit_signal("expedition_started")
 

@@ -1,0 +1,75 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://Scripts/UI/HUD/ExpeditionIntro.gd" id="1_intro"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_titlebox"]
+content_margin_left = 40.0
+content_margin_top = 16.0
+content_margin_right = 40.0
+content_margin_bottom = 16.0
+bg_color = Color(0.12, 0.12, 0.16, 0.85)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0.75, 1, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[node name="ExpeditionIntro" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_intro")
+
+[node name="Dim" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 0.45)
+
+[node name="Center" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="TitlePanel" type="PanelContainer" parent="Center"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_titlebox")
+
+[node name="LevelName" type="Label" parent="Center/TitlePanel"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_font_sizes/font_size = 44
+text = "MOON 1234"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Ghost" type="Label" parent="Center/TitlePanel/LevelName"]
+modulate = Color(0, 1, 1, 0.5)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_font_sizes/font_size = 44
+text = "MOON 1234"
+horizontal_alignment = 1
+vertical_alignment = 1
