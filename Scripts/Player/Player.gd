@@ -4,11 +4,9 @@ extends CharacterBody2D
 
 # Camera
 @onready var player_camera: Camera2D = $PlayerCamera
-var default_camera_zoom = Vector2.ONE
 
 # Graphics
 @onready var player_sprite = $PlayerSprite
-@onready var animation_player = $AnimationPlayer
 @onready var animation_tree: AnimationTree = $AnimationTree
 
 # HP
@@ -20,9 +18,7 @@ var currentInvincibilityCooldown: float
 # Movement
 @export var movement_speed: float = BaseValuesDB.MOVEMENT_SPEED
 @export var mining_speed_multiplier: float = BaseValuesDB.MINING_SPEED_MULTIPLIER
-var looking_direction = Vector2.ZERO
 var movement_direction = Vector2.ZERO
-const ROTATION_SPEED: float = BaseValuesDB.ROTATION_SPEED
 var inside_interactable_area: bool = false
 var mining_reticle: Area2D
 
@@ -44,29 +40,20 @@ var current_bombs: int = 0
 
 
 
-func _ready() -> void:	
-	
+func _ready() -> void:
 	#Camera limits for lobby
 	if !GameManager.expedition_started:
 		player_camera.limit_left = -1100
 		player_camera.limit_right = 2800
 		player_camera.limit_top = -1200
 		player_camera.limit_bottom = 1100
-		
-	#EventBus.connect("add_fabricator_material", add_fabricator_material)
-	#EventBus.connect("remove_fabricator_material", remove_fabricator_material)
-	
-	send_HUD_update_data()
-	
-	#EventBus.connect("player_respawned", on_player_respawned)
-	#EventBus.connect("show_ship_menu", on_player_returned_to_ship)
-	
-	#EventBus.connect("hide_player", hide_player)
-	
+
 	# Input signals
-	#EventBus.connect("looking_direction_changed", update_looking_direction)
 	EventBus.connect("player_movement", update_movement_direction)
-	
+
+	# Refresh cached stats whenever a skill is bought, refunded or reset
+	EventBus.connect("stats_changed", update_stats)
+
 	# Reference existing MiningReticle child node
 	mining_reticle = $MiningReticle
 	
@@ -102,10 +89,6 @@ func use_bomb() -> bool:
 		EventBus.emit_signal("update_bomb_HUD", current_bombs, max_bombs)
 		return true
 	return false
-
-
-func update_looking_direction(new_looking_direction: Vector2) -> void:
-	looking_direction = new_looking_direction
 
 
 func update_movement_direction(new_movement_direction: Vector2) -> void:
@@ -173,20 +156,6 @@ func take_damage(value) -> void:
 	blinking_player_tween.tween_property(player_sprite, "visible", true, .001)
 
 
-func add_fabricator_material(value) -> void:
-	fabricator_material_quantity += value
-	EventBus.emit_signal("update_current_fabricator_material_count", fabricator_material_quantity)
-
-
-func remove_fabricator_material(value) -> void:
-	if value > fabricator_material_quantity:
-		printerr("Not enough fabricator material!")
-		return
-	
-	fabricator_material_quantity -= value
-	EventBus.emit_signal("update_current_fabricator_material_count", fabricator_material_quantity)
-
-
 func add_hp(value) -> void:
 	currentHP += value
 	EventBus.emit_signal("update_current_hp_HUD", currentHP)
@@ -207,20 +176,6 @@ func remove_hp(value) -> void:
 func clearConsumables() -> void:
 	fabricator_material_quantity = 0
 	powerup_chips_quantity = 0
-	send_HUD_update_data()
-
-
-func on_player_respawned() -> void:
-	full_hp()
-	call_deferred("set_process_mode", Node.PROCESS_MODE_INHERIT)
-
-
-func on_player_returned_to_ship(value) -> void:
-	if value == true:
-		full_hp()
-		send_HUD_update_data()
-		
-		EventBus.emit_signal("clear_map_from_enemies")
 
 
 func full_hp() -> void:
@@ -244,21 +199,6 @@ func _on_hitbox_body_entered(body: Node2D) -> void:
 		body.queue_free()
 		take_damage(1)
 
-
-func send_HUD_update_data() -> void:
-	pass
-	#EventBus.emit_signal("update_current_fabricator_material_count", fabricator_material_quantity)
-	#EventBus.emit_signal("update_current_powerup_chips_count", powerup_chips_quantity)
-	#EventBus.emit_signal("update_current_hp_HUD", currentHP)
-
-
-func hide_player(value) -> void:
-	if value:
-		hide()
-		EventBus.emit_signal("set_prevent_inputs", true)
-	else:
-		show()
-		EventBus.emit_signal("set_prevent_inputs", false)
 
 func update_animation_parameters():
 	if (velocity == Vector2.ZERO):

@@ -3,51 +3,20 @@ extends Area2D
 
 @onready var animation_player_glow = $AnimationPlayerGlow
 @onready var animation_player_shine_spikes = $AnimationPlayerShineSpikes
-@onready var sprite = $Sprite2D
-
-@export_group("Animation")
-@export var hover_animation_movement_vector: Vector2 = Vector2(0, 5)
-@export var hover_animation_cycle_duration: float = .6
 
 @export_group("Pickup Info")
-@export var pickup_name: String
 @export var pickup_amount: int = 1
 
 @export_group("Player attraction")
 var player_in_attraction_area: bool = false
+var player_is_touching: bool = false
 @export var movement_speed: float = 200
 
 
 func _ready() -> void:
-	#var tween = create_tween().set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_SINE).set_loops()
-	#tween.tween_property(sprite, "offset", -hover_animation_movement_vector, hover_animation_cycle_duration)
-	#tween.chain().tween_property(sprite, "offset", hover_animation_movement_vector, hover_animation_cycle_duration)
 	#Initialize glowing animation
 	play_randomized_animation (animation_player_glow)
 	play_randomized_animation (animation_player_shine_spikes)
-
-
-#func _process(delta: float) -> void:
-	#if damping_time <= 0.0:
-		#return
-#
-	#elapsed_time += delta
-	#
-	#var t : float = clamp(elapsed_time / damping_time, 0.0, 1.0)
-	#var damping : float = 1.0 - t
-	#
-	## Apply movement
-	#velocity = direction * acceleration * damping
-	#rotation_velocity = rotation_acceleration * damping
-	#
-	#position += velocity * delta
-	#rotation += rotation_velocity * delta
-	#
-	## Stop completely when done
-	#if t >= 1.0:
-		#acceleration = 0.0
-		#rotation_acceleration = 0.0
-		#damping_time = 0.0
 
 
 func play_randomized_animation (aniamtion: AnimationPlayer):
@@ -60,16 +29,36 @@ func play_randomized_animation (aniamtion: AnimationPlayer):
 
 func _on_body_entered(body: Node2D) -> void:
 	if body.is_in_group("Player"):
+		player_is_touching = true
+		try_collect()
 
-		print("Player picked up " + pickup_name)
 
-		EventBus.emit_signal("add_resource", pickup_amount)
+func _on_body_exited(body: Node2D) -> void:
+	if body.is_in_group("Player"):
+		player_is_touching = false
+
+
+## Hands over as much as fits in the player's inventory. Whatever does not fit
+## stays in this pickup, so it can be collected later once space frees up.
+func try_collect() -> void:
+	var accepted = GameManager.add_resource(pickup_amount)
+	if accepted <= 0:
+		return
+
+	pickup_amount -= accepted
+	if pickup_amount <= 0:
 		queue_free()
 
 
 func _physics_process(delta: float) -> void:
-	if player_in_attraction_area:
-		global_position = global_position.move_toward(GameManager.player.global_position, delta * movement_speed)
+	if player_is_touching:
+		# body_entered does not fire again for a body that is already overlapping,
+		# so the leftover of a partial pickup is retried here instead: it gets
+		# collected as soon as the player frees up inventory space.
+		try_collect()
+	elif player_in_attraction_area and not GameManager.is_inventory_full():
+		if GameManager.player:
+			global_position = global_position.move_toward(GameManager.player.global_position, delta * movement_speed)
 
 
 func _on_move_to_player_area_2d_body_entered(body: Node2D) -> void:

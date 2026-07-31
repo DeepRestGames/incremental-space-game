@@ -12,6 +12,7 @@ func _ready() -> void:
 
 func update_resource_counter_value() -> void:
 	if GameManager.expedition_started:
-		value.text = str(GameManager.current_player_resource)
+		value.text = "%d/%d" % [GameManager.current_player_resource, GameManager.get_max_player_resource()]
 	else:
+		# The deposit box is not capped, so no maximum is shown outside expeditions.
 		value.text = str(GameManager.current_deposit_box_resource)

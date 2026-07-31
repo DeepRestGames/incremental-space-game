@@ -133,6 +133,18 @@ const DATABASE: Dictionary = {
 			}
 		}
 	},
+	"inventory_capacity": {
+		"name": "Bigger Backpack",
+		"description": "Increases how many resources you can carry.",
+		"max_levels": 5,
+		"cost": 10,
+		"effects": {
+			"inventory_capacity": {
+				"type": "FLAT",
+				"value": 5.0
+			}
+		}
+	},
 	"bomb_charges": {
 		"name": "Bomb Payload",
 		"description": "Increases number of bomb charges.",

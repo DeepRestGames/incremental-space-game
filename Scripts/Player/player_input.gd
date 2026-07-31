@@ -4,11 +4,11 @@ class_name PlayerInput
 
 var drill_cooldown: float = BaseValuesDB.DRILL_ATTACK_SPEED
 var current_drill_cooldown: float = 0
-var drill_attack_speed_updated:bool = false
 
 @onready var bomb_spawner: BombSpawner = $"../BombSpawner"
 
-func _ready() -> void:	
+func _ready() -> void:
+	EventBus.connect("stats_changed", update_stats)
 	update_stats()
 
 func _process(delta: float) -> void:
@@ -30,4 +30,3 @@ func _unhandled_input(event: InputEvent) -> void:
 
 func update_stats() -> void:
 	drill_cooldown = 0.5**(SkillModifiers.get_drill_attack_speed()-1)
-	print (drill_cooldown)

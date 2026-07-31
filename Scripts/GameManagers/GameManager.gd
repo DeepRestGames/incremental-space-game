@@ -31,11 +31,15 @@ var expedition_success: bool = true
 var expedition_end_reason: String = ""
 
 # Skill levels (skill_id -> current_points)
-var skill_levels: Dictionary = {
+# Private on purpose: every write has to go through set_skill_points(),
+# reset_skills() or load_skill_levels(), which all funnel into
+# _on_skills_changed() so the stat cache can never go stale.
+# Use get_skill_points() to read and get_skill_levels_snapshot() to save.
+var _skill_levels: Dictionary = {
 	"center_node": 1
 }
 
-# Base skills database (imported from SkillDB class)
+# Base skills database (imported from SkillDB class). Read-only lookup table.
 var skill_db: Dictionary = SkillDB.DATABASE
 
 
@@ -47,25 +51,47 @@ func _ready() -> void:
 	# TODO Add logic to handle the menus navigation (e.g. in the start menu the node Player doesn't exist, but the GameManager singleton does
 	
 	EventBus.connect("on_player_ready", on_player_ready)
-	EventBus.connect("add_resource", add_resource)
-	
+
 	EventBus.connect("expedition_started", on_expedition_started)
-	EventBus.connect("expedition_ended", on_expedition_ended)
+
+	# Build the stat cache before any scene node can read a stat.
+	_on_skills_changed()
 
 
 func DEBUG_add_player_resources() -> void:
-	current_player_resource = 200
+	add_resource(200)
 
 
 func on_player_ready(player_reference: Player) -> void:
 	player = player_reference
-func add_resource(resource_amount: int) -> void:
-	current_player_resource += resource_amount
-	
-	print("Added resource")
-	print("Total resources: " + str(current_player_resource))
-	
+
+
+## Adds up to `amount` resources to the player's inventory, respecting the
+## carrying capacity. Returns how many were actually accepted, so a pickup can
+## keep the leftover instead of destroying it. Returns 0 when the player is full.
+func add_resource(amount: int) -> int:
+	var accepted: int = clampi(amount, 0, get_free_inventory_space())
+	if accepted <= 0:
+		return 0
+
+	current_player_resource += accepted
 	EventBus.emit_signal("update_HUD")
+	return accepted
+
+
+## How many resources the player can carry, skill upgrades included.
+func get_max_player_resource() -> int:
+	return SkillModifiers.get_inventory_capacity()
+
+
+func get_free_inventory_space() -> int:
+	return maxi(get_max_player_resource() - current_player_resource, 0)
+
+
+func is_inventory_full() -> bool:
+	return get_free_inventory_space() <= 0
+
+
 func on_expedition_started() -> void:
 	get_tree().change_scene_to_file(selected_level_path)
 	expedition_started = true
@@ -74,11 +100,6 @@ func on_expedition_started() -> void:
 	expedition_resources_collected = 0
 	expedition_success = true
 	expedition_end_reason = ""
-
-
-func on_expedition_ended() -> void:
-	get_tree().change_scene_to_packed(lobby_scene)
-	expedition_started = false
 
 
 func end_expedition(success: bool = true, reason: String = "") -> void:
@@ -153,11 +174,51 @@ func get_oxygen_skill_multiplier() -> float:
 
 
 func get_skill_points(skill_id: String) -> int:
-	return skill_levels.get(skill_id, 0)
+	return _skill_levels.get(skill_id, 0)
 
 
 func set_skill_points(skill_id: String, points: int) -> void:
-	skill_levels[skill_id] = points
+	_skill_levels[skill_id] = points
+	_on_skills_changed()
+
+
+## Wipes every purchased skill, keeping only the always-on center node.
+func reset_skills() -> void:
+	_skill_levels = {
+		"center_node": 1
+	}
+	_on_skills_changed()
+
+
+## Replaces all skill levels at once, e.g. when loading a save file.
+## Unknown skill ids are dropped and levels are clamped to the skill's maximum,
+## so an outdated or hand-edited save cannot produce impossible stats.
+func load_skill_levels(levels: Dictionary) -> void:
+	_skill_levels = {
+		"center_node": 1
+	}
+	for skill_id in levels:
+		if not skill_db.has(skill_id):
+			push_warning("Save file contains unknown skill '%s', ignored." % skill_id)
+			continue
+		var points: int = clampi(int(levels[skill_id]), 0, get_skill_max_levels(skill_id))
+		_skill_levels[skill_id] = points
+
+	_on_skills_changed()
+
+
+## Copy of the current skill levels, for writing a save file.
+func get_skill_levels_snapshot() -> Dictionary:
+	return _skill_levels.duplicate()
+
+
+## Single funnel for every change to _skill_levels. Rebuilds the stat cache,
+## then tells everything that caches a derived value to refresh itself.
+func _on_skills_changed() -> void:
+	SkillModifiers.rebuild(_skill_levels, skill_db)
+
+	# Refunding a capacity upgrade can push the cap below what is being carried.
+	current_player_resource = mini(current_player_resource, get_max_player_resource())
+
+	EventBus.emit_signal("stats_changed")
 	EventBus.emit_signal("update_HUD")
-	if player and player.has_method("update_stats"):
-		player.update_stats()

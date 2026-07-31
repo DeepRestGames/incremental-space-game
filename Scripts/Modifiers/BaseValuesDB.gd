@@ -9,12 +9,12 @@ const BASE_OXYGEN_DRAIN_RATE: float = 1 # drain rate in O2units / seconds
 const BOMB_CHARGES: int = 0
 
 # Player Movement
-const ROTATION_SPEED: float = 2
 const MINING_SPEED_MULTIPLIER: float = 0.0 # player movement speed while mining; 0 = they can't move while mining
 
 # Starting Inventory Quantities
 const STARTING_FABRICATOR_MATERIAL: int = 100
 const STARTING_POWERUP_CHIPS: int = 0
+const INVENTORY_CAPACITY: int = 20 # max resources the player can carry in one expedition
 
 # Mining & Drilling Stats
 const DRILL_DAMAGE_PER_TICK: float = 10.0
@@ -27,3 +27,27 @@ const DRILL_ATTACK_SPEED: float = 1
 const RESOURCE_SPAWN_CHANCE_ON_DAMAGED: float = 0
 const MIN_RESOURCE_NUMBER: int = 1
 const MAX_RESOURCE_NUMBER: int = 2
+
+
+## Registry of every stat that skills are allowed to modify: stat id -> base value.
+## This is the single list of "modifiable stats" in the game: SkillModifiers builds
+## its cache from these keys, so a skill in SkillDB pointing at a stat that is not
+## listed here is reported as an error instead of silently doing nothing.
+##
+## To add a new upgradable stat: add the base value above, add it to this map, then
+## read it through a SkillModifiers getter. Adding it here alone is not enough -
+## something has to actually read it.
+const BASE_VALUES: Dictionary = {
+	"movement_speed": MOVEMENT_SPEED,
+	"oxygen_tank_capacity": OXYGEN_TANK_CAPACITY,
+	"bomb_charges": BOMB_CHARGES,
+	"inventory_capacity": INVENTORY_CAPACITY,
+	"drill_damage_per_tick": DRILL_DAMAGE_PER_TICK,
+	"drill_crit_chance": DRILL_CRIT_CHANCE,
+	"drill_crit_damage": DRILL_CRIT_DAMAGE,
+	"drill_area_size": DRILL_AREA_SIZE,
+	"drill_attack_speed": DRILL_ATTACK_SPEED,
+	"drop_chance_per_tick": RESOURCE_SPAWN_CHANCE_ON_DAMAGED,
+	"nodes_on_landing": 0.0,
+	"drops_on_destruction": 0.0,
+}

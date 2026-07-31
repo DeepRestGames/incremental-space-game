@@ -239,5 +239,6 @@ libraries/ = SubResource("AnimationLibrary_kfmtd")
 autoplay = &"shineSpikes"
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]
 [connection signal="body_entered" from="MoveToPlayerArea2D" to="." method="_on_move_to_player_area_2d_body_entered"]
 [connection signal="body_exited" from="MoveToPlayerArea2D" to="." method="_on_move_to_player_area_2d_body_exited"]

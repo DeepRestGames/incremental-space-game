@@ -3,23 +3,15 @@ extends Node
 
 # Globals
 @warning_ignore("unused_signal") signal on_player_ready(player_reference)
-@warning_ignore("unused_signal") signal on_deposit_box_ready(deposit_box_reference)
 
 # Inputs
 @warning_ignore("unused_signal") signal action_trigger_interact
 @warning_ignore("unused_signal") signal player_movement(movement_direction)
-@warning_ignore("unused_signal") signal looking_direction_changed(new_looking_direction)
 
 # Skill tree
-@warning_ignore("unused_signal") signal skillNodePressed
-@warning_ignore("unused_signal") signal skillNodeExited
-
-# Resources
-@warning_ignore("unused_signal") signal add_resource(resource_number)
-
-# Deposit box
-@warning_ignore("unused_signal") signal player_enter_deposit_box_area(deposit_box_position)
-@warning_ignore("unused_signal") signal start_resource_transfer_animation_to_deposit_box(resource_number, deposit_box_position)
+## Emitted whenever skill levels change and the stat cache has been rebuilt.
+## Anything that caches a value derived from SkillModifiers must listen to this.
+@warning_ignore("unused_signal") signal stats_changed
 
 # Expedition ship
 @warning_ignore("unused_signal") signal player_enter_expedition_ship_area
@@ -37,22 +29,14 @@ extends Node
 
 # Expedition
 @warning_ignore("unused_signal") signal expedition_started
-@warning_ignore("unused_signal") signal expedition_ended
-
-# Capture area
-@warning_ignore("unused_signal") signal player_enter_capture_area
-@warning_ignore("unused_signal") signal player_exit_capture_area
 
 # HUD
 @warning_ignore("unused_signal") signal update_HUD
 @warning_ignore("unused_signal") signal update_oxygen_HUD(current, max_val)
 @warning_ignore("unused_signal") signal update_bomb_HUD(current, max_val)
+## Emitted by the Player but not displayed yet: there is no HP counter in the HUD.
 @warning_ignore("unused_signal") signal update_current_hp_HUD(hp_amount)
 @warning_ignore("unused_signal") signal player_death
-
-
-# Camera
-@warning_ignore("unused_signal") signal screen_shake(magnitude: float, decay_rate: float)
 
 # Environment
 @warning_ignore("unused_signal") signal breakable_damaged

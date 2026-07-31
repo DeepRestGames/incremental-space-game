@@ -14,8 +14,6 @@ var shake_strenght: float = 0.0
 func _ready():
 	rand = RandomNumberGenerator.new()
 	rand.randomize()
-	
-	EventBus.connect("screen_shake", screen_shake)
 
 
 func _process(delta):
