@@ -178,14 +178,13 @@ func end_expedition(success: bool = true, reason: String = "") -> void:
 	expedition_resources_collected += current_player_resource
 	current_player_resource = 0
 	
+	game_paused = false
 	# Finalize stashed resources based on success status
 	if success:
 		current_deposit_box_resource += expedition_resources_collected
 	else:
 		var stashed_amount = int(expedition_resources_collected * 0.2)
-		current_deposit_box_resource += stashed_amount
-		
-		game_paused = false
+		current_deposit_box_resource += stashed_amount		
 	get_tree().change_scene_to_file("res://Scenes/UI/expedition_ended.tscn")
 	expedition_started = false
 

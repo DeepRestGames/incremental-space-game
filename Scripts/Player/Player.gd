@@ -11,7 +11,10 @@ extends CharacterBody2D
 
 # HP
 @export var maxHP: int = BaseValuesDB.MAX_HP
-var currentHP: int = BaseValuesDB.MAX_HP
+var currentHP: int = BaseValuesDB.MAX_HP:
+	set(value):
+		currentHP = clampi(value, 0, maxHP)
+		EventBus.update_current_hp_HUD.emit(currentHP)
 var invincibilityCooldown: float = BaseValuesDB.INVINCIBILITY_COOLDOWN
 var currentInvincibilityCooldown: float
 
@@ -159,39 +162,30 @@ func take_damage(value) -> void:
 	blinking_player_tween.tween_property(player_sprite, "visible", true, .001)
 
 
-func add_hp(value) -> void:
+func add_hp(value: int) -> void:
 	currentHP += value
-	EventBus.update_current_hp_HUD.emit(currentHP)
-
-
-func remove_hp(value) -> void:
-	currentHP -= value
-	EventBus.update_current_hp_HUD.emit(currentHP)
-	
-	if currentHP <= 0:
-		clearConsumables()
-		call_deferred("set_process_mode", Node.PROCESS_MODE_DISABLED)
-		if GameManager.expedition_started:
-			GameManager.end_expedition(false, death_reason)
-
-
-func clearConsumables() -> void:
-	fabricator_material_quantity = 0
-	powerup_chips_quantity = 0
 
 
 func full_hp() -> void:
 	currentHP = maxHP
-	EventBus.update_current_hp_HUD.emit(currentHP)
-
 
 
 func heal_hp() -> void:
-	if currentHP == maxHP:
-		return
-	
 	currentHP += 1
-	EventBus.update_current_hp_HUD.emit(currentHP)
+
+
+func remove_hp(value: int) -> void:
+	currentHP -= value
+
+	if currentHP <= 0:
+		clearConsumables()
+		set_process_mode.call_deferred(Node.PROCESS_MODE_DISABLED)
+		if GameManager.expedition_started:
+			GameManager.end_expedition(false, death_reason)
+
+func clearConsumables() -> void:
+	fabricator_material_quantity = 0
+	powerup_chips_quantity = 0
 
 
 func _on_hitbox_body_entered(body: Node2D) -> void:

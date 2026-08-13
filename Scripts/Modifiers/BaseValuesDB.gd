@@ -5,9 +5,10 @@ const MOVEMENT_SPEED: float = 600.0
 const OXYGEN_TANK_CAPACITY: float = 15 # O2 units (= expedition seconds at BASE_OXYGEN_DRAIN_RATE = 1)
 const MAX_HP: int = 3
 const INVINCIBILITY_COOLDOWN: float = 0.5
-const BASE_OXYGEN_DRAIN_RATE: float = 1 # drain rate in O2units / seconds
-const BOMB_CHARGES: int = 0
+const BASE_OXYGEN_DRAIN_RATE: float = 1 # drain rate in O2units / seconds#
 
+const BOMB_CHARGES: int = 0
+const BOMB_DAMAGE: float = 3.0
 # Seconds of grace at the start of an expedition, before oxygen starts draining.
 # The player is free to move during it; it exists to let them get their bearings.
 # Sized to outlast the intro animation (~3.0s) with a beat of clean screen after it.
@@ -46,6 +47,7 @@ const BASE_VALUES: Dictionary = {
 	"movement_speed": MOVEMENT_SPEED,
 	"oxygen_tank_capacity": OXYGEN_TANK_CAPACITY,
 	"bomb_charges": BOMB_CHARGES,
+	"bomb_damage": BOMB_DAMAGE,
 	"inventory_capacity": INVENTORY_CAPACITY,
 	"drill_damage_per_tick": DRILL_DAMAGE_PER_TICK,
 	"drill_crit_chance": DRILL_CRIT_CHANCE,

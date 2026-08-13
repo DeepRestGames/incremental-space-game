@@ -129,9 +129,10 @@ static func get_nodes_on_landing() -> float:
 static func get_drops_on_destruction() -> float:
 	return get_stat("drops_on_destruction")
 
-
+static func get_bomb_damage(base_value: float = BaseValuesDB.BOMB_DAMAGE) -> float:
+	return get_modified_stat("bomb_damage", base_value)
+	
 # These two take a base value because their callers own it per-instance.
-
 static func get_drill_area_size(base_value: float = BaseValuesDB.DRILL_AREA_SIZE) -> float:
 	return get_modified_stat("drill_area_size", base_value)
 

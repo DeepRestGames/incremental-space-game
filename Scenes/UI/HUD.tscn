@@ -11,9 +11,9 @@
 [ext_resource type="Texture2D" uid="uid://cobs1d8020r3b" path="res://Assets/UI/HUD_mockup_clean_1.png" id="8_pydgx"]
 [ext_resource type="Script" uid="uid://d02rqtjowyuap" path="res://Scripts/UI/HUD/hud_mockup_animation.gd" id="9_pydgx"]
 [ext_resource type="Script" uid="uid://bc3f476l57gt1" path="res://Scripts/UI/HUD/MoneyCounter.gd" id="10_money"]
-[ext_resource type="PackedScene" path="res://Scenes/UI/ExpeditionIntro.tscn" id="13_intro"]
 [ext_resource type="Texture2D" uid="uid://dcisudmqov3na" path="res://Assets/PLACEHOLDERS/rock_currency.svg" id="11_rock"]
 [ext_resource type="Texture2D" uid="uid://4tr34ksq0npv" path="res://Assets/PLACEHOLDERS/money_currency.svg" id="12_money"]
+[ext_resource type="PackedScene" path="res://Scenes/UI/ExpeditionIntro.tscn" id="13_intro"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bg"]
 bg_color = Color(0.12, 0.12, 0.16, 0.7)
@@ -50,7 +50,7 @@ grow_horizontal = 2
 grow_vertical = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="ExpeditionShipInteractionPrompt" type="Label" parent="HUD" unique_id=1193440688]
+[node name="InteractionPrompt" type="Label" parent="HUD" unique_id=1193440688]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -69,7 +69,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 script = ExtResource("1_omqfp")
 
-[node name="KeyHint" type="Label" parent="HUD/ExpeditionShipInteractionPrompt" unique_id=240960219]
+[node name="KeyHint" type="Label" parent="HUD/InteractionPrompt" unique_id=240960219]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -117,7 +117,7 @@ texture = ExtResource("11_rock")
 expand_mode = 3
 stretch_mode = 5
 
-[node name="MoneyCounter" type="Control" parent="HUD"]
+[node name="MoneyCounter" type="Control" parent="HUD" unique_id=1376059291]
 custom_minimum_size = Vector2(300, 50)
 layout_mode = 1
 anchor_left = 0.711806
@@ -128,7 +128,7 @@ grow_horizontal = 0
 script = ExtResource("10_money")
 metadata/_edit_use_anchors_ = true
 
-[node name="HBoxContainer" type="HBoxContainer" parent="HUD/MoneyCounter"]
+[node name="HBoxContainer" type="HBoxContainer" parent="HUD/MoneyCounter" unique_id=1603861171]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -138,11 +138,11 @@ grow_vertical = 2
 theme_override_constants/separation = 10
 alignment = 2
 
-[node name="Value" type="Label" parent="HUD/MoneyCounter/HBoxContainer"]
+[node name="Value" type="Label" parent="HUD/MoneyCounter/HBoxContainer" unique_id=1993269615]
 layout_mode = 2
 text = "0"
 
-[node name="MoneyIcon" type="TextureRect" parent="HUD/MoneyCounter/HBoxContainer"]
+[node name="MoneyIcon" type="TextureRect" parent="HUD/MoneyCounter/HBoxContainer" unique_id=4532190]
 layout_mode = 2
 texture = ExtResource("12_money")
 expand_mode = 3
@@ -244,7 +244,7 @@ texture = ExtResource("8_pydgx")
 script = ExtResource("9_pydgx")
 hud_mockup = NodePath(".")
 
-[node name="ExpeditionIntro" parent="." instance=ExtResource("13_intro")]
+[node name="ExpeditionIntro" parent="." unique_id=1033768906 instance=ExtResource("13_intro")]
 
 [node name="PauseMenu" parent="." unique_id=105724579 instance=ExtResource("3_pausemenu")]
 

@@ -8,6 +8,7 @@ var next_player : AudioStreamPlayer
 
 var fade_time := 1.5
 var current_track : String = ""
+var _fade_tween: Tween
 
 func _ready():
 	add_child(player_a)
@@ -36,12 +37,14 @@ func play(stream: AudioStream, track_id: String):
 	next_player.play()
 
 # Crossfade
-	var tween = create_tween()
 
-	tween.tween_property(current_player, "volume_db", -80, fade_time)
-	tween.tween_property(next_player, "volume_db", 0, fade_time)
+	if _fade_tween and _fade_tween.is_valid():
+		_fade_tween.kill()
 
-	tween.tween_callback(_swap_players)
+	_fade_tween = create_tween().set_parallel(true)
+	_fade_tween.tween_property(current_player, "volume_db", -80, fade_time)
+	_fade_tween.tween_property(next_player, "volume_db", 0, fade_time)
+	_fade_tween.chain().tween_callback(_swap_players)
 	
 
 func _swap_players():

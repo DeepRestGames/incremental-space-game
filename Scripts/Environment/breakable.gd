@@ -90,8 +90,8 @@ func spawn_resource_drops(resource_number: int) -> void:
 	for i in resource_number:
 		var resource_drop_node = resource_scene.instantiate() as BasePickup
 		var random_offset = Vector2(randf_range(-20, 20), randf_range(-20, 20))
-		resource_drop_node.global_position = self.global_position + random_offset
 		get_tree().current_scene.add_child(resource_drop_node)
+		resource_drop_node.global_position = self.global_position + random_offset
 		resource_drop_node.randomize_spawn_direction()
 	
 	current_resource_number -= resource_number
@@ -101,8 +101,8 @@ func spawn_rock_particles(rock_particles_number: int) -> void:
 	for i in rock_particles_number:
 		var rock_particle_node = rock_particle.instantiate() as RockParticle
 		var random_offset = Vector2(randf_range(-20, 20), randf_range(-20, 20))
-		rock_particle_node.global_position = self.global_position + random_offset
 		get_tree().current_scene.get_node("Objects/Particles").add_child(rock_particle_node)
+		rock_particle_node.global_position = self.global_position + random_offset
 		rock_particle_node.randomize_spawn_direction()
 
 
