@@ -3,8 +3,6 @@ extends Control
 ## Level Selection UI Controller
 ## Displays available level variants, their resource weight percentages, and spawning conditions.
 
-signal level_selected(level_path: String)
-
 # Level data itself lives in LevelDB. Kept here is only what has to be computed
 # by instancing each level scene: level id -> {"resources": [...], "conditions": [...]}
 var level_ids: Array = LevelDB.get_ids()
@@ -150,7 +148,6 @@ func _on_right_button_pressed() -> void:
 func _on_select_button_pressed() -> void:
 	var level_id: String = level_ids[current_index]
 	GameManager.select_level(level_id)
-	level_selected.emit(LevelDB.get_scene_path(level_id))
 	close()
 	EventBus.expedition_started.emit()
 
