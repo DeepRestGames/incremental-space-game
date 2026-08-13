@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://beyb44q40vqlr"]
 
 [ext_resource type="Texture2D" uid="uid://cqwlreb6f151w" path="res://Assets/Sprites/particles/Vignette.png" id="1_4bm6u"]
-[ext_resource type="Script" uid="uid://mcvf683b2t30" path="res://Scripts/UI/HUD/ExpeditionShipInteractionPrompt.gd" id="1_omqfp"]
+[ext_resource type="Script" uid="uid://mcvf683b2t30" path="res://Scripts/UI/HUD/InteractionPrompt.gd" id="1_omqfp"]
 [ext_resource type="Script" uid="uid://qe84tw2v6xbm" path="res://Scripts/UI/HUD/ResourceCounter.gd" id="2_xaom8"]
 [ext_resource type="PackedScene" uid="uid://d3ixveovn637y" path="res://Scenes/UI/PauseMenu.tscn" id="3_pausemenu"]
 [ext_resource type="Script" uid="uid://b1h6en5b604x6" path="res://Scripts/UI/HUD/OxygenCounter.gd" id="4_oxygen"]
@@ -10,7 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://blslgwfnag1a4" path="res://Assets/PLACEHOLDERS/Bomb.svg" id="7_bombicon"]
 [ext_resource type="Texture2D" uid="uid://cobs1d8020r3b" path="res://Assets/UI/HUD_mockup_clean_1.png" id="8_pydgx"]
 [ext_resource type="Script" uid="uid://d02rqtjowyuap" path="res://Scripts/UI/HUD/hud_mockup_animation.gd" id="9_pydgx"]
-[ext_resource type="Script" path="res://Scripts/UI/HUD/MoneyCounter.gd" id="10_money"]
+[ext_resource type="Script" uid="uid://bc3f476l57gt1" path="res://Scripts/UI/HUD/MoneyCounter.gd" id="10_money"]
 [ext_resource type="PackedScene" path="res://Scenes/UI/ExpeditionIntro.tscn" id="13_intro"]
 [ext_resource type="Texture2D" uid="uid://dcisudmqov3na" path="res://Assets/PLACEHOLDERS/rock_currency.svg" id="11_rock"]
 [ext_resource type="Texture2D" uid="uid://4tr34ksq0npv" path="res://Assets/PLACEHOLDERS/money_currency.svg" id="12_money"]
