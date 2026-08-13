@@ -24,6 +24,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("2_skilltree")
+pan_slack = null
 
 [node name="Control" type="Control" parent="." unique_id=1331112669]
 layout_mode = 1
@@ -39,7 +40,6 @@ mouse_filter = 2
 [node name="BackgroundOverlay" type="ColorRect" parent="Control" unique_id=1097356005]
 z_index = -1
 layout_mode = 1
-mouse_filter = 2
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -51,6 +51,7 @@ offset_right = 960.0
 offset_bottom = 540.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 color = Color(0.08235294, 0.15686275, 0.2784314, 1)
 
 [node name="Grid" type="TextureRect" parent="Control" unique_id=134161237]
@@ -67,10 +68,10 @@ offset_bottom = 497.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.986, 0.986)
-texture = ExtResource("2_mpkew")
 mouse_filter = 2
+texture = ExtResource("2_mpkew")
 
-[node name="TreeView" type="Control" parent="."]
+[node name="TreeView" type="Control" parent="." unique_id=1514999957]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0

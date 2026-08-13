@@ -3,11 +3,13 @@ extends Control
 
 @export_group("Navigation")
 @export var zoom_min: float = 0.4
-@export var zoom_max: float = 1.6
+@export var zoom_max: float = 1.2
 ## Zoom added or removed per mouse wheel notch.
 @export var zoom_step: float = 0.1
 ## Reset pan and zoom every time the tree is opened. Turn off to keep the last view.
 @export var reset_view_on_open: bool = true
+## Extra PIXELS past the content edge. 0 = hard stop at the edges.
+@export var pan_slack: float = 300.0
 
 ## Holds every SkillNode. Panning moves it and zooming scales it, so the detail
 ## panel and the background stay put.
@@ -22,6 +24,7 @@ extends Control
 @onready var detail_type: Label = get_node_or_null("DetailPanel/HBoxContainer/VBoxContainer/SkillModifierType")
 
 var _dragging: bool = false
+var _content_rect: Rect2 = Rect2() # cache for panning edge
 
 func _ready() -> void:
 	if Engine.is_editor_hint():
@@ -127,15 +130,17 @@ func open() -> void:
 		get_tree().paused = true
 	GameManager.skill_tree_open = true
 	clear_skill_info()
+	_cache_content_rect()
 	if reset_view_on_open:
 		reset_view()
-
+	_clamp_view()
 
 ## Puts the tree back to its authored position and scale.
 func reset_view() -> void:
 	_dragging = false
 	tree_view.position = Vector2.ZERO
 	tree_view.scale = Vector2.ONE
+	_clamp_view()
 
 
 func close() -> void:
@@ -171,8 +176,49 @@ func _gui_input(event: InputEvent) -> void:
 				accept_event()
 	elif event is InputEventMouseMotion and _dragging:
 		tree_view.position += event.relative
+		_clamp_view()
 		accept_event()
 
+## Bounding box of every skill node, in TreeView's local space
+func _cache_content_rect() -> void:
+	# merge all Control (node) children to get whole BB
+	var rect := Rect2()
+	var has_any := false
+	for child in tree_view.get_children():
+		if child is Control:
+			var child_rect := Rect2(child.position, child.size)
+			rect = rect.merge(child_rect) if has_any else child_rect # altrimenti merge con Rect2 lo riporta a 0,0
+			has_any = true
+	_content_rect = rect if has_any else Rect2()
+	
+func _clamp_view() -> void:
+	if _content_rect.size == Vector2.ZERO or size == Vector2.ZERO:
+		push_warning("skill_tree: _clamp_view() before _cache_content_rect()")
+		return
+
+	# Padding the bounds out to the
+	# viewport's aspect ratio gives both axes proportional travel instead of locking
+	# whichever one has room to spare.
+	var aspect: float = size.x / size.y
+	var pad_x: float = maxf(0.0, _content_rect.size.y * aspect - _content_rect.size.x) * 0.5
+	var pad_y: float = maxf(0.0, _content_rect.size.x / aspect - _content_rect.size.y) * 0.5
+	var bounds := _content_rect.grow_individual(pad_x, pad_y, pad_x, pad_y)
+
+	var z: float = tree_view.scale.x
+	var pos := tree_view.position
+	pos.x = _clamp_axis(pos.x, bounds.position.x, bounds.end.x, size.x, z)
+	pos.y = _clamp_axis(pos.y, bounds.position.y, bounds.end.y, size.y, z)
+	tree_view.position = pos
+
+
+## upper`/`lower` are the positions at which the content edge meets the viewport edge; 
+func _clamp_axis(value: float, content_start: float, content_end: float, view_size: float, zoom: float) -> float:
+	var upper := -content_start * zoom + pan_slack
+	var lower := view_size - content_end * zoom - pan_slack
+	if lower > upper:
+		return (lower + upper) * 0.5
+	return clampf(value, lower, upper)
+	
 
 ## Zooms while keeping whatever sits under `pivot` anchored to the cursor.
 func _zoom_at(pivot: Vector2, zoom_delta: float) -> void:
@@ -183,6 +229,7 @@ func _zoom_at(pivot: Vector2, zoom_delta: float) -> void:
 
 	tree_view.position = pivot - (pivot - tree_view.position) * (new_zoom / old_zoom)
 	tree_view.scale = Vector2(new_zoom, new_zoom)
+	_clamp_view()
 
 
 func display_skill_info(skill_id: String) -> void:
