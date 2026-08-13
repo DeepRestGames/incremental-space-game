@@ -150,9 +150,9 @@ func _on_right_button_pressed() -> void:
 func _on_select_button_pressed() -> void:
 	var level_id: String = level_ids[current_index]
 	GameManager.select_level(level_id)
-	emit_signal("level_selected", LevelDB.get_scene_path(level_id))
+	level_selected.emit(LevelDB.get_scene_path(level_id))
 	close()
-	EventBus.emit_signal("expedition_started")
+	EventBus.expedition_started.emit()
 
 
 func _on_close_button_pressed() -> void:

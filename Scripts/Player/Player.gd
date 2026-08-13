@@ -49,22 +49,22 @@ func _ready() -> void:
 		player_camera.limit_bottom = 1100
 
 	# Input signals
-	EventBus.connect("player_movement", update_movement_direction)
+	EventBus.player_movement.connect(update_movement_direction)
 
 	# Refresh cached stats whenever a skill is bought, refunded or reset
-	EventBus.connect("stats_changed", update_stats)
+	EventBus.stats_changed.connect(update_stats)
 
 	# Reference existing MiningReticle child node
 	mining_reticle = $MiningReticle
 	
 	update_stats()
 	current_bombs = max_bombs
-	EventBus.emit_signal("update_bomb_HUD", current_bombs, max_bombs)
+	EventBus.update_bomb_HUD.emit(current_bombs, max_bombs)
 	
 	# Animations
 	animation_tree.active = true
 	
-	EventBus.emit_signal("on_player_ready", self)
+	EventBus.on_player_ready.emit(self)
 
 
 func update_stats() -> void:
@@ -76,7 +76,7 @@ func update_stats() -> void:
 	
 	# Recalculate max bombs based on skill tree upgrades
 	max_bombs = int(SkillModifiers.get_bomb_charges())
-	EventBus.emit_signal("update_bomb_HUD", current_bombs, max_bombs)
+	EventBus.update_bomb_HUD.emit(current_bombs, max_bombs)
 
 
 func can_use_bomb() -> bool:
@@ -86,7 +86,7 @@ func can_use_bomb() -> bool:
 func use_bomb() -> bool:
 	if can_use_bomb():
 		current_bombs -= 1
-		EventBus.emit_signal("update_bomb_HUD", current_bombs, max_bombs)
+		EventBus.update_bomb_HUD.emit(current_bombs, max_bombs)
 		return true
 	return false
 
@@ -120,7 +120,7 @@ func _process(delta: float) -> void:
 			var actual_drain = base_oxygen_drain_rate * skill_multiplier * level_modifier
 			current_oxygen = max(current_oxygen - actual_drain * delta, 0.0)
 
-		EventBus.emit_signal("update_oxygen_HUD", current_oxygen, max_oxygen)
+		EventBus.update_oxygen_HUD.emit(current_oxygen, max_oxygen)
 
 		if current_oxygen <= 0.0 and currentHP > 0:
 			death_reason = "oxygen"
@@ -161,16 +161,15 @@ func take_damage(value) -> void:
 
 func add_hp(value) -> void:
 	currentHP += value
-	EventBus.emit_signal("update_current_hp_HUD", currentHP)
+	EventBus.update_current_hp_HUD.emit(currentHP)
 
 
 func remove_hp(value) -> void:
 	currentHP -= value
-	EventBus.emit_signal("update_current_hp_HUD", currentHP)
+	EventBus.update_current_hp_HUD.emit(currentHP)
 	
 	if currentHP <= 0:
 		clearConsumables()
-		EventBus.emit_signal("player_death")
 		call_deferred("set_process_mode", Node.PROCESS_MODE_DISABLED)
 		if GameManager.expedition_started:
 			GameManager.end_expedition(false, death_reason)
@@ -183,7 +182,7 @@ func clearConsumables() -> void:
 
 func full_hp() -> void:
 	currentHP = maxHP
-	EventBus.emit_signal("update_current_hp_HUD", currentHP)
+	EventBus.update_current_hp_HUD.emit(currentHP)
 
 
 
@@ -192,7 +191,7 @@ func heal_hp() -> void:
 		return
 	
 	currentHP += 1
-	EventBus.emit_signal("update_current_hp_HUD", currentHP)
+	EventBus.update_current_hp_HUD.emit(currentHP)
 
 
 func _on_hitbox_body_entered(body: Node2D) -> void:

@@ -8,7 +8,7 @@ var player_in_area: bool = false
 
 
 func _ready() -> void:
-	EventBus.connect("action_trigger_interact", check_ship_interaction)
+	EventBus.action_trigger_interact.connect(check_ship_interaction)
 	if custom_texture:
 		$ExpeditionShipBody/ExpeditionShipBodySprite.texture = custom_texture
 
@@ -41,9 +41,9 @@ func _on_body_entered(body: Node2D) -> void:
 		if "inside_interactable_area" in body:
 			body.inside_interactable_area = true
 		if GameManager.expedition_started:
-			EventBus.emit_signal("player_enter_expedition_return_area")
+			EventBus.player_enter_expedition_return_area.emit()
 		else:
-			EventBus.emit_signal("player_enter_expedition_ship_area")
+			EventBus.player_enter_expedition_ship_area.emit()
 
 
 func _on_body_exited(body: Node2D) -> void:
@@ -52,9 +52,9 @@ func _on_body_exited(body: Node2D) -> void:
 		if "inside_interactable_area" in body:
 			body.inside_interactable_area = false
 		if GameManager.expedition_started:
-			EventBus.emit_signal("player_exit_expedition_return_area")
+			EventBus.player_exit_expedition_return_area.emit()
 		else:
-			EventBus.emit_signal("player_exit_expedition_ship_area")
+			EventBus.player_exit_expedition_ship_area.emit()
 		
 		# Close the Level Select UI if the player flies away
 		var ui := get_tree().current_scene.get_node_or_null("CanvasLayer/LevelSelectUI")

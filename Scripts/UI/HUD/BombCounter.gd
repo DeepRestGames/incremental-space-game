@@ -5,8 +5,8 @@ extends Control
 
 func _ready() -> void:
 	hide()
-	EventBus.connect("update_bomb_HUD", on_update_bomb)
-	EventBus.connect("expedition_started", on_expedition_started)
+	EventBus.update_bomb_HUD.connect(on_update_bomb)
+	EventBus.expedition_started.connect(on_expedition_started)
 	
 	if GameManager.expedition_started:
 		# Query starting values if already running in a debug scene

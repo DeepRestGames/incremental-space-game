@@ -83,9 +83,9 @@ func _ready() -> void:
 	# Level initialization
 	# TODO Add logic to handle the menus navigation (e.g. in the start menu the node Player doesn't exist, but the GameManager singleton does
 	
-	EventBus.connect("on_player_ready", on_player_ready)
+	EventBus.on_player_ready.connect(on_player_ready)
 
-	EventBus.connect("expedition_started", on_expedition_started)
+	EventBus.expedition_started.connect(on_expedition_started)
 
 	# Build the stat cache before any scene node can read a stat.
 	_on_skills_changed()
@@ -108,7 +108,7 @@ func add_resource(amount: int) -> int:
 		return 0
 
 	current_player_resource += accepted
-	EventBus.emit_signal("update_HUD")
+	EventBus.update_HUD.emit()
 	return accepted
 
 
@@ -200,7 +200,7 @@ func convert_resources_to_money(conversion_rate: float = 1.0) -> int:
 	current_deposit_box_resource = 0
 	current_money += earned
 
-	EventBus.emit_signal("update_HUD")
+	EventBus.update_HUD.emit()
 	return earned
 
 
@@ -222,12 +222,12 @@ func can_afford(amount: int) -> bool:
 
 func spend_money(amount: int) -> void:
 	current_money = max(current_money - amount, 0)
-	EventBus.emit_signal("update_HUD")
+	EventBus.update_HUD.emit()
 
 
 func add_money(amount: int) -> void:
 	current_money += amount
-	EventBus.emit_signal("update_HUD")
+	EventBus.update_HUD.emit()
 
 
 func get_oxygen_skill_multiplier() -> float:
@@ -282,8 +282,8 @@ func _on_skills_changed() -> void:
 	# Refunding a capacity upgrade can push the cap below what is being carried.
 	current_player_resource = mini(current_player_resource, get_max_player_resource())
 
-	EventBus.emit_signal("stats_changed")
-	EventBus.emit_signal("update_HUD")
+	EventBus.stats_changed.emit()
+	EventBus.update_HUD.emit()
 	
 ## Another full-screen UI already owns the Escape key.
 func is_modal_ui_open() -> bool:

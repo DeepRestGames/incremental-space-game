@@ -48,7 +48,7 @@ func _ready() -> void:
 			mouse_exited.connect(_on_mouse_exited)
 
 		# Refresh the affordability outline whenever money changes
-		EventBus.connect("update_HUD", update_appearance)
+		EventBus.update_HUD.connect(update_appearance)
 	
 	_apply_icon()
 	update_appearance()

@@ -47,4 +47,4 @@ func _on_hangar_pressed() -> void:
 
 
 func _on_again_pressed() -> void:
-	EventBus.emit_signal("expedition_started")
+	EventBus.expedition_started.emit()

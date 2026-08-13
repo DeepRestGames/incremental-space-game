@@ -8,7 +8,7 @@ var current_drill_cooldown: float = 0
 @onready var bomb_spawner: BombSpawner = $"../BombSpawner"
 
 func _ready() -> void:
-	EventBus.connect("stats_changed", update_stats)
+	EventBus.stats_changed.connect(update_stats)
 	update_stats()
 
 func _process(delta: float) -> void:
@@ -17,7 +17,7 @@ func _process(delta: float) -> void:
 		current_drill_cooldown -= delta
 	
 	if Input.is_action_pressed("interact") and current_drill_cooldown <= 0:
-		EventBus.emit_signal("action_trigger_interact")
+		EventBus.action_trigger_interact.emit()
 		current_drill_cooldown = drill_cooldown
 
 

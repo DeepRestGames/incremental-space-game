@@ -5,8 +5,8 @@ extends Control
 
 func _ready() -> void:
 	hide()
-	EventBus.connect("update_oxygen_HUD", on_update_oxygen)
-	EventBus.connect("expedition_started", on_expedition_started)
+	EventBus.update_oxygen_HUD.connect(on_update_oxygen)
+	EventBus.expedition_started.connect(on_expedition_started)
 	
 	if GameManager.expedition_started:
 		show()

@@ -8,7 +8,7 @@ var breakable_locked = false
 
 
 func _ready() -> void:
-	EventBus.connect("breakable_damaged", on_breakable_damaged)
+	EventBus.breakable_damaged.connect(on_breakable_damaged)
 
 
 func on_breakable_damaged() -> void:

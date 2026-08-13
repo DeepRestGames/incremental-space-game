@@ -5,7 +5,7 @@ extends Control
 
 
 func _ready() -> void:
-	EventBus.connect("update_HUD", update_resource_counter_value)
+	EventBus.update_HUD.connect(update_resource_counter_value)
 	
 	update_resource_counter_value()
 

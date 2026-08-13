@@ -33,7 +33,7 @@ func _ready() -> void:
 	
 	sprite_2d.texture = rock_sprites.pick_random()
 	
-	EventBus.connect("action_trigger_interact", on_interacted)
+	EventBus.action_trigger_interact.connect(on_interacted)
 	
 	var area2d = get_node_or_null("CollisionShape2D/Sprite2D/Area2D")
 	if area2d:
@@ -57,7 +57,7 @@ func on_interacted() -> void:
 
 
 func take_damage(damage_value: int) -> void:
-	EventBus.emit_signal("breakable_damaged")
+	EventBus.breakable_damaged.emit()
 	
 	# drop_chance_per_tick adds to base drop chance
 	var drop_chance = SkillModifiers.get_drop_chance_per_tick(resource_spawn_chance_on_damaged)
