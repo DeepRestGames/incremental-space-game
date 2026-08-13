@@ -1,37 +1,44 @@
 extends Label
 
+## Prompts for every interactable area the player currently stands in, in entry
+## order. Overlapping areas are handled by letting the most recent one win, and by
+## only removing the prompt that actually left.
+var _active: Array[String] = []
+
 
 func _ready() -> void:
-	EventBus.connect("player_enter_expedition_ship_area", on_enter_lobby_ship)
-	EventBus.connect("player_exit_expedition_ship_area", hide)
-	
-	EventBus.connect("player_enter_expedition_return_area", on_enter_expedition_ship)
-	EventBus.connect("player_exit_expedition_return_area", hide)
-	
-	EventBus.connect("player_enter_skill_terminal_area", on_enter_skill_terminal)
-	EventBus.connect("player_exit_skill_terminal_area", hide)
+	EventBus.player_enter_expedition_ship_area.connect(_push.bind("Start expedition"))
+	EventBus.player_exit_expedition_ship_area.connect(_pop.bind("Start expedition"))
 
-	EventBus.connect("player_enter_shop_area", on_enter_shop)
-	EventBus.connect("player_exit_shop_area", hide)
+	EventBus.player_enter_expedition_return_area.connect(_push.bind("End expedition"))
+	EventBus.player_exit_expedition_return_area.connect(_pop.bind("End expedition"))
 
-	hide()
+	EventBus.player_enter_skill_terminal_area.connect(_push.bind("Access Skill Tree"))
+	EventBus.player_exit_skill_terminal_area.connect(_pop.bind("Access Skill Tree"))
 
+	EventBus.player_enter_shop_area.connect(_push.bind("Sell resources"))
+	EventBus.player_exit_shop_area.connect(_pop.bind("Sell resources"))
 
-func on_enter_lobby_ship() -> void:
-	text = "Start expedition"
-	show()
+	EventBus.ui_state_changed.connect(_refresh)
+
+	_refresh()
 
 
-func on_enter_expedition_ship() -> void:
-	text = "End expedition"
-	show()
+func _push(prompt: String) -> void:
+	if not _active.has(prompt):
+		_active.append(prompt)
+	_refresh()
 
 
-func on_enter_skill_terminal() -> void:
-	text = "Access Skill Tree"
-	show()
+func _pop(prompt: String) -> void:
+	_active.erase(prompt)
+	_refresh()
 
 
-func on_enter_shop() -> void:
-	text = "Sell resources"
+## Single place that decides whether a prompt is on screen and what it says.
+func _refresh() -> void:
+	if _active.is_empty() or GameManager.is_world_obscured():
+		hide()
+		return
+	text = _active.back()
 	show()

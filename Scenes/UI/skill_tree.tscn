@@ -24,6 +24,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("2_skilltree")
+zoom_max = 1.6
 pan_slack = null
 
 [node name="Control" type="Control" parent="." unique_id=1331112669]

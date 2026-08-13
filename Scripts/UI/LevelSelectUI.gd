@@ -89,13 +89,13 @@ func _load_dynamic_level_data() -> void:
 
 func open() -> void:
 	show()
-	get_tree().paused = true # Pause game elements under UI
+	GameManager.game_paused = true
 	GameManager.level_select_open = true
 
 
 func close() -> void:
 	hide()
-	get_tree().paused = false
+	GameManager.game_paused = false
 	GameManager.level_select_open = false
 
 

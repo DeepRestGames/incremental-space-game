@@ -37,6 +37,10 @@ extends Node
 ## Emitted by the Player but not displayed yet: there is no HP counter in the HUD.
 @warning_ignore("unused_signal") signal update_current_hp_HUD(hp_amount)
 @warning_ignore("unused_signal") signal player_death
+# UI state
+## Emitted whenever a full-screen UI opens or closes. Anything whose visibility
+## depends on "is a menu covering the world" listens here and re-derives.
+@warning_ignore("unused_signal") signal ui_state_changed
 
 # Environment
 @warning_ignore("unused_signal") signal breakable_damaged

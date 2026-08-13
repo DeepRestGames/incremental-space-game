@@ -22,8 +22,36 @@ var expedition_started: bool = false
 ## expedition is running; the player can already move and mine during it.
 var expedition_grace_remaining: float = 0.0
 var previous_scene_path: String = ""
-var skill_tree_open: bool = false
-var level_select_open: bool = false
+var skill_tree_open: bool = false:
+	set(value):
+		if skill_tree_open == value:
+			return
+		skill_tree_open = value
+		EventBus.ui_state_changed.emit()
+
+var level_select_open: bool = false:
+	set(value):
+		if level_select_open == value:
+			return
+		level_select_open = value
+		EventBus.ui_state_changed.emit()
+
+var confirmation_popup_open: bool = false:
+	set(value):
+		if confirmation_popup_open == value:
+			return
+		confirmation_popup_open = value
+		EventBus.ui_state_changed.emit()
+		
+## Single owner of the engine pause flag. 
+var game_paused: bool = false:
+	set(value):
+		if game_paused == value:
+			return
+		game_paused = value
+		get_tree().paused = value
+		EventBus.ui_state_changed.emit()
+
 
 # Expedition Stats & Persistence
 var open_level_select_on_lobby_load: bool = false
@@ -157,7 +185,7 @@ func end_expedition(success: bool = true, reason: String = "") -> void:
 		var stashed_amount = int(expedition_resources_collected * 0.2)
 		current_deposit_box_resource += stashed_amount
 		
-	get_tree().paused = false
+		game_paused = false
 	get_tree().change_scene_to_file("res://Scenes/UI/expedition_ended.tscn")
 	expedition_started = false
 
@@ -256,3 +284,11 @@ func _on_skills_changed() -> void:
 
 	EventBus.emit_signal("stats_changed")
 	EventBus.emit_signal("update_HUD")
+	
+## Another full-screen UI already owns the Escape key.
+func is_modal_ui_open() -> bool:
+	return skill_tree_open or level_select_open or confirmation_popup_open
+	
+## The world is covered: world-space HUD elements should hide.
+func is_world_obscured() -> bool:
+	return is_modal_ui_open() or game_paused

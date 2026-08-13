@@ -29,9 +29,11 @@ var _content_rect: Rect2 = Rect2() # cache for panning edge
 func _ready() -> void:
 	if Engine.is_editor_hint():
 		return
+	set_process(false)
 	hide()
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	clear_skill_info()
+	EventBus.stats_changed.connect(queue_redraw)
 
 
 func _process(_delta: float) -> void:
@@ -126,8 +128,7 @@ func is_node_fully_upgraded(node: SkillNode) -> bool:
 
 func open() -> void:
 	show()
-	if get_tree():
-		get_tree().paused = true
+	GameManager.game_paused = true
 	GameManager.skill_tree_open = true
 	clear_skill_info()
 	_cache_content_rect()
@@ -145,8 +146,7 @@ func reset_view() -> void:
 
 func close() -> void:
 	hide()
-	if get_tree():
-		get_tree().paused = false
+	GameManager.game_paused = false
 	GameManager.skill_tree_open = false
 
 
@@ -209,6 +209,7 @@ func _clamp_view() -> void:
 	pos.x = _clamp_axis(pos.x, bounds.position.x, bounds.end.x, size.x, z)
 	pos.y = _clamp_axis(pos.y, bounds.position.y, bounds.end.y, size.y, z)
 	tree_view.position = pos
+	queue_redraw()
 
 
 ## upper`/`lower` are the positions at which the content edge meets the viewport edge; 
