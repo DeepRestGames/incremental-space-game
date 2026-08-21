@@ -19,7 +19,7 @@ const MINING_SPEED_MULTIPLIER: float = 0.0 # player movement speed while mining;
 # Starting Inventory Quantities
 const STARTING_FABRICATOR_MATERIAL: int = 100
 const STARTING_POWERUP_CHIPS: int = 0
-const INVENTORY_CAPACITY: int = 20 # max resources the player can carry in one expedition
+const INVENTORY_CAPACITY: int = 8 # max resources the player can carry in one expedition
 
 # Mining & Drilling Stats
 const DRILL_DAMAGE_PER_TICK: float = 10.0

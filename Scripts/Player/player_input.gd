@@ -4,6 +4,12 @@ class_name PlayerInput
 
 var drill_cooldown: float = BaseValuesDB.DRILL_ATTACK_SPEED
 var current_drill_cooldown: float = 0
+@export var mining_reticle_base_rotation_speed: float = 2
+
+#Graphics
+var mining_reticle_rotation: float = 2
+@onready var mining_reticle_material = $"../MiningReticle/DiggingCircle".material
+@onready var reticle_animation_player = $"../MiningReticle/AnimationPlayer"
 
 @onready var bomb_spawner: BombSpawner = $"../BombSpawner"
 
@@ -18,6 +24,7 @@ func _process(delta: float) -> void:
 	
 	if Input.is_action_pressed("interact") and current_drill_cooldown <= 0:
 		EventBus.emit_signal("action_trigger_interact")
+		reticle_animation_player.play("tick")
 		current_drill_cooldown = drill_cooldown
 
 
@@ -30,3 +37,8 @@ func _unhandled_input(event: InputEvent) -> void:
 
 func update_stats() -> void:
 	drill_cooldown = 0.5**(SkillModifiers.get_drill_attack_speed()-1)
+	var mining_reticle_new_rotation_speed: float
+	mining_reticle_new_rotation_speed = mining_reticle_base_rotation_speed*SkillModifiers.get_drill_attack_speed()
+	mining_reticle_material.set_shader_parameter("circle_rotation_speed", mining_reticle_new_rotation_speed)
+	mining_reticle_material.set_shader_parameter("cross_rotation_speed", mining_reticle_new_rotation_speed)
+	#print (drill_cooldown)
