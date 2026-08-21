@@ -12,4 +12,4 @@ func _ready() -> void:
 
 
 func on_breakable_damaged() -> void:
-	screen_shake.screen_shake(10, 8)
+	screen_shake.screen_shake(8, 50)
