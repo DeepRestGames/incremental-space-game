@@ -60,8 +60,8 @@ func deactivate() -> void:
 
 
 func _process(_delta: float) -> void:
-	if not is_active:
-		return
+	#if not is_active:
+		#return
 		
 	# Follow the mouse direction relative to the player
 	var mouse_pos = get_global_mouse_position()

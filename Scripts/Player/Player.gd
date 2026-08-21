@@ -104,6 +104,7 @@ func _process(delta: float) -> void:
 	update_animation_parameters()
 
 	if GameManager.expedition_started:
+		mining_reticle.visible = true
 		# During the opening grace period the tank stays full: the bar is still
 		# refreshed so it reads 100% instead of whatever the scene was authored with.
 		if GameManager.is_oxygen_draining():

@@ -154,8 +154,8 @@ position = Vector2(1397, 18)
 
 [node name="MonitorEffect" type="Node2D" parent="Objects" unique_id=1870331636]
 modulate = Color(1, 1, 1, 0.78431374)
-position = Vector2(831.99994, -606)
-scale = Vector2(0.83, 0.688)
+position = Vector2(832.5, -623.5)
+scale = Vector2(0.7, 0.7)
 
 [node name="BlueCircle" type="Sprite2D" parent="Objects/MonitorEffect" unique_id=1019138947]
 scale = Vector2(0.465, 0.465)
@@ -177,6 +177,7 @@ visible = false
 
 [node name="SkillTree" parent="CanvasLayer" unique_id=1912863450 instance=ExtResource("10_skill_tree")]
 visible = false
+pan_slack = 300.0
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=306583510]
 environment = SubResource("Environment_8haom")
