@@ -33,7 +33,7 @@ const DATABASE: Dictionary = {
 		"effects": {
 			"drill_attack_speed": {
 				"type": "ADDITIVE",
-				"value": .1
+				"value": 1
 			}
 		}
 	},
@@ -69,7 +69,7 @@ const DATABASE: Dictionary = {
 		"effects": {
 			"drill_area_size": {
 				"type": "ADDITIVE",
-				"value": 0.5
+				"value": .5
 			}
 		}
 	},
@@ -137,7 +137,7 @@ const DATABASE: Dictionary = {
 		"name": "Bigger Backpack",
 		"description": "Increases how many resources you can carry.",
 		"max_levels": 5,
-		"cost": 10,
+		"cost": 8,
 		"effects": {
 			"inventory_capacity": {
 				"type": "FLAT",

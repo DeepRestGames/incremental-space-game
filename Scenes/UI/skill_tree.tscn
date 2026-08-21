@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://buil3eb2t65w6" path="res://Assets/UI/skill tree/SkillTreeDotGrid.svg" id="2_mpkew"]
 [ext_resource type="Script" uid="uid://ljldu32b7v7x" path="res://Scripts/UI/skill_tree.gd" id="2_skilltree"]
 [ext_resource type="Texture2D" uid="uid://7fufexxrh3d0" path="res://Assets/UI/skill tree/skill icons/Oxygen.svg" id="3_drkok"]
+[ext_resource type="Texture2D" uid="uid://pbtj1dosar0g" path="res://Assets/UI/skill tree/skill icons/Suit.svg" id="4_q004n"]
 [ext_resource type="Texture2D" uid="uid://ba8fprep2al8x" path="res://Assets/UI/skill tree/skill icons/DrillArea.svg" id="5_kyaj7"]
 [ext_resource type="Texture2D" uid="uid://btbohdbjdnjmp" path="res://Assets/UI/skill tree/skill icons/Drill+1.svg" id="6_66a02"]
 [ext_resource type="Texture2D" uid="uid://ddxhgcwxpktm5" path="res://Assets/UI/skill tree/skill icons/DrillPower.svg" id="6_fmb40"]
@@ -95,6 +96,7 @@ offset_bottom = 660.0
 grow_horizontal = 1
 grow_vertical = 1
 skill_id = "center_node"
+icon = ExtResource("4_q004n")
 
 [node name="OxygenCapacityNode" parent="TreeView" unique_id=591214117 node_paths=PackedStringArray("parent_node") instance=ExtResource("1_c1qs3")]
 layout_mode = 0

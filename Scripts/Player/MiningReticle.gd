@@ -15,6 +15,7 @@ var reticle_angle: float = 0.0
 @onready var collision_shape: CollisionShape2D = $CollisionShape2D
 @onready var digging_circle: Sprite2D = $DiggingCircle
 
+
 func _ready() -> void:
 	# Add to the MiningReticle group so Breakables can identify it
 	add_to_group("MiningReticle")
@@ -42,7 +43,6 @@ func update_reticle_size() -> void:
 	if digging_circle:
 		var new_scale = (2.0 * inner_radius) / 512.0
 		digging_circle.scale = Vector2(new_scale, new_scale)
-
 
 func activate() -> void:
 	is_active = true
@@ -81,3 +81,8 @@ func _process(_delta: float) -> void:
 	# Update guide line points
 	if guide_line:
 		guide_line.points = PackedVector2Array([Vector2.ZERO, local_target_pos])
+		
+		
+
+
+			

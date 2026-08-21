@@ -1,0 +1,29 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://bsrdobvxmywkd"]
+
+[ext_resource type="Shader" uid="uid://bwyjbe3paeel0" path="res://Shaders/crosshair.gdshader" id="1_5714e"]
+
+[resource]
+shader = ExtResource("1_5714e")
+shader_parameter/circle_radius = 0.30000001425
+shader_parameter/circle_thickness = 0.030000001425
+shader_parameter/circle_gap_size = 0.06000000285
+shader_parameter/circle_color_main = Color(0.050980393, 0.9490196, 0.9490196, 1)
+shader_parameter/circle_color_outline = Color(0, 0, 0, 1)
+shader_parameter/circle_outline_width = 0.0
+shader_parameter/circle_outline_flat = true
+shader_parameter/circle_rotation_speed = 0.30000048924999945
+shader_parameter/circle_base_angle = 0.0
+shader_parameter/dot_radius = 0.0400000019
+shader_parameter/dot_color = Color(0.050980393, 0.9490196, 0.9490196, 1)
+shader_parameter/dot_outline_width = 0.0
+shader_parameter/dot_outline_color = Color(0, 0, 0, 1)
+shader_parameter/dot_outline_flat = true
+shader_parameter/cross_bar_width = 0.19600000931
+shader_parameter/cross_thickness = 0.050000002375
+shader_parameter/cross_gap_size = 0.14000000665
+shader_parameter/cross_color_main = Color(0.050980393, 0.9490196, 0.9490196, 1)
+shader_parameter/cross_color_outline = Color(0, 0, 0, 1)
+shader_parameter/cross_outline_width = 0.0
+shader_parameter/cross_outline_flat = true
+shader_parameter/cross_rotation_speed = 0.30000048924999945
+shader_parameter/cross_base_angle = 0.0
