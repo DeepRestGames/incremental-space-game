@@ -6,7 +6,7 @@ extends Area2D
 var inner_radius: float = 30.0
 
 # State
-var is_active: bool = false
+var is_active: bool = true
 var reticle_angle: float = 0.0
 
 # Child node references
@@ -21,11 +21,6 @@ func _ready() -> void:
 	add_to_group("MiningReticle")
 	
 	update_reticle_size()
-	
-	# Default state is inactive and hidden
-	visible = false
-	if collision_shape:
-		collision_shape.disabled = true
 	
 	# Set process
 	set_process(true)
@@ -43,20 +38,6 @@ func update_reticle_size() -> void:
 	if digging_circle:
 		var new_scale = (2.0 * inner_radius) / 512.0
 		digging_circle.scale = Vector2(new_scale, new_scale)
-
-func activate() -> void:
-	is_active = true
-	visible = true
-	update_reticle_size()
-	if collision_shape:
-		collision_shape.disabled = false
-
-
-func deactivate() -> void:
-	is_active = false
-	visible = false
-	if collision_shape:
-		collision_shape.disabled = true
 
 
 func _process(_delta: float) -> void:

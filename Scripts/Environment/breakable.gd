@@ -44,7 +44,6 @@ func _ready() -> void:
 func on_interacted() -> void:
 	if not player_is_in_range:
 		return
-	
 	var damage = int(SkillModifiers.get_drill_damage_per_tick())
 	
 	# Crit chance check
