@@ -102,9 +102,9 @@ func _process(delta: float) -> void:
 	if currentInvincibilityCooldown > 0:
 		currentInvincibilityCooldown -= delta
 	update_animation_parameters()
-
+	mining_reticle.visible = GameManager.expedition_started
+	
 	if GameManager.expedition_started:
-		mining_reticle.visible = true
 		# During the opening grace period the tank stays full: the bar is still
 		# refreshed so it reads 100% instead of whatever the scene was authored with.
 		if GameManager.is_oxygen_draining():
