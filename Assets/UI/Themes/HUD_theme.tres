@@ -1,0 +1,8 @@
+[gd_resource type="Theme" format=3 uid="uid://bgbggt38glq0v"]
+
+[ext_resource type="FontFile" uid="uid://bo6sros8myby6" path="res://Assets/Fonts/oxanium/ttf/Oxanium-Medium.ttf" id="1_acaxe"]
+
+[resource]
+Label/colors/font_color = Color(0.050980393, 0.9490196, 0.9490196, 1)
+Label/font_sizes/font_size = 32
+Label/fonts/font = ExtResource("1_acaxe")

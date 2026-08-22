@@ -8,12 +8,16 @@
 [ext_resource type="PackedScene" uid="uid://cx4f5wal3t4pa" path="res://Scenes/UI/ConfirmationPopup.tscn" id="5_confirmationpopup"]
 [ext_resource type="Script" uid="uid://dr7vi4ci7k7vu" path="res://Scripts/UI/HUD/BombCounter.gd" id="6_bombcounter"]
 [ext_resource type="Texture2D" uid="uid://blslgwfnag1a4" path="res://Assets/PLACEHOLDERS/Bomb.svg" id="7_bombicon"]
-[ext_resource type="Texture2D" uid="uid://cobs1d8020r3b" path="res://Assets/UI/HUD_mockup_clean_1.png" id="8_pydgx"]
 [ext_resource type="Script" uid="uid://d02rqtjowyuap" path="res://Scripts/UI/HUD/hud_mockup_animation.gd" id="9_pydgx"]
+[ext_resource type="Texture2D" uid="uid://1whuycuvjxsl" path="res://Assets/UI/HUD_mockup_clean_2.png" id="10_jt2rc"]
 [ext_resource type="Script" uid="uid://bc3f476l57gt1" path="res://Scripts/UI/HUD/MoneyCounter.gd" id="10_money"]
 [ext_resource type="Texture2D" uid="uid://dcisudmqov3na" path="res://Assets/PLACEHOLDERS/rock_currency.svg" id="11_rock"]
 [ext_resource type="Texture2D" uid="uid://4tr34ksq0npv" path="res://Assets/PLACEHOLDERS/money_currency.svg" id="12_money"]
 [ext_resource type="PackedScene" path="res://Scenes/UI/ExpeditionIntro.tscn" id="13_intro"]
+[ext_resource type="Texture2D" uid="uid://bvjhtluwi86x4" path="res://Assets/UI/HUD/miniO2HUD.svg" id="15_gmqj4"]
+[ext_resource type="Theme" uid="uid://bgbggt38glq0v" path="res://Assets/UI/Themes/HUD_theme.tres" id="16_jbjhr"]
+[ext_resource type="Texture2D" uid="uid://c7yiw74xjb0pq" path="res://Assets/UI/HUD/O2barFull.svg" id="17_jbjhr"]
+[ext_resource type="Texture2D" uid="uid://baab6f6ycatf3" path="res://Assets/UI/HUD/O2barEmpty.svg" id="18_o2empty"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bg"]
 bg_color = Color(0.12, 0.12, 0.16, 0.7)
@@ -51,18 +55,16 @@ grow_vertical = 2
 metadata/_edit_use_anchors_ = true
 
 [node name="InteractionPrompt" type="Label" parent="HUD" unique_id=1193440688]
+z_index = 200
 layout_mode = 1
-anchors_preset = 7
+anchors_preset = 5
 anchor_left = 0.5
-anchor_top = 1.0
 anchor_right = 0.5
-anchor_bottom = 1.0
 offset_left = -250.0
-offset_top = -120.0
+offset_top = 48.0
 offset_right = 250.0
-offset_bottom = -80.0
+offset_bottom = 88.0
 grow_horizontal = 2
-grow_vertical = 0
 theme_override_font_sizes/font_size = 28
 text = "START EXPEDITION"
 horizontal_alignment = 1
@@ -149,6 +151,7 @@ expand_mode = 3
 stretch_mode = 5
 
 [node name="OxygenBar" type="Control" parent="HUD" unique_id=987123456]
+visible = false
 custom_minimum_size = Vector2(300, 50)
 layout_mode = 1
 anchors_preset = 2
@@ -159,7 +162,6 @@ offset_top = -100.0
 offset_right = 350.0
 offset_bottom = -50.0
 grow_vertical = 0
-script = ExtResource("4_oxygen")
 metadata/_edit_use_anchors_ = true
 
 [node name="HBoxContainer" type="HBoxContainer" parent="HUD/OxygenBar" unique_id=987123457]
@@ -229,7 +231,6 @@ expand_mode = 1
 stretch_mode = 5
 
 [node name="HUD mockup" type="TextureRect" parent="HUD" unique_id=456746594 node_paths=PackedStringArray("hud_mockup")]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -240,12 +241,211 @@ offset_right = 41.5
 offset_bottom = 639.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("8_pydgx")
+texture = ExtResource("10_jt2rc")
 script = ExtResource("9_pydgx")
 hud_mockup = NodePath(".")
 
 [node name="ExpeditionIntro" parent="." unique_id=1033768906 instance=ExtResource("13_intro")]
+visible = false
 
 [node name="PauseMenu" parent="." unique_id=105724579 instance=ExtResource("3_pausemenu")]
+visible = false
 
 [node name="ConfirmationPopup" parent="." unique_id=105724580 instance=ExtResource("5_confirmationpopup")]
+visible = false
+
+[node name="OxygenBarNew" type="HBoxContainer" parent="." unique_id=1313877727]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -166.0
+offset_top = -118.0
+offset_right = 166.0
+offset_bottom = -48.0
+grow_horizontal = 2
+grow_vertical = 0
+script = ExtResource("4_oxygen")
+
+[node name="O2" type="Label" parent="OxygenBarNew" unique_id=279749167]
+layout_mode = 2
+theme = ExtResource("16_jbjhr")
+text = "O₂"
+horizontal_alignment = 1
+
+[node name="OxygenTexture" type="TextureRect" parent="OxygenBarNew" unique_id=1224875552]
+visible = false
+layout_mode = 2
+texture = ExtResource("15_gmqj4")
+expand_mode = 2
+stretch_mode = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="OxygenBarNew" unique_id=1756937638]
+layout_mode = 2
+
+[node name="Oxy_perc" type="Label" parent="OxygenBarNew/VBoxContainer" unique_id=2039131012]
+custom_minimum_size = Vector2(64, 0)
+layout_mode = 2
+theme = ExtResource("16_jbjhr")
+text = "100"
+horizontal_alignment = 1
+
+[node name="perc" type="Label" parent="OxygenBarNew/VBoxContainer" unique_id=1539936639]
+layout_mode = 2
+theme = ExtResource("16_jbjhr")
+text = "%"
+horizontal_alignment = 1
+
+[node name="Oxy" type="HBoxContainer" parent="OxygenBarNew" unique_id=1387969885]
+layout_mode = 2
+
+[node name="_1" type="TextureRect" parent="OxygenBarNew/Oxy" unique_id=1422833574]
+layout_mode = 2
+texture = ExtResource("18_o2empty")
+stretch_mode = 2
+
+[node name="Fill" type="TextureRect" parent="OxygenBarNew/Oxy/_1" unique_id=672831434]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("17_jbjhr")
+stretch_mode = 2
+
+[node name="_2" type="TextureRect" parent="OxygenBarNew/Oxy" unique_id=374128305]
+layout_mode = 2
+texture = ExtResource("18_o2empty")
+stretch_mode = 2
+
+[node name="Fill" type="TextureRect" parent="OxygenBarNew/Oxy/_2" unique_id=843204253]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("17_jbjhr")
+stretch_mode = 2
+
+[node name="_3" type="TextureRect" parent="OxygenBarNew/Oxy" unique_id=1077986807]
+layout_mode = 2
+texture = ExtResource("18_o2empty")
+stretch_mode = 2
+
+[node name="Fill" type="TextureRect" parent="OxygenBarNew/Oxy/_3" unique_id=1706791565]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("17_jbjhr")
+stretch_mode = 2
+
+[node name="_4" type="TextureRect" parent="OxygenBarNew/Oxy" unique_id=1897059013]
+layout_mode = 2
+texture = ExtResource("18_o2empty")
+stretch_mode = 2
+
+[node name="Fill" type="TextureRect" parent="OxygenBarNew/Oxy/_4" unique_id=6156676]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("17_jbjhr")
+stretch_mode = 2
+
+[node name="_5" type="TextureRect" parent="OxygenBarNew/Oxy" unique_id=1735446378]
+layout_mode = 2
+texture = ExtResource("18_o2empty")
+stretch_mode = 2
+
+[node name="Fill" type="TextureRect" parent="OxygenBarNew/Oxy/_5" unique_id=1938298325]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("17_jbjhr")
+stretch_mode = 2
+
+[node name="_6" type="TextureRect" parent="OxygenBarNew/Oxy" unique_id=524443579]
+layout_mode = 2
+texture = ExtResource("18_o2empty")
+stretch_mode = 2
+
+[node name="Fill" type="TextureRect" parent="OxygenBarNew/Oxy/_6" unique_id=354807007]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("17_jbjhr")
+stretch_mode = 2
+
+[node name="_7" type="TextureRect" parent="OxygenBarNew/Oxy" unique_id=1092578954]
+layout_mode = 2
+texture = ExtResource("18_o2empty")
+stretch_mode = 2
+
+[node name="Fill" type="TextureRect" parent="OxygenBarNew/Oxy/_7" unique_id=656262907]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("17_jbjhr")
+stretch_mode = 2
+
+[node name="_8" type="TextureRect" parent="OxygenBarNew/Oxy" unique_id=385962328]
+layout_mode = 2
+texture = ExtResource("18_o2empty")
+stretch_mode = 2
+
+[node name="Fill" type="TextureRect" parent="OxygenBarNew/Oxy/_8" unique_id=1534926100]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("17_jbjhr")
+stretch_mode = 2
+
+[node name="_9" type="TextureRect" parent="OxygenBarNew/Oxy" unique_id=1816163827]
+layout_mode = 2
+texture = ExtResource("18_o2empty")
+stretch_mode = 2
+
+[node name="Fill" type="TextureRect" parent="OxygenBarNew/Oxy/_9" unique_id=552259942]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("17_jbjhr")
+stretch_mode = 2
+
+[node name="_10" type="TextureRect" parent="OxygenBarNew/Oxy" unique_id=874802506]
+layout_mode = 2
+texture = ExtResource("18_o2empty")
+stretch_mode = 2
+
+[node name="Fill" type="TextureRect" parent="OxygenBarNew/Oxy/_10" unique_id=2101300771]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("17_jbjhr")
+stretch_mode = 2
