@@ -67,8 +67,9 @@ func _repaint(ratio: float, full: int, total: int) -> void:
 	frontier.modulate.a = 1.0
 
 	_pulse_tween = create_tween().set_loops()
-	_pulse_tween.tween_property(frontier, "modulate:a", pulse_min_alpha, pulse_time * 0.5)
-	_pulse_tween.tween_property(frontier, "modulate:a", 1.0, pulse_time * 0.5)
+	_pulse_tween.set_trans(Tween.TRANS_EXPO)
+	_pulse_tween.tween_property(frontier, "modulate:a", pulse_min_alpha, pulse_time * 0.4)
+	_pulse_tween.tween_property(frontier, "modulate:a", 1.0, pulse_time * 0.2)
 
 
 ## Solid overlay of segment `index`
