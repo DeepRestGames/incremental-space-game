@@ -9,6 +9,7 @@ extends HBoxContainer
 
 @onready var pct_label: Label = $"VBoxContainer/Oxy_perc"
 @onready var oxygen_bar: HBoxContainer = $Oxy
+@onready var vignette = $"../VignetteAsphyxiating"
 
 ## Fully-lit segments at the last update. -1 forces the first paint.
 var _full_segments: int = -1
@@ -30,15 +31,24 @@ func _ready() -> void:
 func on_update_oxygen(current: float, max_val: float) -> void:
 	if not visible:
 		show()
-
+		
 	var ratio: float = clampf(current / max_val, 0.0, 1.0)
 	pct_label.text = "%d" % roundi(ratio * 100.0)
+	
+	#recolor based on oxygen %
+	var tween = create_tween()
 	if ratio > 0.5:
 		self.modulate = Color(0.051, 0.949, 0.949)
+		
 	elif ratio <= 0.3 && ratio > 0.15:
-		self.modulate = Color(0.949, 0.8, 0.051)
+		vignette.modulate.a = 0
+		self.modulate = Color(0.949, 0.8, 0.051)		
+		tween.tween_property(vignette, "modulate:a", 0.4, 1.0)
+		
 	elif ratio <= 0.15:
 		self.modulate = Color(0.933, 0.169, 0.345, 1.0)
+		tween.tween_property(vignette, "modulate:a", 0.8, 1.0)
+	
 	var total: int = oxygen_bar.get_child_count()
 	var should_be_full: int = clampi(floori(ratio * total), 0, total)
 
@@ -73,8 +83,9 @@ func _repaint(ratio: float, full: int, total: int) -> void:
 
 	_pulse_tween = create_tween().set_loops()
 	_pulse_tween.set_trans(Tween.TRANS_EXPO)
-	_pulse_tween.tween_property(frontier, "modulate:a", pulse_min_alpha, pulse_time * 0.4)
-	_pulse_tween.tween_property(frontier, "modulate:a", 1.0, pulse_time * 0.2)
+	_pulse_tween.tween_property(frontier, "modulate:a", pulse_min_alpha, pulse_time * 0.15)
+	_pulse_tween.tween_property(frontier, "modulate:a", 1.0, pulse_time * 0.15)
+	_pulse_tween.tween_property(frontier, "modulate:a", 1.0, pulse_time * 0.6)
 
 
 ## Solid overlay of segment `index`

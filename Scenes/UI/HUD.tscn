@@ -14,6 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://dcisudmqov3na" path="res://Assets/PLACEHOLDERS/rock_currency.svg" id="11_rock"]
 [ext_resource type="Texture2D" uid="uid://4tr34ksq0npv" path="res://Assets/PLACEHOLDERS/money_currency.svg" id="12_money"]
 [ext_resource type="PackedScene" path="res://Scenes/UI/ExpeditionIntro.tscn" id="13_intro"]
+[ext_resource type="Texture2D" uid="uid://d1pk75jr5hq0n" path="res://Assets/UI/HUD/redVignette.svg" id="14_dds1n"]
 [ext_resource type="Texture2D" uid="uid://bvjhtluwi86x4" path="res://Assets/UI/HUD/miniO2HUD.svg" id="15_gmqj4"]
 [ext_resource type="Theme" uid="uid://bgbggt38glq0v" path="res://Assets/UI/Themes/HUD_theme.tres" id="16_jbjhr"]
 [ext_resource type="Texture2D" uid="uid://c7yiw74xjb0pq" path="res://Assets/UI/HUD/O2barFull.svg" id="17_jbjhr"]
@@ -253,6 +254,15 @@ visible = false
 
 [node name="ConfirmationPopup" parent="." unique_id=105724580 instance=ExtResource("5_confirmationpopup")]
 visible = false
+
+[node name="VignetteAsphyxiating" type="TextureRect" parent="." unique_id=698153059]
+modulate = Color(1, 1, 1, 0)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("14_dds1n")
 
 [node name="OxygenBarNew" type="HBoxContainer" parent="." unique_id=1313877727]
 anchors_preset = 7
