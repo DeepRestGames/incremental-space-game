@@ -33,7 +33,12 @@ func on_update_oxygen(current: float, max_val: float) -> void:
 
 	var ratio: float = clampf(current / max_val, 0.0, 1.0)
 	pct_label.text = "%d" % roundi(ratio * 100.0)
-
+	if ratio > 0.5:
+		self.modulate = Color(0.051, 0.949, 0.949)
+	elif ratio <= 0.3 && ratio > 0.15:
+		self.modulate = Color(0.949, 0.8, 0.051)
+	elif ratio <= 0.15:
+		self.modulate = Color(0.933, 0.169, 0.345, 1.0)
 	var total: int = oxygen_bar.get_child_count()
 	var should_be_full: int = clampi(floori(ratio * total), 0, total)
 

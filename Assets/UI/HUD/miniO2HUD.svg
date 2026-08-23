@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
-<svg width="100%" height="100%" viewBox="0 0 22 22" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-miterlimit:2;">
-    <g transform="matrix(1,0,0,1,-13832.514066,-12026.558542)">
-        <g transform="matrix(1,0,0,1,-0.905237,0)">
+<svg width="100%" height="100%" viewBox="0 0 43 40" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-miterlimit:2;">
+    <g transform="matrix(1,0,0,1,-14028.923796,-12025.393923)">
+        <g transform="matrix(2.003665,0,0,2.004688,-13690.963034,-12086.447402)">
             <g transform="matrix(0.669719,0,0,0.836174,4570.178459,2259.486555)">
-                <path d="M13849.264,11684.851L13851.08,11686.305C13851.08,11688.298 13851.08,11691.963 13851.08,11694.874L13845.704,11699.179C13843.189,11699.179 13840.359,11699.179 13838.566,11699.179L13836.751,11697.726C13836.751,11694.972 13836.751,11689.025 13836.751,11686.286L13838.543,11684.851C13841.288,11684.851 13846.505,11684.851 13849.264,11684.851Z" style="fill:none;stroke:rgb(13,242,242);stroke-width:4.13px;"/>
+                <path d="M13850.174,11684.851L13851.08,11685.576C13851.08,11687.665 13851.08,11693.754 13851.08,11697.032L13848.397,11699.179L13837.657,11699.179L13836.751,11698.454C13836.751,11695.998 13836.751,11688.009 13836.751,11685.567L13837.645,11684.851C13840.213,11684.851 13847.591,11684.851 13850.174,11684.851Z" style="fill:none;stroke:white;stroke-width:2.74px;"/>
             </g>
-            <g transform="matrix(1,0,0,1,0.924438,78.204883)">
-                <path d="M13846.498,11963.54L13847.347,11962.691L13850.191,11962.691L13850.627,11963.127L13846.664,11967.091L13847.082,11967.511L13851.56,11967.511" style="fill:none;stroke:rgb(13,242,242);stroke-width:2.08px;"/>
+        </g>
+        <g transform="matrix(2.003665,0,0,2.004688,-13690.963034,-12086.447402)">
+            <g transform="matrix(1,0,0,1,2.435512,78.345054)">
+                <path d="M13846.498,11963.54L13847.347,11962.691L13850.191,11962.691L13850.627,11963.127L13846.664,11967.091L13847.082,11967.511L13851.56,11967.511" style="fill:none;stroke:white;stroke-width:1.56px;"/>
             </g>
         </g>
     </g>
