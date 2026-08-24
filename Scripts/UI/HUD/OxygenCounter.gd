@@ -38,44 +38,45 @@ func on_update_oxygen(current: float, max_val: float) -> void:
 	if not visible:
 		show()
 		
-	var ratio: float = clampf(current / max_val, 0.0, 1.0)
-	pct_label.text = "%d" % roundi(ratio * 100.0)
+	var oxygen_ratio: float = clampf(current / max_val, 0.0, 1.0)
+	pct_label.text = "%d" % roundi(oxygen_ratio * 100.0)
 	
 	#recolor based on oxygen %
-	var vignette_tween = create_tween()
-	var chromatic_aberration_tween = create_tween()
-	if ratio > 0.5:
+	#var vignette_tween = create_tween()
+	#var chromatic_aberration_tween = create_tween()
+	# -------------------------------------------------------------------------------
+	if oxygen_ratio > 0.5:
 		self.modulate = Color(0.051, 0.949, 0.949)
-		chromatic_aberration.material.set_shader_parameter("intensity", 0.0)
-		
-	elif ratio <= 0.3 && ratio > 0.15:
+		chromatic_aberration.material.set_shader_parameter("intensity", 0.0)		
+	# --------------------------
+	elif oxygen_ratio <= 0.3 && oxygen_ratio > 0.15:
+		var vignette_tween = create_tween()
+		var chromatic_aberration_tween = create_tween()
 		vignette.modulate.a = 0
 		self.modulate = Color(0.949, 0.8, 0.051)		
 		vignette_tween.tween_property(vignette, "modulate:a", 0.4, 1.0)
 		chromatic_aberration_tween.tween_method( func(value): 
 			chromatic_aberration.material.set_shader_parameter("intensity", value), 
 			chromatic_aberration.material.get_shader_parameter("intensity"), 2.0, 1.0)
-		
-	elif ratio <= 0.15:
+	# --------------------------
+	elif oxygen_ratio <= 0.15:
+		var vignette_tween = create_tween()
+		var chromatic_aberration_tween = create_tween()
 		self.modulate = Color(0.933, 0.169, 0.345, 1.0)
 		vignette_tween.tween_property(vignette, "modulate:a", 0.8, 1.0)
 		chromatic_aberration_tween.tween_method( func(value): 
 			chromatic_aberration.material.set_shader_parameter("intensity", value), 
-			chromatic_aberration.material.get_shader_parameter("intensity"), 4.0, 1.0)
-		
-	
-
-	
-	
+			chromatic_aberration.material.get_shader_parameter("intensity"), 4.0, 1.0)		
+	# -------------------------------------------------------------------------------
 	var total: int = oxygen_bar.get_child_count()
-	var should_be_full: int = clampi(floori(ratio * total), 0, total)
+	var should_be_full: int = clampi(floori(oxygen_ratio * total), 0, total)
 
 	# Called every frame by the Player, but the bar only changes once per segment.
 	if should_be_full == _full_segments:
 		return
 	_full_segments = should_be_full
 
-	_repaint(ratio, should_be_full, total)
+	_repaint(oxygen_ratio, should_be_full, total)
 
 
 func _repaint(ratio: float, full: int, total: int) -> void:
