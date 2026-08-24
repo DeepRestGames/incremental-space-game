@@ -71,12 +71,12 @@ func on_update_oxygen(current: float, max_val: float) -> void:
 	
 	#recolor based on oxygen %
 	# -------------------------------------------------------------------------------
-	if oxygen_ratio > 0.95:
+	if oxygen_ratio > 0.3:
 		_modulate_target = Color(0.051, 0.949, 0.949)
 		_vignette_target_a = 0.0
 		_aberration_target = 0.0
 	# --------------------------
-	elif oxygen_ratio > 0.6:
+	elif oxygen_ratio > 0.15:
 		_modulate_target  = Color(0.949, 0.8, 0.051)
 		_vignette_target_a = 0.4
 		_aberration_target = 2.0
