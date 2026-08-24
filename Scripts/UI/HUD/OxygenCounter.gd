@@ -10,6 +10,8 @@ extends HBoxContainer
 @onready var pct_label: Label = $"VBoxContainer/Oxy_perc"
 @onready var oxygen_bar: HBoxContainer = $Oxy
 @onready var vignette = $"../VignetteAsphyxiating"
+@onready var chromatic_aberration: ColorRect = $"../ChromaticAberration"
+
 
 ## Fully-lit segments at the last update. -1 forces the first paint.
 var _full_segments: int = -1
@@ -18,11 +20,15 @@ var _pulse_tween: Tween
 
 func _ready() -> void:
 	hide()
+	vignette.hide()
+	chromatic_aberration.hide()
 
 	EventBus.update_oxygen_HUD.connect(on_update_oxygen)
 	EventBus.expedition_started.connect(on_expedition_started)
 
 	if GameManager.expedition_started:
+		vignette.show()
+		chromatic_aberration.show()
 		show()
 
 
@@ -36,18 +42,30 @@ func on_update_oxygen(current: float, max_val: float) -> void:
 	pct_label.text = "%d" % roundi(ratio * 100.0)
 	
 	#recolor based on oxygen %
-	var tween = create_tween()
+	var vignette_tween = create_tween()
+	var chromatic_aberration_tween = create_tween()
 	if ratio > 0.5:
 		self.modulate = Color(0.051, 0.949, 0.949)
+		chromatic_aberration.material.set_shader_parameter("intensity", 0.0)
 		
 	elif ratio <= 0.3 && ratio > 0.15:
 		vignette.modulate.a = 0
 		self.modulate = Color(0.949, 0.8, 0.051)		
-		tween.tween_property(vignette, "modulate:a", 0.4, 1.0)
+		vignette_tween.tween_property(vignette, "modulate:a", 0.4, 1.0)
+		chromatic_aberration_tween.tween_method( func(value): 
+			chromatic_aberration.material.set_shader_parameter("intensity", value), 
+			chromatic_aberration.material.get_shader_parameter("intensity"), 2.0, 1.0)
 		
 	elif ratio <= 0.15:
 		self.modulate = Color(0.933, 0.169, 0.345, 1.0)
-		tween.tween_property(vignette, "modulate:a", 0.8, 1.0)
+		vignette_tween.tween_property(vignette, "modulate:a", 0.8, 1.0)
+		chromatic_aberration_tween.tween_method( func(value): 
+			chromatic_aberration.material.set_shader_parameter("intensity", value), 
+			chromatic_aberration.material.get_shader_parameter("intensity"), 4.0, 1.0)
+		
+	
+
+	
 	
 	var total: int = oxygen_bar.get_child_count()
 	var should_be_full: int = clampi(floori(ratio * total), 0, total)

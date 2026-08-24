@@ -19,6 +19,7 @@
 [ext_resource type="Theme" uid="uid://bgbggt38glq0v" path="res://Assets/UI/Themes/HUD_theme.tres" id="16_jbjhr"]
 [ext_resource type="Texture2D" uid="uid://c7yiw74xjb0pq" path="res://Assets/UI/HUD/O2barFull.svg" id="17_jbjhr"]
 [ext_resource type="Texture2D" uid="uid://baab6f6ycatf3" path="res://Assets/UI/HUD/O2barEmpty.svg" id="18_o2empty"]
+[ext_resource type="Material" uid="uid://id7xkdr5ogh8" path="res://Shaders/ShaderMaterials/ChromaticAberrationMaterial.tres" id="20_cn5rm"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bg"]
 bg_color = Color(0.12, 0.12, 0.16, 0.7)
@@ -42,6 +43,7 @@ corner_radius_bottom_left = 2
 [node name="HUDCanvasLayer" type="CanvasLayer" unique_id=1829917660]
 
 [node name="Vignette" type="Sprite2D" parent="." unique_id=1335446882]
+visible = false
 position = Vector2(960.00006, 541.49994)
 scale = Vector2(0.99999994, 1.00185)
 texture = ExtResource("1_4bm6u")
@@ -262,6 +264,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 texture = ExtResource("14_dds1n")
 
 [node name="OxygenBarNew" type="HBoxContainer" parent="." unique_id=1313877727]
@@ -459,3 +462,12 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("17_jbjhr")
 stretch_mode = 2
+
+[node name="ChromaticAberration" type="ColorRect" parent="." unique_id=793669502]
+material = ExtResource("20_cn5rm")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2

@@ -1,0 +1,8 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://id7xkdr5ogh8"]
+
+[ext_resource type="Shader" uid="uid://cqmwsen3gec0n" path="res://Shaders/RadialChromaticAberration.gdshader" id="1_gdcas"]
+
+[resource]
+shader = ExtResource("1_gdcas")
+shader_parameter/intensity = 0.0
+shader_parameter/threshold = 1.0
