@@ -29,35 +29,35 @@ const DATABASE: Dictionary = {
 		"name": "Drill Speed",
 		"description": "Increases drill attack speed.",
 		"max_levels": 5,
-		"cost": 10,
+		"cost": [10, 15, 22, 32, 45],
 		"effects": {
 			"drill_attack_speed": {
 				"type": "ADDITIVE",
-				"value": 1
+				"value": 0.1
 			}
 		}
 	},
 	"drill_crit": {
 		"name": "Lucky Strike",
-		"description": "Increases drill crit chance.",
-		"max_levels": 5,
-		"cost": 16,
+		"description": "Increases chance of critical drilling damage",
+		"max_levels": 3,
+		"cost": [13, 24, 39],
 		"effects": {
 			"drill_crit_chance": {
 				"type": "FLAT",
-				"value": 0.05
+				"value": 0.07
 			}
 		}
 	},
 	"drill_crit_damage": {
 		"name": "Crushing Blows",
 		"description": "Increases drill crit damage.",
-		"max_levels": 5,
-		"cost": 20,
+		"max_levels": 2,
+		"cost": [20, 40],
 		"effects": {
 			"drill_crit_damage": {
 				"type": "ADDITIVE",
-				"value": 0.25
+				"value": 0.5
 			}
 		}
 	},
@@ -65,7 +65,7 @@ const DATABASE: Dictionary = {
 		"name": "Wide Reaches",
 		"description": "Increases drill area size.",
 		"max_levels": 1,
-		"cost": 4,
+		"cost": 5,
 		"effects": {
 			"drill_area_size": {
 				"type": "ADDITIVE",
@@ -77,7 +77,7 @@ const DATABASE: Dictionary = {
 		"name": "Oxygen Reserve",
 		"description": "Increases oxygen tank capacity.",
 		"max_levels": 1,
-		"cost": 2,
+		"cost": 3,
 		"effects": {
 			"oxygen_tank_capacity": {
 				"type": "ADDITIVE",
@@ -89,11 +89,11 @@ const DATABASE: Dictionary = {
 		"name": "Node Locator",
 		"description": "Increases nodes found on landing.",
 		"max_levels": 5,
-		"cost": 25,
+		"cost": [18, 24, 35, 46, 57],
 		"effects": {
 			"nodes_on_landing": {
 				"type": "ADDITIVE",
-				"value": 0.10
+				"value": 0.15
 			}
 		}
 	},
@@ -113,7 +113,7 @@ const DATABASE: Dictionary = {
 		"name": "Precise Drilling",
 		"description": "Increases drops generated when a node is destroyed.",
 		"max_levels": 2,
-		"cost": 40,
+		"cost": 50,
 		"effects": {
 			"drops_on_destruction": {
 				"type": "ADDITIVE",
@@ -137,7 +137,7 @@ const DATABASE: Dictionary = {
 		"name": "Bigger Backpack",
 		"description": "Increases how many resources you can carry.",
 		"max_levels": 5,
-		"cost": 8,
+		"cost": [8, 13, 18, 23, 28],
 		"effects": {
 			"inventory_capacity": {
 				"type": "FLAT",
@@ -149,7 +149,7 @@ const DATABASE: Dictionary = {
 		"name": "Bomb Payload",
 		"description": "Increases number of bomb charges.",
 		"max_levels": 3,
-		"cost": 50,
+		"cost": 45,
 		"effects": {
 			"bomb_charges": {
 				"type": "FLAT",

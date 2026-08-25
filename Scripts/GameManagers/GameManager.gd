@@ -212,8 +212,11 @@ func get_skill_max_levels(skill_id: String) -> int:
 ## Money cost to buy one more level of the given skill.
 func get_skill_cost(skill_id: String) -> int:
 	var skill_info = skill_db.get(skill_id, {})
-	return int(skill_info.get("cost", SkillDB.DEFAULT_UPGRADE_COST))
-
+	var current_skill_level = get_skill_points(skill_id)
+	if skill_info.get("cost") is Array:
+		return int(skill_info.get("cost")[current_skill_level])
+	else:
+		return int(skill_info.get("cost", SkillDB.DEFAULT_UPGRADE_COST))
 
 func can_afford(amount: int) -> bool:
 	return current_money >= amount
