@@ -10,6 +10,7 @@ var selected_level_id: String = LevelDB.DEFAULT_LEVEL_ID
 var player: Player
 var current_player_resource: int = 0
 
+
 # Base stashed resources
 var current_deposit_box_resource: int = 0
 
@@ -76,6 +77,12 @@ var _skill_levels: Dictionary = {
 var skill_db: Dictionary = SkillDB.DATABASE
 
 
+# Audio
+var sfx_player: AudioStreamPlayer
+var sfx_pickup = preload("res://Assets/Audio/SFX/BubblePop.wav")
+var sfx_inventory_full = preload("res://Assets/Audio/SFX/Denied.wav")
+
+
 func _ready() -> void:
 	
 	# DEBUG_add_player_resources()
@@ -89,7 +96,10 @@ func _ready() -> void:
 
 	# Build the stat cache before any scene node can read a stat.
 	_on_skills_changed()
-
+	
+	#Initialize the audio player for system sounds (resource pickup sound)
+	initialize_sfx_player()
+	
 
 func DEBUG_add_player_resources() -> void:
 	add_resource(200)
@@ -105,11 +115,16 @@ func on_player_ready(player_reference: Player) -> void:
 func add_resource(amount: int) -> int:
 	var accepted: int = clampi(amount, 0, get_free_inventory_space())
 	if accepted <= 0:
+		#sfx_player.stream = sfx_inventory_full
+		#sfx_player.play()
 		return 0
 
 	current_player_resource += accepted
 	EventBus.update_HUD.emit()
+	sfx_player.stream = sfx_pickup
+	sfx_player.play()
 	return accepted
+	
 
 
 ## How many resources the player can carry, skill upgrades included.
@@ -294,3 +309,11 @@ func is_modal_ui_open() -> bool:
 ## The world is covered: world-space HUD elements should hide.
 func is_world_obscured() -> bool:
 	return is_modal_ui_open() or game_paused
+
+
+func initialize_sfx_player() -> void:
+	sfx_player = AudioStreamPlayer.new()
+	sfx_player.bus = &"SFX"
+	sfx_player.volume_db = -1.0
+	add_child(sfx_player)
+	

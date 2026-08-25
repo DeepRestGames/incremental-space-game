@@ -586,3 +586,5 @@ texture = ExtResource("12_i5acl")
 [node name="AnimationPlayer" type="AnimationPlayer" parent="MiningReticle" unique_id=703445663]
 root_node = NodePath("../DiggingCircle")
 libraries/ = SubResource("AnimationLibrary_0objx")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=2108158444]

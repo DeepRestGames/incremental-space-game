@@ -1,0 +1,8 @@
+[gd_resource type="AudioStreamRandomizer" format=3 uid="uid://cl67pqcsrek1a"]
+
+[ext_resource type="AudioStream" uid="uid://k6qvcpuxotul" path="res://Assets/Audio/SFX/BubblePop.wav" id="1_qqr5j"]
+
+[resource]
+random_pitch = 1.122462
+streams_count = 1
+stream_0/stream = ExtResource("1_qqr5j")
