@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://q2mkqd6f05cm" path="res://Scripts/Player/bomb_spawner.gd" id="3_t26db"]
 [ext_resource type="PackedScene" uid="uid://beyb44q40vqlr" path="res://Scenes/UI/HUD.tscn" id="3_ude3g"]
 [ext_resource type="Texture2D" uid="uid://b8k587am8xmnh" path="res://Assets/Sprites/player/PlayerSpriteSheet.png" id="4_4wape"]
+[ext_resource type="PackedScene" uid="uid://bwivuxjtkggc0" path="res://Scenes/Particles/dust_particles.tscn" id="5_epg6k"]
 [ext_resource type="Script" uid="uid://dgjxtrxxs5cmk" path="res://Scripts/Player/MiningReticle.gd" id="5_reticle"]
 [ext_resource type="Texture2D" uid="uid://cudg8ldkwnlxw" path="res://Assets/Sprites/kenney_particle-pack/PNG (Transparent)/circle_05.png" id="6_outer_circle"]
 [ext_resource type="Material" uid="uid://bsrdobvxmywkd" path="res://Shaders/ShaderMaterials/MiningReticle.tres" id="10_0kmp4"]
@@ -195,6 +196,30 @@ tracks/2/keys = {
 "update": 1,
 "values": [true]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("DustParticles:emitting")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("DustParticles:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -20)]
+}
 
 [sub_resource type="Animation" id="Animation_esmjy"]
 resource_name = "RunLeft"
@@ -236,6 +261,30 @@ tracks/2/keys = {
 "update": 1,
 "values": [true]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("DustParticles:emitting")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("DustParticles:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(30, -20)]
+}
 
 [sub_resource type="Animation" id="Animation_ji083"]
 resource_name = "RunRight"
@@ -276,6 +325,30 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("DustParticles:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-30, -20)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("DustParticles:emitting")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_i5acl"]
@@ -515,6 +588,11 @@ script = ExtResource("2_jmcll")
 position = Vector2(0, -2)
 rotation = 1.5707941
 shape = SubResource("CapsuleShape2D_ji083")
+
+[node name="DustParticles" parent="." unique_id=1543541744 instance=ExtResource("5_epg6k")]
+position = Vector2(0, -20)
+scale = Vector2(2, 2)
+emitting = false
 
 [node name="PlayerSprite" type="Sprite2D" parent="." unique_id=725788908]
 texture = ExtResource("4_4wape")

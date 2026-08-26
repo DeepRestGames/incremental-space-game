@@ -8,6 +8,8 @@ extends CharacterBody2D
 # Graphics
 @onready var player_sprite = $PlayerSprite
 @onready var animation_tree: AnimationTree = $AnimationTree
+@onready var dust_particles: GPUParticles2D = $DustParticles
+
 
 # HP
 @export var maxHP: int = BaseValuesDB.MAX_HP
@@ -103,6 +105,7 @@ func _process(delta: float) -> void:
 		currentInvincibilityCooldown -= delta
 	update_animation_parameters()
 	mining_reticle.visible = GameManager.expedition_started
+	dust_particles.visible = GameManager.expedition_started
 	
 	if GameManager.expedition_started:
 		# During the opening grace period the tank stays full: the bar is still
@@ -125,7 +128,7 @@ func _process(delta: float) -> void:
 			current_oxygen = max(current_oxygen - actual_drain * delta, 0.0)
 
 		EventBus.update_oxygen_HUD.emit(current_oxygen, max_oxygen)
-
+		
 		if current_oxygen <= 0.0 and currentHP > 0:
 			death_reason = "oxygen"
 			remove_hp(currentHP)

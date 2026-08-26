@@ -79,7 +79,7 @@ var skill_db: Dictionary = SkillDB.DATABASE
 
 # Audio
 var sfx_player: AudioStreamPlayer
-var sfx_pickup = preload("res://Assets/Audio/SFX/BubblePop.wav")
+var sfx_pickup = preload("res://Assets/Audio/SFX/BubblePop_audioStreamRandomizer.tres")
 var sfx_inventory_full = preload("res://Assets/Audio/SFX/Denied.wav")
 
 

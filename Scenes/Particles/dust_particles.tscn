@@ -1,0 +1,89 @@
+[gd_scene format=3 uid="uid://bwivuxjtkggc0"]
+
+[ext_resource type="Texture2D" uid="uid://c8164lj0y8uij" path="res://Assets/Sprites/particles/DustParticle.svg" id="1_pk40k"]
+[ext_resource type="Script" uid="uid://bnb0pd07uxixv" path="res://Scripts/Particles/dust_particles.gd" id="2_7dpac"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_g4v7s"]
+
+[sub_resource type="Gradient" id="Gradient_7dpac"]
+offsets = PackedFloat32Array(0, 0.7563291, 1)
+colors = PackedColorArray(0.33333334, 0.33333334, 0.33333334, 1, 0.313105, 0.313105, 0.313105, 0.5853189, 0.29411766, 0.29411766, 0.29411766, 0.19607843)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_d0u6y"]
+gradient = SubResource("Gradient_7dpac")
+
+[sub_resource type="Curve" id="Curve_r33hv"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.38392866), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_57qmd"]
+curve = SubResource("Curve_r33hv")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_yf5fn"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(15, 10, 1)
+angle_min = -179.99998
+angle_max = 180.00002
+direction = Vector3(0, -1, 0)
+flatness = 1.0
+initial_velocity_max = 80.0
+angular_velocity_min = -180.00002
+angular_velocity_max = 179.99998
+gravity = Vector3(0, 0, 0)
+scale_curve = SubResource("CurveTexture_57qmd")
+color_ramp = SubResource("GradientTexture1D_d0u6y")
+turbulence_noise_strength = 3.0
+turbulence_noise_scale = 5.0
+turbulence_noise_speed_random = 3.0
+turbulence_influence_max = 0.62600005
+turbulence_initial_displacement_min = -34.0
+turbulence_initial_displacement_max = 24.500002
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_d0u6y"]
+
+[sub_resource type="Gradient" id="Gradient_pk40k"]
+offsets = PackedFloat32Array(0, 0.7563291, 1)
+colors = PackedColorArray(0.3137255, 0.3137255, 0.3137255, 1, 0.41362622, 0.41362622, 0.41362622, 0.5904071, 0.50980395, 0.50980395, 0.50980395, 0.19607843)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_57qmd"]
+gradient = SubResource("Gradient_pk40k")
+
+[sub_resource type="Curve" id="Curve_7dpac"]
+_data = [Vector2(0, 0.5446429), 0.0, 0.0, 0, 0, Vector2(1, 0.1875), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_yf5fn"]
+curve = SubResource("Curve_7dpac")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_g4v7s"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(15, 10, 1)
+angle_min = -179.99998
+angle_max = 180.00002
+direction = Vector3(0, -1, 0)
+initial_velocity_max = 80.0
+angular_velocity_min = -180.00002
+angular_velocity_max = 179.99998
+scale_curve = SubResource("CurveTexture_yf5fn")
+color_ramp = SubResource("GradientTexture1D_57qmd")
+
+[node name="DustParticles" type="GPUParticles2D" unique_id=1543541744]
+material = SubResource("CanvasItemMaterial_g4v7s")
+amount = 12
+texture = ExtResource("1_pk40k")
+lifetime = 0.7
+explosiveness = 0.2
+randomness = 1.0
+process_material = SubResource("ParticleProcessMaterial_yf5fn")
+script = ExtResource("2_7dpac")
+
+[node name="smallerParticles" type="GPUParticles2D" parent="." unique_id=1592233845]
+material = SubResource("CanvasItemMaterial_d0u6y")
+amount = 5
+texture = ExtResource("1_pk40k")
+lifetime = 0.7
+explosiveness = 0.2
+randomness = 1.0
+process_material = SubResource("ParticleProcessMaterial_g4v7s")
