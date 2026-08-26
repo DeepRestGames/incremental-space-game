@@ -44,6 +44,15 @@ var confirmation_popup_open: bool = false:
 		confirmation_popup_open = value
 		EventBus.ui_state_changed.emit()
 		
+## True for the whole duration of a screen transition. Doubles as the
+## re-entrancy guard for TransitionManager.change_scene().
+var transitioning: bool = false:
+	set(value):
+		if transitioning == value:
+			return
+		transitioning = value
+		EventBus.ui_state_changed.emit()
+
 ## Single owner of the engine pause flag. 
 var game_paused: bool = false:
 	set(value):
@@ -99,6 +108,7 @@ func _ready() -> void:
 	
 	#Initialize the audio player for system sounds (resource pickup sound)
 	initialize_sfx_player()
+	
 	
 
 func DEBUG_add_player_resources() -> void:
@@ -168,7 +178,6 @@ func is_oxygen_draining() -> bool:
 
 
 func on_expedition_started() -> void:
-	get_tree().change_scene_to_file(get_selected_level_path())
 	expedition_started = true
 	expedition_grace_remaining = BaseValuesDB.EXPEDITION_GRACE_PERIOD
 	_expedition_start_time_msec = Time.get_ticks_msec()
@@ -176,6 +185,7 @@ func on_expedition_started() -> void:
 	expedition_resources_collected = 0
 	expedition_success = true
 	expedition_end_reason = ""
+	TransitionManager.change_scene(get_selected_level_path())
 
 
 func end_expedition(success: bool = true, reason: String = "") -> void:
@@ -192,8 +202,7 @@ func end_expedition(success: bool = true, reason: String = "") -> void:
 	# Add any carrying inventory resources to the total collected during expedition
 	expedition_resources_collected += current_player_resource
 	current_player_resource = 0
-	
-	game_paused = false
+
 	# Finalize stashed resources based on success status
 	if success:
 		current_deposit_box_resource += expedition_resources_collected
@@ -304,7 +313,7 @@ func _on_skills_changed() -> void:
 	
 ## Another full-screen UI already owns the Escape key.
 func is_modal_ui_open() -> bool:
-	return skill_tree_open or level_select_open or confirmation_popup_open
+	return skill_tree_open or level_select_open or confirmation_popup_open or transitioning
 	
 ## The world is covered: world-space HUD elements should hide.
 func is_world_obscured() -> bool:

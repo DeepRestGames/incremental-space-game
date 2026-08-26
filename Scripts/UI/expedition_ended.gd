@@ -44,6 +44,8 @@ func _set_resource_text(label: RichTextLabel, amount: int) -> void:
 func _on_hangar_pressed() -> void:
 	GameManager.open_level_select_on_lobby_load = false
 	get_tree().change_scene_to_packed(GameManager.lobby_scene)
+	# TODO: make a transition with:
+	# TransitionManager.change_scene(get_selected_level_path())
 
 
 func _on_again_pressed() -> void:

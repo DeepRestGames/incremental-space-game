@@ -29,3 +29,5 @@ func _on_back_to_menu_button_pressed() -> void:
 	GameManager.skill_tree_open = false
 	GameManager.level_select_open = false
 	get_tree().change_scene_to_file("res://Scenes/Levels/MainMenu.tscn")
+	# TODO: make a transition with:
+	# TransitionManager.change_scene(get_selected_level_path())
