@@ -1,0 +1,98 @@
+[gd_scene format=3 uid="uid://wioq4o58mex1"]
+
+[ext_resource type="Script" uid="uid://cxdxjhbo3vbjw" path="res://Scripts/UI/TransitionManager.gd" id="1_717ti"]
+[ext_resource type="Shader" uid="uid://eu4l862oldev" path="res://Shaders/transition.gdshader" id="2_717ti"]
+[ext_resource type="AudioStream" uid="uid://dpetmrrsoua0y" path="res://Assets/UI/transitions/transition_in.wav" id="3_nj32m"]
+
+[sub_resource type="Gradient" id="Gradient_n1ikg"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ia4oj"]
+gradient = SubResource("Gradient_n1ikg")
+fill_from = Vector2(0, 1)
+fill_to = Vector2(1, 1)
+
+[sub_resource type="Gradient" id="Gradient_x1qqs"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_oc8xk"]
+gradient = SubResource("Gradient_x1qqs")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(2, 0.5)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dtsns"]
+shader = ExtResource("2_717ti")
+shader_parameter/base_color = Color(0, 0, 0, 1)
+shader_parameter/node_resolution = Vector2(960, 540)
+shader_parameter/factor = 0.999999977648
+shader_parameter/width = 1.0
+shader_parameter/gradient_texture = SubResource("GradientTexture2D_ia4oj")
+shader_parameter/gradient_fixed = true
+shader_parameter/shape_texture = SubResource("GradientTexture2D_oc8xk")
+shader_parameter/shape_tiling = 38.045
+shader_parameter/shape_rotation = 0.0
+shader_parameter/shape_scroll = Vector2(0, 0)
+shader_parameter/shape_feathering = 0.0
+shader_parameter/shape_treshold = 1.0
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_n1ikg"]
+gradient = SubResource("Gradient_n1ikg")
+fill_from = Vector2(1, 1)
+fill_to = Vector2(0, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_x1qqs"]
+shader = ExtResource("2_717ti")
+shader_parameter/base_color = Color(0, 0, 0, 1)
+shader_parameter/node_resolution = Vector2(960, 540)
+shader_parameter/factor = 0.0
+shader_parameter/width = 1.0
+shader_parameter/gradient_texture = SubResource("GradientTexture2D_n1ikg")
+shader_parameter/gradient_fixed = true
+shader_parameter/shape_texture = SubResource("GradientTexture2D_oc8xk")
+shader_parameter/shape_tiling = 38.045
+shader_parameter/shape_rotation = 0.0
+shader_parameter/shape_scroll = Vector2(0, 0)
+shader_parameter/shape_feathering = 0.0
+shader_parameter/shape_treshold = 1.0
+
+[node name="TransitionManager" type="CanvasLayer" unique_id=712564759]
+process_mode = 3
+layer = 100
+script = ExtResource("1_717ti")
+
+[node name="Dots" type="Control" parent="." unique_id=1141658858]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="DotsBegin" type="ColorRect" parent="Dots" unique_id=1100197276]
+visible = false
+material = SubResource("ShaderMaterial_dtsns")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="DotsEnd" type="ColorRect" parent="Dots" unique_id=2038543551]
+visible = false
+material = SubResource("ShaderMaterial_x1qqs")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="AudioStreamPlayer_out" type="AudioStreamPlayer" parent="." unique_id=1528786878]
+stream = ExtResource("3_nj32m")
+volume_db = -2.0
+
+[node name="AudioStreamPlayer_in" type="AudioStreamPlayer" parent="." unique_id=556914220]
+stream = ExtResource("3_nj32m")
+volume_db = -2.0

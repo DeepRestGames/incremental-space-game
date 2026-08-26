@@ -52,6 +52,13 @@ func _ready() -> void:
 		return
 
 	_full_text = GameManager.get_selected_level_name()
+
+	# The intro plays to the player, not to the back of a transition wipe. This
+	# node is PROCESS_MODE_INHERIT, so it is frozen while the transition holds
+	# the pause: starting now would show a static scramble until the reveal ends.
+	if GameManager.transitioning:
+		await TransitionManager.finished
+
 	play_intro()
 
 

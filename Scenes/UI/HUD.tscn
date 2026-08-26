@@ -233,7 +233,7 @@ texture = ExtResource("7_bombicon")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="HUD mockup" type="TextureRect" parent="HUD" unique_id=456746594 node_paths=PackedStringArray("hud_mockup")]
+[node name="HUD mockup" type="TextureRect" parent="HUD" unique_id=456746594]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -246,7 +246,6 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("10_jt2rc")
 script = ExtResource("9_pydgx")
-hud_mockup = NodePath(".")
 
 [node name="ExpeditionIntro" parent="." unique_id=1033768906 instance=ExtResource("13_intro")]
 visible = false
