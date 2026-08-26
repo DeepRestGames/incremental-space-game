@@ -92,7 +92,7 @@ const DATABASE: Dictionary = {
 	"drop_chance": {
 		"name": "Lucky Drilling",
 		"description": "Increases chance to generate a drop per drilling tick.",
-		"cost": [25],
+		"cost": [25, 25, 25],
 		"effects": {
 			"drop_chance_per_tick": {
 				"type": "FLAT",
@@ -103,7 +103,7 @@ const DATABASE: Dictionary = {
 	"destroy_drops": {
 		"name": "Precise Drilling",
 		"description": "Increases drops generated when a node is destroyed.",
-		"cost": [50],
+		"cost": [50, 50],
 		"effects": {
 			"drops_on_destruction": {
 				"type": "ADDITIVE",
@@ -136,7 +136,7 @@ const DATABASE: Dictionary = {
 	"bomb_charges": {
 		"name": "Bomb Payload",
 		"description": "Increases number of bomb charges.",
-		"cost": [45],
+		"cost": [45, 45, 45],
 		"effects": {
 			"bomb_charges": {
 				"type": "FLAT",
