@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" uid="uid://c1r84q4nh0up2" path="res://Scripts/Environment/breakable.gd" id="1_4ng74"]
 [ext_resource type="Texture2D" uid="uid://bya50q67iyp8s" path="res://Assets/Sprites/environment/Rock2.png" id="3_vnr7e"]
-[ext_resource type="AudioStream" uid="uid://3ierfp65kvvi" path="res://Assets/Audio/SFX/click_stone.wav" id="4_vnr7e"]
-[ext_resource type="AudioStream" uid="uid://djpgkfvjqdjyp" path="res://Assets/Audio/SFX/crusher_hit.wav" id="5_obgst"]
+[ext_resource type="AudioStream" uid="uid://bubvdlphje8rr" path="res://Assets/Audio/SFX/RockDamage1.wav" id="4_41714"]
+[ext_resource type="AudioStream" uid="uid://bd0s2s54echde" path="res://Assets/Audio/SFX/RockDestory1.wav" id="6_4ng74"]
 [ext_resource type="Texture2D" uid="uid://dv5onwoojupco" path="res://Assets/Sprites/environment/Rock1.png" id="8_s777y"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_v5ktr"]
@@ -33,12 +33,14 @@ expand_margin_bottom = 5.0
 polygon = PackedVector2Array(281, -86, 104, 131, -200, 127, -329, -59, -231, 172, 138, 172)
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_r5n5c"]
+random_pitch = 1.0594631
 streams_count = 1
-stream_0/stream = ExtResource("4_vnr7e")
+stream_0/stream = ExtResource("4_41714")
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_qituv"]
+random_pitch = 1.0594631
 streams_count = 1
-stream_0/stream = ExtResource("5_obgst")
+stream_0/stream = ExtResource("6_4ng74")
 
 [node name="BreakableSmall" type="StaticBody2D" unique_id=1949437542]
 collision_layer = 4

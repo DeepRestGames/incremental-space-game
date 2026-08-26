@@ -11,6 +11,10 @@ var mining_reticle_rotation: float = 2
 @onready var mining_reticle_material = $"../MiningReticle/DiggingCircle".material
 @onready var reticle_animation_player = $"../MiningReticle/AnimationPlayer"
 
+#SFX
+@onready var audio_stream_player: AudioStreamPlayer = $"../AudioStreamPlayer_hit"
+
+
 @onready var bomb_spawner: BombSpawner = $"../BombSpawner"
 
 func _ready() -> void:
@@ -19,13 +23,19 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	
-	if current_drill_cooldown > 0:
-		current_drill_cooldown -= delta
+	if GameManager.expedition_started:
+		if current_drill_cooldown > 0:
+			current_drill_cooldown -= delta
 	
-	if Input.is_action_pressed("interact") and current_drill_cooldown <= 0:
-		EventBus.action_trigger_interact.emit()
-		reticle_animation_player.play("tick")
-		current_drill_cooldown = drill_cooldown
+		if Input.is_action_pressed("interact") and current_drill_cooldown <= 0:
+			EventBus.action_trigger_interact.emit()
+			reticle_animation_player.play("tick")
+			audio_stream_player.play()
+			current_drill_cooldown = drill_cooldown
+	
+	else:
+		if Input.is_action_pressed("interact"):
+			EventBus.action_trigger_interact.emit()
 
 
 func _unhandled_input(event: InputEvent) -> void:
