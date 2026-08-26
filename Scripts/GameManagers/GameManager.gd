@@ -221,7 +221,7 @@ func convert_resources_to_money(conversion_rate: float = 1.0) -> int:
 ## Maximum number of levels the given skill can be upgraded to.
 func get_skill_max_levels(skill_id: String) -> int:
 	var skill_info = skill_db.get(skill_id, {})
-	return int(skill_info.get("max_levels", 5))
+	return len(skill_info.get("cost"))
 
 
 ## Money cost to buy one more level of the given skill.
