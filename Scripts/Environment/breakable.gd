@@ -4,6 +4,7 @@ extends StaticBody2D
 
 @export var totalHP: int = 3
 var currentHP: int
+var is_dead: bool = false
 
 @onready var control: Control = $Control
 @onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
@@ -65,22 +66,14 @@ func take_damage(damage_value: int) -> void:
 		
 	for i in damage_value:
 		
-		
 		if randf() < drop_chance:
 			spawn_resource_drops(1)
 	
 	currentHP -= damage_value
 	
-	if currentHP <= 0:
-		if GameManager.expedition_started:
-			GameManager.expedition_destroyed_nodes += 1
-		destroy.play()
-		
-		# Extra drops on destruction from skill upgrades
-		var extra_drops = int(SkillModifiers.get_drops_on_destruction())
-			
-		spawn_resource_drops(current_resource_number + extra_drops)
-		queue_free()
+	if currentHP <= 0 and !is_dead:
+		die()
+
 	else:
 		hit.play()
 
@@ -123,4 +116,25 @@ func _on_area_exited(area: Area2D) -> void:
 	if area.is_in_group("MiningReticle"):
 		#control.hide()
 		player_is_in_range = false
-		
+
+
+func die () -> void:
+	is_dead = true
+	if GameManager.expedition_started:
+		GameManager.expedition_destroyed_nodes += 1
+	
+	# Extra drops on destruction from skill upgrades
+	var extra_drops = int(SkillModifiers.get_drops_on_destruction())
+	
+	spawn_resource_drops(current_resource_number + extra_drops)
+	
+	hide()
+	set_physics_process(false)
+	set_process(false)
+	
+	collision_shape_2d.set_deferred("disabled", true)
+	
+	destroy.play()
+	await destroy.finished
+	
+	queue_free()
