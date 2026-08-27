@@ -12,7 +12,8 @@ var mining_reticle_rotation: float = 2
 @onready var reticle_animation_player = $"../MiningReticle/AnimationPlayer"
 
 #SFX
-@onready var audio_stream_player: AudioStreamPlayer = $"../AudioStreamPlayer_hit"
+@onready var audio_stream_player_hit: AudioStreamPlayer = $"../AudioStreamPlayer_hit"
+@onready var audio_stream_player_drilling: AudioStreamPlayer = $"../AudioStreamPlayer_drilling"
 
 
 @onready var bomb_spawner: BombSpawner = $"../BombSpawner"
@@ -27,12 +28,16 @@ func _process(delta: float) -> void:
 		if current_drill_cooldown > 0:
 			current_drill_cooldown -= delta
 	
-		if Input.is_action_pressed("interact") and current_drill_cooldown <= 0:
-			EventBus.action_trigger_interact.emit()
-			reticle_animation_player.play("tick")
-			audio_stream_player.play()
-			current_drill_cooldown = drill_cooldown
-	
+		if Input.is_action_pressed("interact"):
+			if current_drill_cooldown <= 0:
+				EventBus.action_trigger_interact.emit()
+				reticle_animation_player.play("tick")
+				audio_stream_player_hit.play()
+				current_drill_cooldown = drill_cooldown
+			if !audio_stream_player_drilling.playing:
+				audio_stream_player_drilling.play()
+		else:
+			audio_stream_player_drilling.stop()
 	else:
 		if Input.is_action_pressed("interact"):
 			EventBus.action_trigger_interact.emit()

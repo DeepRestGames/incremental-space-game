@@ -15,6 +15,7 @@
 [ext_resource type="Texture2D" uid="uid://lf15ab2rjk0" path="res://Assets/Sprites/kenney_particle-pack/PNG (Transparent)/magic_03.png" id="10_ji083"]
 [ext_resource type="Texture2D" uid="uid://cvikujjtk8n44" path="res://Assets/UI/skill tree/CircleFull.png" id="12_i5acl"]
 [ext_resource type="AudioStream" uid="uid://bvct7d5k0elh5" path="res://Assets/Audio/SFX/BubblePop2.wav" id="14_0u84n"]
+[ext_resource type="AudioStream" uid="uid://cclila0mwxdt4" path="res://Assets/Audio/SFX/Drilling2.wav" id="16_6tu5v"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ji083"]
 radius = 8.0
@@ -303,7 +304,7 @@ tracks/5/keys = {
 "start_offset": 0.0,
 "stream": ExtResource("9_esmjy")
 }],
-"times": PackedFloat32Array(0.213, 0.5333)
+"times": PackedFloat32Array(0.2, 0.5203)
 }
 tracks/5/use_blend = true
 
@@ -387,7 +388,7 @@ tracks/5/keys = {
 "start_offset": 0.0,
 "stream": ExtResource("9_esmjy")
 }],
-"times": PackedFloat32Array(0.213, 0.53333336)
+"times": PackedFloat32Array(0.18974215, 0.5100755)
 }
 tracks/5/use_blend = true
 
@@ -615,6 +616,11 @@ random_pitch = 1.0594631
 streams_count = 1
 stream_0/stream = ExtResource("14_0u84n")
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_yf5fn"]
+random_pitch = 1.0293022
+streams_count = 1
+stream_0/stream = ExtResource("16_6tu5v")
+
 [node name="Player" type="CharacterBody2D" unique_id=1034631766 groups=["Player"]]
 collision_mask = 4
 motion_mode = 1
@@ -716,3 +722,7 @@ bus = &"SFX"
 
 [node name="AudioStreamPlayer_step" type="AudioStreamPlayer" parent="." unique_id=998635694]
 volume_db = -10.0
+
+[node name="AudioStreamPlayer_drilling" type="AudioStreamPlayer" parent="." unique_id=1283101801]
+stream = SubResource("AudioStreamRandomizer_yf5fn")
+bus = &"SFX"
