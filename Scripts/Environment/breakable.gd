@@ -18,7 +18,7 @@ var player_is_in_range: bool = false
 @export var min_rock_particles = 3
 @export var max_rock_particles = 7
 
-@onready var sprite_2d: Sprite2D = $CollisionShape2D/Sprite2D
+@onready var sprite_2d: Sprite2D = $Sprite2D
 @export var rock_sprites: Array[Texture2D]
 
 @onready var resource_scene: PackedScene = preload("res://Scenes/Resources/BasePickup.tscn")
@@ -36,7 +36,7 @@ func _ready() -> void:
 	
 	EventBus.action_trigger_interact.connect(on_interacted)
 	
-	var area2d = get_node_or_null("CollisionShape2D/Sprite2D/Area2D")
+	var area2d = get_node_or_null("Area2D")
 	if area2d:
 		area2d.area_entered.connect(_on_area_entered)
 		area2d.area_exited.connect(_on_area_exited)
@@ -81,7 +81,7 @@ func take_damage(damage_value: int) -> void:
 func spawn_resource_drops(resource_number: int) -> void:
 	for i in resource_number:
 		var resource_drop_node = resource_scene.instantiate() as BasePickup
-		var random_offset = Vector2(randf_range(-20, 20), randf_range(-20, 20))
+		var random_offset = Vector2(randf_range(-40, 40), randf_range(0, 0))
 		get_tree().current_scene.add_child(resource_drop_node)
 		resource_drop_node.global_position = self.global_position + random_offset
 		resource_drop_node.randomize_spawn_direction()

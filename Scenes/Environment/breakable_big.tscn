@@ -8,8 +8,8 @@
 [ext_resource type="AudioStream" uid="uid://bd0s2s54echde" path="res://Assets/Audio/SFX/RockDestory1.wav" id="6_lglgh"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_v5ktr"]
-radius = 83.0
-height = 255.99986
+radius = 47.00002
+height = 296.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_5m1wr"]
 radius = 360.68335
@@ -30,9 +30,6 @@ expand_margin_top = 5.0
 expand_margin_right = 5.0
 expand_margin_bottom = 5.0
 
-[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_5gjhx"]
-polygon = PackedVector2Array(281, -86, 104, 131, -200, 127, -329, -59, -231, 172, 138, 172)
-
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_nxef3"]
 random_pitch = 1.0594631
 streams_count = 1
@@ -52,25 +49,26 @@ min_resource_number = 3
 max_resource_number = 6
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1333666049]
-position = Vector2(0, -83)
+position = Vector2(0, -7)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_v5ktr")
 
-[node name="Sprite2D" type="Sprite2D" parent="CollisionShape2D" unique_id=1498912955]
-position = Vector2(-32.45, 0)
-rotation = -1.5708
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1498912955]
 scale = Vector2(1.2, 1.2)
 texture = ExtResource("2_oq4pq")
+offset = Vector2(0, -64.125)
 
-[node name="Area2D" type="Area2D" parent="CollisionShape2D/Sprite2D" unique_id=1176190]
-scale = Vector2(0.337566, 0.337566)
+[node name="Area2D" type="Area2D" parent="." unique_id=1176190]
+position = Vector2(0.000117468684, -84)
+scale = Vector2(0.40507922, 0.40507922)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CollisionShape2D/Sprite2D/Area2D" unique_id=1385448738]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1385448738]
 shape = SubResource("CircleShape2D_5m1wr")
 
-[node name="5Chip1Green" type="Sprite2D" parent="CollisionShape2D" unique_id=1485395749]
+[node name="5Chip1Green" type="Sprite2D" parent="." unique_id=1485395749]
 visible = false
-position = Vector2(-54, 6.00018)
+position = Vector2(-5.9999843, -137.00003)
+rotation = 1.5708
 texture = ExtResource("3_5gjhx")
 
 [node name="Control" type="Control" parent="." unique_id=1507279486]
@@ -98,12 +96,6 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_mu2bs")
 metadata/_edit_use_anchors_ = true
 
 [node name="RockParticlesParent" type="Node2D" parent="." unique_id=424488738]
-position = Vector2(-13, -225)
-
-[node name="LightOccluder2D" type="LightOccluder2D" parent="." unique_id=329212733]
-position = Vector2(28, -112)
-scale = Vector2(0.852913, 0.852913)
-occluder = SubResource("OccluderPolygon2D_5gjhx")
 
 [node name="Audio" type="Node2D" parent="." unique_id=445612917]
 
@@ -115,5 +107,5 @@ bus = &"SFX"
 stream = SubResource("AudioStreamRandomizer_a7o1t")
 bus = &"SFX"
 
-[connection signal="body_entered" from="CollisionShape2D/Sprite2D/Area2D" to="." method="_on_area_2d_body_entered"]
-[connection signal="body_exited" from="CollisionShape2D/Sprite2D/Area2D" to="." method="_on_area_2d_body_exited"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

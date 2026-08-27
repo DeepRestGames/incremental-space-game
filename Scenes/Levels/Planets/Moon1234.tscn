@@ -34,8 +34,11 @@ repeat_times = 3
 [node name="SeamlessBackground" type="Sprite2D" parent="Parallax2D" index="0" unique_id=993693161]
 texture = ExtResource("2_lbst8")
 
-[node name="ExpeditionShip" parent="Objects" parent_id_path=PackedInt32Array(1539187237) index="2" unique_id=1704699913]
+[node name="ExpeditionShip" parent="Objects" parent_id_path=PackedInt32Array(1539187237) index="1" unique_id=1704699913]
 custom_texture = null
+
+[node name="Particles" parent="Objects" parent_id_path=PackedInt32Array(1539187237) index="2" unique_id=1547777866]
+y_sort_enabled = true
 
 [node name="MapCoordinateGenerator" parent="Objects" parent_id_path=PackedInt32Array(1539187237) index="3" unique_id=1573320358]
 min_distance = 150.0

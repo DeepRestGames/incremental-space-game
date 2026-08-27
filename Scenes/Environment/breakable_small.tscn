@@ -8,7 +8,7 @@
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_v5ktr"]
 radius = 35.00004
-height = 188.0
+height = 194.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_5m1wr"]
 radius = 115.02716
@@ -29,9 +29,6 @@ expand_margin_top = 5.0
 expand_margin_right = 5.0
 expand_margin_bottom = 5.0
 
-[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_5gjhx"]
-polygon = PackedVector2Array(281, -86, 104, 131, -200, 127, -329, -59, -231, 172, 138, 172)
-
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_r5n5c"]
 random_pitch = 1.0594631
 streams_count = 1
@@ -51,19 +48,21 @@ min_resource_number = 2
 max_resource_number = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=762273956]
-position = Vector2(0, -39)
+position = Vector2(0, -8)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_v5ktr")
 
-[node name="Sprite2D" type="Sprite2D" parent="CollisionShape2D" unique_id=699384529]
-position = Vector2(-38, 0.0001375596)
-rotation = -1.5708
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=699384529]
+position = Vector2(0, -7.999996)
 scale = Vector2(0.8, 0.8)
 texture = ExtResource("8_s777y")
+offset = Vector2(0, -55.25)
 
-[node name="Area2D" type="Area2D" parent="CollisionShape2D/Sprite2D" unique_id=127977022]
+[node name="Area2D" type="Area2D" parent="." unique_id=127977022]
+position = Vector2(1.4551915e-11, -51)
+scale = Vector2(0.8, 0.8)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CollisionShape2D/Sprite2D/Area2D" unique_id=609356485]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=609356485]
 shape = SubResource("CircleShape2D_5m1wr")
 
 [node name="Control" type="Control" parent="." unique_id=1706542853]
@@ -89,11 +88,6 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_mu2bs")
 metadata/_edit_use_anchors_ = true
 
 [node name="RockParticlesParent" type="Node2D" parent="." unique_id=451479391]
-position = Vector2(-13, -142)
-
-[node name="LightOccluder2D" type="LightOccluder2D" parent="." unique_id=1515593806]
-position = Vector2(18, -67)
-occluder = SubResource("OccluderPolygon2D_5gjhx")
 
 [node name="Audio" type="Node2D" parent="." unique_id=1529390252]
 
@@ -105,5 +99,5 @@ bus = &"SFX"
 stream = SubResource("AudioStreamRandomizer_qituv")
 bus = &"SFX"
 
-[connection signal="body_entered" from="CollisionShape2D/Sprite2D/Area2D" to="." method="_on_area_2d_body_entered"]
-[connection signal="body_exited" from="CollisionShape2D/Sprite2D/Area2D" to="." method="_on_area_2d_body_exited"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

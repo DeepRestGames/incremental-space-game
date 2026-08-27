@@ -2,7 +2,6 @@
 
 [ext_resource type="Script" uid="uid://dekru8mkploct" path="res://Scripts/Particles/RockParticle.gd" id="1_xaieh"]
 [ext_resource type="Texture2D" uid="uid://c2tleiflkdpsx" path="res://Assets/Sprites/environment/rock_particle_1.png" id="2_2g52t"]
-[ext_resource type="Texture2D" uid="uid://bfxvm1j2edeqa" path="res://Assets/Sprites/environment/rock_particle_outline_1.png" id="2_juue8"]
 [ext_resource type="Texture2D" uid="uid://cs1wviunufod6" path="res://Assets/Sprites/environment/rock_particle_2.png" id="3_ycix2"]
 [ext_resource type="Texture2D" uid="uid://btn31dou2q800" path="res://Assets/Sprites/environment/rock_particle_3.png" id="4_e1wdp"]
 
@@ -11,5 +10,5 @@ script = ExtResource("1_xaieh")
 particle_sprites = Array[Texture2D]([ExtResource("2_2g52t"), ExtResource("3_ycix2"), ExtResource("4_e1wdp")])
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1110685722]
-texture = ExtResource("2_juue8")
+texture = ExtResource("2_2g52t")
 region_rect = Rect2(0, 0, 2500, 2174)
