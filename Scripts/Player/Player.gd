@@ -204,11 +204,9 @@ func update_animation_parameters():
 	if (velocity == Vector2.ZERO):
 		animation_tree["parameters/conditions/idle"] = true
 		animation_tree["parameters/conditions/is_moving"] = false
-		dust_particles.emitting = false
 	else:
 		animation_tree["parameters/conditions/idle"] = false
 		animation_tree["parameters/conditions/is_moving"] = true
-		dust_particles.emitting = true
 	if Input.is_action_pressed("interact") and GameManager.expedition_started and not inside_interactable_area:
 		animation_tree["parameters/conditions/drilling"] = true
 		animation_tree["parameters/conditions/idle"] = false
