@@ -7,10 +7,10 @@
 [ext_resource type="AudioStream" uid="uid://bd0s2s54echde" path="res://Assets/Audio/SFX/RockDestory1.wav" id="6_hrk7p"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bgfo6"]
-size = Vector2(112.00008, 318.00006)
+size = Vector2(43.789303, 310.3199)
 
 [sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_6iqla"]
-points = PackedVector2Array(-407.32803, -27.155182, 145.65024, -298.707, 382.6409, 29.62384, 380.17224, 308.58163, -387.57883, 311.0503, -424.6086, 259.20856)
+points = PackedVector2Array(-335.73712, 12.343262, 123.43236, -212.30414, 320.9246, 59.24768, 320.9246, 288.8324, -325.8625, 293.7697, -353.01767, 254.27126)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mu2bs"]
 draw_center = false
@@ -41,18 +41,21 @@ stream_0/stream = ExtResource("6_hrk7p")
 [node name="BreakableCube" type="StaticBody2D" unique_id=1730300486]
 collision_layer = 4
 script = ExtResource("1_nwtwi")
-totalHP = 60
+totalHP = 999
+min_rock_particles = 2
+max_rock_particles = 4
 rock_sprites = Array[Texture2D]([ExtResource("2_7y0c1"), ExtResource("3_nwtwi")])
 min_resource_number = 3
 max_resource_number = 6
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1333666049]
-position = Vector2(-5.9999714, -17.000036)
+position = Vector2(-2.7009315, -13.499755)
 rotation = 1.5708
+scale = Vector2(2.1694684, 0.85910857)
 shape = SubResource("RectangleShape2D_bgfo6")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1498912955]
-scale = Vector2(1.2, 1.2)
+modulate = Color(0.7, 0.7, 0.7, 1)
 texture = ExtResource("2_7y0c1")
 offset = Vector2(0, -64.125)
 
