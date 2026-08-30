@@ -6,27 +6,22 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_wpc3r"]
 radius = 181.0
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_q2n55"]
-radius = 72.0
-height = 326.0
-
 [node name="ExpeditionShip" type="Area2D" unique_id=644122719 groups=["ExpeditionShip"]]
 script = ExtResource("1_keioi")
 
 [node name="ExpeditionShipInteractionArea" type="CollisionShape2D" parent="." unique_id=556325045]
-position = Vector2(0, 43)
+position = Vector2(0, 60)
 shape = SubResource("CircleShape2D_wpc3r")
 
-[node name="ExpeditionShipBody" type="StaticBody2D" parent="." unique_id=1630404455]
-
-[node name="ExpeditionShipCollisionShape" type="CollisionShape2D" parent="ExpeditionShipBody" unique_id=1817506810]
-position = Vector2(0, 91)
-rotation = 1.5707964
-shape = SubResource("CapsuleShape2D_q2n55")
-
-[node name="ExpeditionShipBodySprite" type="Sprite2D" parent="ExpeditionShipBody" unique_id=690489644]
-position = Vector2(2.0000038, -128)
+[node name="ExpeditionShipBodySprite" type="Sprite2D" parent="." unique_id=690489644]
 texture = ExtResource("2_keioi")
+offset = Vector2(0, -150.88)
+
+[node name="ExpeditionShipBody" type="StaticBody2D" parent="." unique_id=1630404455]
+collision_layer = 4
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="ExpeditionShipBody" unique_id=1899923445]
+polygon = PackedVector2Array(-47, 169, -47, 65, -89, 58, -112, 119, -134, 124, -156, 118, -149, 97, -132, 90, -122, 39, -134, 25, -134, 0, -75, -21, -1, -29, 84, -19, 134, -2, 133, 25, 122, 40, 132, 94, 149, 99, 155, 117, 134, 123, 111, 117, 89, 55, 47, 67, 47, 168, 42, 168, 41, 42, 47, 42, 52, 48, 101, 35, 121, 19, 120, 11, 79, -3, 1, -11, -73, -4, -122, 12, -122, 20, -92, 39, -50, 48, -47, 42, -41, 42, -41, 169)
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]
