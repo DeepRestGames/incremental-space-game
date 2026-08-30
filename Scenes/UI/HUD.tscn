@@ -42,10 +42,12 @@ corner_radius_bottom_left = 2
 
 [node name="HUDCanvasLayer" type="CanvasLayer" unique_id=1829917660]
 
-[node name="Vignette" type="Sprite2D" parent="." unique_id=1335446882]
-visible = false
-position = Vector2(960.00006, 541.49994)
-scale = Vector2(0.99999994, 1.00185)
+[node name="Vignette" type="TextureRect" parent="." unique_id=432924437]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 texture = ExtResource("1_4bm6u")
 
 [node name="HUD" type="Control" parent="." unique_id=899302714]
@@ -273,9 +275,9 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -166.0
-offset_top = -118.0
+offset_top = -100.0
 offset_right = 166.0
-offset_bottom = -48.0
+offset_bottom = -30.0
 grow_horizontal = 2
 grow_vertical = 0
 script = ExtResource("4_oxygen")
