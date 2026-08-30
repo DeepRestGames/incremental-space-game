@@ -32,8 +32,9 @@ func _ready() -> void:
 	currentHP = totalHP
 	current_resource_number = randi_range(min_resource_number, max_resource_number)
 	
-	sprite_2d.texture = rock_sprites.pick_random()
-
+	# THIS ONLY WORKS AS LONG AS THERE ARE ONLY 2 TEXTURES AVAILABLE AND THEY ARE SPECULAR (FLIPPED HORIZONTALLY)
+	var random_index = randi_range(0, 1)
+	sprite_2d.texture = rock_sprites[random_index]
 	
 	EventBus.action_trigger_interact.connect(on_interacted)
 	
@@ -41,8 +42,9 @@ func _ready() -> void:
 	if area2d:
 		area2d.area_entered.connect(_on_area_entered)
 		area2d.area_exited.connect(_on_area_exited)
-		
-	if rock_sprites[1]:
+	
+	# flip the colliders if the second rock texture has been assigned
+	if random_index == 1:
 		collision_shape_2d.scale.x *= -1
 		area2d.scale.x *= -1
 

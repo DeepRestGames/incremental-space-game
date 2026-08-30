@@ -7,12 +7,11 @@
 [ext_resource type="AudioStream" uid="uid://bubvdlphje8rr" path="res://Assets/Audio/SFX/RockDamage1.wav" id="5_smfia"]
 [ext_resource type="AudioStream" uid="uid://bd0s2s54echde" path="res://Assets/Audio/SFX/RockDestory1.wav" id="6_lglgh"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_v5ktr"]
-radius = 47.00002
-height = 296.0
+[sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_55bpt"]
+points = PackedVector2Array(-10.99946, 149.00003, -44.999622, 104.00017, -38.000362, -99.99986, 5.9994535, -151.00003, 22.999573, -118.000084, 47.000004, 0.9998299, 47.00012, 32.99983, 9.000482, 132.99997)
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_5m1wr"]
-radius = 360.68335
+[sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_yd1yt"]
+points = PackedVector2Array(-367.8296, 162.93109, -298.7073, -106.15207, -234.52232, -281.42642, 7.405669, -298.707, 106.15179, -256.7399, 259.20825, -150.58783, 370.29764, 202.42955, 311.04996, 236.99069, -2.4689429, 303.64432, -81.465836, 303.64432, -328.33115, 214.77281)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mu2bs"]
 draw_center = false
@@ -51,9 +50,10 @@ max_resource_number = 6
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1333666049]
 position = Vector2(0, -7)
 rotation = 1.5708
-shape = SubResource("CapsuleShape2D_v5ktr")
+shape = SubResource("ConvexPolygonShape2D_55bpt")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1498912955]
+modulate = Color(0.9, 0.9, 0.9, 1)
 scale = Vector2(1.2, 1.2)
 texture = ExtResource("2_oq4pq")
 offset = Vector2(0, -64.125)
@@ -63,7 +63,7 @@ position = Vector2(0.000117468684, -84)
 scale = Vector2(0.40507922, 0.40507922)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1385448738]
-shape = SubResource("CircleShape2D_5m1wr")
+shape = SubResource("ConvexPolygonShape2D_yd1yt")
 
 [node name="5Chip1Green" type="Sprite2D" parent="." unique_id=1485395749]
 visible = false
