@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://cb8pqpfy5dg34" path="res://Assets/Sprites/environment/SeamlessBackground.png" id="2_lbst8"]
 [ext_resource type="PackedScene" uid="uid://c6qwwmff8anwx" path="res://Scenes/Environment/breakable_small.tscn" id="3_wjtlv"]
 [ext_resource type="PackedScene" uid="uid://yat7dirw16l5" path="res://Scenes/Environment/breakable_big.tscn" id="4_o7me7"]
+[ext_resource type="PackedScene" uid="uid://ctoav4t5cbhdg" path="res://Scenes/Environment/breakable_cube.tscn" id="5_o7me7"]
 
 [sub_resource type="Gradient" id="Gradient_lbst8"]
 offsets = PackedFloat32Array(0, 0.18306011, 0.49497488, 0.7021858, 1)
@@ -34,11 +35,11 @@ repeat_times = 3
 [node name="SeamlessBackground" type="Sprite2D" parent="Parallax2D" index="0" unique_id=993693161]
 texture = ExtResource("2_lbst8")
 
-[node name="ExpeditionShip" parent="Objects" parent_id_path=PackedInt32Array(1539187237) index="1" unique_id=1704699913]
-custom_texture = null
-
-[node name="Particles" parent="Objects" parent_id_path=PackedInt32Array(1539187237) index="2" unique_id=1547777866]
+[node name="Particles" parent="Objects" parent_id_path=PackedInt32Array(1539187237) index="0" unique_id=1547777866]
 y_sort_enabled = true
+
+[node name="ExpeditionShip" parent="Objects" parent_id_path=PackedInt32Array(1539187237) index="2" unique_id=1704699913]
+custom_texture = null
 
 [node name="MapCoordinateGenerator" parent="Objects" parent_id_path=PackedInt32Array(1539187237) index="3" unique_id=1573320358]
 min_distance = 150.0
@@ -47,8 +48,9 @@ max_spawn_count = 100
 
 [node name="SpawnDistribution" parent="Objects/MapCoordinateGenerator" index="0" unique_id=987654321]
 spawn_distribution = {
-ExtResource("3_wjtlv"): 20.0,
-ExtResource("4_o7me7"): 1.0
+ExtResource("3_wjtlv"): 40.0,
+ExtResource("4_o7me7"): 2.0,
+ExtResource("5_o7me7"): 1.0
 }
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." index="2" unique_id=248897781]
