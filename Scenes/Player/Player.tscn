@@ -19,7 +19,7 @@
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ji083"]
 radius = 8.0
-height = 100.0
+height = 80.00001
 
 [sub_resource type="Animation" id="Animation_0u84n"]
 resource_name = "DrillLeft"
@@ -488,7 +488,7 @@ transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition
 graph_offset = Vector2(-40, -61)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_reticle"]
-radius = 20.880613
+radius = 16.03122
 
 [sub_resource type="Animation" id="Animation_6tu5v"]
 length = 0.001
@@ -657,7 +657,6 @@ width = 2.0
 default_color = Color(0, 0.8, 1, 0.5)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="MiningReticle" unique_id=123456789]
-visible = false
 position = Vector2(100, 0)
 shape = SubResource("CircleShape2D_reticle")
 
