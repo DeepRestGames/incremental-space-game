@@ -43,4 +43,4 @@ extends Node
 @warning_ignore("unused_signal") signal ui_state_changed
 
 # Environment
-@warning_ignore("unused_signal") signal breakable_damaged
+@warning_ignore("unused_signal") signal breakable_damaged(damage_value: int, is_crit: bool)

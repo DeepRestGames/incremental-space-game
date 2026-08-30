@@ -1,31 +1,48 @@
 class_name Breakable
 extends StaticBody2D
 
-
+#region Rock stats
 @export var totalHP: int = 3
 var currentHP: int
 var is_dead: bool = false
+#endregion
 
+#region collisions
 @onready var control: Control = $Control
 @onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
 
 var player_is_in_range: bool = false
+#endregion
 
+#region audio
 @onready var hit: AudioStreamPlayer = $Audio/Hit
 @onready var destroy: AudioStreamPlayer = $Audio/Destroy
+#endregion
 
+#region on damaged 
+# Particles
 @onready var rock_particle = preload("res://Scenes/Particles/rock_particle.tscn")
 @export var min_rock_particles = 3
 @export var max_rock_particles = 7
 
+# Damage number
+const DAMAGE_NUMBER := preload("res://Scenes/UI/DamageNumber.tscn")
+
+#endregion
+
+#region sprite
 @onready var sprite_2d: Sprite2D = $Sprite2D
 @export var rock_sprites: Array[Texture2D]
+#endregion
 
+#region drops
 @onready var resource_scene: PackedScene = preload("res://Scenes/Resources/BasePickup.tscn")
 @export var min_resource_number: int = BaseValuesDB.MIN_RESOURCE_NUMBER
 @export var max_resource_number: int = BaseValuesDB.MAX_RESOURCE_NUMBER
 var current_resource_number: int
 @export var resource_spawn_chance_on_damaged: float = BaseValuesDB.RESOURCE_SPAWN_CHANCE_ON_DAMAGED
+#endregion
+
 
 
 func _ready() -> void:
@@ -52,19 +69,19 @@ func _ready() -> void:
 func on_interacted() -> void:
 	if not player_is_in_range:
 		return
-	var damage = int(SkillModifiers.get_drill_damage_per_tick())
-	
+
+	var damage := int(SkillModifiers.get_drill_damage_per_tick())
 	# Crit chance check
-	var crit_chance = SkillModifiers.get_drill_crit_chance()
-	if randf() < crit_chance:
-		var crit_mult = SkillModifiers.get_drill_crit_damage()
-		damage = int(damage * crit_mult)
+	var is_crit := randf() < SkillModifiers.get_drill_crit_chance()
+	if is_crit:
+		damage = int(damage * SkillModifiers.get_drill_crit_damage())
 	
-	take_damage(damage)
+	take_damage(damage, is_crit)
+	spawn_damage_number(damage, is_crit)
 
 
-func take_damage(damage_value: int) -> void:
-	EventBus.breakable_damaged.emit()
+func take_damage(damage_value: int, is_crit: bool) -> void:
+	EventBus.breakable_damaged.emit(damage_value, is_crit)
 	
 	# drop_chance_per_tick adds to base drop chance
 	var drop_chance = SkillModifiers.get_drop_chance_per_tick(resource_spawn_chance_on_damaged)
@@ -104,6 +121,13 @@ func spawn_rock_particles(rock_particles_number: int) -> void:
 		rock_particle_node.global_position = self.global_position + random_offset
 		rock_particle_node.randomize_spawn_direction()
 
+
+func spawn_damage_number(damage_amount: int, is_crit: bool) -> void:
+	var number := DAMAGE_NUMBER.instantiate() as DamageNumber
+	get_tree().current_scene.get_node("Objects/DamageNumbers").add_child(number)
+	number.global_position = global_position
+	number.show_damage(damage_amount, is_crit)
+	
 
 func _on_area_2d_body_entered(_body: Node2D) -> void:
 	pass

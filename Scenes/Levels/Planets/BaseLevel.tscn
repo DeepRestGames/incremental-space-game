@@ -18,6 +18,8 @@ y_sort_enabled = true
 
 [node name="Particles" type="Node2D" parent="Objects" unique_id=1547777866]
 
+[node name="DamageNumbers" type="Node2D" parent="Objects" unique_id=192868358]
+
 [node name="Player" parent="Objects" unique_id=102267496 instance=ExtResource("3_wpc3r")]
 
 [node name="ExpeditionShip" parent="Objects" unique_id=1704699913 instance=ExtResource("5_ship")]
@@ -36,10 +38,10 @@ cluster_spread = 280.0
 
 [node name="SpawnDistribution" type="Node" parent="Objects/MapCoordinateGenerator" unique_id=987654321]
 script = ExtResource("12_distribution")
-spawn_distribution = {
+spawn_distribution = Dictionary[PackedScene, float]({
 ExtResource("10_small"): 8.0,
 ExtResource("11_big"): 2.0
-}
+})
 
 [node name="Modifiers" type="Node" parent="Objects" unique_id=1092594344]
 script = ExtResource("13_modifiers")

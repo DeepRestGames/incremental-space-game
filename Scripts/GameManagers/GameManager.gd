@@ -2,7 +2,7 @@ extends Node
 
 # Scenes
 var lobby_scene = preload("res://Scenes/Levels/Lobby.tscn")
-## Which level the next expedition runs on. Only the id is stored: scene path and
+## Which level the next expeditiexpedition runs on. Only the id is stored: scene path and
 ## display name are always looked up from LevelDB, so they cannot drift apart.
 var selected_level_id: String = LevelDB.DEFAULT_LEVEL_ID
 
@@ -209,7 +209,7 @@ func end_expedition(success: bool = true, reason: String = "") -> void:
 	else:
 		var stashed_amount = int(expedition_resources_collected * 0.2)
 		current_deposit_box_resource += stashed_amount		
-	get_tree().change_scene_to_file("res://Scenes/UI/expedition_ended.tscn")
+	get_tree().change_scene_to_file("res://Scenes/UI/ExpeditionEnded.tscn")
 	expedition_started = false
 
 

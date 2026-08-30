@@ -15,6 +15,16 @@ var reticle_angle: float = 0.0
 @onready var collision_shape: CollisionShape2D = $CollisionShape2D
 @onready var digging_circle: Sprite2D = $DiggingCircle
 
+#region Crit coloring
+## Shader uniforms carrying the reticle colour. All three share one value.
+const COLOR_PARAMS: Array[String] = ["circle_color_main", "dot_color", "cross_color_main"]
+
+@export var crit_flash_color: Color = Color(1, 0.78, 0.2)
+@export var crit_flash_time: float = 0.5
+
+var _base_color: Color
+var _crit_tween: Tween
+#endregion
 
 func _ready() -> void:
 	# Add to the MiningReticle group so Breakables can identify it
@@ -24,7 +34,23 @@ func _ready() -> void:
 	
 	# Set process
 	set_process(true)
+	
+	digging_circle.material = digging_circle.material.duplicate()
+	_base_color = digging_circle.material.get_shader_parameter(COLOR_PARAMS[0])
+	
+	EventBus.breakable_damaged.connect(on_breakable_damaged)
+	
+func on_breakable_damaged(_damage_amount: int, is_crit: bool) -> void:
+	if not is_crit or not is_active:
+		return
+	if _crit_tween:
+		_crit_tween.kill()
 
+	_crit_tween = create_tween().set_parallel(true)
+	for param in COLOR_PARAMS:
+		digging_circle.material.set_shader_parameter(param, crit_flash_color)
+		_crit_tween.tween_property(digging_circle.material,
+			"shader_parameter/%s" % param, _base_color, crit_flash_time)
 
 func update_reticle_size() -> void:
 	var base_radius = BaseValuesDB.DRILL_AREA_SIZE

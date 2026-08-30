@@ -9,6 +9,7 @@ extends CharacterBody2D
 @onready var player_sprite = $PlayerSprite
 @onready var animation_tree: AnimationTree = $AnimationTree
 @onready var dust_particles: GPUParticles2D = $DustParticles
+@onready var camera_shake: ScreenShake = $PlayerCamera/ScreenShake
 
 
 # HP
@@ -61,6 +62,8 @@ func _ready() -> void:
 
 	# Reference existing MiningReticle child node
 	mining_reticle = $MiningReticle
+	EventBus.breakable_damaged.connect(on_breakable_damaged)
+
 	
 	update_stats()
 	current_bombs = max_bombs
@@ -70,6 +73,7 @@ func _ready() -> void:
 	animation_tree.active = true
 	
 	EventBus.on_player_ready.emit(self)
+	
 
 
 func update_stats() -> void:
@@ -224,3 +228,7 @@ func update_animation_parameters():
 		animation_tree["parameters/Idle/blend_position"] = movement_direction
 		animation_tree["parameters/Run/blend_position"] = movement_direction
 		animation_tree["parameters/Drill/blend_position"] = movement_direction
+
+
+func on_breakable_damaged(_damage_value: int, is_crit: bool) -> void:
+	camera_shake.screen_shake(12.0 if is_crit else 8.0, 50.0)

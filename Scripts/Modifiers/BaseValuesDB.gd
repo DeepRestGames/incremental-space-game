@@ -24,7 +24,7 @@ const INVENTORY_CAPACITY: int = 8 # max resources the player can carry in one ex
 
 # Mining & Drilling Stats
 const DRILL_DAMAGE_PER_TICK: float = 10.0
-const DRILL_CRIT_CHANCE: float = 0.0
+const DRILL_CRIT_CHANCE: float = 0.5 # RATIO! [0,1]
 const DRILL_CRIT_DAMAGE: float = 1.5
 const DRILL_AREA_SIZE: float = 20.0
 const DRILL_ATTACK_SPEED: float = 1
