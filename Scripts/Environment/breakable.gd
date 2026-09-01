@@ -31,7 +31,8 @@ const DAMAGE_NUMBER := preload("res://Scenes/UI/DamageNumber.tscn")
 #endregion
 
 #region sprite
-@onready var sprite_2d: Sprite2D = $Sprite2D
+@onready var sprite_canvas: CanvasGroup = $CanvasGroup
+@onready var sprite_2d: Sprite2D = $CanvasGroup/Sprite2D
 @export var rock_sprites: Array[Texture2D]
 #endregion
 
@@ -64,6 +65,8 @@ func _ready() -> void:
 	if random_index == 1:
 		collision_shape_2d.scale.x *= -1
 		area2d.scale.x *= -1
+		
+	
 
 
 func on_interacted() -> void:
@@ -82,6 +85,17 @@ func on_interacted() -> void:
 
 func take_damage(damage_value: int, is_crit: bool) -> void:
 	EventBus.breakable_damaged.emit(damage_value, is_crit)
+	
+	#hurt animation
+	var squish_scale = 0.9
+	var default_scale = sprite_2d.scale
+	var default_color = sprite_2d.modulate
+	var tween_scale = get_tree().create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_BACK)
+	tween_scale.tween_property(sprite_2d, "scale", default_scale*squish_scale, 0.07)
+	tween_scale.tween_property(sprite_2d, "scale", default_scale, 0.07)
+	var tween_modulate = get_tree().create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_EXPO)
+	tween_modulate.tween_property(sprite_canvas, "instance_shader_parameters/flash_value", 0.85, 0.05)
+	tween_modulate.tween_property(sprite_canvas, "instance_shader_parameters/flash_value", 0, 0.2)
 	
 	# drop_chance_per_tick adds to base drop chance
 	var drop_chance = SkillModifiers.get_drop_chance_per_tick(resource_spawn_chance_on_damaged)

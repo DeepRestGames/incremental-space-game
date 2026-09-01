@@ -4,8 +4,14 @@
 [ext_resource type="Texture2D" uid="uid://dv5onwoojupco" path="res://Assets/Sprites/environment/Rock1.png" id="2_oq4pq"]
 [ext_resource type="Texture2D" uid="uid://bhrm3cbrxppqm" path="res://Assets/Sprites/environment/5Chip1_Green.png" id="3_5gjhx"]
 [ext_resource type="Texture2D" uid="uid://bya50q67iyp8s" path="res://Assets/Sprites/environment/Rock2.png" id="3_ygini"]
+[ext_resource type="Shader" uid="uid://bkl2ujvvtm8f2" path="res://Shaders/color_overlay.gdshader" id="4_lglgh"]
 [ext_resource type="AudioStream" uid="uid://bubvdlphje8rr" path="res://Assets/Audio/SFX/RockDamage1.wav" id="5_smfia"]
 [ext_resource type="AudioStream" uid="uid://bd0s2s54echde" path="res://Assets/Audio/SFX/RockDestory1.wav" id="6_lglgh"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_nxef3"]
+shader = ExtResource("4_lglgh")
+shader_parameter/flash_color = Color(1, 1, 1, 1)
+shader_parameter/flash_value = 0.0
 
 [sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_55bpt"]
 points = PackedVector2Array(-10.99946, 149.00003, -44.999622, 104.00017, -38.000362, -99.99986, 5.9994535, -151.00003, 22.999573, -118.000084, 47.000004, 0.9998299, 47.00012, 32.99983, 9.000482, 132.99997)
@@ -47,16 +53,19 @@ rock_sprites = Array[Texture2D]([ExtResource("2_oq4pq"), ExtResource("3_ygini")]
 min_resource_number = 3
 max_resource_number = 6
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1333666049]
-position = Vector2(0, -7)
-rotation = 1.5708
-shape = SubResource("ConvexPolygonShape2D_55bpt")
+[node name="CanvasGroup" type="CanvasGroup" parent="." unique_id=1615420904]
+material = SubResource("ShaderMaterial_nxef3")
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1498912955]
+[node name="Sprite2D" type="Sprite2D" parent="CanvasGroup" unique_id=1498912955]
 modulate = Color(0.9, 0.9, 0.9, 1)
 scale = Vector2(1.2, 1.2)
 texture = ExtResource("2_oq4pq")
 offset = Vector2(0, -64.125)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1333666049]
+position = Vector2(0, -7)
+rotation = 1.5708
+shape = SubResource("ConvexPolygonShape2D_55bpt")
 
 [node name="Area2D" type="Area2D" parent="." unique_id=1176190]
 position = Vector2(0.000117468684, -84)

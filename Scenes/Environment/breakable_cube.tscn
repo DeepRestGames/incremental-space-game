@@ -3,8 +3,13 @@
 [ext_resource type="Script" uid="uid://c1r84q4nh0up2" path="res://Scripts/Environment/breakable.gd" id="1_nwtwi"]
 [ext_resource type="Texture2D" uid="uid://1ao481coevaj" path="res://Assets/Sprites/environment/RockCube1.png" id="2_7y0c1"]
 [ext_resource type="Texture2D" uid="uid://bsec28vsnn7i2" path="res://Assets/Sprites/environment/RockCube2.png" id="3_nwtwi"]
+[ext_resource type="Shader" uid="uid://bkl2ujvvtm8f2" path="res://Shaders/color_overlay.gdshader" id="4_nwtwi"]
 [ext_resource type="AudioStream" uid="uid://bubvdlphje8rr" path="res://Assets/Audio/SFX/RockDamage1.wav" id="5_yv8bs"]
 [ext_resource type="AudioStream" uid="uid://bd0s2s54echde" path="res://Assets/Audio/SFX/RockDestory1.wav" id="6_hrk7p"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_pl6ut"]
+shader = ExtResource("4_nwtwi")
+shader_parameter/flash_color = Color(1, 1, 1, 1)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bgfo6"]
 size = Vector2(43.789303, 310.3199)
@@ -41,23 +46,30 @@ stream_0/stream = ExtResource("6_hrk7p")
 [node name="BreakableCube" type="StaticBody2D" unique_id=1730300486]
 collision_layer = 4
 script = ExtResource("1_nwtwi")
-totalHP = 999
+totalHP = 300
 min_rock_particles = 2
 max_rock_particles = 4
 rock_sprites = Array[Texture2D]([ExtResource("2_7y0c1"), ExtResource("3_nwtwi")])
 min_resource_number = 3
 max_resource_number = 6
 
+[node name="CanvasGroup" type="CanvasGroup" parent="." unique_id=1807309418]
+material = SubResource("ShaderMaterial_pl6ut")
+position = Vector2(0.000117468684, -84)
+scale = Vector2(0.40507922, 0.40507922)
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasGroup" unique_id=1498912955]
+modulate = Color(0.7, 0.7, 0.7, 1)
+position = Vector2(-0.0002899894, 207.36685)
+scale = Vector2(2.468653, 2.468653)
+texture = ExtResource("2_7y0c1")
+offset = Vector2(0, -64.125)
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1333666049]
 position = Vector2(-2.7009315, -13.499755)
 rotation = 1.5708
 scale = Vector2(2.1694684, 0.85910857)
 shape = SubResource("RectangleShape2D_bgfo6")
-
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1498912955]
-modulate = Color(0.7, 0.7, 0.7, 1)
-texture = ExtResource("2_7y0c1")
-offset = Vector2(0, -64.125)
 
 [node name="Area2D" type="Area2D" parent="." unique_id=1176190]
 position = Vector2(0.000117468684, -84)
