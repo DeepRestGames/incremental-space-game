@@ -3,10 +3,10 @@ extends Node2D
 
 @onready var animation_player = $AnimationPlayer
 @onready var hitbox_area = $HitboxArea
-@onready var sprite = $Sprite2D
+@onready var sprite = $CanvasGroup
 @onready var explosion_particles = $ExplosionParticles
 
-@export var bomb_damage = 3 # TODO:
+@export var bomb_damage = 30 # TODO:
 
 
 func _ready() -> void:
@@ -31,7 +31,8 @@ func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 		if body is Breakable:
 			#print("BODY IS BREAKABLE")
 			# TODO: check if ok rounding to int
-			body.take_damage(int(SkillModifiers.get_bomb_damage(bomb_damage)))
+			body.take_damage(int(SkillModifiers.get_bomb_damage(bomb_damage)), 0)
+			print (bomb_damage)
 	
 
 func _on_explosion_particles_finished() -> void:

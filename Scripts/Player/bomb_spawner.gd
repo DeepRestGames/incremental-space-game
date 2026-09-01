@@ -8,4 +8,4 @@ extends Node2D
 func spawn_bomb(spawn_global_position: Vector2) -> void:
 	var bomb_node = bomb_scene.instantiate()
 	bomb_node.global_position = spawn_global_position
-	get_tree().root.add_child(bomb_node)
+	get_tree().current_scene.get_node("Objects").add_child(bomb_node)
