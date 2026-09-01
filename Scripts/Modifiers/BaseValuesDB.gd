@@ -8,7 +8,7 @@ const INVINCIBILITY_COOLDOWN: float = 0.5
 const BASE_OXYGEN_DRAIN_RATE: float = 1 # drain rate in O2units / seconds#
 
 const BOMB_CHARGES: int = 0
-const BOMB_DAMAGE: float = 3.0
+const BOMB_DAMAGE: float = 30.0
 # Seconds of grace at the start of an expedition, before oxygen starts draining.
 # The player is free to move during it; it exists to let them get their bearings.
 # Sized to outlast the intro animation (~3.0s) with a beat of clean screen after it.
@@ -24,7 +24,7 @@ const INVENTORY_CAPACITY: int = 8 # max resources the player can carry in one ex
 
 # Mining & Drilling Stats
 const DRILL_DAMAGE_PER_TICK: float = 10.0
-const DRILL_CRIT_CHANCE: float = 0.5 # RATIO! [0,1]
+const DRILL_CRIT_CHANCE: float = 0.0 # RATIO! [0,1]
 const DRILL_CRIT_DAMAGE: float = 1.5
 const DRILL_AREA_SIZE: float = 20.0
 const DRILL_ATTACK_SPEED: float = 1
