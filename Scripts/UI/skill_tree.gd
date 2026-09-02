@@ -23,6 +23,11 @@ extends Control
 @onready var detail_stat_value: Label = get_node_or_null("DetailPanel/HBoxContainer/VBoxContainer/SkillStatValue")
 @onready var detail_type: Label = get_node_or_null("DetailPanel/HBoxContainer/VBoxContainer/SkillModifierType")
 
+const COLOR_BRIGHT: Color = Color(0.05, 0.95, 0.95, 1.0)
+const COLOR_BRIGHT_OFF: Color = Color(0.05, 0.95, 0.95, 0.5)
+const COLOR_LOCKED: Color = Color(0.18, 0.35, 0.61, 1.0)
+const COLOR_DARK: Color = Color(0.08, 0.16, 0.28, 1.0)
+
 var _dragging: bool = false
 var _content_rect: Rect2 = Rect2() # cache for panning edge
 
@@ -51,7 +56,7 @@ func _draw() -> void:
 			var start_pos = (child.global_position - global_position) + child.size * zoom / 2.0
 			var end_pos = (child.parent_node.global_position - global_position) + child.parent_node.size * zoom / 2.0
 
-			var line_color = Color(0.05, 0.95, 0.95, 1.0) # Brighter grey for visibility
+			var line_color: Color = COLOR_LOCKED # Unreachable node
 			
 			if not Engine.is_editor_hint():
 				var a_std = get_nearest_standard_ancestor(child)
@@ -70,9 +75,9 @@ func _draw() -> void:
 							has_green_path = true
 							
 					if has_blue_path:
-						line_color = Color(0.1, 0.5, 1.0, 1.0) # Active Blue line
+						line_color = COLOR_BRIGHT # Unlocked
 					elif has_green_path:
-						line_color = Color(0.2, 0.9, 0.2, 1.0) # Active Green line
+						line_color = COLOR_BRIGHT_OFF # Not Unlocked
 			
 			var line_width = (child.width if "width" in child else 6) * zoom
 			draw_line(start_pos, end_pos, line_color, line_width, true)

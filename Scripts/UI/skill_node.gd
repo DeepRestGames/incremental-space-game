@@ -6,17 +6,27 @@ extends Control
 @export var skill_id: String = ""
 ## Icon shown inside this node. Leave empty to keep the default icon from the
 ## SkillNode scene. Updates live in the editor.
-@export var icon: Texture2D:
-	set(value):
-		icon = value
-		_apply_icon()
+@export var icon: Texture2D
+	#set(value):
+		#icon = value
+		#_apply_icon()
+var locked_icon: Texture2D = load("res://Assets/UI/skill tree/skill icons/LockBig.svg")
+const COLOR_BRIGHT: Color = Color(0.05, 0.95, 0.95, 1.0)
+const COLOR_BRIGHT_OFF: Color = Color(0.05, 0.95, 0.95, 0.5)
+const COLOR_LOCKED: Color = Color(0.18, 0.35, 0.61, 1.0)
+const COLOR_DARK: Color = Color(0.08, 0.16, 0.28, 1.0)
+
 @export var parent_node: SkillNode
 @export var is_connector: bool = false
 var width: int = 6
 
-@onready var background: TextureRect = $BackgroundEmpty
-@onready var skill_icon: TextureRect = $SkillIcon
-@onready var too_expensive_overlay: Panel = $TooExpensiveOverlay
+@onready var background: TextureRect = $Control/BackgroundFill
+@onready var border: TextureRect = $Control/Border
+@onready var skill_icon: TextureRect = $Control/SkillIcon
+@onready var progress_bar_background: TextureRect = $Control/ProgressBarBackground
+@onready var radial_progress_bar: TextureRect = $Control/RadialProgressBar
+#@onready var too_expensive_overlay: Panel = $TooExpensiveOverlay
+
 
 func _ready() -> void:
 	# Add to SkillNodes group to allow dependency traversal
@@ -216,45 +226,77 @@ func update_appearance() -> void:
 	if not background or not skill_icon:
 		return
 
-	if too_expensive_overlay:
-		too_expensive_overlay.visible = _is_too_expensive()
+	#if too_expensive_overlay:
+		#too_expensive_overlay.visible = _is_too_expensive()
 
 	if is_connector:
 		background.visible = Engine.is_editor_hint()
 		skill_icon.visible = false
 		if Engine.is_editor_hint():
 			modulate.a = 0.4
-			background.modulate = Color(0.6, 0.6, 0.6, 1.0)
+			background.modulate = COLOR_DARK
 		return
 		
 	if skill_id == "":
-		background.modulate = Color(0.4, 0.4, 0.4, 1.0)
-		skill_icon.modulate = Color(0.3, 0.3, 0.3, 1.0)
+		background.modulate = Color(1.0, 0.0, 0.0, 1.0)
+		skill_icon.modulate = Color(1.0, 0.0, 0.0, 1.0)
 		return
 		
-	var max_points = 5
-	var current_points = 0
-	if not Engine.is_editor_hint():
-		max_points = GameManager.get_skill_max_levels(skill_id)
-		current_points = GameManager.get_skill_points(skill_id)
+	if Engine.is_editor_hint(): # editor visuals
+		background.modulate = COLOR_DARK
+		border.modulate = COLOR_BRIGHT
+		skill_icon.texture = icon
+		skill_icon.modulate = COLOR_BRIGHT
 	
-	if current_points > 0:
-		# Active (Blue, scaling from a soft sky blue to a very strong, vibrant electric blue based on points ratio)
-		var ratio = float(current_points) / float(max_points)
-		var bg_color = Color(0.6 * (1.0 - ratio), 0.8 - 0.45 * ratio, 1.0, 1.0)
-		var icon_color = Color(0.5 * (1.0 - ratio), 0.7 - 0.3 * ratio, 1.0, 1.0)
-		background.modulate = bg_color
-		skill_icon.modulate = icon_color
-	else:
-		# 0 points: check if reachable or locked
-		if can_add_point():
-			# Unlocked / Reachable (Green)
-			background.modulate = Color(0.2, 0.9, 0.2, 1.0)
-			skill_icon.modulate = Color(0.15, 0.6, 0.15, 1.0)
+	else: # in game visuals
+		var max_points = 5
+		var current_points = 0
+		if not Engine.is_editor_hint():
+			max_points = GameManager.get_skill_max_levels(skill_id)
+			current_points = GameManager.get_skill_points(skill_id)
+		
+		if current_points > 0:
+			if current_points == max_points:
+				background.modulate = COLOR_BRIGHT
+				border.modulate = COLOR_BRIGHT
+				skill_icon.texture = icon
+				skill_icon.modulate = COLOR_DARK
+				progress_bar_background.hide()
+				radial_progress_bar.hide()
+			else:
+				background.modulate = COLOR_DARK
+			# CIRCULAR PROGRESS BAR
+				progress_bar_background.show()
+				radial_progress_bar.show()
+				var ratio = float(current_points) / float(max_points)
+				radial_progress_bar.material.set_shader_parameter("progress", ratio)
+			# Active (Blue, scaling from a soft sky blue to a very strong, vibrant electric blue based on points ratio)
+			
+			#var bg_color = Color(0.6 * (1.0 - ratio), 0.8 - 0.45 * ratio, 1.0, 1.0)
+			#var icon_color = Color(0.5 * (1.0 - ratio), 0.7 - 0.3 * ratio, 1.0, 1.0)
+			#background.modulate = bg_color
+			#skill_icon.modulate = icon_color
 		else:
-			# Unreachable / Locked (Grey)
-			background.modulate = Color(0.35, 0.35, 0.35, 1.0)
-			skill_icon.modulate = Color(0.25, 0.25, 0.25, 1.0)
+			# 0 points: check if reachable or locked
+			if can_add_point():
+				# Unlocked / Reachable, too expensive
+				if _is_too_expensive():
+					background.modulate = COLOR_DARK
+					border.modulate = COLOR_BRIGHT_OFF
+					skill_icon.texture = icon
+					skill_icon.modulate = COLOR_BRIGHT_OFF
+				# Unlocked / Reachable, can afford
+				else:
+					background.modulate = COLOR_DARK
+					border.modulate = COLOR_BRIGHT
+					skill_icon.texture = icon
+					skill_icon.modulate = COLOR_BRIGHT
+			else:
+				# Unreachable / Locked (Dark)
+				background.modulate = COLOR_DARK
+				border.modulate = COLOR_LOCKED
+				skill_icon.texture = locked_icon
+				skill_icon.modulate = COLOR_LOCKED
 
 
 func update_tooltip() -> void:

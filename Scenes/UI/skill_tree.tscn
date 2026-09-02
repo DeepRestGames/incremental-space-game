@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://buil3eb2t65w6" path="res://Assets/UI/skill tree/SkillTreeDotGrid.svg" id="2_mpkew"]
 [ext_resource type="Script" uid="uid://ljldu32b7v7x" path="res://Scripts/UI/skill_tree.gd" id="2_skilltree"]
 [ext_resource type="Texture2D" uid="uid://7fufexxrh3d0" path="res://Assets/UI/skill tree/skill icons/Oxygen.svg" id="3_drkok"]
-[ext_resource type="Texture2D" uid="uid://pbtj1dosar0g" path="res://Assets/UI/skill tree/skill icons/Suit.svg" id="4_q004n"]
+[ext_resource type="Texture2D" uid="uid://ds65ynab3dy8g" path="res://Assets/UI/skill tree/skill icons/Drill.svg" id="4_q004n"]
 [ext_resource type="Texture2D" uid="uid://ba8fprep2al8x" path="res://Assets/UI/skill tree/skill icons/DrillArea.svg" id="5_kyaj7"]
 [ext_resource type="Texture2D" uid="uid://btbohdbjdnjmp" path="res://Assets/UI/skill tree/skill icons/Drill+1.svg" id="6_66a02"]
 [ext_resource type="Texture2D" uid="uid://ddxhgcwxpktm5" path="res://Assets/UI/skill tree/skill icons/DrillPower.svg" id="6_fmb40"]
