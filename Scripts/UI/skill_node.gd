@@ -232,13 +232,14 @@ func update_appearance() -> void:
 	if is_connector:
 		background.visible = Engine.is_editor_hint()
 		skill_icon.visible = false
+		border.hide()
 		if Engine.is_editor_hint():
 			modulate.a = 0.4
 			background.modulate = COLOR_DARK
 		return
 		
 	if skill_id == "":
-		background.modulate = Color(1.0, 0.0, 0.0, 1.0)
+		background.modulate = COLOR_DARK
 		skill_icon.modulate = Color(1.0, 0.0, 0.0, 1.0)
 		return
 		

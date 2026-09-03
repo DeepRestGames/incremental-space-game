@@ -55,7 +55,6 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="BackgroundFill" type="TextureRect" parent="Control" unique_id=405943773]
-modulate = Color(1, 0, 0, 1)
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -129,7 +128,6 @@ stretch_mode = 5
 metadata/_edit_use_anchors_ = true
 
 [node name="SkillIcon" type="TextureRect" parent="Control" unique_id=917086456]
-modulate = Color(1, 0, 0, 1)
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
