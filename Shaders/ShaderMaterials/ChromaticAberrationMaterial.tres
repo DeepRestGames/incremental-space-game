@@ -3,6 +3,7 @@
 [ext_resource type="Shader" uid="uid://cqmwsen3gec0n" path="res://Shaders/RadialChromaticAberration.gdshader" id="1_gdcas"]
 
 [resource]
+resource_local_to_scene = true
 shader = ExtResource("1_gdcas")
-shader_parameter/intensity = 0.0
-shader_parameter/threshold = 1.0
+shader_parameter/intensity = 1.0
+shader_parameter/threshold = 0.5000000074506

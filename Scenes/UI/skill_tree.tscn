@@ -16,6 +16,14 @@
 [ext_resource type="Texture2D" uid="uid://d0kvveeacf4j0" path="res://Assets/UI/skill tree/skill icons/DrillShine.svg" id="12_y0o01"]
 [ext_resource type="Texture2D" uid="uid://dbc0nwinib2qa" path="res://Assets/UI/skill tree/skill icons/Fragments.svg" id="13_5m2m7"]
 [ext_resource type="Texture2D" uid="uid://dhndktijayxr7" path="res://Assets/UI/skill tree/skill icons/Bomb2.svg" id="15_exa8l"]
+[ext_resource type="Texture2D" uid="uid://cqwlreb6f151w" path="res://Assets/Sprites/particles/Vignette.png" id="17_tt40d"]
+[ext_resource type="Script" uid="uid://dvt2s2ecsjerd" path="res://Scenes/UI/chromatic_aberration.gd" id="18_tt40d"]
+[ext_resource type="Shader" uid="uid://ban07lejqf1g2" path="res://Shaders/Radial-HorizontalChromaticAberration.gdshader" id="18_y0o01"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qgy1x"]
+shader = ExtResource("18_y0o01")
+shader_parameter/intensity = 2.0000000298024
+shader_parameter/threshold = 0.70000001043084
 
 [node name="SkillTree" type="Control" unique_id=1912863450]
 layout_mode = 3
@@ -84,8 +92,6 @@ texture = ExtResource("2_mpkew")
 [node name="Core" parent="TreeView" unique_id=351642366 instance=ExtResource("1_c1qs3")]
 layout_mode = 0
 anchors_preset = 0
-anchor_left = 0.0
-anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
 offset_left = 840.0
@@ -100,8 +106,6 @@ icon = ExtResource("4_q004n")
 [node name="OxygenCapacityNode" parent="TreeView" unique_id=591214117 node_paths=PackedStringArray("parent_node") instance=ExtResource("1_c1qs3")]
 layout_mode = 0
 anchors_preset = 0
-anchor_left = 0.0
-anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
 offset_left = 1210.0
@@ -117,8 +121,6 @@ parent_node = NodePath("../Core")
 [node name="DrillAreaNode" parent="TreeView" unique_id=945436568 node_paths=PackedStringArray("parent_node") instance=ExtResource("1_c1qs3")]
 layout_mode = 0
 anchors_preset = 0
-anchor_left = 0.0
-anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
 offset_left = 890.0
@@ -134,8 +136,6 @@ parent_node = NodePath("../Core")
 [node name="DrillDamageNode" parent="TreeView" unique_id=588326199 node_paths=PackedStringArray("parent_node") instance=ExtResource("1_c1qs3")]
 layout_mode = 0
 anchors_preset = 0
-anchor_left = 0.0
-anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
 offset_left = 650.0
@@ -152,8 +152,6 @@ parent_node = NodePath("../DrillAreaNode")
 modulate = Color(1, 1, 1, 0.4)
 layout_mode = 0
 anchors_preset = 0
-anchor_left = 0.0
-anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
 offset_left = 1370.0
@@ -169,8 +167,6 @@ is_connector = true
 [node name="BagSizeNode" parent="TreeView" unique_id=1929201057 node_paths=PackedStringArray("parent_node") instance=ExtResource("1_c1qs3")]
 layout_mode = 0
 anchors_preset = 0
-anchor_left = 0.0
-anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
 offset_left = 1530.0
@@ -186,14 +182,12 @@ parent_node = NodePath("../ConnectorNode2")
 [node name="DrillSpeedNode" parent="TreeView" unique_id=1042965464 node_paths=PackedStringArray("parent_node") instance=ExtResource("1_c1qs3")]
 layout_mode = 0
 anchors_preset = 0
-anchor_left = 0.0
-anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
 offset_left = 890.0
-offset_top = 1030.0
+offset_top = 1110.0
 offset_right = 1030.0
-offset_bottom = 1170.0
+offset_bottom = 1250.0
 grow_horizontal = 1
 grow_vertical = 1
 skill_id = "drill_speed"
@@ -204,8 +198,6 @@ parent_node = NodePath("../DrillAreaNode")
 modulate = Color(1, 1, 1, 0.4)
 layout_mode = 0
 anchors_preset = 0
-anchor_left = 0.0
-anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
 offset_left = 490.0
@@ -221,8 +213,6 @@ is_connector = true
 [node name="DrillCritNode" parent="TreeView" unique_id=1448534516 node_paths=PackedStringArray("parent_node") instance=ExtResource("1_c1qs3")]
 layout_mode = 0
 anchors_preset = 0
-anchor_left = 0.0
-anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
 offset_left = 490.0
@@ -238,8 +228,6 @@ parent_node = NodePath("../ConnectorNode4")
 [node name="DrillCritDamageNode" parent="TreeView" unique_id=866751269 node_paths=PackedStringArray("parent_node") instance=ExtResource("1_c1qs3")]
 layout_mode = 0
 anchors_preset = 0
-anchor_left = 0.0
-anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
 offset_left = 490.0
@@ -255,8 +243,6 @@ parent_node = NodePath("../DrillCritNode")
 [node name="NodesLandingNode" parent="TreeView" unique_id=463258676 node_paths=PackedStringArray("parent_node") instance=ExtResource("1_c1qs3")]
 layout_mode = 0
 anchors_preset = 0
-anchor_left = 0.0
-anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
 offset_left = 570.0
@@ -272,14 +258,12 @@ parent_node = NodePath("../Core")
 [node name="DropChanceNode" parent="TreeView" unique_id=1111836776 node_paths=PackedStringArray("parent_node") instance=ExtResource("1_c1qs3")]
 layout_mode = 0
 anchors_preset = 0
-anchor_left = 0.0
-anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-offset_left = 890.0
-offset_top = 1270.0
-offset_right = 1030.0
-offset_bottom = 1410.0
+offset_left = 840.0
+offset_top = 1300.0
+offset_right = 1080.0
+offset_bottom = 1540.0
 grow_horizontal = 1
 grow_vertical = 1
 skill_id = "drop_chance"
@@ -289,8 +273,6 @@ parent_node = NodePath("../DrillSpeedNode")
 [node name="DestroyDropsNode" parent="TreeView" unique_id=1036982031 node_paths=PackedStringArray("parent_node") instance=ExtResource("1_c1qs3")]
 layout_mode = 0
 anchors_preset = 0
-anchor_left = 0.0
-anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
 offset_left = 410.0
@@ -307,8 +289,6 @@ parent_node = NodePath("../NodesLandingNode")
 modulate = Color(1, 1, 1, 0.4)
 layout_mode = 0
 anchors_preset = 0
-anchor_left = 0.0
-anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
 offset_left = 1370.0
@@ -324,8 +304,6 @@ is_connector = true
 [node name="MoveSpeedNode" parent="TreeView" unique_id=758992368 node_paths=PackedStringArray("parent_node") instance=ExtResource("1_c1qs3")]
 layout_mode = 0
 anchors_preset = 0
-anchor_left = 0.0
-anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
 offset_left = 1530.0
@@ -341,19 +319,49 @@ parent_node = NodePath("../ConnectorNode3")
 [node name="BombChargesNode" parent="TreeView" unique_id=280241640 node_paths=PackedStringArray("parent_node") instance=ExtResource("1_c1qs3")]
 layout_mode = 0
 anchors_preset = 0
-anchor_left = 0.0
-anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-offset_left = 890.0
-offset_top = 150.0
-offset_right = 1030.0
-offset_bottom = 290.0
+offset_left = 840.0
+offset_top = 100.0
+offset_right = 1080.0
+offset_bottom = 340.0
 grow_horizontal = 1
 grow_vertical = 1
 skill_id = "bomb_charges"
 icon = ExtResource("15_exa8l")
 parent_node = NodePath("../Core")
+
+[node name="Effects" type="Control" parent="." unique_id=597609919]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Vignette" type="TextureRect" parent="Effects" unique_id=1492185505]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("17_tt40d")
+
+[node name="ChromaticAberration" type="ColorRect" parent="Effects" unique_id=1072257462]
+material = SubResource("ShaderMaterial_qgy1x")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -0.5
+offset_bottom = -0.5
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("18_tt40d")
 
 [node name="DetailPanel" type="PanelContainer" parent="." unique_id=1122334455]
 layout_mode = 1
@@ -368,21 +376,25 @@ offset_right = 327.67993
 offset_bottom = -56.0
 grow_horizontal = 2
 grow_vertical = 0
+mouse_filter = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="DetailPanel" unique_id=998877665]
 layout_mode = 2
+mouse_filter = 2
 theme_override_constants/separation = 16
 
 [node name="DetailIcon" type="TextureRect" parent="DetailPanel/HBoxContainer" unique_id=998877666]
 custom_minimum_size = Vector2(80, 80)
 layout_mode = 2
 size_flags_vertical = 4
+mouse_filter = 2
 expand_mode = 1
 stretch_mode = 5
 
 [node name="VBoxContainer" type="VBoxContainer" parent="DetailPanel/HBoxContainer" unique_id=223344556]
 layout_mode = 2
 size_flags_horizontal = 3
+mouse_filter = 2
 theme_override_constants/separation = 2
 
 [node name="SkillName" type="Label" parent="DetailPanel/HBoxContainer/VBoxContainer" unique_id=334455667]

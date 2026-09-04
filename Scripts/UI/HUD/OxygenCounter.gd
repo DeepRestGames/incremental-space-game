@@ -79,12 +79,12 @@ func on_update_oxygen(current: float, max_val: float) -> void:
 	elif oxygen_ratio > 0.15:
 		_modulate_target  = Color(0.949, 0.8, 0.051)
 		_vignette_target_a = 0.4
-		_aberration_target = 2.0
+		_aberration_target = 1.5
 	# --------------------------
 	else:
 		_modulate_target = Color(0.933, 0.169, 0.345, 1.0)
 		_vignette_target_a = 0.8
-		_aberration_target = 4.0
+		_aberration_target = 2.5
 	# -------------------------------------------------------------------------------
 	var total: int = oxygen_bar.get_child_count()
 	var should_be_full: int = clampi(floori(oxygen_ratio * total), 0, total)
