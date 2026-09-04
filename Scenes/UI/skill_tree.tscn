@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://w7h5832edy6i"]
 
 [ext_resource type="PackedScene" uid="uid://gx4f5wal3t4g" path="res://Scenes/UI/skill_node.tscn" id="1_c1qs3"]
-[ext_resource type="Texture2D" uid="uid://buil3eb2t65w6" path="res://Assets/UI/skill tree/SkillTreeDotGrid.svg" id="2_mpkew"]
 [ext_resource type="Script" uid="uid://ljldu32b7v7x" path="res://Scripts/UI/skill_tree.gd" id="2_skilltree"]
+[ext_resource type="Texture2D" uid="uid://budj6phesfu78" path="res://Assets/UI/skill tree/SkillTreeBackground.svg" id="2_y0o01"]
 [ext_resource type="Texture2D" uid="uid://7fufexxrh3d0" path="res://Assets/UI/skill tree/skill icons/Oxygen.svg" id="3_drkok"]
 [ext_resource type="Texture2D" uid="uid://ds65ynab3dy8g" path="res://Assets/UI/skill tree/skill icons/Drill.svg" id="4_q004n"]
 [ext_resource type="Texture2D" uid="uid://ba8fprep2al8x" path="res://Assets/UI/skill tree/skill icons/DrillArea.svg" id="5_kyaj7"]
@@ -17,7 +17,6 @@
 [ext_resource type="Texture2D" uid="uid://dbc0nwinib2qa" path="res://Assets/UI/skill tree/skill icons/Fragments.svg" id="13_5m2m7"]
 [ext_resource type="Texture2D" uid="uid://dhndktijayxr7" path="res://Assets/UI/skill tree/skill icons/Bomb2.svg" id="15_exa8l"]
 [ext_resource type="Texture2D" uid="uid://cqwlreb6f151w" path="res://Assets/Sprites/particles/Vignette.png" id="17_tt40d"]
-[ext_resource type="Script" uid="uid://dvt2s2ecsjerd" path="res://Scenes/UI/chromatic_aberration.gd" id="18_tt40d"]
 [ext_resource type="Shader" uid="uid://ban07lejqf1g2" path="res://Shaders/Radial-HorizontalChromaticAberration.gdshader" id="18_y0o01"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_qgy1x"]
@@ -72,22 +71,21 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="Grid" type="TextureRect" parent="TreeView" unique_id=134161237]
+[node name="BackgroundGrid" type="TextureRect" parent="TreeView" unique_id=134161237]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -880.0
-offset_top = -480.0
-offset_right = 907.0
-offset_bottom = 497.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -5358.5
+offset_top = -5136.0
+offset_right = 5457.0625
+offset_bottom = 5040.332
 grow_horizontal = 2
 grow_vertical = 2
-scale = Vector2(0.986, 0.986)
+scale = Vector2(0.987, 0.987)
 mouse_filter = 2
-texture = ExtResource("2_mpkew")
+texture = ExtResource("2_y0o01")
+stretch_mode = 1
 
 [node name="Core" parent="TreeView" unique_id=351642366 instance=ExtResource("1_c1qs3")]
 layout_mode = 0
@@ -361,7 +359,6 @@ offset_bottom = -0.5
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-script = ExtResource("18_tt40d")
 
 [node name="DetailPanel" type="PanelContainer" parent="." unique_id=1122334455]
 layout_mode = 1

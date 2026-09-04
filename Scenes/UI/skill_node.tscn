@@ -103,6 +103,7 @@ stretch_mode = 5
 metadata/_edit_use_anchors_ = true
 
 [node name="SkillIcon" type="TextureRect" parent="." unique_id=917086456]
+modulate = Color(1, 0, 0, 1)
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.2
