@@ -20,15 +20,16 @@ const COLOR_DARK: Color = Color(0.08, 0.16, 0.28, 1.0)
 @export var is_connector: bool = false
 var width: int = 6
 
-@onready var background: TextureRect = $Control/BackgroundFill
-@onready var border: TextureRect = $Control/Border
-@onready var skill_icon: TextureRect = $Control/SkillIcon
-@onready var progress_bar_background: TextureRect = $Control/ProgressBarBackground
-@onready var radial_progress_bar: TextureRect = $Control/RadialProgressBar
+@onready var background: TextureRect = $BackgroundFill
+@onready var border: TextureRect = $Border
+@onready var skill_icon: TextureRect = $SkillIcon
+@onready var progress_bar_background: TextureRect = $ProgressBarBackground
+@onready var radial_progress_bar: TextureRect = $RadialProgressBar
 #@onready var too_expensive_overlay: Panel = $TooExpensiveOverlay
 
 
 func _ready() -> void:
+	
 	# Add to SkillNodes group to allow dependency traversal
 	add_to_group("SkillNodes")
 	
@@ -64,7 +65,8 @@ func _ready() -> void:
 	update_appearance()
 	update_tooltip()
 
-
+	
+	
 ## Pushes the exported icon onto the child TextureRect. Safe to call before the
 ## node is ready (it re-applies in _ready).
 func _apply_icon() -> void:
