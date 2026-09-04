@@ -680,7 +680,7 @@ stream = SubResource("AudioStreamRandomizer_g4v7s")
 bus = &"SFX"
 
 [node name="AudioStreamPlayer_step" type="AudioStreamPlayer" parent="." unique_id=998635694]
-volume_db = -10.0
+volume_db = -25.0
 
 [node name="AudioStreamPlayer_drilling" type="AudioStreamPlayer" parent="." unique_id=1283101801]
 stream = SubResource("AudioStreamRandomizer_yf5fn")
