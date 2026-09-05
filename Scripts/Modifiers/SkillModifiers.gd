@@ -66,7 +66,7 @@ static func rebuild(skill_levels: Dictionary, database: Dictionary = SkillDB.DAT
 
 ## Applies the cached skill modifiers to an arbitrary base value.
 ## Use this when the base is per-instance rather than global - for example a
-## Breakable's own resource_spawn_chance_on_damaged.
+## Breakable's own DropEntry.chance_per_drill_tick.
 static func get_modified_stat(stat_id: String, base_value: float) -> float:
 	var acc = _mods.get(stat_id)
 	if acc == null:
@@ -122,8 +122,8 @@ static func get_drill_crit_damage() -> float:
 	return get_stat("drill_crit_damage")
 
 
-static func get_nodes_on_landing() -> float:
-	return get_stat("nodes_on_landing")
+static func get_nodes_on_landing(base_value: float = 0.0) -> float:
+	return get_modified_stat("nodes_on_landing", base_value)
 
 
 static func get_drops_on_destruction() -> float:

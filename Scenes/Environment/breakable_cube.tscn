@@ -3,9 +3,18 @@
 [ext_resource type="Script" uid="uid://c1r84q4nh0up2" path="res://Scripts/Environment/breakable.gd" id="1_nwtwi"]
 [ext_resource type="Texture2D" uid="uid://1ao481coevaj" path="res://Assets/Sprites/environment/RockCube1.png" id="2_7y0c1"]
 [ext_resource type="Texture2D" uid="uid://bsec28vsnn7i2" path="res://Assets/Sprites/environment/RockCube2.png" id="3_nwtwi"]
+[ext_resource type="Script" uid="uid://cq1k63dpg13de" path="res://Scripts/Environment/DropEntry.gd" id="4_7usko"]
 [ext_resource type="Shader" uid="uid://bkl2ujvvtm8f2" path="res://Shaders/color_overlay.gdshader" id="4_nwtwi"]
+[ext_resource type="PackedScene" uid="uid://k5air2e7arh4" path="res://Scenes/Resources/BasePickup.tscn" id="5_7bq5h"]
 [ext_resource type="AudioStream" uid="uid://bubvdlphje8rr" path="res://Assets/Audio/SFX/RockDamage1.wav" id="5_yv8bs"]
 [ext_resource type="AudioStream" uid="uid://bd0s2s54echde" path="res://Assets/Audio/SFX/RockDestory1.wav" id="6_hrk7p"]
+
+[sub_resource type="Resource" id="Resource_s777y"]
+script = ExtResource("4_7usko")
+scene = ExtResource("5_7bq5h")
+min_amount = 3
+max_amount = 6
+metadata/_custom_type_script = "uid://cq1k63dpg13de"
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_pl6ut"]
 shader = ExtResource("4_nwtwi")
@@ -50,8 +59,7 @@ totalHP = 300
 min_rock_particles = 2
 max_rock_particles = 4
 rock_sprites = Array[Texture2D]([ExtResource("2_7y0c1"), ExtResource("3_nwtwi")])
-min_resource_number = 3
-max_resource_number = 6
+drops = Array[ExtResource("4_7usko")]([SubResource("Resource_s777y")])
 
 [node name="CanvasGroup" type="CanvasGroup" parent="." unique_id=1807309418]
 material = SubResource("ShaderMaterial_pl6ut")

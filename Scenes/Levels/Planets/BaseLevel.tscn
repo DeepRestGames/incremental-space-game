@@ -17,8 +17,12 @@ script = ExtResource("1_baselevel")
 y_sort_enabled = true
 
 [node name="Particles" type="Node2D" parent="Objects" unique_id=1547777866]
+y_sort_enabled = true
 
 [node name="DamageNumbers" type="Node2D" parent="Objects" unique_id=192868358]
+
+[node name="Pickups" type="Node2D" parent="Objects" unique_id=1486041255]
+y_sort_enabled = true
 
 [node name="Player" parent="Objects" unique_id=102267496 instance=ExtResource("3_wpc3r")]
 

@@ -31,8 +31,6 @@ const DRILL_ATTACK_SPEED: float = 1
 
 # Breakable / Resource Nodes Stats
 const RESOURCE_SPAWN_CHANCE_ON_DAMAGED: float = 0
-const MIN_RESOURCE_NUMBER: int = 1
-const MAX_RESOURCE_NUMBER: int = 2
 
 
 ## Registry of every stat that skills are allowed to modify: stat id -> base value.

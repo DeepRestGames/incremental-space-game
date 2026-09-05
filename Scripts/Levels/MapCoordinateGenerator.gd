@@ -52,8 +52,8 @@ func generate_sync() -> Array[Dictionary]:
 		push_error("MapCoordinateGenerator: Spawning distribution is empty. Cannot generate coordinates.")
 		return results
 		
-	# Select a random target count within the range
-	var target_count := randi_range(min_spawn_count, max_spawn_count)
+	# Select a random target count within the range, poi le skill del giocatore
+	var target_count := int(SkillModifiers.get_nodes_on_landing(randi_range(min_spawn_count, max_spawn_count)))
 	
 	# Generate seed points
 	var seeds := _generate_seed_points()
@@ -178,9 +178,9 @@ func _pick_weighted_item() -> PackedScene:
 	if _scenes_pool.is_empty() or _total_weight <= 0.0:
 		return null
 		
-	var r := randf_range(0.0, _total_weight)
+	var r := randf() * _total_weight
 	for i in range(_cumulative_weights.size()):
-		if r <= _cumulative_weights[i]:
+		if r < _cumulative_weights[i]:
 			return _scenes_pool[i]
 			
 	return _scenes_pool.back()

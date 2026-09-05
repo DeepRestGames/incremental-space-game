@@ -3,9 +3,18 @@
 [ext_resource type="Script" uid="uid://c1r84q4nh0up2" path="res://Scripts/Environment/breakable.gd" id="1_4ng74"]
 [ext_resource type="Texture2D" uid="uid://bya50q67iyp8s" path="res://Assets/Sprites/environment/Rock2.png" id="3_vnr7e"]
 [ext_resource type="AudioStream" uid="uid://bubvdlphje8rr" path="res://Assets/Audio/SFX/RockDamage1.wav" id="4_41714"]
+[ext_resource type="Script" uid="uid://cq1k63dpg13de" path="res://Scripts/Environment/DropEntry.gd" id="4_m72c3"]
 [ext_resource type="Shader" uid="uid://bkl2ujvvtm8f2" path="res://Shaders/color_overlay.gdshader" id="4_obgst"]
+[ext_resource type="PackedScene" uid="uid://k5air2e7arh4" path="res://Scenes/Resources/BasePickup.tscn" id="5_4ng74"]
 [ext_resource type="AudioStream" uid="uid://bd0s2s54echde" path="res://Assets/Audio/SFX/RockDestory1.wav" id="6_4ng74"]
 [ext_resource type="Texture2D" uid="uid://dv5onwoojupco" path="res://Assets/Sprites/environment/Rock1.png" id="8_s777y"]
+
+[sub_resource type="Resource" id="Resource_gnxv1"]
+script = ExtResource("4_m72c3")
+scene = ExtResource("5_4ng74")
+min_amount = 2
+max_amount = 3
+metadata/_custom_type_script = "uid://cq1k63dpg13de"
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_g4v7s"]
 shader = ExtResource("4_obgst")
@@ -48,8 +57,7 @@ collision_layer = 4
 script = ExtResource("1_4ng74")
 totalHP = 40
 rock_sprites = Array[Texture2D]([ExtResource("8_s777y"), ExtResource("3_vnr7e")])
-min_resource_number = 2
-max_resource_number = 3
+drops = Array[ExtResource("4_m72c3")]([SubResource("Resource_gnxv1")])
 
 [node name="CanvasGroup" type="CanvasGroup" parent="." unique_id=1566489641]
 material = SubResource("ShaderMaterial_g4v7s")

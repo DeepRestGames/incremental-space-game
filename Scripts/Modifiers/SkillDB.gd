@@ -106,8 +106,8 @@ const DATABASE: Dictionary = {
 		"cost": [50, 50],
 		"effects": {
 			"drops_on_destruction": {
-				"type": "ADDITIVE",
-				"value": 0.5
+				"type": "FLAT",
+				"value": 1
 			}
 		}
 	},

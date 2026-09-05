@@ -4,14 +4,22 @@
 [ext_resource type="Texture2D" uid="uid://dv5onwoojupco" path="res://Assets/Sprites/environment/Rock1.png" id="2_oq4pq"]
 [ext_resource type="Texture2D" uid="uid://bhrm3cbrxppqm" path="res://Assets/Sprites/environment/5Chip1_Green.png" id="3_5gjhx"]
 [ext_resource type="Texture2D" uid="uid://bya50q67iyp8s" path="res://Assets/Sprites/environment/Rock2.png" id="3_ygini"]
+[ext_resource type="Script" uid="uid://cq1k63dpg13de" path="res://Scripts/Environment/DropEntry.gd" id="4_a7o1t"]
 [ext_resource type="Shader" uid="uid://bkl2ujvvtm8f2" path="res://Shaders/color_overlay.gdshader" id="4_lglgh"]
+[ext_resource type="PackedScene" uid="uid://k5air2e7arh4" path="res://Scenes/Resources/BasePickup.tscn" id="5_7dr2o"]
 [ext_resource type="AudioStream" uid="uid://bubvdlphje8rr" path="res://Assets/Audio/SFX/RockDamage1.wav" id="5_smfia"]
 [ext_resource type="AudioStream" uid="uid://bd0s2s54echde" path="res://Assets/Audio/SFX/RockDestory1.wav" id="6_lglgh"]
+
+[sub_resource type="Resource" id="Resource_7j40f"]
+script = ExtResource("4_a7o1t")
+scene = ExtResource("5_7dr2o")
+min_amount = 3
+max_amount = 6
+metadata/_custom_type_script = "uid://cq1k63dpg13de"
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_nxef3"]
 shader = ExtResource("4_lglgh")
 shader_parameter/flash_color = Color(1, 1, 1, 1)
-shader_parameter/flash_value = 0.0
 
 [sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_55bpt"]
 points = PackedVector2Array(-10.99946, 149.00003, -44.999622, 104.00017, -38.000362, -99.99986, 5.9994535, -151.00003, 22.999573, -118.000084, 47.000004, 0.9998299, 47.00012, 32.99983, 9.000482, 132.99997)
@@ -50,8 +58,7 @@ collision_layer = 4
 script = ExtResource("1_om1mr")
 totalHP = 60
 rock_sprites = Array[Texture2D]([ExtResource("2_oq4pq"), ExtResource("3_ygini")])
-min_resource_number = 3
-max_resource_number = 6
+drops = Array[ExtResource("4_a7o1t")]([SubResource("Resource_7j40f")])
 
 [node name="CanvasGroup" type="CanvasGroup" parent="." unique_id=1615420904]
 material = SubResource("ShaderMaterial_nxef3")

@@ -37,24 +37,59 @@ const DAMAGE_NUMBER := preload("res://Scenes/UI/DamageNumber.tscn")
 #endregion
 
 #region drops
-@onready var resource_scene: PackedScene = preload("res://Scenes/Resources/BasePickup.tscn")
-@export var min_resource_number: int = BaseValuesDB.MIN_RESOURCE_NUMBER
-@export var max_resource_number: int = BaseValuesDB.MAX_RESOURCE_NUMBER
-var current_resource_number: int
-@export var resource_spawn_chance_on_damaged: float = BaseValuesDB.RESOURCE_SPAWN_CHANCE_ON_DAMAGED
+## Un "tiro" di drop fortunato vale un tick di trivella a danno base.
+## Con piu danno si tira piu volte nello stesso tick, cosi il numero totale di
+## tiri su un sasso dipende dai suoi HP e non da quanto e forte il giocatore.
+const ROLL_DAMAGE_UNIT: float = BaseValuesDB.DRILL_DAMAGE_PER_TICK
+
+@export_group("Drops")
+## Cosa droppa questo breakable. Tutte le entry droppano sempre.
+@export var drops: Array[DropEntry] = []
+
+## Pezzi garantiti alla distruzione, uno per ogni entry di `drops`.
+## Tirato alla nascita e mai più modificato
+var _amounts: Array[int] = []
 #endregion
 
+#region spawn containers
+var _pickup_parent: Node
+var _particle_parent: Node
+var _damage_number_parent: Node
+
+func _resolve_container(path: String) -> Node:
+	var container := get_tree().current_scene.get_node_or_null(path)
+	if container:
+		return container
+	push_warning("%s: '%s' non trovato, uso la radice della scena" % [name, path])
+	return get_tree().current_scene
+	
+## Tira il contenuto del sasso una volta sola, e valida la configurazione
+## adesso invece che al primo colpo.
+func _roll_contents() -> void:
+	_amounts.resize(drops.size())
+	for i in drops.size():
+		var entry := drops[i]
+		if not entry or not entry.scene:
+			push_error("%s: drops[%d] senza scena assegnata" % [name, i])
+			_amounts[i] = 0
+			continue
+		_amounts[i] = randi_range(entry.min_amount, entry.max_amount)
+#endregion
 
 
 func _ready() -> void:
 	currentHP = totalHP
-	current_resource_number = randi_range(min_resource_number, max_resource_number)
+	_roll_contents()
 	
 	# THIS ONLY WORKS AS LONG AS THERE ARE ONLY 2 TEXTURES AVAILABLE AND THEY ARE SPECULAR (FLIPPED HORIZONTALLY)
 	var random_index = randi_range(0, 1)
 	sprite_2d.texture = rock_sprites[random_index]
 	
 	EventBus.action_trigger_interact.connect(on_interacted)
+	
+	_pickup_parent = _resolve_container("Objects/Pickups")
+	_particle_parent = _resolve_container("Objects/Particles")
+	_damage_number_parent = _resolve_container("Objects/DamageNumbers")
 	
 	var area2d = get_node_or_null("Area2D")
 	if area2d:
@@ -66,8 +101,6 @@ func _ready() -> void:
 		collision_shape_2d.scale.x *= -1
 		area2d.scale.x *= -1
 		
-	
-
 
 func on_interacted() -> void:
 	if not player_is_in_range:
@@ -89,7 +122,7 @@ func take_damage(damage_value: int, is_crit: bool) -> void:
 	#hurt animation
 	var squish_scale = 0.9
 	var default_scale = sprite_2d.scale
-	var default_color = sprite_2d.modulate
+	var _default_color = sprite_2d.modulate
 	var tween_scale = get_tree().create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_BACK)
 	tween_scale.tween_property(sprite_2d, "scale", default_scale*squish_scale, 0.07)
 	tween_scale.tween_property(sprite_2d, "scale", default_scale, 0.07)
@@ -97,16 +130,30 @@ func take_damage(damage_value: int, is_crit: bool) -> void:
 	tween_modulate.tween_property(sprite_canvas, "instance_shader_parameters/flash_value", 0.85, 0.05)
 	tween_modulate.tween_property(sprite_canvas, "instance_shader_parameters/flash_value", 0, 0.2)
 	
-	# drop_chance_per_tick adds to base drop chance
-	var drop_chance = SkillModifiers.get_drop_chance_per_tick(resource_spawn_chance_on_damaged)
-		
 	spawn_rock_particles(randi_range(min_rock_particles, max_rock_particles))
-		
-	for i in damage_value:
-		
-		if randf() < drop_chance:
-			spawn_resource_drops(1)
-	
+
+	# Il danno oltre gli HP rimasti non conta: senza questo, il colpo che sfonda
+	# un sasso quasi morto regalerebbe tiri per danno mai realmente inflitto.
+	var effective_damage := float(mini(damage_value, currentHP))
+	var rolls := effective_damage / ROLL_DAMAGE_UNIT
+
+	for entry_index in drops.size():
+		var entry := drops[entry_index]
+		if not entry.drops_while_drilling:
+			continue
+		var chance := SkillModifiers.get_drop_chance_per_tick(entry.chance_per_drill_tick)
+		if chance <= 0.0:
+			continue
+
+		# parte intera dei tiri, piu la frazione decisa a sorte: cosi il valore
+		# atteso resta esatto anche quando i tiri spettanti non sono un intero.
+		var n := int(rolls)
+		if randf() < rolls - float(n):
+			n += 1
+		for i in n:
+			if randf() < chance:
+				spawn_drop(entry_index, 1)
+
 	currentHP -= damage_value
 	
 	if currentHP <= 0 and !is_dead:
@@ -116,29 +163,37 @@ func take_damage(damage_value: int, is_crit: bool) -> void:
 		hit.play()
 
 
-func spawn_resource_drops(resource_number: int) -> void:
-	for i in resource_number:
-		var resource_drop_node = resource_scene.instantiate() as BasePickup
-		var random_offset = Vector2(randf_range(-40, 40), randf_range(0, 0))
-		get_tree().current_scene.add_child(resource_drop_node)
-		resource_drop_node.global_position = self.global_position + random_offset
-		resource_drop_node.randomize_spawn_direction()
-	
-	current_resource_number -= resource_number
+func spawn_drop(entry_index: int, amount: int) -> void:
+	if amount <= 0:
+		return
+	var entry := drops[entry_index]
+	if not entry or not entry.scene:
+		return
+
+	for i in amount:
+		var pickup := entry.scene.instantiate() as BasePickup
+		# non è più preload quindi si controlla
+		if not pickup:
+			push_error("%s: %s non ha un BasePickup come root" % [name, entry.scene.resource_path])
+			return
+		var random_offset := Vector2(randf_range(-40, 40), 0.0)
+		_pickup_parent.add_child(pickup)
+		pickup.global_position = global_position + random_offset
+		pickup.randomize_spawn_direction()
 
 
 func spawn_rock_particles(rock_particles_number: int) -> void:
 	for i in rock_particles_number:
 		var rock_particle_node = rock_particle.instantiate() as RockParticle
 		var random_offset = Vector2(randf_range(-20, 20), randf_range(-20, 20))
-		get_tree().current_scene.get_node("Objects/Particles").add_child(rock_particle_node)
+		_particle_parent.add_child(rock_particle_node) 
 		rock_particle_node.global_position = self.global_position + random_offset
 		rock_particle_node.randomize_spawn_direction()
 
 
 func spawn_damage_number(damage_amount: int, is_crit: bool) -> void:
 	var number := DAMAGE_NUMBER.instantiate() as DamageNumber
-	get_tree().current_scene.get_node("Objects/DamageNumbers").add_child(number)
+	_damage_number_parent.add_child(number)  
 	number.global_position = global_position
 	number.show_damage(damage_amount, is_crit)
 	
@@ -169,9 +224,10 @@ func die () -> void:
 		GameManager.expedition_destroyed_nodes += 1
 	
 	# Extra drops on destruction from skill upgrades
-	var extra_drops = int(SkillModifiers.get_drops_on_destruction())
-	
-	spawn_resource_drops(current_resource_number + extra_drops)
+	var extra_drops := int(SkillModifiers.get_drops_on_destruction())
+
+	for entry_index in drops.size():
+		spawn_drop(entry_index, _amounts[entry_index] + extra_drops)
 	
 	hide()
 	set_physics_process(false)
