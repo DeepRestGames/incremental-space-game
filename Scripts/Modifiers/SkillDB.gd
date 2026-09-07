@@ -81,11 +81,11 @@ const DATABASE: Dictionary = {
 	"nodes_landing": {
 		"name": "Node Locator",
 		"description": "Increases nodes found on landing.",
-		"cost": [18, 24, 35, 46, 57],
+		"cost": [20],
 		"effects": {
 			"nodes_on_landing": {
 				"type": "ADDITIVE",
-				"value": 0.15
+				"value": 0.75
 			}
 		}
 	},

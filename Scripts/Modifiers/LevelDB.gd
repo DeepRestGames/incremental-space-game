@@ -10,14 +10,14 @@ const PLANET_PATH: String = "res://Scenes/Levels/Planets/"
 
 const DATABASE: Dictionary = {
 	"moon_1234": {
-		"name": "MOON 1234",
-		"scene_path": PLANET_PATH + "Moon1234.tscn",
-		"planet_color": Color(0.65, 0.68, 0.72)
+		"name": "MOON 1",
+		"scene_path": PLANET_PATH + "Moon1.tscn",
+		"planet_color": Color(0.15, 0.268, 0.321, 1.0)
 	},
 	"nebula_alpha": {
-		"name": "NEBULA ALPHA",
-		"scene_path": PLANET_PATH + "NebulaAlpha2345.tscn",
-		"planet_color": Color(0.9, 0.25, 0.6)
+		"name": "MOON 2",
+		"scene_path": PLANET_PATH + "Moon2.tscn",
+		"planet_color": Color(0.712, 0.253, 0.582, 1.0)
 	}
 }
 

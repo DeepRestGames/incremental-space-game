@@ -242,7 +242,7 @@ func update_appearance() -> void:
 		
 	if skill_id == "":
 		background.modulate = COLOR_DARK
-		skill_icon.modulate = Color(1.0, 0.0, 0.0, 1.0)
+		skill_icon.modulate = COLOR_BRIGHT
 		return
 		
 	if Engine.is_editor_hint(): # editor visuals

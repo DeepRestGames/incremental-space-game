@@ -1,10 +1,9 @@
 [gd_scene format=3 uid="uid://5c3751t48a6v"]
 
-[ext_resource type="PackedScene" uid="uid://cl1025m5bhlxa" path="res://Scenes/Levels/Planets/BaseLevel.tscn" id="1_base"]
-[ext_resource type="Texture2D" uid="uid://cb8pqpfy5dg34" path="res://Assets/Sprites/environment/SeamlessBackground.png" id="2_lbst8"]
-[ext_resource type="PackedScene" uid="uid://c6qwwmff8anwx" path="res://Scenes/Environment/breakable_small.tscn" id="3_wjtlv"]
-[ext_resource type="PackedScene" uid="uid://yat7dirw16l5" path="res://Scenes/Environment/breakable_big.tscn" id="4_o7me7"]
-[ext_resource type="PackedScene" uid="uid://ctoav4t5cbhdg" path="res://Scenes/Environment/breakable_cube.tscn" id="5_o7me7"]
+[ext_resource type="PackedScene" uid="uid://cl1025m5bhlxa" path="res://Scenes/Levels/Planets/BaseLevel.tscn" id="1_dm228"]
+[ext_resource type="Texture2D" uid="uid://cb8pqpfy5dg34" path="res://Assets/Sprites/environment/SeamlessBackground.png" id="2_213c4"]
+[ext_resource type="PackedScene" uid="uid://c6qwwmff8anwx" path="res://Scenes/Environment/breakable_small.tscn" id="3_pnx5c"]
+[ext_resource type="PackedScene" uid="uid://yat7dirw16l5" path="res://Scenes/Environment/breakable_big.tscn" id="4_13hlr"]
 
 [sub_resource type="Gradient" id="Gradient_lbst8"]
 offsets = PackedFloat32Array(0, 0.18306011, 0.49497488, 0.7021858, 1)
@@ -26,32 +25,28 @@ adjustment_brightness = 1.15
 adjustment_contrast = 1.08
 adjustment_color_correction = SubResource("GradientTexture1D_wjtlv")
 
-[node name="Moon1234" unique_id=119943232 instance=ExtResource("1_base")]
+[node name="Moon1" unique_id=119943232 instance=ExtResource("1_dm228")]
 
 [node name="Parallax2D" type="Parallax2D" parent="." index="0" unique_id=1890857053]
 repeat_size = Vector2(3840, 2161)
 repeat_times = 3
 
 [node name="SeamlessBackground" type="Sprite2D" parent="Parallax2D" index="0" unique_id=993693161]
-texture = ExtResource("2_lbst8")
+texture = ExtResource("2_213c4")
 
-[node name="Particles" parent="Objects" parent_id_path=PackedInt32Array(1539187237) index="0" unique_id=1547777866]
-y_sort_enabled = true
-
-[node name="ExpeditionShip" parent="Objects" parent_id_path=PackedInt32Array(1539187237) index="2" unique_id=1704699913]
+[node name="ExpeditionShip" parent="Objects" parent_id_path=PackedInt32Array(1539187237) index="4" unique_id=1704699913]
 custom_texture = null
 
-[node name="MapCoordinateGenerator" parent="Objects" parent_id_path=PackedInt32Array(1539187237) index="3" unique_id=1573320358]
+[node name="MapCoordinateGenerator" parent="Objects" parent_id_path=PackedInt32Array(1539187237) index="5" unique_id=1573320358]
 min_distance = 150.0
 min_spawn_count = 50
 max_spawn_count = 100
 
 [node name="SpawnDistribution" parent="Objects/MapCoordinateGenerator" index="0" unique_id=987654321]
-spawn_distribution = {
-ExtResource("3_wjtlv"): 40.0,
-ExtResource("4_o7me7"): 2.0,
-ExtResource("5_o7me7"): 1.0
-}
+spawn_distribution = Dictionary[PackedScene, float]({
+ExtResource("3_pnx5c"): 40.0,
+ExtResource("4_13hlr"): 2.0
+})
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." index="2" unique_id=248897781]
 environment = SubResource("Environment_lbst8")
