@@ -59,6 +59,12 @@ func spawn_level_objects() -> void:
 		# Translate generator top-left (0 to map_size) coords to centered level coords (-map_size/2 to +map_size/2)
 		instance.global_position = pos - (map_size / 2.0)
 		
+		#randomize instance scale and rotation
+		var random_scale = randf_range(0.95, 1.2)
+		var random_rotation = randf_range(-4, 4)
+		instance.scale = Vector2(random_scale, random_scale)
+		instance.rotation_degrees = random_rotation
+		
 		spawned_count += 1
 		
 	var duration := Time.get_ticks_msec() - start_time
