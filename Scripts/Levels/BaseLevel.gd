@@ -62,8 +62,10 @@ func spawn_level_objects() -> void:
 		#randomize instance scale and rotation
 		var random_scale = randf_range(0.95, 1.2)
 		var random_rotation = randf_range(-4, 4)
+		var random_value = randf_range(-0.1, +0.1)
 		instance.scale = Vector2(random_scale, random_scale)
 		instance.rotation_degrees = random_rotation
+		instance.modulate.v += random_value 
 		
 		spawned_count += 1
 		
