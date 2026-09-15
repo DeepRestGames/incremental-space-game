@@ -116,6 +116,21 @@ skill_id = "oxygen_capacity"
 icon = ExtResource("3_drkok")
 parent_node = NodePath("../Core")
 
+[node name="OxygenCapacityNode2" parent="TreeView" unique_id=1712366674 node_paths=PackedStringArray("parent_node") instance=ExtResource("1_c1qs3")]
+layout_mode = 0
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 1850.0
+offset_top = 630.0
+offset_right = 1990.0
+offset_bottom = 770.0
+grow_horizontal = 1
+grow_vertical = 1
+skill_id = "oxygen_capacity_2"
+icon = ExtResource("3_drkok")
+parent_node = NodePath("../BagSizeNode")
+
 [node name="DrillAreaNode" parent="TreeView" unique_id=945436568 node_paths=PackedStringArray("parent_node") instance=ExtResource("1_c1qs3")]
 layout_mode = 0
 anchors_preset = 0

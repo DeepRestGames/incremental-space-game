@@ -78,6 +78,17 @@ const DATABASE: Dictionary = {
 			}
 		}
 	},
+	"oxygen_capacity_2": {
+		"name": "Bigger Oxygen Reserve",
+		"description": "Increases oxygen tank capacity.",
+		"cost": [25],
+		"effects": {
+			"oxygen_tank_capacity": {
+				"type": "ADDITIVE",
+				"value": 0.15
+			}
+		}
+	},
 	"nodes_landing": {
 		"name": "Node Locator",
 		"description": "Increases nodes found on landing.",
