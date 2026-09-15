@@ -41,6 +41,8 @@ func _process(delta: float) -> void:
 	else:
 		if Input.is_action_pressed("interact"):
 			EventBus.action_trigger_interact.emit()
+		if Input.is_action_just_pressed("cheat"):
+			GameManager.add_money(10)
 
 
 func _unhandled_input(event: InputEvent) -> void:
