@@ -272,7 +272,7 @@ func update_appearance() -> void:
 				progress_bar_background.show()
 				radial_progress_bar.show()
 				var ratio = float(current_points) / float(max_points)
-				radial_progress_bar.material.set_shader_parameter("progress", ratio)
+				radial_progress_bar.set_instance_shader_parameter("progress", ratio)
 			# Active (Blue, scaling from a soft sky blue to a very strong, vibrant electric blue based on points ratio)
 			
 			#var bg_color = Color(0.6 * (1.0 - ratio), 0.8 - 0.45 * ratio, 1.0, 1.0)

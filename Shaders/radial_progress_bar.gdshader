@@ -8,7 +8,7 @@ uniform float inner_bound : hint_range(0.0, 0.49, 0.005) = 0.3;
 // uncomment the correct line and erase the next line if you intend to use it
 uniform float fill_direction = 1.0;
 
-uniform float progress : hint_range(0.0, 1.0) = 1.0;
+instance uniform float progress : hint_range(0.0, 1.0) = 1.0;
 
 void fragment() {
 	float outer_bound_alpha = 1.0 - step(outer_bound, distance(vec2(0.5), UV));
