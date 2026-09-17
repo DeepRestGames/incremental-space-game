@@ -17,7 +17,7 @@ points = PackedVector2Array(-4.9996853, 87.000015, -16.999807, 53.00006, -10.000
 
 [node name="Blackrock_S" unique_id=1949437542 instance=ExtResource("1_ldevo")]
 totalHP = 250
-particle_modulate = Color(0.28, 0.28, 0.28, 1)
+particle_modulate = Color(0.34, 0.34, 0.34, 1)
 drops = Array[ExtResource("2_5jcev")]([SubResource("Resource_4ubyx")])
 
 [node name="Sprite2D" parent="CanvasGroup" parent_id_path=PackedInt32Array(1566489641) index="0" unique_id=699384529]
