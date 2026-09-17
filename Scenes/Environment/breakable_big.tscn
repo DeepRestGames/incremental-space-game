@@ -15,6 +15,7 @@ script = ExtResource("4_a7o1t")
 scene = ExtResource("5_7dr2o")
 min_amount = 3
 max_amount = 6
+drops_while_drilling = true
 metadata/_custom_type_script = "uid://cq1k63dpg13de"
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_nxef3"]

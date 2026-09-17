@@ -20,12 +20,6 @@ metadata/_custom_type_script = "uid://cq1k63dpg13de"
 shader = ExtResource("4_obgst")
 shader_parameter/flash_color = Color(1, 1, 1, 1)
 
-[sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_ako3u"]
-points = PackedVector2Array(-4.9996414, 99.000015, -22.999798, 56.00008, -16.000261, -71.99995, 6.999638, -100.00003, 34, -0.00012307966, 34.00008, 21.999878, 9.000319, 87.99997)
-
-[sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_khvou"]
-points = PackedVector2Array(-78.74999, -102.49999, 3.7499995, -108.74999, 49.999996, -87.49999, 87.49999, -57.499992, 124.999985, 62.499992, 94.99999, 74.99999, -1.2499999, 96.249985, -27.499998, 96.249985, -109.99999, 64.99999, -123.749985, 46.249992, -101.24999, -42.5)
-
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mu2bs"]
 draw_center = false
 border_width_left = 5
@@ -70,17 +64,9 @@ scale = Vector2(0.8, 0.8)
 texture = ExtResource("8_s777y")
 offset = Vector2(0, -55.25)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=762273956]
-position = Vector2(0, -8)
-rotation = 1.5708
-shape = SubResource("ConvexPolygonShape2D_ako3u")
-
 [node name="Area2D" type="Area2D" parent="." unique_id=127977022]
 position = Vector2(1.4551915e-11, -51)
 scale = Vector2(0.8, 0.8)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=609356485]
-shape = SubResource("ConvexPolygonShape2D_khvou")
 
 [node name="Control" type="Control" parent="." unique_id=1706542853]
 visible = false

@@ -3,8 +3,8 @@
 [ext_resource type="PackedScene" uid="uid://cl1025m5bhlxa" path="res://Scenes/Levels/Planets/BaseLevel.tscn" id="1_tgogl"]
 [ext_resource type="PackedScene" uid="uid://yat7dirw16l5" path="res://Scenes/Environment/breakable_big.tscn" id="2_big"]
 [ext_resource type="Texture2D" uid="uid://cb8pqpfy5dg34" path="res://Assets/Sprites/environment/SeamlessBackground.png" id="2_u0hgq"]
-[ext_resource type="PackedScene" uid="uid://c6qwwmff8anwx" path="res://Scenes/Environment/breakable_small.tscn" id="3_h5bod"]
 [ext_resource type="PackedScene" uid="uid://ctoav4t5cbhdg" path="res://Scenes/Environment/breakable_cube.tscn" id="5_iccll"]
+[ext_resource type="PackedScene" uid="uid://dsarpf2d3a35v" path="res://Scenes/Environment/Blackrock_S.tscn" id="5_johtm"]
 
 [sub_resource type="Gradient" id="Gradient_u0hgq"]
 offsets = PackedFloat32Array(0, 0.19945355, 0.4398907, 0.7240437, 1)
@@ -46,9 +46,9 @@ max_spawn_count = 130
 
 [node name="SpawnDistribution" parent="Objects/MapCoordinateGenerator" index="0" unique_id=987654321]
 spawn_distribution = Dictionary[PackedScene, float]({
-ExtResource("3_h5bod"): 40.0,
 ExtResource("2_big"): 10.0,
-ExtResource("5_iccll"): 1.0
+ExtResource("5_iccll"): 5.0,
+ExtResource("5_johtm"): 10.0
 })
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." index="2" unique_id=401950983]

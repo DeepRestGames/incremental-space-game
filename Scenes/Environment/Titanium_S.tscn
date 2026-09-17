@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://dkrad3yjg1xjf"]
+
+[ext_resource type="PackedScene" uid="uid://c6qwwmff8anwx" path="res://Scenes/Environment/breakable_small.tscn" id="1_dexwy"]
+[ext_resource type="Script" uid="uid://cq1k63dpg13de" path="res://Scripts/Environment/DropEntry.gd" id="2_w6moj"]
+[ext_resource type="PackedScene" uid="uid://k5air2e7arh4" path="res://Scenes/Resources/BasePickup.tscn" id="3_alb74"]
+
+[sub_resource type="Resource" id="Resource_v2sj4"]
+script = ExtResource("2_w6moj")
+scene = ExtResource("3_alb74")
+min_amount = 2
+max_amount = 3
+drops_while_drilling = true
+metadata/_custom_type_script = "uid://cq1k63dpg13de"
+
+[sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_khvou"]
+points = PackedVector2Array(-78.74999, -102.49999, 3.7499995, -108.74999, 49.999996, -87.49999, 87.49999, -57.499992, 124.999985, 62.499992, 94.99999, 74.99999, -1.2499999, 96.249985, -27.499998, 96.249985, -109.99999, 64.99999, -123.749985, 46.249992, -101.24999, -42.5)
+
+[sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_dexwy"]
+points = PackedVector2Array(-4.9996414, 99.000015, -22.999798, 56.00008, -16.000261, -71.99995, 6.999638, -100.00003, 34, -0.00012307966, 34.00008, 21.999878, 9.000319, 87.99997)
+
+[node name="Titanium_S" unique_id=1949437542 instance=ExtResource("1_dexwy")]
+drops = Array[ExtResource("2_w6moj")]([SubResource("Resource_v2sj4")])
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" parent_id_path=PackedInt32Array(127977022) index="0" unique_id=410768942]
+shape = SubResource("ConvexPolygonShape2D_khvou")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="2" unique_id=1292276395]
+position = Vector2(0, -8)
+rotation = 1.5708
+shape = SubResource("ConvexPolygonShape2D_dexwy")

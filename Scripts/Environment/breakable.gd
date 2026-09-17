@@ -24,6 +24,7 @@ var player_is_in_range: bool = false
 @onready var rock_particle = preload("res://Scenes/Particles/rock_particle.tscn")
 @export var min_rock_particles = 3
 @export var max_rock_particles = 7
+@export var particle_modulate: Color = Color.WHITE
 
 # Damage number
 const DAMAGE_NUMBER := preload("res://Scenes/UI/DamageNumber.tscn")
@@ -186,6 +187,7 @@ func spawn_rock_particles(rock_particles_number: int) -> void:
 	for i in rock_particles_number:
 		var rock_particle_node = rock_particle.instantiate() as RockParticle
 		var random_offset = Vector2(randf_range(-20, 20), randf_range(-20, 20))
+		rock_particle_node.modulate = particle_modulate
 		_particle_parent.add_child(rock_particle_node) 
 		rock_particle_node.global_position = self.global_position + random_offset
 		rock_particle_node.randomize_spawn_direction()

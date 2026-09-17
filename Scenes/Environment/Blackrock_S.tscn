@@ -1,0 +1,36 @@
+[gd_scene format=3 uid="uid://dsarpf2d3a35v"]
+
+[ext_resource type="PackedScene" uid="uid://c6qwwmff8anwx" path="res://Scenes/Environment/breakable_small.tscn" id="1_ldevo"]
+[ext_resource type="Script" uid="uid://cq1k63dpg13de" path="res://Scripts/Environment/DropEntry.gd" id="2_5jcev"]
+[ext_resource type="PackedScene" uid="uid://bphdkpfgutdjo" path="res://Scenes/Resources/Blackrock_S.tscn" id="3_b60g4"]
+
+[sub_resource type="Resource" id="Resource_4ubyx"]
+script = ExtResource("2_5jcev")
+scene = ExtResource("3_b60g4")
+metadata/_custom_type_script = "uid://cq1k63dpg13de"
+
+[sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_ldevo"]
+points = PackedVector2Array(-69.99999, -82.49999, 2.4999998, -87.49999, 39.999996, -71.24999, 77.49999, -43.75, 109.99999, 61.249992, 87.49999, 72.49999, -1.8189892e-11, 91.24999, -23.749998, 91.24999, -96.24999, 63.749992, -108.74999, 47.499992, -86.24999, -38.75)
+
+[sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_0f0b4"]
+points = PackedVector2Array(-4.9996853, 87.000015, -16.999807, 53.00006, -10.000238, -65.99996, 6.9996815, -88.00003, 15.99975, -69.00006, 30, -0.0001085997, 30.000069, 18.999891, 8.000278, 76.99997)
+
+[node name="Blackrock_S" unique_id=1949437542 instance=ExtResource("1_ldevo")]
+totalHP = 250
+particle_modulate = Color(0.28, 0.28, 0.28, 1)
+drops = Array[ExtResource("2_5jcev")]([SubResource("Resource_4ubyx")])
+
+[node name="Sprite2D" parent="CanvasGroup" parent_id_path=PackedInt32Array(1566489641) index="0" unique_id=699384529]
+modulate = Color(0.28485063, 0.28485018, 0.2848499, 1)
+scale = Vector2(0.7, 0.7)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" parent_id_path=PackedInt32Array(127977022) index="0" unique_id=2135496613]
+shape = SubResource("ConvexPolygonShape2D_ldevo")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="2" unique_id=1689056283]
+position = Vector2(0, -8)
+rotation = 1.5708
+shape = SubResource("ConvexPolygonShape2D_0f0b4")
+
+[node name="RockParticlesParent" parent="." index="4" unique_id=451479391]
+modulate = Color(0.28, 0.28, 0.28, 1)
