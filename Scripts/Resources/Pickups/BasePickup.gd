@@ -8,6 +8,7 @@ extends Area2D
 
 
 @export_group("Pickup Info")
+@export var resource_type: ResourceType
 @export var pickup_amount: int = 1
 
 @export_group("Player attraction")
@@ -44,7 +45,7 @@ func _on_body_exited(body: Node2D) -> void:
 ## Hands over as much as fits in the player's inventory. Whatever does not fit
 ## stays in this pickup, so it can be collected later once space frees up.
 func try_collect() -> void:
-	var accepted = GameManager.add_resource(pickup_amount)
+	var accepted = GameManager.add_resource(resource_type.id, pickup_amount)
 	if accepted <= 0:
 		return
 

@@ -25,7 +25,7 @@ func _ready() -> void:
 	
 	destroyed_label.text = "• Nodes Mined: %d" % GameManager.expedition_destroyed_nodes
 	
-	_set_resource_text(resource_triangle_label, GameManager.expedition_resources_collected)
+	_set_resource_text(resource_triangle_label, ResourceDB.total_of(GameManager.expedition_resources_collected))
 	_set_resource_text(resource_circle_label, 0)
 	_set_resource_text(resource_square_label, 0)
 

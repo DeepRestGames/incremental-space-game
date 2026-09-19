@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="ResourceType" format=3 uid="uid://dghovwrvp8cfg"]
+
+[ext_resource type="Texture2D" uid="uid://c1nwxp2yobdup" path="res://Addons/at-icons/node/tablet.svg" id="1_7ryva"]
+[ext_resource type="Script" uid="uid://bss1cajnebhpo" path="res://Scripts/Resources/Minerals/ResourceType.gd" id="1_siv7g"]
+
+[resource]
+script = ExtResource("1_siv7g")
+id = &"refined_1"
+display_name = "REFINIUM"
+icon = ExtResource("1_7ryva")
+metadata/_custom_type_script = "uid://bss1cajnebhpo"

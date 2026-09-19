@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="ResourceType" format=3 uid="uid://it7l7a3ndxfy"]
+
+[ext_resource type="Texture2D" uid="uid://4tr34ksq0npv" path="res://Assets/PLACEHOLDERS/money_currency.svg" id="1_qp2t3"]
+[ext_resource type="Script" uid="uid://bss1cajnebhpo" path="res://Scripts/Resources/Minerals/ResourceType.gd" id="2_25sqv"]
+
+[resource]
+script = ExtResource("2_25sqv")
+id = &"money1"
+display_name = "DOLLARS"
+icon = ExtResource("1_qp2t3")
+metadata/_custom_type_script = "uid://bss1cajnebhpo"

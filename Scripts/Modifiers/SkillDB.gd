@@ -4,18 +4,19 @@ class_name SkillDB
 ## To change a single upgrade's price, edit its "cost" field below.
 ## To change the price for every upgrade at once, edit this value.
 const DEFAULT_UPGRADE_COST: int = 100
+const DEFAULT_CURRENCY := ResourceDB.MONEY1
 
 const DATABASE: Dictionary = {
 	"center_node" : {
 		"name": "Exosuit",
 		"description": "Your amazing drilling suit.",
-		"cost": [0],
+		"cost": [{}],
 		"effects": {}
 	},
 	"drill_damage": {
 		"name": "Drill Power",
 		"description": "Increases drill damage per tick.",
-		"cost": [6],
+		"cost": [{ResourceDB.MONEY1: 6}],
 		"effects": {
 			"drill_damage_per_tick": {
 				"type": "ADDITIVE",
@@ -26,7 +27,7 @@ const DATABASE: Dictionary = {
 	"drill_speed": {
 		"name": "Drill Speed",
 		"description": "Increases drill attack speed.",
-		"cost": [10, 15, 22, 32, 45],
+		"cost": [{ResourceDB.MONEY1: 10}, {ResourceDB.MONEY1: 15}, {ResourceDB.MONEY1: 22}, {ResourceDB.MONEY1: 32}, {ResourceDB.MONEY1: 45}],
 		"effects": {
 			"drill_attack_speed": {
 				"type": "ADDITIVE",
@@ -37,7 +38,7 @@ const DATABASE: Dictionary = {
 	"drill_crit": {
 		"name": "Lucky Strike",
 		"description": "Increases chance of critical drilling damage",
-		"cost": [13, 24, 39],
+		"cost": [{ResourceDB.MONEY1: 13}, {ResourceDB.MONEY1: 24}, {ResourceDB.MONEY1: 39}],
 		"effects": {
 			"drill_crit_chance": {
 				"type": "FLAT",
@@ -48,7 +49,7 @@ const DATABASE: Dictionary = {
 	"drill_crit_damage": {
 		"name": "Crushing Blows",
 		"description": "Increases drill crit damage.",
-		"cost": [20, 40],
+		"cost": [{ResourceDB.MONEY1: 20}, {ResourceDB.MONEY1: 40}],
 		"effects": {
 			"drill_crit_damage": {
 				"type": "ADDITIVE",
@@ -59,7 +60,7 @@ const DATABASE: Dictionary = {
 	"drill_area": {
 		"name": "Wide Reaches",
 		"description": "Increases drill area size.",
-		"cost": [5],
+		"cost": [{ResourceDB.MONEY1: 5}],
 		"effects": {
 			"drill_area_size": {
 				"type": "ADDITIVE",
@@ -70,7 +71,7 @@ const DATABASE: Dictionary = {
 	"oxygen_capacity": {
 		"name": "Oxygen Reserve",
 		"description": "Increases oxygen tank capacity.",
-		"cost": [3],
+		"cost": [{ResourceDB.MONEY1: 3}],
 		"effects": {
 			"oxygen_tank_capacity": {
 				"type": "ADDITIVE",
@@ -81,7 +82,7 @@ const DATABASE: Dictionary = {
 	"oxygen_capacity_2": {
 		"name": "Bigger Oxygen Reserve",
 		"description": "Increases oxygen tank capacity.",
-		"cost": [25],
+		"cost": [{ResourceDB.MONEY1: 25}],
 		"effects": {
 			"oxygen_tank_capacity": {
 				"type": "ADDITIVE",
@@ -92,7 +93,7 @@ const DATABASE: Dictionary = {
 	"nodes_landing": {
 		"name": "Node Locator",
 		"description": "Increases nodes found on landing.",
-		"cost": [20],
+		"cost": [{ResourceDB.MONEY1: 20}],
 		"effects": {
 			"nodes_on_landing": {
 				"type": "ADDITIVE",
@@ -103,7 +104,7 @@ const DATABASE: Dictionary = {
 	"drop_chance": {
 		"name": "Lucky Drilling",
 		"description": "Increases chance to generate a drop per drilling tick.",
-		"cost": [25, 25, 25],
+		"cost": [{ResourceDB.MONEY1: 25}, {ResourceDB.MONEY1: 25}, {ResourceDB.MONEY1: 25}],
 		"effects": {
 			"drop_chance_per_tick": {
 				"type": "FLAT",
@@ -114,7 +115,7 @@ const DATABASE: Dictionary = {
 	"destroy_drops": {
 		"name": "Precise Drilling",
 		"description": "Increases drops generated when a node is destroyed.",
-		"cost": [50, 50],
+		"cost": [{ResourceDB.MONEY1: 50}, {ResourceDB.MONEY1: 50}],
 		"effects": {
 			"drops_on_destruction": {
 				"type": "FLAT",
@@ -125,7 +126,7 @@ const DATABASE: Dictionary = {
 	"move_speed": {
 		"name": "Thruster Tuning",
 		"description": "Increases movement speed.",
-		"cost": [50],
+		"cost": [{ResourceDB.MONEY1: 50}],
 		"effects": {
 			"movement_speed": {
 				"type": "ADDITIVE",
@@ -136,7 +137,7 @@ const DATABASE: Dictionary = {
 	"inventory_capacity": {
 		"name": "Bigger Backpack",
 		"description": "Increases how many resources you can carry.",
-		"cost": [8, 13, 18, 23, 28],
+		"cost": [{ResourceDB.MONEY1: 8}, {ResourceDB.MONEY1: 13}, {ResourceDB.MONEY1: 18}, {ResourceDB.MONEY1: 23}, {ResourceDB.MONEY1: 28}],
 		"effects": {
 			"inventory_capacity": {
 				"type": "FLAT",
@@ -147,12 +148,20 @@ const DATABASE: Dictionary = {
 	"bomb_charges": {
 		"name": "Bomb Payload",
 		"description": "Increases number of bomb charges.",
-		"cost": [45, 45, 45],
+		"cost": [{ResourceDB.MONEY1: 45}, {ResourceDB.MONEY1: 45}, {ResourceDB.MONEY1: 45}],
 		"effects": {
 			"bomb_charges": {
 				"type": "FLAT",
 				"value": 1.0
 			}
 		}
-	}
+	},
+		#"XXX": {
+		#"name": "XXX Box",
+		#"description": "Keep more of your cargo when an expedition fails.",
+		#"cost": [ {ResourceDB.MONEY1: 40}, {ResourceDB.MONEY1: 80} ],
+		#"effects": {
+			#"failure_keep_ratio": {"type": "ADDITIVE", "value": 0.25}
+		#}
+	#},
 }

@@ -165,9 +165,8 @@ func add_point() -> void:
 
 	if current_points < max_points and can_add_point():
 		var cost := GameManager.get_skill_cost(skill_id)
-		if not GameManager.can_afford(cost):
+		if not GameManager.spend(cost):
 			return
-		GameManager.spend_money(cost)
 		GameManager.set_skill_points(skill_id, current_points + 1)
 		
 		# Update all nodes in tree to refresh line drawings and lock states
@@ -191,8 +190,9 @@ func remove_point() -> void:
 	var current_points = GameManager.get_skill_points(skill_id)
 	if current_points > 0 and can_remove_point():
 		GameManager.set_skill_points(skill_id, current_points - 1)
-		GameManager.add_money(GameManager.get_skill_cost(skill_id))
-		
+		# TODO: MAKE MORE GENERIC
+		GameManager.grant(GameManager.get_skill_cost(skill_id))
+				
 		# Update all nodes in tree to refresh line drawings and lock states
 		var all_nodes = get_tree().get_nodes_in_group("SkillNodes")
 		for node in all_nodes:
@@ -218,8 +218,8 @@ func _is_too_expensive() -> bool:
 	if not can_add_point():
 		return false
 
+	# TODO: make more gneric
 	return not GameManager.can_afford(GameManager.get_skill_cost(skill_id))
-
 
 func update_appearance() -> void:
 	if not is_inside_tree():
@@ -327,5 +327,5 @@ func update_tooltip() -> void:
 		
 	var cost_line := ""
 	if points < max_pts:
-		cost_line = "\nCost: %d" % GameManager.get_skill_cost(skill_id)
+		cost_line = "\nCost: %s" % ResourceDB.format_cost(GameManager.get_skill_cost(skill_id))
 	tooltip_text = "%s%s\n%s\nPoints: %d/%d%s" % [s_name, lock_status, s_desc, points, max_pts, cost_line]

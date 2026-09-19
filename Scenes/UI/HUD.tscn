@@ -11,6 +11,7 @@
 [ext_resource type="Script" uid="uid://d02rqtjowyuap" path="res://Scripts/UI/HUD/hud_mockup_animation.gd" id="9_pydgx"]
 [ext_resource type="Texture2D" uid="uid://1whuycuvjxsl" path="res://Assets/UI/HUD_mockup_clean_2.png" id="10_jt2rc"]
 [ext_resource type="Script" uid="uid://bc3f476l57gt1" path="res://Scripts/UI/HUD/MoneyCounter.gd" id="10_money"]
+[ext_resource type="Resource" uid="uid://it7l7a3ndxfy" path="res://Assets/Resources/money_1.tres" id="10_restype"]
 [ext_resource type="Texture2D" uid="uid://dcisudmqov3na" path="res://Assets/PLACEHOLDERS/rock_currency.svg" id="11_rock"]
 [ext_resource type="Texture2D" uid="uid://4tr34ksq0npv" path="res://Assets/PLACEHOLDERS/money_currency.svg" id="12_money"]
 [ext_resource type="PackedScene" path="res://Scenes/UI/ExpeditionIntro.tscn" id="13_intro"]
@@ -134,6 +135,7 @@ anchor_right = 0.972222
 anchor_bottom = 0.207
 grow_horizontal = 0
 script = ExtResource("10_money")
+resource_type = ExtResource("10_restype")
 metadata/_edit_use_anchors_ = true
 
 [node name="HBoxContainer" type="HBoxContainer" parent="HUD/MoneyCounter" unique_id=1603861171]

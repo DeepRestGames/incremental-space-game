@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="ResourceType" format=3 uid="uid://dvf8nv7l6mwhi"]
+
+[ext_resource type="Script" uid="uid://bss1cajnebhpo" path="res://Scripts/Resources/Minerals/ResourceType.gd" id="1_kwutj"]
+[ext_resource type="Texture2D" uid="uid://cq450xheijdcf" path="res://Assets/Sprites/environment/rock_5.png" id="1_o7xf7"]
+
+[resource]
+script = ExtResource("1_kwutj")
+id = &"ore2"
+display_name = "ORE2"
+icon = ExtResource("1_o7xf7")
+metadata/_custom_type_script = "uid://bss1cajnebhpo"

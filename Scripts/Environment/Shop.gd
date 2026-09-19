@@ -13,11 +13,16 @@ var player_in_area: bool = false
 func _ready() -> void:
 	EventBus.action_trigger_interact.connect(check_interaction)
 
+## Shop / Merchant Interactable
+## When the player is nearby and presses interact, runs every shop recipe as
+## many times as the stored resources allow.
+## TODO: replace with a selection UI once recipes are more than one.
 
 func check_interaction() -> void:
-	if player_in_area:
-		GameManager.convert_resources_to_money(conversion_rate)
-
+	if not player_in_area:
+		return
+	for recipe in RecipeDB.recipes_for(&"shop"):
+		GameManager.craft(recipe, GameManager.max_crafts(recipe))
 
 func _on_body_entered(body: Node2D) -> void:
 	if body.is_in_group("Player"):

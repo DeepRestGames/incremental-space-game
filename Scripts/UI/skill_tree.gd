@@ -255,7 +255,7 @@ func display_skill_info(skill_id: String) -> void:
 		detail_name.text = s_name
 	if detail_points:
 		if points < max_pts:
-			detail_points.text = "Level: %d / %d   (Cost: %d)" % [points, max_pts, GameManager.get_skill_cost(skill_id)]
+			detail_points.text = "Level: %d / %d   (Cost: %s)" % [points, max_pts, ResourceDB.format_cost(GameManager.get_skill_cost(skill_id))]
 		else:
 			detail_points.text = "Level: %d / %d" % [points, max_pts]
 	if detail_desc:

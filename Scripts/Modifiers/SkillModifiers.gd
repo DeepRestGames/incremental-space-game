@@ -139,3 +139,6 @@ static func get_drill_area_size(base_value: float = BaseValuesDB.DRILL_AREA_SIZE
 
 static func get_drop_chance_per_tick(base_value: float = BaseValuesDB.RESOURCE_SPAWN_CHANCE_ON_DAMAGED) -> float:
 	return get_modified_stat("drop_chance_per_tick", base_value)
+
+static func get_failure_keep_ratio() -> float:
+	return minf(get_stat("failure_keep_ratio"), 1.0)

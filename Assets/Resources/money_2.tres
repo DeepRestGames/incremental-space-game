@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="ResourceType" format=3 uid="uid://8ir22hyx8yxn"]
+
+[ext_resource type="Texture2D" uid="uid://sdhqe1ooa7j1" path="res://Addons/at-icons/node/poultry_eaten.svg" id="1_3riyd"]
+[ext_resource type="Script" uid="uid://bss1cajnebhpo" path="res://Scripts/Resources/Minerals/ResourceType.gd" id="1_tv4au"]
+
+[resource]
+script = ExtResource("1_tv4au")
+id = &"money2"
+display_name = "YEN"
+icon = ExtResource("1_3riyd")
+sell_value = null
+converts_to = null
+metadata/_custom_type_script = "uid://bss1cajnebhpo"

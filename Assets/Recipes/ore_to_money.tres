@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="ConversionRecipe" format=3 uid="uid://d18jgl6iyil7x"]
+
+[ext_resource type="Script" uid="uid://bss1cajnebhpo" path="res://Scripts/Resources/Minerals/ResourceType.gd" id="1_82ymd"]
+[ext_resource type="Resource" uid="uid://it7l7a3ndxfy" path="res://Assets/Resources/money_1.tres" id="2_vt6gq"]
+[ext_resource type="Script" uid="uid://fji2tdcre58v" path="res://Scripts/Resources/Recipes/ConversionRecipe.gd" id="3_s0fnf"]
+[ext_resource type="Resource" uid="uid://dy555gx1h5686" path="res://Assets/Resources/ore_1.tres" id="4_ore1"]
+
+[resource]
+script = ExtResource("3_s0fnf")
+display_name = "Sell"
+inputs = Dictionary[ExtResource("1_82ymd"), int]({
+ExtResource("4_ore1"): 1
+})
+output = ExtResource("2_vt6gq")
+output_amount = 5
+metadata/_custom_type_script = "uid://fji2tdcre58v"

@@ -31,7 +31,7 @@ const DRILL_ATTACK_SPEED: float = 1
 
 # Breakable / Resource Nodes Stats
 const RESOURCE_SPAWN_CHANCE_ON_DAMAGED: float = 0
-
+const FAILURE_KEEP_RATIO: float = 0.2
 
 ## Registry of every stat that skills are allowed to modify: stat id -> base value.
 ## This is the single list of "modifiable stats" in the game: SkillModifiers builds
@@ -53,6 +53,7 @@ const BASE_VALUES: Dictionary = {
 	"drill_area_size": DRILL_AREA_SIZE,
 	"drill_attack_speed": DRILL_ATTACK_SPEED,
 	"drop_chance_per_tick": RESOURCE_SPAWN_CHANCE_ON_DAMAGED,
+	"failure_keep_ratio": FAILURE_KEEP_RATIO,
 	"nodes_on_landing": 0.0,
 	"drops_on_destruction": 0.0,
 }

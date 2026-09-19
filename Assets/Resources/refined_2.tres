@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="ResourceType" format=3 uid="uid://de7pbp2qyx3uf"]
+
+[ext_resource type="Texture2D" uid="uid://e673yjoy55c1" path="res://Addons/at-icons/node/bot.svg" id="1_qxhb7"]
+[ext_resource type="Script" uid="uid://bss1cajnebhpo" path="res://Scripts/Resources/Minerals/ResourceType.gd" id="1_xpbo2"]
+
+[resource]
+script = ExtResource("1_xpbo2")
+id = &"refined_2"
+display_name = "REFORDIUM"
+icon = ExtResource("1_qxhb7")
+metadata/_custom_type_script = "uid://bss1cajnebhpo"
