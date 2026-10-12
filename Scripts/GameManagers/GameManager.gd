@@ -13,6 +13,11 @@ var player: Player
 var expedition_player_resources: Dictionary[StringName, int]
 # Base stashed resources
 var stored_resources: Dictionary[StringName, int]
+# Resources discovered. Per nascondere risorse future, basically
+var discovered_resources: Dictionary[StringName, bool] = {}
+
+func is_discovered(id: StringName) -> bool:
+	return discovered_resources.has(id)
 #endregion
 
 # Expedition
@@ -40,6 +45,13 @@ var confirmation_popup_open: bool = false:
 		if confirmation_popup_open == value:
 			return
 		confirmation_popup_open = value
+		EventBus.ui_state_changed.emit()
+		
+var inventory_open: bool = false:
+	set(value):
+		if inventory_open == value:
+			return
+		inventory_open = value
 		EventBus.ui_state_changed.emit()
 
 ## True for the whole duration of a screen transition. Doubles as the
@@ -117,6 +129,14 @@ func carried_total() -> int:
 
 func stored_total() -> int:
 	return ResourceDB.total_of(stored_resources)
+	
+## The only way a quantity goes up. Marking discovery here means no code path
+## can hand the player a resource without the inventory learning it exists.
+func _gain(dict_adding_to: Dictionary, id_item_to_add: StringName, amount: int) -> void:
+	if amount <= 0:
+		return
+	ResourceDB.add_to(dict_adding_to, id_item_to_add, amount)
+	discovered_resources[id_item_to_add] = true
 #endregion
 
 ## Adds up to `amount` resources to the player's inventory, respecting the
@@ -129,7 +149,7 @@ func add_resource(id: StringName, amount: int) -> int:
 		#sfx_player.play()
 		return 0
 
-	ResourceDB.add_to(expedition_player_resources, id, accepted)
+	_gain(expedition_player_resources, id, accepted)
 	EventBus.update_HUD.emit()
 	sfx_player.stream = sfx_pickup
 	sfx_player.play()
@@ -199,14 +219,14 @@ func end_expedition(success: bool=true, reason: String="") -> void:
 
 	# Add any carrying inventory resources to the total collected during expedition
 	for key in expedition_player_resources:
-		ResourceDB.add_to(expedition_resources_collected, key, expedition_player_resources[key])
+		_gain(expedition_resources_collected, key, expedition_player_resources[key])
 	expedition_player_resources.clear()
 	# Finalize stashed resources based on success status
 	for key in expedition_resources_collected:
 		var amount: int = expedition_resources_collected[key]
 		if not success:
 			amount = int(amount * SkillModifiers.get_failure_keep_ratio())
-		ResourceDB.add_to(stored_resources, key, amount)
+		_gain(stored_resources, key, amount)
 
 	get_tree().change_scene_to_file("res://Scenes/UI/ExpeditionEnded.tscn")
 	expedition_started = false
@@ -244,7 +264,7 @@ func spend(cost: Dictionary) -> bool:
 
 func grant(reward: Dictionary) -> void:
 	for t in reward:
-		ResourceDB.add_to(stored_resources, t.id, reward[t])
+		_gain(stored_resources, t.id, reward[t])
 	EventBus.update_HUD.emit()
 
 ## Runs `recipe` `times` times: consumes its inputs, produces its output.
@@ -328,8 +348,11 @@ func _on_skills_changed() -> void:
 
 ## Another full-screen UI already owns the Escape key.
 func is_modal_ui_open() -> bool:
-	return skill_tree_open or level_select_open or confirmation_popup_open or transitioning
-
+	return (skill_tree_open
+			or level_select_open
+			or confirmation_popup_open
+			or inventory_open
+			or transitioning)
 ## The world is covered: world-space HUD elements should hide.
 func is_world_obscured() -> bool:
 	return is_modal_ui_open() or game_paused

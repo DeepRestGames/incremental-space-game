@@ -1,0 +1,8 @@
+[gd_resource type="Theme" format=3 uid="uid://dr0f2ho71cvjo"]
+
+[ext_resource type="FontFile" uid="uid://ul4rqbhlgb1f" path="res://Assets/Fonts/oxanium/ttf/Oxanium-Regular.ttf" id="1_vnnk3"]
+
+[resource]
+Label/colors/font_color = Color(0.050980393, 0.92156863, 0.92156863, 1)
+Label/font_sizes/font_size = 10
+Label/fonts/font = ExtResource("1_vnnk3")

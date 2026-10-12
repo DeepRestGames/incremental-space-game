@@ -6,6 +6,21 @@ class_name SkillDB
 const DEFAULT_UPGRADE_COST: int = 100
 const DEFAULT_CURRENCY := ResourceDB.MONEY1
 
+#region usable for skill tree
+static var _used_ids: Dictionary[StringName, bool] = {}
+
+## True if at least one skill, at any rank, costs this resource. 
+static func uses_resource(id: StringName) -> bool:
+	if _used_ids.is_empty():
+		for skill_id in DATABASE:
+			for rank_cost in DATABASE[skill_id].get("cost", []):
+				for t in rank_cost:
+					_used_ids[t.id] = true
+	return _used_ids.has(id)
+#endregion
+
+
+
 const DATABASE: Dictionary = {
 	"center_node": {
 		"name": "Exosuit",

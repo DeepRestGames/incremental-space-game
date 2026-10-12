@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://dtydx2v6tt14k"]
+
+[ext_resource type="Script" uid="uid://sdx6gtd7n0s0" path="res://Scripts/UI/inventory/ResourceList.gd" id="1_4lhwk"]
+
+[node name="ResourceList" type="VBoxContainer" unique_id=639554383]
+script = ExtResource("1_4lhwk")

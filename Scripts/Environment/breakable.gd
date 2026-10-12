@@ -27,7 +27,7 @@ var player_is_in_range: bool = false
 @export var particle_modulate: Color = Color.WHITE
 
 # Damage number
-const DAMAGE_NUMBER := preload("res://Scenes/UI/DamageNumber.tscn")
+const DAMAGE_NUMBER := preload("res://Scenes/UI/elements/DamageNumber.tscn")
 
 #endregion
 

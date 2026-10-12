@@ -1,0 +1,8 @@
+[gd_resource type="Theme" format=3 uid="uid://cvjvny2ur7xve"]
+
+[ext_resource type="FontFile" uid="uid://c7ja2qj7yn1xc" path="res://Assets/Fonts/oxanium/ttf/Oxanium-SemiBold.ttf" id="1_t8060"]
+
+[resource]
+Label/colors/font_color = Color(0.050980393, 0.92156863, 0.92156863, 1)
+Label/font_sizes/font_size = 30
+Label/fonts/font = ExtResource("1_t8060")

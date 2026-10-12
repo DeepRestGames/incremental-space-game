@@ -1,0 +1,50 @@
+[gd_scene format=3 uid="uid://cw6u2dtceucpa"]
+
+[ext_resource type="Script" uid="uid://d0wuenu84q3vi" path="res://Scripts/UI/inventory/InventoryPanel.gd" id="1_4l517"]
+[ext_resource type="Theme" uid="uid://cvjvny2ur7xve" path="res://Assets/UI/Themes/Crafting_theme.tres" id="1_24myb"]
+[ext_resource type="Script" uid="uid://sdx6gtd7n0s0" path="res://Scripts/UI/inventory/ResourceList.gd" id="1_in2pg"]
+
+[node name="InventoryPanel" type="CanvasLayer" unique_id=2043500793]
+process_mode = 3
+layer = 10
+script = ExtResource("1_4l517")
+
+[node name="Panel" type="PanelContainer" parent="." unique_id=682915359]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -27.0
+offset_right = 20.0
+offset_bottom = 27.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_24myb")
+
+[node name="Margin" type="MarginContainer" parent="Panel" unique_id=1815004573]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="VBox" type="VBoxContainer" parent="Panel/Margin" unique_id=370603062]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="Panel/Margin/VBox" unique_id=1236827153]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Resourcerinos"
+
+[node name="Capacity" type="Label" parent="Panel/Margin/VBox" unique_id=375395858]
+unique_name_in_owner = true
+layout_mode = 2
+text = "12"
+
+[node name="List" type="VBoxContainer" parent="Panel/Margin/VBox" unique_id=519333271]
+unique_name_in_owner = true
+layout_mode = 2
+script = ExtResource("1_in2pg")
+metadata/_custom_type_script = "uid://sdx6gtd7n0s0"

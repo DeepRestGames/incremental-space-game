@@ -5,7 +5,7 @@
 [ext_resource type="Script" uid="uid://qe84tw2v6xbm" path="res://Scripts/UI/HUD/ResourceCounter.gd" id="2_xaom8"]
 [ext_resource type="PackedScene" uid="uid://d3ixveovn637y" path="res://Scenes/UI/PauseMenu.tscn" id="3_pausemenu"]
 [ext_resource type="Script" uid="uid://b1h6en5b604x6" path="res://Scripts/UI/HUD/OxygenCounter.gd" id="4_oxygen"]
-[ext_resource type="PackedScene" uid="uid://cx4f5wal3t4pa" path="res://Scenes/UI/ConfirmationPopup.tscn" id="5_confirmationpopup"]
+[ext_resource type="PackedScene" uid="uid://cx4f5wal3t4pa" path="res://Scenes/UI/elements/ConfirmationPopup.tscn" id="5_confirmationpopup"]
 [ext_resource type="Script" uid="uid://dr7vi4ci7k7vu" path="res://Scripts/UI/HUD/BombCounter.gd" id="6_bombcounter"]
 [ext_resource type="Texture2D" uid="uid://blslgwfnag1a4" path="res://Assets/PLACEHOLDERS/Bomb.svg" id="7_bombicon"]
 [ext_resource type="Script" uid="uid://d02rqtjowyuap" path="res://Scripts/UI/HUD/hud_mockup_animation.gd" id="9_pydgx"]
@@ -21,6 +21,7 @@
 [ext_resource type="Texture2D" uid="uid://c7yiw74xjb0pq" path="res://Assets/UI/HUD/O2barFull.svg" id="17_jbjhr"]
 [ext_resource type="Texture2D" uid="uid://baab6f6ycatf3" path="res://Assets/UI/HUD/O2barEmpty.svg" id="18_o2empty"]
 [ext_resource type="Material" uid="uid://id7xkdr5ogh8" path="res://Shaders/ShaderMaterials/ChromaticAberrationMaterial.tres" id="20_cn5rm"]
+[ext_resource type="PackedScene" uid="uid://cw6u2dtceucpa" path="res://Scenes/UI/inventory/InventoryPanel.tscn" id="22_khvou"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bg"]
 bg_color = Color(0.12, 0.12, 0.16, 0.7)
@@ -475,3 +476,5 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+
+[node name="InventoryPanel" parent="." unique_id=2043500793 instance=ExtResource("22_khvou")]
