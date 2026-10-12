@@ -7,7 +7,7 @@ const DEFAULT_UPGRADE_COST: int = 100
 const DEFAULT_CURRENCY := ResourceDB.MONEY1
 
 const DATABASE: Dictionary = {
-	"center_node" : {
+	"center_node": {
 		"name": "Exosuit",
 		"description": "Your amazing drilling suit.",
 		"cost": [{}],
@@ -27,7 +27,8 @@ const DATABASE: Dictionary = {
 	"drill_speed": {
 		"name": "Drill Speed",
 		"description": "Increases drill attack speed.",
-		"cost": [{ResourceDB.MONEY1: 10}, {ResourceDB.MONEY1: 15}, {ResourceDB.MONEY1: 22}, {ResourceDB.MONEY1: 32}, {ResourceDB.MONEY1: 45}],
+		"cost": [{ResourceDB.MONEY1: 10}, {ResourceDB.MONEY1: 15}, {ResourceDB.MONEY1: 22}, {ResourceDB.MONEY1: 32},
+			{ResourceDB.MONEY1: 45}],
 		"effects": {
 			"drill_attack_speed": {
 				"type": "ADDITIVE",
@@ -137,7 +138,8 @@ const DATABASE: Dictionary = {
 	"inventory_capacity": {
 		"name": "Bigger Backpack",
 		"description": "Increases how many resources you can carry.",
-		"cost": [{ResourceDB.MONEY1: 8}, {ResourceDB.MONEY1: 13}, {ResourceDB.MONEY1: 18}, {ResourceDB.MONEY1: 23}, {ResourceDB.MONEY1: 28}],
+		"cost": [{ResourceDB.MONEY1: 8}, {ResourceDB.MONEY1: 13}, {ResourceDB.MONEY1: 18}, {ResourceDB.MONEY1: 23},
+			{ResourceDB.MONEY1: 28}],
 		"effects": {
 			"inventory_capacity": {
 				"type": "FLAT",
@@ -156,12 +158,12 @@ const DATABASE: Dictionary = {
 			}
 		}
 	},
-		#"XXX": {
-		#"name": "XXX Box",
-		#"description": "Keep more of your cargo when an expedition fails.",
-		#"cost": [ {ResourceDB.MONEY1: 40}, {ResourceDB.MONEY1: 80} ],
-		#"effects": {
-			#"failure_keep_ratio": {"type": "ADDITIVE", "value": 0.25}
-		#}
+	#"XXX": {
+	#"name": "XXX Box",
+	#"description": "Keep more of your cargo when an expedition fails.",
+	#"cost": [ {ResourceDB.MONEY1: 40}, {ResourceDB.MONEY1: 80} ],
+	#"effects": {
+	#"failure_keep_ratio": {"type": "ADDITIVE", "value": 0.25}
+	#}
 	#},
 }

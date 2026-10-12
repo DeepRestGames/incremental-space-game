@@ -66,28 +66,27 @@ func change_scene(path: String) -> void:
 #region Regular Methods
 func transition_dots_begin():
 	_prepare_transition(dots_begin)
-	
+
 	audio_stream_player_out.play()
 	dots.show()
-	
-	
+
 	started.emit()
 	_transition_tween = create_tween()
 	_transition_tween.tween_method(
-		_set_normalized_transition_progress.bind(dots_begin), \
-		0.0, 1.0, dots_transition_duration)
+			_set_normalized_transition_progress.bind(dots_begin), \
+			0.0, 1.0, dots_transition_duration)
 	_transition_tween.tween_callback(occlusion_reached.emit)
 
 func transition_dots_end():
 	_prepare_transition(dots_end)
-	
+
 	dots.show()
 	audio_stream_player_in.play()
-	
+
 	_transition_tween = create_tween()
 	_transition_tween.tween_method(
-		_set_normalized_transition_progress.bind(dots_end), \
-		1.0, 0.0, dots_transition_duration)
+			_set_normalized_transition_progress.bind(dots_end), \
+			1.0, 0.0, dots_transition_duration)
 	_transition_tween.tween_callback(dots.hide)
 	_transition_tween.tween_callback(finished.emit)
 
@@ -95,7 +94,7 @@ func transition_dots_end():
 func _reset():
 	_set_normalized_transition_progress(0, dots_begin)
 	_set_normalized_transition_progress(1, dots_end)
-	
+
 	if _transition_tween != null: _transition_tween.kill()
 
 
@@ -111,4 +110,4 @@ func _show_transition(transition: CanvasItem):
 
 func _set_normalized_transition_progress(progress: float, transition: CanvasItem):
 	transition.material.set("shader_parameter/factor", progress)
-#endregion
+	#endregion

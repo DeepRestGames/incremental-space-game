@@ -33,7 +33,7 @@ func _on_body_exited(body: Node2D) -> void:
 		if "inside_interactable_area" in body:
 			body.inside_interactable_area = false
 		EventBus.player_exit_skill_terminal_area.emit()
-		
+
 		# Close the Skill Tree if the player flies away
 		var ui = get_tree().current_scene.get_node_or_null("CanvasLayer/SkillTree")
 		if ui and ui.visible:

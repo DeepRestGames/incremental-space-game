@@ -7,9 +7,9 @@ extends Control
 ## Icon shown inside this node. Leave empty to keep the default icon from the
 ## SkillNode scene. Updates live in the editor.
 @export var icon: Texture2D
-	#set(value):
-		#icon = value
-		#_apply_icon()
+#set(value):
+#icon = value
+#_apply_icon()
 var locked_icon: Texture2D = load("res://Assets/UI/skill tree/skill icons/LockBig.svg")
 const COLOR_BRIGHT: Color = Color(0.05, 0.95, 0.95, 1.0)
 const COLOR_BRIGHT_OFF: Color = Color(0.05, 0.95, 0.95, 0.5)
@@ -29,10 +29,10 @@ var width: int = 6
 
 
 func _ready() -> void:
-	
+
 	# Add to SkillNodes group to allow dependency traversal
 	add_to_group("SkillNodes")
-	
+
 	if is_connector:
 		mouse_filter = Control.MOUSE_FILTER_IGNORE
 		if background:
@@ -50,7 +50,7 @@ func _ready() -> void:
 			background.mouse_filter = Control.MOUSE_FILTER_IGNORE
 		if skill_icon:
 			skill_icon.mouse_filter = Control.MOUSE_FILTER_IGNORE
-			
+
 	# Connect hover signals
 	if not Engine.is_editor_hint() and not is_connector:
 		if not mouse_entered.is_connected(_on_mouse_entered):
@@ -60,13 +60,12 @@ func _ready() -> void:
 
 		# Refresh the affordability outline whenever money changes
 		EventBus.update_HUD.connect(update_appearance)
-	
+
 	_apply_icon()
 	update_appearance()
 	update_tooltip()
 
-	
-	
+
 ## Pushes the exported icon onto the child TextureRect. Safe to call before the
 ## node is ready (it re-applies in _ready).
 func _apply_icon() -> void:
@@ -159,7 +158,7 @@ func can_remove_point() -> bool:
 func add_point() -> void:
 	if is_connector or skill_id == "":
 		return
-		
+
 	var max_points = GameManager.get_skill_max_levels(skill_id)
 	var current_points = GameManager.get_skill_points(skill_id)
 
@@ -168,13 +167,13 @@ func add_point() -> void:
 		if not GameManager.spend(cost):
 			return
 		GameManager.set_skill_points(skill_id, current_points + 1)
-		
+
 		# Update all nodes in tree to refresh line drawings and lock states
 		var all_nodes = get_tree().get_nodes_in_group("SkillNodes")
 		for node in all_nodes:
 			node.update_appearance()
 			node.update_tooltip()
-			
+
 		# Refresh the parent tree drawing and hover detail panel in real time
 		var skill_tree = get_skill_tree()
 		if skill_tree:
@@ -186,19 +185,19 @@ func add_point() -> void:
 func remove_point() -> void:
 	if is_connector or skill_id == "":
 		return
-		
+
 	var current_points = GameManager.get_skill_points(skill_id)
 	if current_points > 0 and can_remove_point():
 		GameManager.set_skill_points(skill_id, current_points - 1)
 		# TODO: MAKE MORE GENERIC
 		GameManager.grant(GameManager.get_skill_cost(skill_id))
-				
+
 		# Update all nodes in tree to refresh line drawings and lock states
 		var all_nodes = get_tree().get_nodes_in_group("SkillNodes")
 		for node in all_nodes:
 			node.update_appearance()
 			node.update_tooltip()
-			
+
 		# Refresh the parent tree drawing and hover detail panel in real time
 		var skill_tree = get_skill_tree()
 		if skill_tree:
@@ -224,12 +223,12 @@ func _is_too_expensive() -> bool:
 func update_appearance() -> void:
 	if not is_inside_tree():
 		return
-		
+
 	if not background or not skill_icon:
 		return
 
 	#if too_expensive_overlay:
-		#too_expensive_overlay.visible = _is_too_expensive()
+	#too_expensive_overlay.visible = _is_too_expensive()
 
 	if is_connector:
 		background.visible = Engine.is_editor_hint()
@@ -239,25 +238,25 @@ func update_appearance() -> void:
 			modulate.a = 0.4
 			background.modulate = COLOR_DARK
 		return
-		
+
 	if skill_id == "":
 		background.modulate = COLOR_DARK
 		skill_icon.modulate = COLOR_BRIGHT
 		return
-		
-	if Engine.is_editor_hint(): # editor visuals
+
+	if Engine.is_editor_hint():  # editor visuals
 		background.modulate = COLOR_DARK
 		border.modulate = COLOR_BRIGHT
 		skill_icon.texture = icon
 		skill_icon.modulate = COLOR_BRIGHT
-	
-	else: # in game visuals
+
+	else:  # in game visuals
 		var max_points = 5
 		var current_points = 0
 		if not Engine.is_editor_hint():
 			max_points = GameManager.get_skill_max_levels(skill_id)
 			current_points = GameManager.get_skill_points(skill_id)
-		
+
 		if current_points > 0:
 			if current_points == max_points:
 				background.modulate = COLOR_BRIGHT
@@ -268,17 +267,17 @@ func update_appearance() -> void:
 				radial_progress_bar.hide()
 			else:
 				background.modulate = COLOR_DARK
-			# CIRCULAR PROGRESS BAR
+				# CIRCULAR PROGRESS BAR
 				progress_bar_background.show()
 				radial_progress_bar.show()
 				var ratio = float(current_points) / float(max_points)
 				radial_progress_bar.set_instance_shader_parameter("progress", ratio)
-			# Active (Blue, scaling from a soft sky blue to a very strong, vibrant electric blue based on points ratio)
-			
-			#var bg_color = Color(0.6 * (1.0 - ratio), 0.8 - 0.45 * ratio, 1.0, 1.0)
-			#var icon_color = Color(0.5 * (1.0 - ratio), 0.7 - 0.3 * ratio, 1.0, 1.0)
-			#background.modulate = bg_color
-			#skill_icon.modulate = icon_color
+		# Active (Blue, scaling from a soft sky blue to a very strong, vibrant electric blue based on points ratio)
+
+		#var bg_color = Color(0.6 * (1.0 - ratio), 0.8 - 0.45 * ratio, 1.0, 1.0)
+		#var icon_color = Color(0.5 * (1.0 - ratio), 0.7 - 0.3 * ratio, 1.0, 1.0)
+		#background.modulate = bg_color
+		#skill_icon.modulate = icon_color
 		else:
 			# 0 points: check if reachable or locked
 			if can_add_point():
@@ -311,7 +310,7 @@ func update_tooltip() -> void:
 	if skill_id == "":
 		tooltip_text = "Unassigned Skill Node"
 		return
-		
+
 	var skill_info = GameManager.skill_db.get(skill_id, {})
 	var s_name = skill_info.get("name", "Unknown Skill")
 	var s_desc = skill_info.get("description", "")
@@ -324,7 +323,7 @@ func update_tooltip() -> void:
 	if ancestor != null and GameManager.get_skill_points(ancestor.skill_id) == 0:
 		var ancestor_name = GameManager.skill_db.get(ancestor.skill_id, {}).get("name", "Parent Skill")
 		lock_status = "\n[LOCKED - Requires 1 point in %s]" % ancestor_name
-		
+
 	var cost_line := ""
 	if points < max_pts:
 		cost_line = "\nCost: %s" % ResourceDB.format_cost(GameManager.get_skill_cost(skill_id))

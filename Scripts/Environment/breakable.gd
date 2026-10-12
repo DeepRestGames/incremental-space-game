@@ -63,7 +63,7 @@ func _resolve_container(path: String) -> Node:
 		return container
 	push_warning("%s: '%s' non trovato, uso la radice della scena" % [name, path])
 	return get_tree().current_scene
-	
+
 ## Tira il contenuto del sasso una volta sola, e valida la configurazione
 ## adesso invece che al primo colpo.
 func _roll_contents() -> void:
@@ -81,27 +81,27 @@ func _roll_contents() -> void:
 func _ready() -> void:
 	currentHP = totalHP
 	_roll_contents()
-	
+
 	# THIS ONLY WORKS AS LONG AS THERE ARE ONLY 2 TEXTURES AVAILABLE AND THEY ARE SPECULAR (FLIPPED HORIZONTALLY)
 	var random_index = randi_range(0, 1)
 	sprite_2d.texture = rock_sprites[random_index]
-	
+
 	EventBus.action_trigger_interact.connect(on_interacted)
-	
+
 	_pickup_parent = _resolve_container("Objects/Pickups")
 	_particle_parent = _resolve_container("Objects/Particles")
 	_damage_number_parent = _resolve_container("Objects/DamageNumbers")
-	
+
 	var area2d = get_node_or_null("Area2D")
 	if area2d:
 		area2d.area_entered.connect(_on_area_entered)
 		area2d.area_exited.connect(_on_area_exited)
-	
+
 	# flip the colliders if the second rock texture has been assigned
 	if random_index == 1:
 		collision_shape_2d.scale.x *= -1
 		area2d.scale.x *= -1
-		
+
 
 func on_interacted() -> void:
 	if not player_is_in_range:
@@ -112,25 +112,25 @@ func on_interacted() -> void:
 	var is_crit := randf() < SkillModifiers.get_drill_crit_chance()
 	if is_crit:
 		damage = int(damage * SkillModifiers.get_drill_crit_damage())
-	
+
 	take_damage(damage, is_crit)
 	spawn_damage_number(damage, is_crit)
 
 
 func take_damage(damage_value: int, is_crit: bool) -> void:
 	EventBus.breakable_damaged.emit(damage_value, is_crit)
-	
+
 	#hurt animation
 	var squish_scale = 0.9
 	var default_scale = sprite_2d.scale
 	var _default_color = sprite_2d.modulate
 	var tween_scale = get_tree().create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_BACK)
-	tween_scale.tween_property(sprite_2d, "scale", default_scale*squish_scale, 0.07)
+	tween_scale.tween_property(sprite_2d, "scale", default_scale * squish_scale, 0.07)
 	tween_scale.tween_property(sprite_2d, "scale", default_scale, 0.07)
 	var tween_modulate = get_tree().create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_EXPO)
 	tween_modulate.tween_property(sprite_canvas, "instance_shader_parameters/flash_value", 0.85, 0.05)
 	tween_modulate.tween_property(sprite_canvas, "instance_shader_parameters/flash_value", 0, 0.2)
-	
+
 	spawn_rock_particles(randi_range(min_rock_particles, max_rock_particles))
 
 	# Il danno oltre gli HP rimasti non conta: senza questo, il colpo che sfonda
@@ -156,8 +156,8 @@ func take_damage(damage_value: int, is_crit: bool) -> void:
 				spawn_drop(entry_index, 1)
 
 	currentHP -= damage_value
-	
-	if currentHP <= 0 and !is_dead:
+
+	if currentHP <= 0 and ! is_dead:
 		die()
 
 	else:
@@ -188,17 +188,17 @@ func spawn_rock_particles(rock_particles_number: int) -> void:
 		var rock_particle_node = rock_particle.instantiate() as RockParticle
 		var random_offset = Vector2(randf_range(-20, 20), randf_range(-20, 20))
 		rock_particle_node.modulate = particle_modulate
-		_particle_parent.add_child(rock_particle_node) 
+		_particle_parent.add_child(rock_particle_node)
 		rock_particle_node.global_position = self.global_position + random_offset
 		rock_particle_node.randomize_spawn_direction()
 
 
 func spawn_damage_number(damage_amount: int, is_crit: bool) -> void:
 	var number := DAMAGE_NUMBER.instantiate() as DamageNumber
-	_damage_number_parent.add_child(number)  
+	_damage_number_parent.add_child(number)
 	number.global_position = global_position
 	number.show_damage(damage_amount, is_crit)
-	
+
 
 func _on_area_2d_body_entered(_body: Node2D) -> void:
 	pass
@@ -220,24 +220,24 @@ func _on_area_exited(area: Area2D) -> void:
 		player_is_in_range = false
 
 
-func die () -> void:
+func die() -> void:
 	is_dead = true
 	if GameManager.expedition_started:
 		GameManager.expedition_destroyed_nodes += 1
-	
+
 	# Extra drops on destruction from skill upgrades
 	var extra_drops := int(SkillModifiers.get_drops_on_destruction())
 
 	for entry_index in drops.size():
 		spawn_drop(entry_index, _amounts[entry_index] + extra_drops)
-	
+
 	hide()
 	set_physics_process(false)
 	set_process(false)
-	
+
 	collision_shape_2d.set_deferred("disabled", true)
-	
+
 	destroy.play()
 	await destroy.finished
-	
+
 	queue_free()

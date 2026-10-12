@@ -55,7 +55,7 @@ func _on_body_exited(body: Node2D) -> void:
 			EventBus.player_exit_expedition_return_area.emit()
 		else:
 			EventBus.player_exit_expedition_ship_area.emit()
-		
+
 		# Close the Level Select UI if the player flies away
 		var ui := get_tree().current_scene.get_node_or_null("CanvasLayer/LevelSelectUI")
 		if ui and ui.visible:

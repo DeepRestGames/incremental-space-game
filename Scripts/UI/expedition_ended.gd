@@ -24,7 +24,7 @@ func _ready() -> void:
 	time_label.text = "• Time Spent: %02d:%02d" % [minutes, seconds]
 	
 	destroyed_label.text = "• Nodes Mined: %d" % GameManager.expedition_destroyed_nodes
-	
+
 	_set_resource_text(resource_triangle_label, ResourceDB.total_of(GameManager.expedition_resources_collected))
 	_set_resource_text(resource_circle_label, 0)
 	_set_resource_text(resource_square_label, 0)
@@ -44,8 +44,8 @@ func _set_resource_text(label: RichTextLabel, amount: int) -> void:
 func _on_hangar_pressed() -> void:
 	GameManager.open_level_select_on_lobby_load = false
 	get_tree().change_scene_to_packed(GameManager.lobby_scene)
-	# TODO: make a transition with:
-	# TransitionManager.change_scene(get_selected_level_path())
+# TODO: make a transition with:
+# TransitionManager.change_scene(get_selected_level_path())
 
 
 func _on_again_pressed() -> void:

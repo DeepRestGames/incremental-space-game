@@ -3,8 +3,8 @@ extends Node2D
 
 @export var rise_distance: float = 48.0
 @export var lifetime: float = 0.8
-@export var normal_color: Color = Color(1, 1, 1) # TODO: make a unique thing to pick somewhere
-@export var crit_color: Color = Color(1, 0.78, 0.2) # TODO: make a unique thing to pick somewhere
+@export var normal_color: Color = Color(1, 1, 1)  # TODO: make a unique thing to pick somewhere
+@export var crit_color: Color = Color(1, 0.78, 0.2)  # TODO: make a unique thing to pick somewhere
 @export var crit_scale: float = 1.5
 ## Sideways spread so simultaneous hits do not stack into an unreadable blob.
 @export var drift: float = 16.0
@@ -22,6 +22,6 @@ func show_damage(amount: int, is_crit: bool) -> void:
 	var tween := create_tween()
 	tween.set_parallel(true)
 	tween.tween_property(self, "position", target, lifetime) \
-		.set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUAD)
+			.set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUAD)
 	tween.tween_property(label, "modulate:a", 0.0, lifetime).set_ease(Tween.EASE_IN)
 	tween.chain().tween_callback(queue_free)

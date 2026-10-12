@@ -2,13 +2,12 @@ class_name ResourceDB
 
 const MONEY1 := preload("res://Assets/Resources/money_1.tres")
 const MONEY2 := preload("res://Assets/Resources/money_2.tres")
-const ORE1   := preload("res://Assets/Resources/ore_1.tres")
-const ORE2   := preload("res://Assets/Resources/ore_2.tres")
-const REFINED1   := preload("res://Assets/Resources/refined_1.tres")
-const REFINED2   := preload("res://Assets/Resources/refined_2.tres")
+const ORE1 := preload("res://Assets/Resources/ore_1.tres")
+const ORE2 := preload("res://Assets/Resources/ore_2.tres")
+const REFINED1 := preload("res://Assets/Resources/refined_1.tres")
+const REFINED2 := preload("res://Assets/Resources/refined_2.tres")
 
-
-const ALL: Array[ResourceType] =[MONEY1, MONEY2, ORE1, ORE2, REFINED1, REFINED2]
+const ALL: Array[ResourceType] = [MONEY1, MONEY2, ORE1, ORE2, REFINED1, REFINED2]
 
 static var _by_id: Dictionary = {}
 
@@ -71,4 +70,4 @@ static func format_cost(cost: Dictionary) -> String:
 	for t in cost:
 		parts.append("%d %s" % [cost[t], t.display_name])
 	return ", ".join(parts)
-#endregion
+	#endregion

@@ -29,7 +29,7 @@ const COLOR_LOCKED: Color = Color(0.18, 0.35, 0.61, 1.0)
 const COLOR_DARK: Color = Color(0.08, 0.16, 0.28, 1.0)
 
 var _dragging: bool = false
-var _content_rect: Rect2 = Rect2() # cache for panning edge
+var _content_rect: Rect2 = Rect2()  # cache for panning edge
 
 func _ready() -> void:
 	if Engine.is_editor_hint():
@@ -56,29 +56,29 @@ func _draw() -> void:
 			var start_pos = (child.global_position - global_position) + child.size * zoom / 2.0
 			var end_pos = (child.parent_node.global_position - global_position) + child.parent_node.size * zoom / 2.0
 
-			var line_color: Color = COLOR_LOCKED # Unreachable node
-			
+			var line_color: Color = COLOR_LOCKED  # Unreachable node
+
 			if not Engine.is_editor_hint():
 				var a_std = get_nearest_standard_ancestor(child)
 				var d_stds = get_nearest_standard_descendants(child)
-				
+
 				if a_std != null and not d_stds.is_empty():
 					var a_pts = GameManager.get_skill_points(a_std.skill_id)
 					var has_blue_path = false
 					var has_green_path = false
-					
+
 					for d_std in d_stds:
 						if is_node_fully_upgraded(a_std) and is_node_fully_upgraded(d_std):
 							has_blue_path = true
 							break
 						elif a_pts > 0:
 							has_green_path = true
-							
+
 					if has_blue_path:
-						line_color = COLOR_BRIGHT # Unlocked
+						line_color = COLOR_BRIGHT  # Unlocked
 					elif has_green_path:
-						line_color = COLOR_BRIGHT_OFF # Not Unlocked
-			
+						line_color = COLOR_BRIGHT_OFF  # Not Unlocked
+
 			var line_width = (child.width if "width" in child else 6) * zoom
 			draw_line(start_pos, end_pos, line_color, line_width, true)
 
@@ -192,10 +192,10 @@ func _cache_content_rect() -> void:
 	for child in tree_view.get_children():
 		if child is Control:
 			var child_rect := Rect2(child.position, child.size)
-			rect = rect.merge(child_rect) if has_any else child_rect # altrimenti merge con Rect2 lo riporta a 0,0
+			rect = rect.merge(child_rect) if has_any else child_rect  # altrimenti merge con Rect2 lo riporta a 0,0
 			has_any = true
 	_content_rect = rect if has_any else Rect2()
-	
+
 func _clamp_view() -> void:
 	if _content_rect.size == Vector2.ZERO or size == Vector2.ZERO:
 		push_warning("skill_tree: _clamp_view() before _cache_content_rect()")
@@ -224,7 +224,7 @@ func _clamp_axis(value: float, content_start: float, content_end: float, view_si
 	if lower > upper:
 		return (lower + upper) * 0.5
 	return clampf(value, lower, upper)
-	
+
 
 ## Zooms while keeping whatever sits under `pivot` anchored to the cursor.
 func _zoom_at(pivot: Vector2, zoom_delta: float) -> void:
@@ -244,23 +244,24 @@ func display_skill_info(skill_id: String) -> void:
 	if skill_id == "" or not GameManager.skill_db.has(skill_id):
 		clear_skill_info()
 		return
-		
+
 	var skill_info = GameManager.skill_db[skill_id]
 	var s_name = skill_info.get("name", "Unknown Skill")
 	var s_desc = skill_info.get("description", "")
 	var points = GameManager.get_skill_points(skill_id)
 	var max_pts = GameManager.get_skill_max_levels(skill_id)
-	
+
 	if detail_name:
 		detail_name.text = s_name
 	if detail_points:
 		if points < max_pts:
-			detail_points.text = "Level: %d / %d   (Cost: %s)" % [points, max_pts, ResourceDB.format_cost(GameManager.get_skill_cost(skill_id))]
+			detail_points.text = "Level: %d / %d   (Cost: %s)" % [points, max_pts,
+				ResourceDB.format_cost(GameManager.get_skill_cost(skill_id))]
 		else:
 			detail_points.text = "Level: %d / %d" % [points, max_pts]
 	if detail_desc:
 		detail_desc.text = s_desc
-		
+
 	# Find icon dynamically from matching SkillNode child
 	var icon_texture: Texture2D = null
 	for child in get_all_skill_nodes():
@@ -268,10 +269,10 @@ func display_skill_info(skill_id: String) -> void:
 			if child.skill_icon:
 				icon_texture = child.skill_icon.texture
 			break
-			
+
 	if detail_icon:
 		detail_icon.texture = icon_texture
-		
+
 	# Calculate stat before -> after values and modifier type
 	var effects = skill_info.get("effects", {})
 	var effect_name = ""
@@ -280,7 +281,7 @@ func display_skill_info(skill_id: String) -> void:
 		effect_name = key
 		effect_data = effects[key]
 		break
-		
+
 	if effect_data != null:
 		var type = "FLAT"
 		var val = 0.0
@@ -289,12 +290,14 @@ func display_skill_info(skill_id: String) -> void:
 			val = effect_data.get("value", 0.0)
 		else:
 			val = float(effect_data)
-			
-		var is_percentage = (type == "ADDITIVE" or type == "MULTIPLICATIVE" or effect_name.contains("chance") or effect_name.contains("ratio") or effect_name.contains("pct") or (type == "FLAT" and val < 1.0))
-		
+
+		var is_percentage = (type == "ADDITIVE" or type == "MULTIPLICATIVE" or effect_name.contains(
+				"chance") or effect_name.contains("ratio") or effect_name.contains(
+				"pct") or (type == "FLAT" and val < 1.0))
+
 		var current_val = _calculate_effect_value(points, type, val)
 		var cur_str = _format_effect_value(current_val, is_percentage)
-		
+
 		var stat_value_text = ""
 		if points < max_pts:
 			var next_val = _calculate_effect_value(points + 1, type, val)
@@ -302,11 +305,11 @@ func display_skill_info(skill_id: String) -> void:
 			stat_value_text = "Effect: %s -> %s" % [cur_str, next_str]
 		else:
 			stat_value_text = "Effect: %s (Max)" % [cur_str]
-			
+
 		if detail_stat_value:
 			detail_stat_value.text = stat_value_text
 			detail_stat_value.show()
-			
+
 		if detail_type:
 			detail_type.text = "Modifier Type: %s" % type.capitalize()
 			detail_type.show()
@@ -315,7 +318,7 @@ func display_skill_info(skill_id: String) -> void:
 			detail_stat_value.hide()
 		if detail_type:
 			detail_type.hide()
-		
+
 	if detail_panel:
 		detail_panel.show()
 

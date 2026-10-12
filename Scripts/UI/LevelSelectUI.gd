@@ -44,7 +44,7 @@ func _load_dynamic_level_data() -> void:
 			for sc in dist:
 				if sc:
 					total_w += dist[sc]
-				
+
 			var items_pct: Array[Dictionary] = []
 			for sc in dist:
 				if not sc:
@@ -54,11 +54,11 @@ func _load_dynamic_level_data() -> void:
 					var raw_name = sc.resource_path.get_file().get_basename()
 					var name_clean = raw_name.replace("breakable_", "").capitalize() + " Breakable"
 					items_pct.append({"name": name_clean, "pct": int(pct)})
-			
+
 			# Sort resources to have a consistent UI display
 			items_pct.sort_custom(func(a, b): return a["name"] < b["name"])
 			dynamic_data[level_id]["resources"] = items_pct
-			
+
 			# Build dynamic conditions from Modifiers node or fallback to MapCoordinateGenerator
 			var conditions_list: Array[Dictionary] = []
 			var modifiers = temp_instance.get_node_or_null("Modifiers")
@@ -70,19 +70,20 @@ func _load_dynamic_level_data() -> void:
 					else:
 						for cond in cond_array:
 							conditions_list.append({"label": "", "val": cond})
-							
+
 			# Fallback if no custom modifiers node is present
 			if conditions_list.is_empty() and gen:
 				conditions_list.append({"label": "Area Size", "val": "%dx%d" % [gen.map_size.x, gen.map_size.y]})
-				conditions_list.append({"label": "Density", "val": "%d - %d" % [gen.min_spawn_count, gen.max_spawn_count]})
+				conditions_list.append(
+						{"label": "Density", "val": "%d - %d" % [gen.min_spawn_count, gen.max_spawn_count]})
 				conditions_list.append({"label": "Min Distance", "val": "%d px" % gen.min_distance})
 				conditions_list.append({"label": "Safe Area", "val": "%d px" % gen.center_safe_radius})
-				conditions_list.append({"label": "Seeds / Spread", "val": "%d / %d px" % [gen.num_seeds, gen.cluster_spread]})
-				
+				conditions_list.append(
+						{"label": "Seeds / Spread", "val": "%d / %d px" % [gen.num_seeds, gen.cluster_spread]})
+
 			dynamic_data[level_id]["conditions"] = conditions_list
 
 		temp_instance.free()
-
 
 
 func open() -> void:
@@ -101,7 +102,6 @@ func _unhandled_input(event: InputEvent) -> void:
 	if visible and event.is_action_pressed("ui_cancel"):
 		close()
 		get_viewport().set_input_as_handled()
-
 
 
 func update_ui() -> void:
@@ -123,7 +123,7 @@ func update_ui() -> void:
 		var icon := "⬡" if res["name"] == "Small Breakable" else "⬢"
 		res_text += "%s %s: %d%%\n" % [icon, res["name"], res["pct"]]
 	resources_label.text = res_text
-	
+
 	# Format Conditions Text
 	var cond_text := "CONDITIONS\n"
 	cond_text += "-------------------\n"

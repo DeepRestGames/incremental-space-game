@@ -41,7 +41,7 @@ var confirmation_popup_open: bool = false:
 			return
 		confirmation_popup_open = value
 		EventBus.ui_state_changed.emit()
-		
+
 ## True for the whole duration of a screen transition. Doubles as the
 ## re-entrancy guard for TransitionManager.change_scene().
 var transitioning: bool = false:
@@ -59,7 +59,6 @@ var game_paused: bool = false:
 		game_paused = value
 		get_tree().paused = value
 		EventBus.ui_state_changed.emit()
-
 
 # Expedition Stats & Persistence
 var open_level_select_on_lobby_load: bool = false
@@ -83,7 +82,6 @@ var _skill_levels: Dictionary = {
 # Base skills database (imported from SkillDB class). Read-only lookup table.
 var skill_db: Dictionary = SkillDB.DATABASE
 
-
 # Audio
 var sfx_player: AudioStreamPlayer
 var sfx_pickup = preload("res://Assets/Audio/SFX/BubblePop_audioStreamRandomizer.tres")
@@ -91,23 +89,21 @@ var sfx_inventory_full = preload("res://Assets/Audio/SFX/Denied.wav")
 
 
 func _ready() -> void:
-	
+
 	# DEBUG_add_player_resources()
 	ResourceDB.validate()
 	# Level initialization
 	# TODO Add logic to handle the menus navigation (e.g. in the start menu the node Player doesn't exist, but the GameManager singleton does
-	
+
 	EventBus.on_player_ready.connect(on_player_ready)
 
 	EventBus.expedition_started.connect(on_expedition_started)
 
 	# Build the stat cache before any scene node can read a stat.
 	_on_skills_changed()
-	
+
 	#Initialize the audio player for system sounds (resource pickup sound)
 	initialize_sfx_player()
-	
-	
 
 
 func on_player_ready(player_reference: Player) -> void:
@@ -122,7 +118,7 @@ func carried_total() -> int:
 func stored_total() -> int:
 	return ResourceDB.total_of(stored_resources)
 #endregion
-	
+
 ## Adds up to `amount` resources to the player's inventory, respecting the
 ## carrying capacity. Returns how many were actually accepted, so a pickup can
 ## keep the leftover instead of destroying it. Returns 0 when the player is full.
@@ -138,7 +134,6 @@ func add_resource(id: StringName, amount: int) -> int:
 	sfx_player.stream = sfx_pickup
 	sfx_player.play()
 	return accepted
-	
 
 
 ## How many resources the player can carry, skill upgrades included.
@@ -191,17 +186,17 @@ func on_expedition_started() -> void:
 	TransitionManager.change_scene(get_selected_level_path())
 
 
-func end_expedition(success: bool = true, reason: String = "") -> void:
+func end_expedition(success: bool=true, reason: String="") -> void:
 	if not expedition_started:
 		return
 
 	expedition_success = success
 	expedition_end_reason = reason
 	expedition_grace_remaining = 0.0
-	
+
 	# Calculate stats
 	expedition_time_spent = (Time.get_ticks_msec() - _expedition_start_time_msec) / 1000.0
-	
+
 	# Add any carrying inventory resources to the total collected during expedition
 	for key in expedition_player_resources:
 		ResourceDB.add_to(expedition_resources_collected, key, expedition_player_resources[key])
@@ -212,10 +207,9 @@ func end_expedition(success: bool = true, reason: String = "") -> void:
 		if not success:
 			amount = int(amount * SkillModifiers.get_failure_keep_ratio())
 		ResourceDB.add_to(stored_resources, key, amount)
-		
+
 	get_tree().change_scene_to_file("res://Scenes/UI/ExpeditionEnded.tscn")
 	expedition_started = false
-
 
 
 ## Maximum number of levels the given skill can be upgraded to.
@@ -255,7 +249,7 @@ func grant(reward: Dictionary) -> void:
 
 ## Runs `recipe` `times` times: consumes its inputs, produces its output.
 ## Returns false and changes nothing if the inputs aren't there.
-func craft(recipe: ConversionRecipe, times: int = 1) -> bool:
+func craft(recipe: ConversionRecipe, times: int=1) -> bool:
 	if times <= 0 or recipe.inputs.is_empty():
 		return false
 	var cost: Dictionary = {}
@@ -331,11 +325,11 @@ func _on_skills_changed() -> void:
 
 	EventBus.stats_changed.emit()
 	EventBus.update_HUD.emit()
-	
+
 ## Another full-screen UI already owns the Escape key.
 func is_modal_ui_open() -> bool:
 	return skill_tree_open or level_select_open or confirmation_popup_open or transitioning
-	
+
 ## The world is covered: world-space HUD elements should hide.
 func is_world_obscured() -> bool:
 	return is_modal_ui_open() or game_paused

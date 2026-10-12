@@ -11,7 +11,6 @@ extends CharacterBody2D
 @onready var dust_particles: GPUParticles2D = $DustParticles
 @onready var camera_shake: ScreenShake = $PlayerCamera/ScreenShake
 
-
 # HP
 @export var maxHP: int = BaseValuesDB.MAX_HP
 var currentHP: int = BaseValuesDB.MAX_HP:
@@ -45,10 +44,9 @@ var max_bombs: int = 0
 var current_bombs: int = 0
 
 
-
 func _ready() -> void:
 	#Camera limits for lobby
-	if !GameManager.expedition_started:
+	if ! GameManager.expedition_started:
 		player_camera.limit_left = -1100
 		player_camera.limit_right = 2800
 		player_camera.limit_top = -1200
@@ -64,16 +62,14 @@ func _ready() -> void:
 	mining_reticle = $MiningReticle
 	EventBus.breakable_damaged.connect(on_breakable_damaged)
 
-	
 	update_stats()
 	current_bombs = max_bombs
 	EventBus.update_bomb_HUD.emit(current_bombs, max_bombs)
-	
+
 	# Animations
 	animation_tree.active = true
-	
+
 	EventBus.on_player_ready.emit(self)
-	
 
 
 func update_stats() -> void:
@@ -82,7 +78,7 @@ func update_stats() -> void:
 	max_oxygen = SkillModifiers.get_oxygen_tank_capacity()
 	if max_oxygen != old_max:
 		current_oxygen = max_oxygen
-	
+
 	# Recalculate max bombs based on skill tree upgrades
 	max_bombs = int(SkillModifiers.get_bomb_charges())
 	EventBus.update_bomb_HUD.emit(current_bombs, max_bombs)
@@ -110,7 +106,7 @@ func _process(delta: float) -> void:
 	update_animation_parameters()
 	mining_reticle.visible = GameManager.expedition_started
 	dust_particles.visible = GameManager.expedition_started
-	
+
 	if GameManager.expedition_started:
 		# During the opening grace period the tank stays full: the bar is still
 		# refreshed so it reads 100% instead of whatever the scene was authored with.
@@ -132,24 +128,24 @@ func _process(delta: float) -> void:
 			current_oxygen = max(current_oxygen - actual_drain * delta, 0.0)
 
 		EventBus.update_oxygen_HUD.emit(current_oxygen, max_oxygen)
-		
+
 		if current_oxygen <= 0.0 and currentHP > 0:
 			death_reason = "oxygen"
 			remove_hp(currentHP)
 
 
-
 func _physics_process(_delta: float) -> void:
 	var speed_multiplier := 1.0
-	var is_drilling = Input.is_action_pressed("interact") and GameManager.expedition_started and not inside_interactable_area
+	var is_drilling = Input.is_action_pressed(
+			"interact") and GameManager.expedition_started and not inside_interactable_area
 	if is_drilling:
 		speed_multiplier = mining_speed_multiplier
-		#if mining_reticle and not mining_reticle.is_active:
-			#mining_reticle.activate()
+	#if mining_reticle and not mining_reticle.is_active:
+	#mining_reticle.activate()
 	#else:
-		#if mining_reticle and mining_reticle.is_active:
-			#mining_reticle.deactivate()
-		
+	#if mining_reticle and mining_reticle.is_active:
+	#mining_reticle.deactivate()
+
 	velocity = movement_direction * (movement_speed * speed_multiplier)
 	move_and_slide()
 
@@ -157,10 +153,10 @@ func _physics_process(_delta: float) -> void:
 func take_damage(value) -> void:
 	if currentInvincibilityCooldown > 0:
 		return
-	
+
 	remove_hp(value)
 	currentInvincibilityCooldown = invincibilityCooldown
-	
+
 	var blinking_player_tween = get_tree().create_tween().set_parallel(false)
 	blinking_player_tween.tween_property(player_sprite, "visible", false, invincibilityCooldown / 5)
 	blinking_player_tween.tween_property(player_sprite, "visible", true, invincibilityCooldown / 5)
@@ -221,9 +217,9 @@ func update_animation_parameters():
 			var drill_dir = Vector2.from_angle(mining_reticle.reticle_angle)
 			animation_tree["parameters/Drill/blend_position"] = drill_dir
 			animation_tree["parameters/Idle/blend_position"] = drill_dir
-	else :
+	else:
 		animation_tree["parameters/conditions/drilling"] = false
-	
+
 	if movement_direction != Vector2.ZERO:
 		animation_tree["parameters/Idle/blend_position"] = movement_direction
 		animation_tree["parameters/Run/blend_position"] = movement_direction

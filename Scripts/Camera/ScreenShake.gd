@@ -24,16 +24,16 @@ func _process(delta):
 		set_process(false)
 		return
 	player_camera.offset = get_random_offset()
-		
+
 
 func get_random_offset() -> Vector2:
 	return Vector2(
-		rand.randf_range(-shake_strength, shake_strength),
-		rand.randf_range(-shake_strength, shake_strength)
+			rand.randf_range(-shake_strength, shake_strength),
+			rand.randf_range(-shake_strength, shake_strength)
 	)
 
 
-func screen_shake(magnitude := 20.0, decay_rate := 5.0):
+func screen_shake(magnitude:=20.0, decay_rate:=5.0):
 	shake_strength = maxf(shake_strength, magnitude)
 	shake_decay_rate = decay_rate
 	set_process(true)

@@ -24,7 +24,7 @@ static var _values: Dictionary = {}
 
 ## Recomputes the whole cache from the given skill levels.
 ## This is the ONLY function in the project that iterates over skills.
-static func rebuild(skill_levels: Dictionary, database: Dictionary = SkillDB.DATABASE) -> void:
+static func rebuild(skill_levels: Dictionary, database: Dictionary=SkillDB.DATABASE) -> void:
 	_mods.clear()
 	_values.clear()
 
@@ -37,7 +37,8 @@ static func rebuild(skill_levels: Dictionary, database: Dictionary = SkillDB.DAT
 		var effects: Dictionary = database.get(skill_id, {}).get("effects", {})
 		for stat_id in effects:
 			if not BaseValuesDB.BASE_VALUES.has(stat_id):
-				push_error("SkillDB: skill '%s' modifies unknown stat '%s'. Add it to BaseValuesDB.BASE_VALUES." % [skill_id, stat_id])
+				push_error("SkillDB: skill '%s' modifies unknown stat '%s'. Add it to BaseValuesDB.BASE_VALUES." % [
+					skill_id, stat_id])
 				continue
 
 			var acc: Dictionary = _mods.get(stat_id, {"flat": 0.0, "additive": 0.0, "mult": 1.0})
@@ -122,22 +123,22 @@ static func get_drill_crit_damage() -> float:
 	return get_stat("drill_crit_damage")
 
 
-static func get_nodes_on_landing(base_value: float = 0.0) -> float:
+static func get_nodes_on_landing(base_value: float=0.0) -> float:
 	return get_modified_stat("nodes_on_landing", base_value)
 
 
 static func get_drops_on_destruction() -> float:
 	return get_stat("drops_on_destruction")
 
-static func get_bomb_damage(base_value: float = BaseValuesDB.BOMB_DAMAGE) -> float:
+static func get_bomb_damage(base_value: float=BaseValuesDB.BOMB_DAMAGE) -> float:
 	return get_modified_stat("bomb_damage", base_value)
-	
+
 # These two take a base value because their callers own it per-instance.
-static func get_drill_area_size(base_value: float = BaseValuesDB.DRILL_AREA_SIZE) -> float:
+static func get_drill_area_size(base_value: float=BaseValuesDB.DRILL_AREA_SIZE) -> float:
 	return get_modified_stat("drill_area_size", base_value)
 
 
-static func get_drop_chance_per_tick(base_value: float = BaseValuesDB.RESOURCE_SPAWN_CHANCE_ON_DAMAGED) -> float:
+static func get_drop_chance_per_tick(base_value: float=BaseValuesDB.RESOURCE_SPAWN_CHANCE_ON_DAMAGED) -> float:
 	return get_modified_stat("drop_chance_per_tick", base_value)
 
 static func get_failure_keep_ratio() -> float:

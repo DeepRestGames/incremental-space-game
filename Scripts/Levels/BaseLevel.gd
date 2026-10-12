@@ -8,9 +8,8 @@ extends Node2D
 @onready var coordinate_generator: MapCoordinateGenerator = $Objects/MapCoordinateGenerator
 
 
-
 func _ready() -> void:
-#	MusicManager.play(preload("res://Assets/Audio/ST/ST_Expedition.wav"), "expedition")
+	#	MusicManager.play(preload("res://Assets/Audio/ST/ST_Expedition.wav"), "expedition")
 	# Gather dynamic positions of central structures as spawning exclusion zones
 	var exclusions: Array[Vector2] = []
 	for node_name in ["ExpeditionShip", "CaptureArea"]:
@@ -22,7 +21,7 @@ func _ready() -> void:
 	# Fallback configuration in code if the array is empty in the Inspector
 	if coordinate_generator.spawn_distribution.is_empty():
 		_setup_default_spawnable_items()
-		
+
 	spawn_level_objects()
 
 
@@ -37,15 +36,15 @@ func _setup_default_spawnable_items() -> void:
 
 func spawn_level_objects() -> void:
 	var start_time := Time.get_ticks_msec()
-	
+
 	var spawn_points := coordinate_generator.generate_sync()
 	var map_size := coordinate_generator.map_size
-	
+
 	var spawned_count := 0
 	for point in spawn_points:
 		var pos: Vector2 = point.position
 		var scene: PackedScene = point.scene
-		
+
 		if scene == null:
 			continue
 
@@ -54,20 +53,20 @@ func spawn_level_objects() -> void:
 			continue
 
 		var instance := scene.instantiate() as Node2D
-		
+
 		objects.add_child(instance)
 		# Translate generator top-left (0 to map_size) coords to centered level coords (-map_size/2 to +map_size/2)
 		instance.global_position = pos - (map_size / 2.0)
-		
+
 		#randomize instance scale and rotation
 		var random_scale = randf_range(0.95, 1.2)
 		var random_rotation = randf_range(-4, 4)
 		var random_value = randf_range(-0.1, +0.1)
 		instance.scale = Vector2(random_scale, random_scale)
 		instance.rotation_degrees = random_rotation
-		instance.modulate.v += random_value 
-		
+		instance.modulate.v += random_value
+
 		spawned_count += 1
-		
+
 	var duration := Time.get_ticks_msec() - start_time
 	print("[%s] Dynamically spawned %d objects in %d ms." % [name, spawned_count, duration])

@@ -15,7 +15,6 @@ var mining_reticle_rotation: float = 2
 @onready var audio_stream_player_hit: AudioStreamPlayer = $"../AudioStreamPlayer_hit"
 @onready var audio_stream_player_drilling: AudioStreamPlayer = $"../AudioStreamPlayer_drilling"
 
-
 @onready var bomb_spawner: BombSpawner = $"../BombSpawner"
 
 func _ready() -> void:
@@ -23,18 +22,18 @@ func _ready() -> void:
 	update_stats()
 
 func _process(delta: float) -> void:
-	
+
 	if GameManager.expedition_started:
 		if current_drill_cooldown > 0:
 			current_drill_cooldown -= delta
-	
+
 		if Input.is_action_pressed("interact"):
 			if current_drill_cooldown <= 0:
 				EventBus.action_trigger_interact.emit()
 				reticle_animation_player.play("tick")
 				audio_stream_player_hit.play()
 				current_drill_cooldown = drill_cooldown
-			if !audio_stream_player_drilling.playing:
+			if ! audio_stream_player_drilling.playing:
 				audio_stream_player_drilling.play()
 		else:
 			audio_stream_player_drilling.stop()
@@ -42,7 +41,7 @@ func _process(delta: float) -> void:
 		if Input.is_action_pressed("interact"):
 			EventBus.action_trigger_interact.emit()
 		if Input.is_action_just_pressed("cheat"):
-			for t in ResourceDB.ALL: 
+			for t in ResourceDB.ALL:
 				GameManager.grant({t: 100})
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -53,9 +52,9 @@ func _unhandled_input(event: InputEvent) -> void:
 				bomb_spawner.spawn_bomb(global_position)
 
 func update_stats() -> void:
-	drill_cooldown = 0.5**(SkillModifiers.get_drill_attack_speed()-1)
+	drill_cooldown = 0.5 ** (SkillModifiers.get_drill_attack_speed() - 1)
 	var mining_reticle_new_rotation_speed: float
-	mining_reticle_new_rotation_speed = mining_reticle_base_rotation_speed*SkillModifiers.get_drill_attack_speed()
+	mining_reticle_new_rotation_speed = mining_reticle_base_rotation_speed * SkillModifiers.get_drill_attack_speed()
 	mining_reticle_material.set_shader_parameter("circle_rotation_speed", mining_reticle_new_rotation_speed)
 	mining_reticle_material.set_shader_parameter("cross_rotation_speed", mining_reticle_new_rotation_speed)
 	#print (drill_cooldown)
