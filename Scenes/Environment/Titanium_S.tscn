@@ -13,4 +13,5 @@ drops_while_drilling = true
 metadata/_custom_type_script = "uid://cq1k63dpg13de"
 
 [node name="Titanium_S" unique_id=1949437542 instance=ExtResource("1_dexwy")]
+modulate = Color(1, 0.9, 0.9, 1)
 drops = Array[ExtResource("2_w6moj")]([SubResource("Resource_v2sj4")])

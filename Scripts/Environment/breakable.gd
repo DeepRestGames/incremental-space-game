@@ -9,7 +9,7 @@ var is_dead: bool = false
 
 #region collisions
 @onready var control: Control = $Control
-@onready var collision_hit: CollisionShape2D = $CollisionHit
+@onready var collision_walk: CollisionShape2D = $CollisionWalk
 
 var player_is_in_range: bool = false
 #endregion
@@ -34,7 +34,7 @@ const DAMAGE_NUMBER := preload("res://Scenes/UI/elements/DamageNumber.tscn")
 #region sprite
 @onready var sprite_canvas: CanvasGroup = $CanvasGroup
 @onready var sprite_2d: Sprite2D = $CanvasGroup/Sprite2D
-@export var rock_sprites: Array[Texture2D]
+# @export var rock_sprites: Array[Texture2D] # Outdated: now each rock scene only has one sprite; some instances are mirrored by the spawner.
 #endregion
 
 #region drops
@@ -82,10 +82,6 @@ func _ready() -> void:
 	currentHP = totalHP
 	_roll_contents()
 
-	# THIS ONLY WORKS AS LONG AS THERE ARE ONLY 2 TEXTURES AVAILABLE AND THEY ARE SPECULAR (FLIPPED HORIZONTALLY)
-	var random_index = randi_range(0, 1)
-	sprite_2d.texture = rock_sprites[random_index]
-
 	EventBus.action_trigger_interact.connect(on_interacted)
 
 	_pickup_parent = _resolve_container("Objects/Pickups")
@@ -96,12 +92,6 @@ func _ready() -> void:
 	if area2d:
 		area2d.area_entered.connect(_on_area_entered)
 		area2d.area_exited.connect(_on_area_exited)
-
-	# flip the colliders if the second rock texture has been assigned
-	if random_index == 1:
-		collision_hit.scale.x *= -1
-		area2d.scale.x *= -1
-
 
 func on_interacted() -> void:
 	if not player_is_in_range:
@@ -235,7 +225,7 @@ func die() -> void:
 	set_physics_process(false)
 	set_process(false)
 
-	collision_hit.set_deferred("disabled", true)
+	collision_walk.set_deferred("disabled", true)
 
 	destroy.play()
 	await destroy.finished
