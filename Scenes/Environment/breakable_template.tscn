@@ -1,24 +1,30 @@
 [gd_scene format=3 uid="uid://c6qwwmff8anwx"]
 
-[ext_resource type="Script" uid="uid://c1r84q4nh0up2" path="res://Scripts/Environment/breakable.gd" id="1_4ng74"]
-[ext_resource type="Texture2D" uid="uid://bya50q67iyp8s" path="res://Assets/Sprites/environment/Rock2.png" id="3_vnr7e"]
-[ext_resource type="AudioStream" uid="uid://bubvdlphje8rr" path="res://Assets/Audio/SFX/RockDamage1.wav" id="4_41714"]
-[ext_resource type="Script" uid="uid://cq1k63dpg13de" path="res://Scripts/Environment/DropEntry.gd" id="4_m72c3"]
-[ext_resource type="Shader" uid="uid://bkl2ujvvtm8f2" path="res://Shaders/color_overlay.gdshader" id="4_obgst"]
-[ext_resource type="PackedScene" uid="uid://k5air2e7arh4" path="res://Scenes/Resources/BasePickup.tscn" id="5_4ng74"]
-[ext_resource type="AudioStream" uid="uid://bd0s2s54echde" path="res://Assets/Audio/SFX/RockDestory1.wav" id="6_4ng74"]
-[ext_resource type="Texture2D" uid="uid://dv5onwoojupco" path="res://Assets/Sprites/environment/Rock1.png" id="8_s777y"]
+[ext_resource type="Script" uid="uid://c1r84q4nh0up2" path="res://Scripts/Environment/breakable.gd" id="1_stmlf"]
+[ext_resource type="Texture2D" uid="uid://dv5onwoojupco" path="res://Assets/Sprites/environment/Rock1.png" id="2_bovo7"]
+[ext_resource type="Texture2D" uid="uid://bya50q67iyp8s" path="res://Assets/Sprites/environment/Rock2.png" id="3_0m3hs"]
+[ext_resource type="Script" uid="uid://cq1k63dpg13de" path="res://Scripts/Environment/DropEntry.gd" id="4_nqk5t"]
+[ext_resource type="PackedScene" uid="uid://k5air2e7arh4" path="res://Scenes/Resources/BasePickup.tscn" id="5_ecgri"]
+[ext_resource type="Shader" uid="uid://bkl2ujvvtm8f2" path="res://Shaders/color_overlay.gdshader" id="6_2ioeq"]
+[ext_resource type="AudioStream" uid="uid://bubvdlphje8rr" path="res://Assets/Audio/SFX/RockDamage1.wav" id="7_aywl4"]
+[ext_resource type="AudioStream" uid="uid://bd0s2s54echde" path="res://Assets/Audio/SFX/RockDestory1.wav" id="8_jm0p8"]
 
 [sub_resource type="Resource" id="Resource_gnxv1"]
-script = ExtResource("4_m72c3")
-scene = ExtResource("5_4ng74")
+script = ExtResource("4_nqk5t")
+scene = ExtResource("5_ecgri")
 min_amount = 2
 max_amount = 3
 metadata/_custom_type_script = "uid://cq1k63dpg13de"
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_g4v7s"]
-shader = ExtResource("4_obgst")
+shader = ExtResource("6_2ioeq")
 shader_parameter/flash_color = Color(1, 1, 1, 1)
+
+[sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_m72c3"]
+points = PackedVector2Array(-78.74999, -102.49999, 3.7499995, -108.74999, 49.999996, -87.49999, 87.49999, -57.499992, 124.999985, 62.499992, 94.99999, 74.99999, -1.2499999, 96.249985, -27.499998, 96.249985, -109.99999, 64.99999, -123.749985, 46.249992, -101.24999, -42.5)
+
+[sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_21gb0"]
+points = PackedVector2Array(-4.9996414, 99.000015, -22.999798, 56.00008, -16.000261, -71.99995, 6.999638, -100.00003, 34, -0.00012307966, 34.00008, 21.999878, 9.000319, 87.99997)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mu2bs"]
 draw_center = false
@@ -39,19 +45,19 @@ expand_margin_bottom = 5.0
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_r5n5c"]
 random_pitch = 1.0594631
 streams_count = 1
-stream_0/stream = ExtResource("4_41714")
+stream_0/stream = ExtResource("7_aywl4")
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_qituv"]
 random_pitch = 1.0594631
 streams_count = 1
-stream_0/stream = ExtResource("6_4ng74")
+stream_0/stream = ExtResource("8_jm0p8")
 
 [node name="BreakableSmall" type="StaticBody2D" unique_id=1949437542]
 collision_layer = 4
-script = ExtResource("1_4ng74")
+script = ExtResource("1_stmlf")
 totalHP = 40
-rock_sprites = Array[Texture2D]([ExtResource("8_s777y"), ExtResource("3_vnr7e")])
-drops = Array[ExtResource("4_m72c3")]([SubResource("Resource_gnxv1")])
+rock_sprites = Array[Texture2D]([ExtResource("2_bovo7"), ExtResource("3_0m3hs")])
+drops = Array[ExtResource("4_nqk5t")]([SubResource("Resource_gnxv1")])
 
 [node name="CanvasGroup" type="CanvasGroup" parent="." unique_id=1566489641]
 material = SubResource("ShaderMaterial_g4v7s")
@@ -61,12 +67,20 @@ instance_shader_parameters/flash_value = 0.0
 modulate = Color(0.9, 0.9, 0.9, 1)
 position = Vector2(0, -7.999996)
 scale = Vector2(0.8, 0.8)
-texture = ExtResource("8_s777y")
+texture = ExtResource("2_bovo7")
 offset = Vector2(0, -55.25)
 
 [node name="Area2D" type="Area2D" parent="." unique_id=127977022]
 position = Vector2(1.4551915e-11, -51)
 scale = Vector2(0.8, 0.8)
+
+[node name="CollisionHit" type="CollisionShape2D" parent="Area2D" unique_id=1657223696]
+shape = SubResource("ConvexPolygonShape2D_m72c3")
+
+[node name="CollisionWalk" type="CollisionShape2D" parent="." unique_id=1774859622]
+position = Vector2(0, -8)
+rotation = 1.5708
+shape = SubResource("ConvexPolygonShape2D_21gb0")
 
 [node name="Control" type="Control" parent="." unique_id=1706542853]
 visible = false

@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://ccmhp41okc8g0" path="res://Scenes/HUB/ExpeditionShip/ExpeditionShip.tscn" id="5_ship"]
 [ext_resource type="Texture2D" uid="uid://c5mcg1o8r1dgc" path="res://Assets/PLACEHOLDERS/Ship_Dropsite.svg" id="6_ship_dropsite"]
 [ext_resource type="Script" uid="uid://bgj4pxkk5025l" path="res://Scripts/Levels/MapCoordinateGenerator.gd" id="9_generator"]
-[ext_resource type="PackedScene" uid="uid://c6qwwmff8anwx" path="res://Scenes/Environment/breakable_small.tscn" id="10_small"]
+[ext_resource type="PackedScene" uid="uid://c6qwwmff8anwx" path="res://Scenes/Environment/breakable_template.tscn" id="10_small"]
 [ext_resource type="PackedScene" uid="uid://yat7dirw16l5" path="res://Scenes/Environment/breakable_big.tscn" id="11_big"]
 [ext_resource type="Script" uid="uid://da20efwitnu52" path="res://Scripts/Levels/SpawnDistribution.gd" id="12_distribution"]
 [ext_resource type="Script" uid="uid://m824l3abeisw" path="res://Scripts/Levels/Modifiers/LevelModifiers.gd" id="13_modifiers"]

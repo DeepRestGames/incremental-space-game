@@ -9,7 +9,7 @@ var is_dead: bool = false
 
 #region collisions
 @onready var control: Control = $Control
-@onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
+@onready var collision_hit: CollisionShape2D = $CollisionHit
 
 var player_is_in_range: bool = false
 #endregion
@@ -99,7 +99,7 @@ func _ready() -> void:
 
 	# flip the colliders if the second rock texture has been assigned
 	if random_index == 1:
-		collision_shape_2d.scale.x *= -1
+		collision_hit.scale.x *= -1
 		area2d.scale.x *= -1
 
 
@@ -235,7 +235,7 @@ func die() -> void:
 	set_physics_process(false)
 	set_process(false)
 
-	collision_shape_2d.set_deferred("disabled", true)
+	collision_hit.set_deferred("disabled", true)
 
 	destroy.play()
 	await destroy.finished
