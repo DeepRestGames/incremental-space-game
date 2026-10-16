@@ -2,7 +2,6 @@
 
 [ext_resource type="PackedScene" uid="uid://cl1025m5bhlxa" path="res://Scenes/Levels/Planets/BaseLevel.tscn" id="1_tgogl"]
 [ext_resource type="PackedScene" uid="uid://yat7dirw16l5" path="res://Scenes/Environment/breakable_big.tscn" id="2_big"]
-[ext_resource type="Texture2D" uid="uid://cb8pqpfy5dg34" path="res://Assets/Sprites/environment/SeamlessBackground.png" id="2_u0hgq"]
 [ext_resource type="PackedScene" uid="uid://ctoav4t5cbhdg" path="res://Scenes/Environment/breakable_cube.tscn" id="5_iccll"]
 [ext_resource type="PackedScene" uid="uid://dsarpf2d3a35v" path="res://Scenes/Environment/Blackrock_S.tscn" id="5_johtm"]
 
@@ -29,12 +28,8 @@ adjustment_color_correction = SubResource("GradientTexture1D_0d1xb")
 [node name="BaseLevel" unique_id=705757094 instance=ExtResource("1_tgogl")]
 y_sort_enabled = true
 
-[node name="Parallax2D" type="Parallax2D" parent="." index="0" unique_id=1542098949]
-repeat_size = Vector2(3840, 2161)
-repeat_times = 3
-
-[node name="SeamlessBackground" type="Sprite2D" parent="Parallax2D" index="0" unique_id=285107865]
-texture = ExtResource("2_u0hgq")
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." index="1" unique_id=401950983]
+environment = SubResource("Environment_qkxfq")
 
 [node name="ExpeditionShip" parent="Objects" parent_id_path=PackedInt32Array(1539187237) index="4" unique_id=1704699913]
 custom_texture = null
@@ -50,6 +45,3 @@ ExtResource("2_big"): 10.0,
 ExtResource("5_iccll"): 5.0,
 ExtResource("5_johtm"): 10.0
 })
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="." index="2" unique_id=401950983]
-environment = SubResource("Environment_qkxfq")
