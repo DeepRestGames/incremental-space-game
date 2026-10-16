@@ -6,10 +6,15 @@ extends Node2D
 
 @onready var objects: Node2D = $Objects
 @onready var coordinate_generator: MapCoordinateGenerator = $Objects/MapCoordinateGenerator
-
+@onready var seamless_background: Sprite2D = $Parallax2D/SeamlessBackground
 
 func _ready() -> void:
-	#	MusicManager.play(preload("res://Assets/Audio/ST/ST_Expedition.wav"), "expedition")
+	# MusicManager.play(preload("res://Assets/Audio/ST/ST_Expedition.wav"), "expedition")
+	
+	#add random background offset
+	var random_offset: float = randf_range(-2000, 0)
+	seamless_background.offset = Vector2(random_offset, random_offset)
+		
 	# Gather dynamic positions of central structures as spawning exclusion zones
 	var exclusions: Array[Vector2] = []
 	for node_name in ["ExpeditionShip", "CaptureArea"]:

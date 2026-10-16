@@ -35,7 +35,7 @@ func randomize_spawn_direction() -> void:
 	tween_rotation.tween_property(sprite_2d, "rotation", rotation + spawn_angular_velocity, spawn_duration)
 
 	var tween_fade_out = get_tree().create_tween().set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_ELASTIC)
-	tween_fade_out.tween_property(self, "modulate", Color(Color.WHITE, 0), lifetime)
+	tween_fade_out.tween_property(self, "modulate:a", 0, lifetime)
 
 	await tween_fade_out.finished
 

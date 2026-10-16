@@ -1,7 +1,8 @@
 [gd_scene format=3 uid="uid://beyb44q40vqlr"]
 
-[ext_resource type="Texture2D" uid="uid://cqwlreb6f151w" path="res://Assets/Sprites/particles/Vignette.png" id="1_4bm6u"]
+[ext_resource type="Texture2D" uid="uid://c7i1fbpfyino7" path="res://Assets/Sprites/particles/VignetteQuantized.png" id="1_khvou"]
 [ext_resource type="Script" uid="uid://mcvf683b2t30" path="res://Scripts/UI/HUD/InteractionPrompt.gd" id="1_omqfp"]
+[ext_resource type="Texture2D" uid="uid://yylsxxyv6m4q" path="res://Assets/Sprites/particles/AtmosphereOverlay.png" id="2_55bpt"]
 [ext_resource type="Script" uid="uid://qe84tw2v6xbm" path="res://Scripts/UI/HUD/ResourceCounter.gd" id="2_xaom8"]
 [ext_resource type="PackedScene" uid="uid://d3ixveovn637y" path="res://Scenes/UI/PauseMenu.tscn" id="3_pausemenu"]
 [ext_resource type="Script" uid="uid://b1h6en5b604x6" path="res://Scripts/UI/HUD/OxygenCounter.gd" id="4_oxygen"]
@@ -45,13 +46,32 @@ corner_radius_bottom_left = 2
 [node name="HUDCanvasLayer" type="CanvasLayer" unique_id=1829917660]
 
 [node name="Vignette" type="TextureRect" parent="." unique_id=432924437]
+modulate = Color(1, 1, 1, 0.16470589)
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = -479.5
+offset_top = -404.0
+offset_right = 479.5
+offset_bottom = 498.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-texture = ExtResource("1_4bm6u")
+texture = ExtResource("1_khvou")
+
+[node name="Atmosphere_overlay" type="TextureRect" parent="." unique_id=514454963]
+modulate = Color(1, 1, 1, 0.16470589)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -479.5
+offset_top = -404.0
+offset_right = 479.5
+offset_bottom = 498.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("2_55bpt")
 
 [node name="HUD" type="Control" parent="." unique_id=899302714]
 layout_mode = 3

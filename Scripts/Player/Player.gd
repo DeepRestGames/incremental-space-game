@@ -10,6 +10,7 @@ extends CharacterBody2D
 @onready var animation_tree: AnimationTree = $AnimationTree
 @onready var dust_particles: GPUParticles2D = $DustParticles
 @onready var camera_shake: ScreenShake = $PlayerCamera/ScreenShake
+@export var dust_color: Color = Color(1.0, 1.0, 1.0, 1.0)
 
 # HP
 @export var maxHP: int = BaseValuesDB.MAX_HP
@@ -68,7 +69,7 @@ func _ready() -> void:
 
 	# Animations
 	animation_tree.active = true
-
+	dust_particles.modulate = dust_color
 	EventBus.on_player_ready.emit(self)
 
 

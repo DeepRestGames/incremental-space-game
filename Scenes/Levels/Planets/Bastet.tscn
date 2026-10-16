@@ -1,0 +1,54 @@
+[gd_scene format=3 uid="uid://5c3751t48a6v"]
+
+[ext_resource type="PackedScene" uid="uid://cl1025m5bhlxa" path="res://Scenes/Levels/Planets/BaseLevel.tscn" id="1_sptsf"]
+[ext_resource type="Texture2D" uid="uid://brkolo5onk4f5" path="res://Assets/Sprites/environment/backgrounds/textures/moon_04_ao_1k.jpg" id="2_u80cw"]
+[ext_resource type="PackedScene" uid="uid://tpsnqnen1s5g" path="res://Scenes/Environment/white_triangle_rock_small.tscn" id="4_7ycos"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_5714e"]
+blend_mode = 3
+
+[sub_resource type="Environment" id="Environment_lbst8"]
+background_mode = 3
+glow_enabled = true
+glow_levels/2 = 1.0
+glow_levels/3 = 1.0
+glow_levels/4 = 0.5
+glow_levels/5 = 0.2
+glow_strength = 1.66
+adjustment_brightness = 1.15
+adjustment_contrast = 1.08
+
+[node name="Bastet" unique_id=119943232 instance=ExtResource("1_sptsf")]
+
+[node name="SeamlessBackground" parent="Parallax2D" parent_id_path=PackedInt32Array(1285738294) index="0" unique_id=162343160]
+offset = Vector2(0, 0)
+
+[node name="Parallax2D2" type="Parallax2D" parent="." index="1" unique_id=601970982]
+modulate = Color(1.1364014, 1.1364014, 1.1364014, 1)
+repeat_size = Vector2(1024, 512)
+repeat_times = 5
+
+[node name="Texture" type="Sprite2D" parent="Parallax2D2" index="0" unique_id=1331186534]
+modulate = Color(1.0324832, 1.0324832, 1.0324832, 1)
+material = SubResource("CanvasItemMaterial_5714e")
+scale = Vector2(1, 0.5)
+texture = ExtResource("2_u80cw")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." index="2" unique_id=248897781]
+environment = SubResource("Environment_lbst8")
+
+[node name="Player" parent="Objects" parent_id_path=PackedInt32Array(1539187237) index="3" unique_id=102267496]
+dust_color = Color(0.31, 0.79299986, 1, 1)
+
+[node name="ExpeditionShip" parent="Objects" parent_id_path=PackedInt32Array(1539187237) index="4" unique_id=1704699913]
+custom_texture = null
+
+[node name="MapCoordinateGenerator" parent="Objects" parent_id_path=PackedInt32Array(1539187237) index="5" unique_id=1573320358]
+min_distance = 150.0
+min_spawn_count = 50
+max_spawn_count = 100
+
+[node name="SpawnDistribution" parent="Objects/MapCoordinateGenerator" index="0" unique_id=987654321]
+spawn_distribution = Dictionary[PackedScene, float]({
+ExtResource("4_7ycos"): 40.0
+})
