@@ -5,6 +5,7 @@
 [ext_resource type="Script" uid="uid://cq1k63dpg13de" path="res://Scripts/Environment/DropEntry.gd" id="4_nqk5t"]
 [ext_resource type="PackedScene" uid="uid://k5air2e7arh4" path="res://Scenes/Resources/BasePickup.tscn" id="5_ecgri"]
 [ext_resource type="Shader" uid="uid://bkl2ujvvtm8f2" path="res://Shaders/color_overlay.gdshader" id="6_2ioeq"]
+[ext_resource type="Texture2D" uid="uid://bg5gugee216l7" path="res://Assets/Sprites/environment/rocks/damage_crack.png" id="6_stmlf"]
 [ext_resource type="AudioStream" uid="uid://bubvdlphje8rr" path="res://Assets/Audio/SFX/RockDamage1.wav" id="7_aywl4"]
 [ext_resource type="AudioStream" uid="uid://bd0s2s54echde" path="res://Assets/Audio/SFX/RockDestory1.wav" id="8_jm0p8"]
 
@@ -64,6 +65,12 @@ position = Vector2(0, -7.999996)
 scale = Vector2(0.8, 0.8)
 texture = ExtResource("2_bovo7")
 offset = Vector2(0, -55.25)
+
+[node name="DamageCrack" type="Sprite2D" parent="CanvasGroup/Sprite2D" unique_id=764549181]
+position = Vector2(-13.749999, -55)
+texture = ExtResource("6_stmlf")
+hframes = 4
+frame = 3
 
 [node name="Area2D" type="Area2D" parent="." unique_id=127977022]
 position = Vector2(1.4551915e-11, -51)

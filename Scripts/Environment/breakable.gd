@@ -25,6 +25,7 @@ var player_is_in_range: bool = false
 @export var min_rock_particles = 3
 @export var max_rock_particles = 7
 @export var particle_modulate: Color = Color.WHITE
+@onready var damage_crack: Sprite2D = $CanvasGroup/Sprite2D/DamageCrack
 
 # Damage number
 const DAMAGE_NUMBER := preload("res://Scenes/UI/elements/DamageNumber.tscn")
@@ -80,6 +81,7 @@ func _roll_contents() -> void:
 
 func _ready() -> void:
 	currentHP = totalHP
+	damage_crack.visible = false
 	_roll_contents()
 
 	EventBus.action_trigger_interact.connect(on_interacted)
@@ -109,20 +111,7 @@ func on_interacted() -> void:
 
 func take_damage(damage_value: int, is_crit: bool) -> void:
 	EventBus.breakable_damaged.emit(damage_value, is_crit)
-
-	#hurt animation
-	var squish_scale = 0.9
-	var default_scale = sprite_2d.scale
-	var _default_color = sprite_2d.modulate
-	var tween_scale = get_tree().create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_BACK)
-	tween_scale.tween_property(sprite_2d, "scale", default_scale * squish_scale, 0.07)
-	tween_scale.tween_property(sprite_2d, "scale", default_scale, 0.07)
-	var tween_modulate = get_tree().create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_EXPO)
-	tween_modulate.tween_property(sprite_canvas, "instance_shader_parameters/flash_value", 0.85, 0.05)
-	tween_modulate.tween_property(sprite_canvas, "instance_shader_parameters/flash_value", 0, 0.2)
-
-	spawn_rock_particles(randi_range(min_rock_particles, max_rock_particles))
-
+	
 	# Il danno oltre gli HP rimasti non conta: senza questo, il colpo che sfonda
 	# un sasso quasi morto regalerebbe tiri per danno mai realmente inflitto.
 	var effective_damage := float(mini(damage_value, currentHP))
@@ -146,12 +135,19 @@ func take_damage(damage_value: int, is_crit: bool) -> void:
 				spawn_drop(entry_index, 1)
 
 	currentHP -= damage_value
-
+	play_hurt_animation()
+	update_crack_sprite()
+	spawn_rock_particles(randi_range(min_rock_particles, max_rock_particles))
+	
 	if currentHP <= 0 and ! is_dead:
 		die()
 
 	else:
 		hit.play()
+
+		
+		
+
 
 
 func spawn_drop(entry_index: int, amount: int) -> void:
@@ -172,6 +168,36 @@ func spawn_drop(entry_index: int, amount: int) -> void:
 		pickup.global_position = global_position + random_offset
 		pickup.randomize_spawn_direction()
 
+
+func play_hurt_animation() -> void:
+	var squish_scale = 0.9
+	var default_scale = sprite_2d.scale
+	var _default_color = sprite_2d.modulate
+	var tween_scale = get_tree().create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_BACK)
+	tween_scale.tween_property(sprite_2d, "scale", default_scale * squish_scale, 0.07)
+	tween_scale.tween_property(sprite_2d, "scale", default_scale, 0.07)
+	var tween_modulate = get_tree().create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_EXPO)
+	tween_modulate.tween_property(sprite_canvas, "instance_shader_parameters/flash_value", 0.85, 0.05)
+	tween_modulate.tween_property(sprite_canvas, "instance_shader_parameters/flash_value", 0, 0.2)
+
+func update_crack_sprite() -> void:
+	var hp_ratio: float = clampf(float(currentHP) / totalHP, 0.0, 1.0)
+	print(hp_ratio)
+	
+	if hp_ratio == 1.0:
+		damage_crack.visible = false
+	else:
+		damage_crack.visible = true
+	
+	if hp_ratio > 0.75 and hp_ratio <= 1.0:
+		damage_crack.frame = 0
+	if hp_ratio > 0.5 and hp_ratio <= 0.75:
+		damage_crack.frame = 1
+	if hp_ratio > 0.25 and hp_ratio <= 0.5:
+		damage_crack.frame = 2
+	if hp_ratio >= 0.0 and hp_ratio <= 0.25:
+		damage_crack.frame = 3
+		
 
 func spawn_rock_particles(rock_particles_number: int) -> void:
 	for i in rock_particles_number:

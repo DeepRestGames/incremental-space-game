@@ -13,6 +13,12 @@ position = Vector2(0, -24.574997)
 scale = Vector2(0.49999997, 0.5)
 texture = ExtResource("2_25dk6")
 
+[node name="DamageCrack" parent="CanvasGroup/Sprite2D" index="0" unique_id=764549181]
+position = Vector2(-8.000001, -60.850006)
+rotation = 0.061086524
+scale = Vector2(0.975, 0.975)
+frame = 0
+
 [node name="CollisionHit" parent="Area2D" parent_id_path=PackedInt32Array(127977022) index="0" unique_id=1865449784]
 polygon = PackedVector2Array(12.500001, -57.500008, 87.50001, -100.00001, 115.00001, 13.750004, 127.500015, 41.250008, 85.00001, 71.25001, 40.000004, 65.00001, -3.7500005, 83.75001, -107.50001, 70.00001, -123.750015, 53.750008, -68.75001, -117.50001)
 
