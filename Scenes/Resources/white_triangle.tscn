@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://cx11pt7yfm8us"]
+
+[ext_resource type="PackedScene" uid="uid://k5air2e7arh4" path="res://Scenes/Resources/BasePickup.tscn" id="1_ils6d"]
+[ext_resource type="Texture2D" uid="uid://5a2y1w28h0tq" path="res://Assets/Resources/drops/white_triangle_drop.png" id="2_tykaq"]
+[ext_resource type="Script" uid="uid://bss1cajnebhpo" path="res://Scripts/Resources/Minerals/ResourceType.gd" id="3_37jvq"]
+
+[sub_resource type="Resource" id="Resource_4icnu"]
+script = ExtResource("3_37jvq")
+id = &"white_triangle"
+display_name = "White Triangle"
+icon = ExtResource("2_tykaq")
+metadata/_custom_type_script = "uid://bss1cajnebhpo"
+
+[node name="white_triangle" unique_id=572087542 instance=ExtResource("1_ils6d")]
+resource_type = SubResource("Resource_4icnu")
+
+[node name="Sprite2D" parent="." index="1" unique_id=675609398]
+texture = ExtResource("2_tykaq")

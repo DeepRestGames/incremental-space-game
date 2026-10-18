@@ -1,0 +1,43 @@
+[gd_scene format=3 uid="uid://syb24ng5dl8b"]
+
+[ext_resource type="PackedScene" uid="uid://c6qwwmff8anwx" path="res://Scenes/Environment/breakable_template.tscn" id="1_3n3cf"]
+[ext_resource type="Script" uid="uid://cq1k63dpg13de" path="res://Scripts/Environment/DropEntry.gd" id="2_am7h0"]
+[ext_resource type="PackedScene" uid="uid://d1wcerbx6yrx" path="res://Scenes/Resources/white_square.tscn" id="3_3n3cf"]
+[ext_resource type="Texture2D" uid="uid://502ro7tkki0g" path="res://Assets/Sprites/environment/rocks/white_square_rock.png" id="4_3n3cf"]
+
+[sub_resource type="Resource" id="Resource_dxuha"]
+script = ExtResource("2_am7h0")
+scene = ExtResource("3_3n3cf")
+min_amount = 2
+max_amount = 3
+metadata/_custom_type_script = "uid://cq1k63dpg13de"
+
+[sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_a76hy"]
+points = PackedVector2Array(0.00040197372, 111, -24.999733, 74.00009, -25.000286, -78.99991, 0.99958754, -114.00001, 31.999718, -78.000114, 44.000034, 8.999841, 24.000282, 77.99991)
+
+[node name="white_triangle_rock_small" unique_id=1949437542 instance=ExtResource("1_3n3cf")]
+totalHP = 200
+particle_modulate = Color(0.43710002, 0.80677503, 0.93, 1)
+drops = Array[ExtResource("2_am7h0")]([SubResource("Resource_dxuha")])
+
+[node name="Sprite2D" parent="CanvasGroup" parent_id_path=PackedInt32Array(1566489641) index="0" unique_id=699384529]
+position = Vector2(0, -46)
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("4_3n3cf")
+
+[node name="DamageCrack" parent="CanvasGroup/Sprite2D" index="0" unique_id=764549181]
+visible = false
+position = Vector2(2.8571434, -70)
+rotation = 2.3714166
+scale = Vector2(0.975, 0.975)
+
+[node name="Area2D" parent="." index="1" unique_id=127977022]
+visible = false
+position = Vector2(1.4551915e-11, -73.00001)
+
+[node name="CollisionHit" parent="Area2D" index="0" unique_id=1865449784]
+polygon = PackedVector2Array(-1.2500001, -181.25002, 176.25002, -6.2499924, 111.25001, 58.75001, 126.250015, 83.750015, 88.75001, 113.750015, -5.0000005, 126.250015, -61.250008, 95.000015, -96.25001, 105.000015, -120.000015, 82.500015, -108.75001, 60.00001, -175.00002, -6.2499924, -122.500015, -58.75, -122.500015, -90, -93.75001, -88.75)
+
+[node name="CollisionWalk" parent="." index="2" unique_id=1774859622]
+visible = false
+shape = SubResource("ConvexPolygonShape2D_a76hy")

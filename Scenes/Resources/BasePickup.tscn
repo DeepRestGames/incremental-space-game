@@ -7,7 +7,7 @@
 [ext_resource type="Resource" uid="uid://dy555gx1h5686" path="res://Assets/Resources/ore_1.tres" id="5_restype"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_56pls"]
-radius = 30.0
+radius = 23.194826
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_khskt"]
 blend_mode = 1
@@ -206,24 +206,23 @@ script = ExtResource("1_2qmmm")
 resource_type = ExtResource("5_restype")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1468897170]
-visible = false
 shape = SubResource("CircleShape2D_56pls")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=675609398]
 texture = ExtResource("2_khskt")
 offset = Vector2(0, -6)
 
-[node name="Circle05" type="Sprite2D" parent="Sprite2D" unique_id=340239145]
-modulate = Color(1, 1, 1, 0.498039)
-material = SubResource("CanvasItemMaterial_khskt")
-scale = Vector2(0.2, 0.2)
-texture = ExtResource("3_khskt")
-
 [node name="ShineSpikes" type="Sprite2D" parent="Sprite2D" unique_id=250829419]
 position = Vector2(-1, 7.10543e-15)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("4_khskt")
 offset = Vector2(-5.49, -2.05)
+
+[node name="Circle05" type="Sprite2D" parent="Sprite2D" unique_id=340239145]
+modulate = Color(1, 1, 1, 0.498039)
+material = SubResource("CanvasItemMaterial_khskt")
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("3_khskt")
 
 [node name="AnimationPlayerGlow" type="AnimationPlayer" parent="." unique_id=2140716725]
 libraries/ = SubResource("AnimationLibrary_gmi6t")

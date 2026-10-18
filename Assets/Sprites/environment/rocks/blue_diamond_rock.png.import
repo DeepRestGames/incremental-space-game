@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://blkuu0km0qxuo"
-path="res://.godot/imported/white_diamond_rock.png-c94520f1429bbdc213832f81a86d4baa.ctex"
+path="res://.godot/imported/blue_diamond_rock.png-a44c69a09293f196549686a0dff48919.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/environment/rocks/white_diamond_rock.png"
-dest_files=["res://.godot/imported/white_diamond_rock.png-c94520f1429bbdc213832f81a86d4baa.ctex"]
+source_file="res://Assets/Sprites/environment/rocks/blue_diamond_rock.png"
+dest_files=["res://.godot/imported/blue_diamond_rock.png-a44c69a09293f196549686a0dff48919.ctex"]
 
 [params]
 

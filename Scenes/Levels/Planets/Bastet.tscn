@@ -1,9 +1,16 @@
 [gd_scene format=3 uid="uid://5c3751t48a6v"]
 
 [ext_resource type="PackedScene" uid="uid://cl1025m5bhlxa" path="res://Scenes/Levels/Planets/BaseLevel.tscn" id="1_sptsf"]
+[ext_resource type="Shader" uid="uid://bba03aoftrdpw" path="res://Shaders/blend_mode_overlay.gdshader" id="2_sptsf"]
 [ext_resource type="Texture2D" uid="uid://brkolo5onk4f5" path="res://Assets/Sprites/environment/backgrounds/textures/moon_04_ao_1k.jpg" id="2_u80cw"]
-[ext_resource type="Texture2D" uid="uid://fffaebyaiajn" path="res://Assets/Sprites/environment/backgrounds/textures/patterned_cobblestone_ao_1k.jpg" id="3_sptsf"]
 [ext_resource type="PackedScene" uid="uid://tpsnqnen1s5g" path="res://Scenes/Environment/white_triangle_rock_small.tscn" id="4_7ycos"]
+[ext_resource type="PackedScene" uid="uid://0itrhjtld40u" path="res://Scenes/Environment/white_triangle_rock_medium.tscn" id="5_1p6vp"]
+[ext_resource type="PackedScene" uid="uid://syb24ng5dl8b" path="res://Scenes/Environment/white_square_rock.tscn" id="6_7ycos"]
+[ext_resource type="PackedScene" uid="uid://cqsu8owqwvqmd" path="res://Scenes/Environment/blue_diamond_rock.tscn" id="7_svvui"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_d3for"]
+shader = ExtResource("2_sptsf")
+shader_parameter/overlay_opacity = 0.1470000069825
 
 [sub_resource type="Environment" id="Environment_lbst8"]
 background_mode = 3
@@ -18,21 +25,19 @@ adjustment_contrast = 1.08
 
 [node name="Bastet" unique_id=119943232 instance=ExtResource("1_sptsf")]
 
-[node name="SeamlessBackground" parent="Parallax2D" parent_id_path=PackedInt32Array(1285738294) index="0" unique_id=162343160]
+[node name="Parallax2D" parent="." index="0" unique_id=1285738294]
+scale = Vector2(0.7, 0.7)
+
+[node name="SeamlessBackground" parent="Parallax2D" index="0" unique_id=162343160]
+modulate = Color(0.88, 0.88, 0.88, 1)
 offset = Vector2(0, 0)
 
 [node name="Parallax2D2" type="Parallax2D" parent="." index="1" unique_id=601970982]
-modulate = Color(1.1364014, 1.1364014, 1.1364014, 1)
 repeat_size = Vector2(1024, 512)
 repeat_times = 5
 
-[node name="Texture2" type="Sprite2D" parent="Parallax2D2" index="0" unique_id=965701270]
-modulate = Color(0.31, 0.31, 0.31, 0.039215688)
-scale = Vector2(1, 0.5)
-texture = ExtResource("3_sptsf")
-
-[node name="Texture" type="Sprite2D" parent="Parallax2D2" index="1" unique_id=1331186534]
-modulate = Color(0.28, 0.28, 0.28, 0.0627451)
+[node name="Texture" type="Sprite2D" parent="Parallax2D2" index="0" unique_id=1331186534]
+material = SubResource("ShaderMaterial_d3for")
 scale = Vector2(1, 0.5)
 texture = ExtResource("2_u80cw")
 
@@ -52,5 +57,8 @@ max_spawn_count = 100
 
 [node name="SpawnDistribution" parent="Objects/MapCoordinateGenerator" index="0" unique_id=987654321]
 spawn_distribution = Dictionary[PackedScene, float]({
-ExtResource("4_7ycos"): 40.0
+ExtResource("4_7ycos"): 16.0,
+ExtResource("5_1p6vp"): 8.0,
+ExtResource("6_7ycos"): 4.0,
+ExtResource("7_svvui"): 1.0
 })

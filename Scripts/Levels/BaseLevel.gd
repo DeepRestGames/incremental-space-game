@@ -64,7 +64,7 @@ func spawn_level_objects() -> void:
 		instance.global_position = pos - (map_size / 2.0)
 
 		#random instance scale & flip
-		var random_scale = randf_range(0.8, 1.2)
+		var random_scale = randf_range(0.9, 1.1)
 		var flip = -1 if randi_range(0, 1) == 0 else 1
 		instance.scale = Vector2(random_scale * flip, random_scale)
 		#random instance colour variation

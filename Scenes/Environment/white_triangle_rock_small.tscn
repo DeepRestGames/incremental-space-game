@@ -2,12 +2,22 @@
 
 [ext_resource type="PackedScene" uid="uid://c6qwwmff8anwx" path="res://Scenes/Environment/breakable_template.tscn" id="1_o35jv"]
 [ext_resource type="Texture2D" uid="uid://cujvvtidsqe0p" path="res://Assets/Sprites/environment/rocks/white_triangle_rock_small.png" id="2_25dk6"]
+[ext_resource type="Script" uid="uid://cq1k63dpg13de" path="res://Scripts/Environment/DropEntry.gd" id="2_kkm7j"]
+[ext_resource type="PackedScene" uid="uid://cx11pt7yfm8us" path="res://Scenes/Resources/white_triangle.tscn" id="3_77krg"]
+
+[sub_resource type="Resource" id="Resource_dit80"]
+script = ExtResource("2_kkm7j")
+scene = ExtResource("3_77krg")
+min_amount = 2
+max_amount = 3
+metadata/_custom_type_script = "uid://cq1k63dpg13de"
 
 [sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_a76hy"]
 points = PackedVector2Array(1.0003943, 108.99999, -16.999798, 56.00006, -15.000214, -58.999947, -3.000391, -107.99999, 22.999754, -68.000084, 34.000015, 3.999877, 21.000326, 89.99992)
 
 [node name="white_triangle_rock_small" unique_id=1949437542 instance=ExtResource("1_o35jv")]
-particle_modulate = Color(0.47000003, 0.6378335, 1, 1)
+particle_modulate = Color(0.43710002, 0.5931851, 0.93, 1)
+drops = Array[ExtResource("2_kkm7j")]([SubResource("Resource_dit80")])
 
 [node name="Sprite2D" parent="CanvasGroup" parent_id_path=PackedInt32Array(1566489641) index="0" unique_id=699384529]
 position = Vector2(0, -24.574997)
@@ -15,6 +25,7 @@ scale = Vector2(0.49999997, 0.5)
 texture = ExtResource("2_25dk6")
 
 [node name="DamageCrack" parent="CanvasGroup/Sprite2D" index="0" unique_id=764549181]
+visible = false
 position = Vector2(-8.000001, -60.850006)
 rotation = 0.061086524
 scale = Vector2(0.975, 0.975)
