@@ -17,6 +17,7 @@
 [ext_resource type="Texture2D" uid="uid://dbc0nwinib2qa" path="res://Assets/UI/skill tree/skill icons/Fragments.svg" id="13_5m2m7"]
 [ext_resource type="Texture2D" uid="uid://dhndktijayxr7" path="res://Assets/UI/skill tree/skill icons/Bomb2.svg" id="15_exa8l"]
 [ext_resource type="Texture2D" uid="uid://cqwlreb6f151w" path="res://Assets/Sprites/particles/Vignette.png" id="17_tt40d"]
+[ext_resource type="Texture2D" uid="uid://bwfdkfuma5fs" path="res://Assets/UI/skill tree/skill icons/DoubleBomb.svg" id="17_y0o01"]
 [ext_resource type="Shader" uid="uid://ban07lejqf1g2" path="res://Shaders/Radial-HorizontalChromaticAberration.gdshader" id="18_y0o01"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_qgy1x"]
@@ -121,15 +122,15 @@ layout_mode = 0
 anchors_preset = 0
 anchor_right = 0.0
 anchor_bottom = 0.0
-offset_left = 1850.0
-offset_top = 630.0
-offset_right = 1990.0
-offset_bottom = 770.0
+offset_left = 1530.0
+offset_top = 470.0
+offset_right = 1670.0
+offset_bottom = 610.0
 grow_horizontal = 1
 grow_vertical = 1
 skill_id = "oxygen_capacity_2"
 icon = ExtResource("3_drkok")
-parent_node = NodePath("../BagSizeNode")
+parent_node = NodePath("../OxygenCapacityNode")
 
 [node name="DrillAreaNode" parent="TreeView" unique_id=945436568 node_paths=PackedStringArray("parent_node") instance=ExtResource("1_c1qs3")]
 layout_mode = 0
@@ -146,20 +147,50 @@ skill_id = "drill_area"
 icon = ExtResource("5_kyaj7")
 parent_node = NodePath("../Core")
 
+[node name="DrillAreaNode2" parent="TreeView" unique_id=395195214 node_paths=PackedStringArray("parent_node") instance=ExtResource("1_c1qs3")]
+layout_mode = 0
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 890.0
+offset_top = 1110.0
+offset_right = 1030.0
+offset_bottom = 1250.0
+grow_horizontal = 1
+grow_vertical = 1
+skill_id = "drill_area_2"
+icon = ExtResource("5_kyaj7")
+parent_node = NodePath("../DrillAreaNode")
+
 [node name="DrillDamageNode" parent="TreeView" unique_id=588326199 node_paths=PackedStringArray("parent_node") instance=ExtResource("1_c1qs3")]
 layout_mode = 0
 anchors_preset = 0
 anchor_right = 0.0
 anchor_bottom = 0.0
-offset_left = 650.0
-offset_top = 790.0
-offset_right = 790.0
-offset_bottom = 930.0
+offset_left = 730.0
+offset_top = 950.0
+offset_right = 870.0
+offset_bottom = 1090.0
 grow_horizontal = 1
 grow_vertical = 1
 skill_id = "drill_damage"
 icon = ExtResource("6_fmb40")
 parent_node = NodePath("../DrillAreaNode")
+
+[node name="DrillDamageNode2" parent="TreeView" unique_id=665130499 node_paths=PackedStringArray("parent_node") instance=ExtResource("1_c1qs3")]
+layout_mode = 0
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 730.0
+offset_top = 1270.0
+offset_right = 870.0
+offset_bottom = 1410.0
+grow_horizontal = 1
+grow_vertical = 1
+skill_id = "drill_damage_2"
+icon = ExtResource("6_fmb40")
+parent_node = NodePath("../DrillDamageNode")
 
 [node name="ConnectorNode2" parent="TreeView" unique_id=770080622 node_paths=PackedStringArray("parent_node") instance=ExtResource("1_c1qs3")]
 modulate = Color(1, 1, 1, 0.4)
@@ -197,15 +228,30 @@ layout_mode = 0
 anchors_preset = 0
 anchor_right = 0.0
 anchor_bottom = 0.0
-offset_left = 890.0
+offset_left = 1050.0
+offset_top = 950.0
+offset_right = 1190.0
+offset_bottom = 1090.0
+grow_horizontal = 1
+grow_vertical = 1
+skill_id = "drill_speed_1"
+icon = ExtResource("6_66a02")
+parent_node = NodePath("../DrillAreaNode")
+
+[node name="DrillSpeedNode2" parent="TreeView" unique_id=875637364 node_paths=PackedStringArray("parent_node") instance=ExtResource("1_c1qs3")]
+layout_mode = 0
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 1210.0
 offset_top = 1110.0
-offset_right = 1030.0
+offset_right = 1350.0
 offset_bottom = 1250.0
 grow_horizontal = 1
 grow_vertical = 1
-skill_id = "drill_speed"
+skill_id = "drill_speed_2"
 icon = ExtResource("6_66a02")
-parent_node = NodePath("../DrillAreaNode")
+parent_node = NodePath("../DrillSpeedNode")
 
 [node name="ConnectorNode4" parent="TreeView" unique_id=586083630 node_paths=PackedStringArray("parent_node") instance=ExtResource("1_c1qs3")]
 modulate = Color(1, 1, 1, 0.4)
@@ -213,10 +259,10 @@ layout_mode = 0
 anchors_preset = 0
 anchor_right = 0.0
 anchor_bottom = 0.0
-offset_left = 490.0
-offset_top = 950.0
-offset_right = 630.0
-offset_bottom = 1090.0
+offset_left = 570.0
+offset_top = 1110.0
+offset_right = 710.0
+offset_bottom = 1250.0
 grow_horizontal = 1
 grow_vertical = 1
 mouse_filter = 2
@@ -228,25 +274,40 @@ layout_mode = 0
 anchors_preset = 0
 anchor_right = 0.0
 anchor_bottom = 0.0
-offset_left = 490.0
-offset_top = 1110.0
-offset_right = 630.0
-offset_bottom = 1250.0
+offset_left = 570.0
+offset_top = 1270.0
+offset_right = 710.0
+offset_bottom = 1410.0
 grow_horizontal = 1
 grow_vertical = 1
 skill_id = "drill_crit"
 icon = ExtResource("9_q004n")
 parent_node = NodePath("../ConnectorNode4")
 
+[node name="DrillCritNode2" parent="TreeView" unique_id=2120588760 node_paths=PackedStringArray("parent_node") instance=ExtResource("1_c1qs3")]
+layout_mode = 0
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 250.0
+offset_top = 1270.0
+offset_right = 390.0
+offset_bottom = 1410.0
+grow_horizontal = 1
+grow_vertical = 1
+skill_id = "drill_crit_2"
+icon = ExtResource("9_q004n")
+parent_node = NodePath("../DrillCritNode")
+
 [node name="DrillCritDamageNode" parent="TreeView" unique_id=866751269 node_paths=PackedStringArray("parent_node") instance=ExtResource("1_c1qs3")]
 layout_mode = 0
 anchors_preset = 0
 anchor_right = 0.0
 anchor_bottom = 0.0
-offset_left = 490.0
-offset_top = 1350.0
-offset_right = 630.0
-offset_bottom = 1490.0
+offset_left = 570.0
+offset_top = 1590.0
+offset_right = 710.0
+offset_bottom = 1730.0
 grow_horizontal = 1
 grow_vertical = 1
 skill_id = "drill_crit_damage"
@@ -268,20 +329,51 @@ skill_id = "nodes_landing"
 icon = ExtResource("11_tt40d")
 parent_node = NodePath("../Core")
 
-[node name="DropChanceNode" parent="TreeView" unique_id=1111836776 node_paths=PackedStringArray("parent_node") instance=ExtResource("1_c1qs3")]
+[node name="ConnectorNode5" parent="TreeView" unique_id=428899155 node_paths=PackedStringArray("parent_node") instance=ExtResource("1_c1qs3")]
+modulate = Color(1, 1, 1, 0.4)
+layout_mode = 0
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 890.0
+offset_top = 1430.0
+offset_right = 1030.0
+offset_bottom = 1570.0
+grow_horizontal = 1
+grow_vertical = 1
+mouse_filter = 2
+parent_node = NodePath("../DrillDamageNode2")
+is_connector = true
+
+[node name="ChipChance" parent="TreeView" unique_id=1111836776 node_paths=PackedStringArray("parent_node") instance=ExtResource("1_c1qs3")]
 layout_mode = 0
 anchors_preset = 0
 anchor_right = 0.0
 anchor_bottom = 0.0
 offset_left = 840.0
-offset_top = 1300.0
+offset_top = 1620.0
 offset_right = 1080.0
-offset_bottom = 1540.0
+offset_bottom = 1860.0
 grow_horizontal = 1
 grow_vertical = 1
-skill_id = "drop_chance"
+skill_id = "chip_chance_unlock"
 icon = ExtResource("12_y0o01")
-parent_node = NodePath("../DrillSpeedNode")
+parent_node = NodePath("../ConnectorNode5")
+
+[node name="ChipChance2" parent="TreeView" unique_id=1455493265 node_paths=PackedStringArray("parent_node") instance=ExtResource("1_c1qs3")]
+layout_mode = 0
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 890.0
+offset_top = 1990.0
+offset_right = 1030.0
+offset_bottom = 2130.0
+grow_horizontal = 1
+grow_vertical = 1
+skill_id = "chip_chance"
+icon = ExtResource("12_y0o01")
+parent_node = NodePath("../ChipChance")
 
 [node name="DestroyDropsNode" parent="TreeView" unique_id=1036982031 node_paths=PackedStringArray("parent_node") instance=ExtResource("1_c1qs3")]
 layout_mode = 0
@@ -329,7 +421,7 @@ skill_id = "move_speed"
 icon = ExtResource("8_at6o2")
 parent_node = NodePath("../ConnectorNode3")
 
-[node name="BombChargesNode" parent="TreeView" unique_id=280241640 node_paths=PackedStringArray("parent_node") instance=ExtResource("1_c1qs3")]
+[node name="BombUnlock" parent="TreeView" unique_id=280241640 node_paths=PackedStringArray("parent_node") instance=ExtResource("1_c1qs3")]
 layout_mode = 0
 anchors_preset = 0
 anchor_right = 0.0
@@ -340,9 +432,24 @@ offset_right = 1080.0
 offset_bottom = 340.0
 grow_horizontal = 1
 grow_vertical = 1
-skill_id = "bomb_charges"
+skill_id = "bomb_unlock"
 icon = ExtResource("15_exa8l")
 parent_node = NodePath("../Core")
+
+[node name="BombChargesNode2" parent="TreeView" unique_id=1327240237 node_paths=PackedStringArray("parent_node") instance=ExtResource("1_c1qs3")]
+layout_mode = 0
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 570.0
+offset_top = 150.0
+offset_right = 710.0
+offset_bottom = 290.0
+grow_horizontal = 1
+grow_vertical = 1
+skill_id = "bomb_charges"
+icon = ExtResource("17_y0o01")
+parent_node = NodePath("../BombUnlock")
 
 [node name="Effects" type="Control" parent="." unique_id=597609919]
 layout_mode = 1
