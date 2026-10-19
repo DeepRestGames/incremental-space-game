@@ -63,7 +63,6 @@ func _ready() -> void:
 
 	_apply_icon()
 	update_appearance()
-	update_tooltip()
 
 
 ## Pushes the exported icon onto the child TextureRect. Safe to call before the
@@ -172,7 +171,6 @@ func add_point() -> void:
 		var all_nodes = get_tree().get_nodes_in_group("SkillNodes")
 		for node in all_nodes:
 			node.update_appearance()
-			node.update_tooltip()
 
 		# Refresh the parent tree drawing and hover detail panel in real time
 		var skill_tree = get_skill_tree()
@@ -196,7 +194,6 @@ func remove_point() -> void:
 		var all_nodes = get_tree().get_nodes_in_group("SkillNodes")
 		for node in all_nodes:
 			node.update_appearance()
-			node.update_tooltip()
 
 		# Refresh the parent tree drawing and hover detail panel in real time
 		var skill_tree = get_skill_tree()
@@ -299,29 +296,3 @@ func update_appearance() -> void:
 				border.modulate = COLOR_LOCKED
 				skill_icon.texture = locked_icon
 				skill_icon.modulate = COLOR_LOCKED
-
-
-func update_tooltip() -> void:
-	if Engine.is_editor_hint():
-		return
-	if is_connector:
-		return
-	if skill_id == "":
-		return
-
-	var skill_info = GameManager.skill_db.get(skill_id, {})
-	var s_name = skill_info.get("name", "Unknown Skill")
-	var s_desc = skill_info.get("description", "")
-	var points = GameManager.get_skill_points(skill_id)
-	var max_pts = GameManager.get_skill_max_levels(skill_id)
-
-	# Check lock status for display
-	var lock_status = ""
-	var ancestor = get_nearest_standard_ancestor()
-	if ancestor != null and GameManager.get_skill_points(ancestor.skill_id) == 0:
-		var ancestor_name = GameManager.skill_db.get(ancestor.skill_id, {}).get("name", "Parent Skill")
-		lock_status = "\n[LOCKED - Requires 1 point in %s]" % ancestor_name
-
-	var cost_line := ""
-	if points < max_pts:
-		cost_line = "\nCost: %s" % ResourceDB.format_cost(GameManager.get_skill_cost(skill_id))
