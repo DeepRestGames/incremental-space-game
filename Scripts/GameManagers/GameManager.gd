@@ -194,6 +194,9 @@ func get_selected_level_name() -> String:
 func is_oxygen_draining() -> bool:
 	return expedition_started and expedition_grace_remaining <= 0.0
 
+func is_expedition_starting() -> bool:
+	return expedition_started and expedition_grace_remaining > 0.0
+
 
 func on_expedition_started() -> void:
 	expedition_started = true
