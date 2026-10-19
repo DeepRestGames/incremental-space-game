@@ -1,18 +1,11 @@
 [gd_scene format=3 uid="uid://d1wcerbx6yrx"]
 
 [ext_resource type="PackedScene" uid="uid://k5air2e7arh4" path="res://Scenes/Resources/BasePickup.tscn" id="1_744bp"]
-[ext_resource type="Texture2D" uid="uid://d0l37aljkbdpu" path="res://Assets/Resources/drops/white_square_drop.png" id="2_litbj"]
-[ext_resource type="Script" uid="uid://bss1cajnebhpo" path="res://Scripts/Resources/Minerals/ResourceType.gd" id="3_xy8f3"]
-
-[sub_resource type="Resource" id="Resource_4icnu"]
-script = ExtResource("3_xy8f3")
-id = &"white_square"
-display_name = "White Square"
-icon = ExtResource("2_litbj")
-metadata/_custom_type_script = "uid://bss1cajnebhpo"
+[ext_resource type="Resource" uid="uid://cag2bw6x17n46" path="res://GameResources/Materials/white_square.tres" id="2_744bp"]
+[ext_resource type="Texture2D" uid="uid://d0l37aljkbdpu" path="res://Assets/Sprites/Resources/drops/white_square_drop.png" id="2_litbj"]
 
 [node name="white_triangle" unique_id=572087542 instance=ExtResource("1_744bp")]
-resource_type = SubResource("Resource_4icnu")
+resource_type = ExtResource("2_744bp")
 
 [node name="Sprite2D" parent="." index="1" unique_id=675609398]
 texture = ExtResource("2_litbj")

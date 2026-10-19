@@ -35,7 +35,8 @@ folder_colors={
 "res://Addons/at-icons/control/": "green",
 "res://Addons/at-icons/node/": "gray",
 "res://Addons/at-icons/node3d/": "red",
-"res://Assets/": "yellow"
+"res://Assets/": "yellow",
+"res://GameResources/": "teal"
 }
 
 [global_group]

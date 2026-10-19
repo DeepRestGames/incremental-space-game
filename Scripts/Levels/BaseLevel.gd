@@ -70,7 +70,7 @@ func spawn_level_objects() -> void:
 		#random instance colour variation
 		var random_value = randf_range(-0.1, +0.1)
 		instance.modulate.v += random_value
-		var random_hue = randf_range(10/360, 10/360)
+		var random_hue = randf_range(-10.0/360, 10.0/360)
 		instance.modulate.h += random_hue
 	
 		

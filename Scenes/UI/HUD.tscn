@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://beyb44q40vqlr"]
 
-[ext_resource type="Texture2D" uid="uid://c7i1fbpfyino7" path="res://Assets/Sprites/particles/VignetteQuantized.png" id="1_khvou"]
+[ext_resource type="Texture2D" uid="uid://cqwlreb6f151w" path="res://Assets/Sprites/particles/Vignette.png" id="1_55bpt"]
 [ext_resource type="Script" uid="uid://mcvf683b2t30" path="res://Scripts/UI/HUD/InteractionPrompt.gd" id="1_omqfp"]
 [ext_resource type="Texture2D" uid="uid://yylsxxyv6m4q" path="res://Assets/Sprites/particles/AtmosphereOverlay.png" id="2_55bpt"]
 [ext_resource type="Script" uid="uid://qe84tw2v6xbm" path="res://Scripts/UI/HUD/ResourceCounter.gd" id="2_xaom8"]
@@ -12,7 +12,7 @@
 [ext_resource type="Script" uid="uid://d02rqtjowyuap" path="res://Scripts/UI/HUD/hud_mockup_animation.gd" id="9_pydgx"]
 [ext_resource type="Texture2D" uid="uid://1whuycuvjxsl" path="res://Assets/UI/HUD_mockup_clean_2.png" id="10_jt2rc"]
 [ext_resource type="Script" uid="uid://bc3f476l57gt1" path="res://Scripts/UI/HUD/MoneyCounter.gd" id="10_money"]
-[ext_resource type="Resource" uid="uid://it7l7a3ndxfy" path="res://Assets/Resources/money_1.tres" id="10_restype"]
+[ext_resource type="Resource" uid="uid://it7l7a3ndxfy" path="res://GameResources/money_1.tres" id="10_restype"]
 [ext_resource type="Texture2D" uid="uid://dcisudmqov3na" path="res://Assets/PLACEHOLDERS/rock_currency.svg" id="11_rock"]
 [ext_resource type="Texture2D" uid="uid://4tr34ksq0npv" path="res://Assets/PLACEHOLDERS/money_currency.svg" id="12_money"]
 [ext_resource type="PackedScene" path="res://Scenes/UI/ExpeditionIntro.tscn" id="13_intro"]
@@ -46,28 +46,27 @@ corner_radius_bottom_left = 2
 [node name="HUDCanvasLayer" type="CanvasLayer" unique_id=1829917660]
 
 [node name="Vignette" type="TextureRect" parent="." unique_id=432924437]
-modulate = Color(1, 1, 1, 0.16470589)
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -479.5
-offset_top = -404.0
-offset_right = 479.5
-offset_bottom = 498.0
+offset_left = -37.917725
+offset_top = -40.0
+offset_right = 37.917725
+offset_bottom = 151.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-texture = ExtResource("1_khvou")
+texture = ExtResource("1_55bpt")
 
 [node name="Atmosphere_overlay" type="TextureRect" parent="." unique_id=514454963]
 modulate = Color(1, 1, 1, 0.16470589)
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -479.5
-offset_top = -404.0
-offset_right = 479.5
-offset_bottom = 498.0
+offset_left = -361.84155
+offset_top = -354.0
+offset_right = 361.84155
+offset_bottom = 386.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2

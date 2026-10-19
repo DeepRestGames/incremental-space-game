@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="ResourceType" format=3 uid="uid://4xra85surmlh"]
+
+[ext_resource type="Texture2D" uid="uid://5a2y1w28h0tq" path="res://Assets/Sprites/Resources/drops/white_triangle_drop.png" id="1_vdj48"]
+[ext_resource type="Script" uid="uid://bss1cajnebhpo" path="res://Scripts/Resources/Minerals/ResourceType.gd" id="2_bmksr"]
+
+[resource]
+script = ExtResource("2_bmksr")
+id = &"white_triangle"
+display_name = "White Triangle"
+icon = ExtResource("1_vdj48")
+metadata/_custom_type_script = "uid://bss1cajnebhpo"
