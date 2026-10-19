@@ -24,8 +24,8 @@ func randomize_spawn_direction() -> void:
 
 	#fake z movement
 	var tween_z = get_tree().create_tween().set_ease(Tween.EASE_OUT)
-	tween_z.tween_property(sprite_2d, "position:y", starting_z - z_height, spawn_duration / 4).set_trans(
-			Tween.TRANS_CUBIC)
+	tween_z.tween_property(sprite_2d, "position:y", starting_z - z_height, spawn_duration / 4) \
+			.set_trans(Tween.TRANS_CUBIC)
 	tween_z.tween_property(sprite_2d, "position:y", 0, spawn_duration / 4 * 3).set_trans(Tween.TRANS_BOUNCE)
 
 	var tween_x = get_tree().create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)

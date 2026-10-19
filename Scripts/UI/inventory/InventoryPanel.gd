@@ -35,7 +35,7 @@ func _input(event: InputEvent) -> void:
 
 
 func _can_open() -> bool:
-	if GameManager.transitioning:
+	if GameManager.transitioning or GameManager.is_expedition_starting():
 		return false
 	# On top of the skill tree is fine
 	return GameManager.skill_tree_open or not (GameManager.game_paused or GameManager.is_modal_ui_open())
@@ -60,7 +60,7 @@ func _close() -> void:
 
 
 func _refresh() -> void:
-	# Guardie: something went wrong
+	# nothing to draw while closed
 	if not _panel.visible:
 		return
 	if _over_skill_tree and not GameManager.skill_tree_open:

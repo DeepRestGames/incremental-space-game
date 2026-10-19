@@ -305,10 +305,8 @@ func update_tooltip() -> void:
 	if Engine.is_editor_hint():
 		return
 	if is_connector:
-		tooltip_text = ""
 		return
 	if skill_id == "":
-		tooltip_text = "Unassigned Skill Node"
 		return
 
 	var skill_info = GameManager.skill_db.get(skill_id, {})
@@ -327,4 +325,3 @@ func update_tooltip() -> void:
 	var cost_line := ""
 	if points < max_pts:
 		cost_line = "\nCost: %s" % ResourceDB.format_cost(GameManager.get_skill_cost(skill_id))
-	tooltip_text = "%s%s\n%s\nPoints: %d/%d%s" % [s_name, lock_status, s_desc, points, max_pts, cost_line]

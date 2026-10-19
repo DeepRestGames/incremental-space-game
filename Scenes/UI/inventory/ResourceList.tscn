@@ -2,5 +2,8 @@
 
 [ext_resource type="Script" uid="uid://sdx6gtd7n0s0" path="res://Scripts/UI/inventory/ResourceList.gd" id="1_4lhwk"]
 
-[node name="ResourceList" type="VBoxContainer" unique_id=639554383]
+[node name="ResourceList" type="GridContainer" unique_id=639554383]
+theme_override_constants/h_separation = 8
+theme_override_constants/v_separation = 8
+columns = 4
 script = ExtResource("1_4lhwk")

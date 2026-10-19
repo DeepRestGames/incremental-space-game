@@ -1,0 +1,49 @@
+[gd_scene format=3 uid="uid://bsouoomfrkjey"]
+
+[ext_resource type="Theme" uid="uid://cvjvny2ur7xve" path="res://Assets/UI/Themes/Crafting_theme.tres" id="1_w5t0q"]
+[ext_resource type="Script" uid="uid://csgnq5jrxf23t" path="res://Scripts/UI/inventory/ResourceSlot.gd" id="2_w5t0q"]
+[ext_resource type="Texture2D" uid="uid://dkrwk0exgfubs" path="res://Addons/at-icons/node2d/at.svg" id="3_mo6oc"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_slot"]
+bg_color = Color(0.043, 0.063, 0.125, 0.9)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.051, 0.949, 0.949, 1)
+content_margin_left = 4.0
+content_margin_top = 2.0
+content_margin_right = 5.0
+content_margin_bottom = 2.0
+
+[node name="ResourceSlot" type="PanelContainer" unique_id=802071946]
+custom_minimum_size = Vector2(64, 64)
+theme = ExtResource("1_w5t0q")
+theme_override_styles/panel = SubResource("StyleBoxFlat_slot")
+script = ExtResource("2_w5t0q")
+
+[node name="Margin" type="MarginContainer" parent="." unique_id=1290457731]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 12
+
+[node name="Icon" type="TextureRect" parent="Margin" unique_id=1704069898]
+unique_name_in_owner = true
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("3_mo6oc")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Amount" type="Label" parent="." unique_id=1845619408]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+text = "9999"
+horizontal_alignment = 2
+vertical_alignment = 2
