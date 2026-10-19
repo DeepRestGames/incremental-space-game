@@ -10,6 +10,7 @@ script = ExtResource("2_am7h0")
 scene = ExtResource("3_3n3cf")
 min_amount = 2
 max_amount = 3
+drops_while_drilling = true
 metadata/_custom_type_script = "uid://cq1k63dpg13de"
 
 [sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_a76hy"]

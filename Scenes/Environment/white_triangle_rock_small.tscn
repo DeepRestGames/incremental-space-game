@@ -10,12 +10,14 @@ script = ExtResource("2_kkm7j")
 scene = ExtResource("3_77krg")
 min_amount = 2
 max_amount = 3
+drops_while_drilling = true
 metadata/_custom_type_script = "uid://cq1k63dpg13de"
 
 [sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_a76hy"]
 points = PackedVector2Array(1.0003943, 108.99999, -16.999798, 56.00006, -15.000214, -58.999947, -3.000391, -107.99999, 22.999754, -68.000084, 34.000015, 3.999877, 21.000326, 89.99992)
 
 [node name="white_triangle_rock_small" unique_id=1949437542 instance=ExtResource("1_o35jv")]
+totalHP = 30
 particle_modulate = Color(0.43710002, 0.5931851, 0.93, 1)
 drops = Array[ExtResource("2_kkm7j")]([SubResource("Resource_dit80")])
 

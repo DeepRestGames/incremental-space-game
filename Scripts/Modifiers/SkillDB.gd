@@ -23,13 +23,13 @@ static func uses_resource(id: StringName) -> bool:
 
 const DATABASE: Dictionary = {
 	"center_node": {
-		"name": "Exosuit",
-		"description": "Your amazing drilling suit.",
+		"name": "Impact Drill",
+		"description": "A drill and a suit. That's all you have... for now.",
 		"cost": [{}],
 		"effects": {}
 	},
 	"drill_damage": {
-		"name": "Drill Power",
+		"name": "Torque Power",
 		"description": "Increases drill damage per tick.",
 		"cost": [{ResourceDB.WHITE_CHIP: 6}],
 		"effects": {
@@ -39,55 +39,99 @@ const DATABASE: Dictionary = {
 			}
 		}
 	},
-	"drill_speed": {
+	"drill_damage_2": {
+		"name": "That's gonna hurt",
+		"description": "Significantly increases drill damage per tick.",
+		"cost": [{ResourceDB.WHITE_CHIP: 25}],
+		"effects": {
+			"drill_damage_per_tick": {
+				"type": "ADDITIVE",
+				"value": 1
+			}
+		}
+	},
+	"drill_speed_1": {
 		"name": "Drill Speed",
 		"description": "Increases drill attack speed.",
-		"cost": [{ResourceDB.WHITE_CHIP: 10}, {ResourceDB.WHITE_CHIP: 15}, {ResourceDB.WHITE_CHIP: 22}, {ResourceDB.WHITE_CHIP: 32},
-			{ResourceDB.WHITE_CHIP: 45}],
+		"cost": [{ResourceDB.WHITE_CHIP: 8}],
 		"effects": {
 			"drill_attack_speed": {
 				"type": "ADDITIVE",
-				"value": 0.1
+				"value": 0.2
+			}
+		}
+	},
+	
+	"drill_speed_2": {
+		"name": "More Drill Speed",
+		"description": "Increases drill attack speed significantly.",
+		"cost": [{ResourceDB.WHITE_CHIP: 17}],
+		"effects": {
+			"drill_attack_speed": {
+				"type": "ADDITIVE",
+				"value": 0.3
 			}
 		}
 	},
 	"drill_crit": {
-		"name": "Lucky Strike",
-		"description": "Increases chance of critical drilling damage",
-		"cost": [{ResourceDB.WHITE_CHIP: 13}, {ResourceDB.WHITE_CHIP: 24}, {ResourceDB.WHITE_CHIP: 39}],
+		"name": "Beginner's Luck",
+		"description": "Increases chance of critical damage per tick",
+		"cost": [{ResourceDB.WHITE_CHIP: 8}],
 		"effects": {
 			"drill_crit_chance": {
 				"type": "FLAT",
-				"value": 0.07
+				"value": 0.1
+			}
+		}
+	},
+	"drill_crit_2": {
+		"name": "Superior Technique",
+		"description": "Increases chance of critical damage per tick",
+		"cost": [{ResourceDB.WHITE_CHIP: 15}],
+		"effects": {
+			"drill_crit_chance": {
+				"type": "FLAT",
+				"value": 0.1
 			}
 		}
 	},
 	"drill_crit_damage": {
-		"name": "Crushing Blows",
-		"description": "Increases drill crit damage.",
-		"cost": [{ResourceDB.WHITE_CHIP: 20}, {ResourceDB.WHITE_CHIP: 40}],
+		"name": "Devastating Criticals",
+		"description": "Increases critical damage multiplier.",
+		"cost": [{ResourceDB.WHITE_CHIP: 13}, {ResourceDB.WHITE_CHIP: 17}],
 		"effects": {
 			"drill_crit_damage": {
+				"type": "ADDITIVE",
+				"value": 1
+			}
+		}
+	},
+	"drill_area": {
+		"name": "Big Drilling",
+		"description": "Increases drill area size.",
+		"cost": [{ResourceDB.WHITE_CHIP: 4}],
+		"effects": {
+			"drill_area_size": {
 				"type": "ADDITIVE",
 				"value": 0.5
 			}
 		}
 	},
-	"drill_area": {
-		"name": "Wide Reaches",
-		"description": "Increases drill area size.",
-		"cost": [{ResourceDB.WHITE_CHIP: 5}],
+	"drill_area_2": {
+		"name": "Big Ass Drill",
+		"description": "Significantly increases drill area size.",
+		"cost": [{ResourceDB.WHITE_CHIP: 30}],
 		"effects": {
 			"drill_area_size": {
 				"type": "ADDITIVE",
-				"value": .5
+				"value": 1
 			}
 		}
 	},
 	"oxygen_capacity": {
 		"name": "Oxygen Reserve",
 		"description": "Increases oxygen tank capacity.",
-		"cost": [{ResourceDB.WHITE_CHIP: 3}],
+		"cost": [{ResourceDB.WHITE_CHIP: 2}],
 		"effects": {
 			"oxygen_tank_capacity": {
 				"type": "ADDITIVE",
@@ -109,7 +153,7 @@ const DATABASE: Dictionary = {
 	"nodes_landing": {
 		"name": "Node Locator",
 		"description": "Increases nodes found on landing.",
-		"cost": [{ResourceDB.WHITE_CHIP: 20}],
+		"cost": [{ResourceDB.WHITE_CHIP: 50}],
 		"effects": {
 			"nodes_on_landing": {
 				"type": "ADDITIVE",
@@ -117,10 +161,21 @@ const DATABASE: Dictionary = {
 			}
 		}
 	},
-	"drop_chance": {
-		"name": "Lucky Drilling",
-		"description": "Increases chance to generate a drop per drilling tick.",
-		"cost": [{ResourceDB.WHITE_CHIP: 25}, {ResourceDB.WHITE_CHIP: 25}, {ResourceDB.WHITE_CHIP: 25}],
+	"chip_chance_unlock": {
+		"name": "Chipping tech",
+		"description": "Adds chance to find additional while drilling.",
+		"cost": [{ResourceDB.WHITE_CHIP: 50}],
+		"effects": {
+			"drop_chance_per_tick": {
+				"type": "FLAT",
+				"value": 0.05
+			}
+		}
+	},
+	"chip_chance": {
+		"name": "Chipping tech",
+		"description": "Increases chance to find additional resources while drilling.",
+		"cost": [{ResourceDB.WHITE_CHIP: 25}, {ResourceDB.WHITE_CHIP: 25}],
 		"effects": {
 			"drop_chance_per_tick": {
 				"type": "FLAT",
@@ -142,7 +197,7 @@ const DATABASE: Dictionary = {
 	"move_speed": {
 		"name": "Thruster Tuning",
 		"description": "Increases movement speed.",
-		"cost": [{ResourceDB.WHITE_CHIP: 50}],
+		"cost": [{ResourceDB.WHITE_CHIP: 10}],
 		"effects": {
 			"movement_speed": {
 				"type": "ADDITIVE",
@@ -151,20 +206,30 @@ const DATABASE: Dictionary = {
 		}
 	},
 	"inventory_capacity": {
-		"name": "Bigger Backpack",
-		"description": "Increases how many resources you can carry.",
-		"cost": [{ResourceDB.WHITE_CHIP: 8}, {ResourceDB.WHITE_CHIP: 13}, {ResourceDB.WHITE_CHIP: 18}, {ResourceDB.WHITE_CHIP: 23},
-			{ResourceDB.WHITE_CHIP: 28}],
+		"name": "Big Bag",
+		"description": "Increases expedition inventory capacity",
+		"cost": [{ResourceDB.WHITE_CHIP: 6}],
 		"effects": {
 			"inventory_capacity": {
 				"type": "FLAT",
-				"value": 5.0
+				"value": 10.0
+			}
+		}
+	},
+	"bomb_unlock": {
+		"name": "Geofracturing Device",
+		"description": "Unlocks a powerful device which fractures rocks in an area",
+		"cost": [{ResourceDB.BLUE_DIAMOND: 1}],
+		"effects": {
+			"bomb_charges": {
+				"type": "FLAT",
+				"value": 1.0
 			}
 		}
 	},
 	"bomb_charges": {
-		"name": "Bomb Payload",
-		"description": "Increases number of bomb charges.",
+		"name": "GFD Charges",
+		"description": "Increases Geofracturing Device charges.",
 		"cost": [{ResourceDB.WHITE_CHIP: 45}, {ResourceDB.WHITE_CHIP: 45}, {ResourceDB.WHITE_CHIP: 45}],
 		"effects": {
 			"bomb_charges": {

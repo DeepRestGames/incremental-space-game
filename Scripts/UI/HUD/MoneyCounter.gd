@@ -14,6 +14,8 @@ func _ready() -> void:
 	resource_icon.texture = resource_type.icon
 
 	update_money_counter_value()
+	
+	visible = !GameManager.expedition_started
 
 
 func update_money_counter_value() -> void:
