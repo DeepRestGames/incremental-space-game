@@ -21,7 +21,7 @@ func _ready() -> void:
 func check_interaction() -> void:
 	if not player_in_area:
 		return
-	for recipe in RecipeDB.recipes_for(&"shop"):
+	for recipe in RecipeDB.recipes_for(&"processor"):
 		GameManager.craft(recipe, GameManager.max_crafts(recipe))
 
 func _on_body_entered(body: Node2D) -> void:
