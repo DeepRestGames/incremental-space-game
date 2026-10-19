@@ -150,17 +150,6 @@ const DATABASE: Dictionary = {
 			}
 		}
 	},
-	"nodes_landing": {
-		"name": "Node Locator",
-		"description": "Increases nodes found on landing.",
-		"cost": [{ResourceDB.WHITE_CHIP: 50}],
-		"effects": {
-			"nodes_on_landing": {
-				"type": "ADDITIVE",
-				"value": 0.75
-			}
-		}
-	},
 	"chip_chance_unlock": {
 		"name": "Chipping tech",
 		"description": "Adds chance to find additional while drilling.",
@@ -238,6 +227,18 @@ const DATABASE: Dictionary = {
 			}
 		}
 	},
+	# ---------------- PLANET SPECIFIC
+	"deep_scan_bastet": {
+		"name": "Deep Scan: Bastet",
+		"description": "Fewer common rocks on Bastet, more of the valuable ones.",
+		"cost": [{ResourceDB.WHITE_CHIP: 30}, {ResourceDB.WHITE_CHIP: 60}],
+		"effects": {
+			"bastet_common_weight": 
+				{"type": "ADDITIVE",
+				 "value": -0.25}
+		}
+	},
+	
 	#"XXX": {
 	#"name": "XXX Box",
 	#"description": "Keep more of your cargo when an expedition fails.",

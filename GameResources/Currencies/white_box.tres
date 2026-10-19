@@ -6,6 +6,6 @@
 [resource]
 script = ExtResource("2_mx5hs")
 id = &"white_box"
-display_name = "WHITE BOX"
+display_name = "White Box"
 icon = ExtResource("1_eadw0")
 metadata/_custom_type_script = "uid://bss1cajnebhpo"

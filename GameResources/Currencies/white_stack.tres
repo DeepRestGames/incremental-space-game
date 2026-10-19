@@ -6,6 +6,6 @@
 [resource]
 script = ExtResource("2_mpevw")
 id = &"white_stack"
-display_name = "WHITE STACK"
+display_name = "White Stack"
 icon = ExtResource("1_o24le")
 metadata/_custom_type_script = "uid://bss1cajnebhpo"

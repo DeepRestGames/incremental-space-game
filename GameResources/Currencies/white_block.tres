@@ -6,6 +6,6 @@
 [resource]
 script = ExtResource("2_4qowm")
 id = &"white_block"
-display_name = "WHITE BLOCK"
+display_name = "White Block"
 icon = ExtResource("1_twfo6")
 metadata/_custom_type_script = "uid://bss1cajnebhpo"

@@ -39,7 +39,7 @@ func _load_dynamic_level_data() -> void:
 		var gen = temp_instance.get_node_or_null("MapCoordinateGenerator")
 		if gen:
 			# Calculate percentages
-			var dist: Dictionary = gen.spawn_distribution
+			var dist: Dictionary = gen.get_effective_weights()
 			var total_w := 0.0
 			for sc in dist:
 				if sc:

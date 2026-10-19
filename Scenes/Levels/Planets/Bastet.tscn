@@ -63,3 +63,6 @@ ExtResource("5_1p6vp"): 8.0,
 ExtResource("6_7ycos"): 4.0,
 ExtResource("7_svvui"): 1.0
 })
+weight_stats = Dictionary[PackedScene, StringName]({
+ExtResource("4_7ycos"): &"bastet_common_weight"
+})

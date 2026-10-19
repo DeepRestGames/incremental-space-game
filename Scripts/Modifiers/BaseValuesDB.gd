@@ -56,4 +56,7 @@ const BASE_VALUES: Dictionary = {
 	"failure_keep_ratio": FAILURE_KEEP_RATIO,
 	"nodes_on_landing": 0.0,
 	"drops_on_destruction": 0.0,
+	# Spawn-weight scalers. The real base is each entry's weight in that planet's
+	# SpawnDistribution; these only register the ids so skills may target them.
+	"bastet_common_weight": 1.0,
 }

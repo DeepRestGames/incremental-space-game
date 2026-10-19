@@ -33,6 +33,12 @@ var spawn_distribution: Dictionary:
 			dist_node.spawn_distribution = value
 		else:
 			_spawn_distribution_fallback = value
+			
+func get_effective_weights() -> Dictionary:
+	var dist_node = get_node_or_null("SpawnDistribution")
+	if dist_node:
+		return dist_node.get_effective_weights()
+	return _spawn_distribution_fallback
 
 var _spawn_distribution_fallback: Dictionary = {}
 
@@ -165,9 +171,10 @@ func _prepare_weight_distribution() -> void:
 	_cumulative_weights.clear()
 	_scenes_pool.clear()
 
-	for scene in spawn_distribution:
+	var weights := get_effective_weights()
+	for scene in weights:
 		if scene is PackedScene:
-			var weight: float = spawn_distribution[scene]
+			var weight: float = weights[scene]
 			_total_weight += max(weight, 0.0)
 			_cumulative_weights.append(_total_weight)
 			_scenes_pool.append(scene)

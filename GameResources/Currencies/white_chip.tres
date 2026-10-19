@@ -6,6 +6,6 @@
 [resource]
 script = ExtResource("2_2dgcp")
 id = &"white_chip"
-display_name = "WHITE CHIP"
+display_name = "White Chip"
 icon = ExtResource("1_7n2jf")
 metadata/_custom_type_script = "uid://bss1cajnebhpo"

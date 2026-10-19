@@ -314,7 +314,7 @@ skill_id = "drill_crit_damage"
 icon = ExtResource("10_etyxl")
 parent_node = NodePath("../DrillCritNode")
 
-[node name="NodesLandingNode" parent="TreeView" unique_id=463258676 node_paths=PackedStringArray("parent_node") instance=ExtResource("1_c1qs3")]
+[node name="BastetImprovement" parent="TreeView" unique_id=463258676 node_paths=PackedStringArray("parent_node") instance=ExtResource("1_c1qs3")]
 layout_mode = 0
 anchors_preset = 0
 anchor_right = 0.0
@@ -325,7 +325,7 @@ offset_right = 710.0
 offset_bottom = 610.0
 grow_horizontal = 1
 grow_vertical = 1
-skill_id = "nodes_landing"
+skill_id = "deep_scan_bastet"
 icon = ExtResource("11_tt40d")
 parent_node = NodePath("../Core")
 
@@ -388,7 +388,7 @@ grow_horizontal = 1
 grow_vertical = 1
 skill_id = "destroy_drops"
 icon = ExtResource("13_5m2m7")
-parent_node = NodePath("../NodesLandingNode")
+parent_node = NodePath("../BastetImprovement")
 
 [node name="ConnectorNode3" parent="TreeView" unique_id=1032691374 node_paths=PackedStringArray("parent_node") instance=ExtResource("1_c1qs3")]
 modulate = Color(1, 1, 1, 0.4)
