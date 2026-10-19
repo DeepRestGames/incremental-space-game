@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="ConversionRecipe" format=3 uid="uid://durq7non06fxf"]
+
+[ext_resource type="Script" uid="uid://bss1cajnebhpo" path="res://Scripts/Resources/Minerals/ResourceType.gd" id="1_kpaay"]
+[ext_resource type="Resource" uid="uid://4xra85surmlh" path="res://GameResources/Materials/white_triangle.tres" id="2_ktj4j"]
+[ext_resource type="Resource" uid="uid://2q7gnpjkf8pp" path="res://GameResources/Currencies/white_chip.tres" id="3_jygub"]
+[ext_resource type="Script" uid="uid://fji2tdcre58v" path="res://Scripts/Resources/Recipes/ConversionRecipe.gd" id="4_e1oso"]
+
+[resource]
+script = ExtResource("4_e1oso")
+display_name = "Convert to chips"
+inputs = Dictionary[ExtResource("1_kpaay"), int]({
+ExtResource("2_ktj4j"): 1
+})
+output = ExtResource("3_jygub")
+station = &"processor"
+metadata/_custom_type_script = "uid://fji2tdcre58v"

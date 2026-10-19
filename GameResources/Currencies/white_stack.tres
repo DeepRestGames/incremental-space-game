@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="ResourceType" format=3 uid="uid://8wmsviqcnic8"]
+
+[ext_resource type="Texture2D" uid="uid://brffon4a5iypp" path="res://Assets/Sprites/Resources/Currencies/white_stack.png" id="1_o24le"]
+[ext_resource type="Script" uid="uid://bss1cajnebhpo" path="res://Scripts/Resources/Minerals/ResourceType.gd" id="2_mpevw"]
+
+[resource]
+script = ExtResource("2_mpevw")
+id = &"white_stack"
+display_name = "WHITE STACK"
+icon = ExtResource("1_o24le")
+metadata/_custom_type_script = "uid://bss1cajnebhpo"

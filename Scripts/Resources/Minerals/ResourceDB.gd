@@ -6,13 +6,21 @@ const ORE1 := preload("res://GameResources/ore_1.tres")
 const ORE2 := preload("res://GameResources/ore_2.tres")
 const REFINED1 := preload("res://GameResources/refined_1.tres")
 const REFINED2 := preload("res://GameResources/refined_2.tres")
+#Materials
 const WHITE_TRIANGLE = preload("uid://4xra85surmlh")
 const WHITE_SQUARE = preload("uid://cag2bw6x17n46")
 const BLUE_DIAMOND = preload("uid://d1r5ngv5sjq48")
+#Currencies
+const WHITE_CHIP = preload("uid://2q7gnpjkf8pp")
+const WHITE_STACK = preload("uid://8wmsviqcnic8")
+const WHITE_BOX = preload("uid://brf3wf1qbvkk3")
+const WHITE_BLOCK = preload("uid://5pbr7w37g0y4")
 
 
 # NOTE: questo può essere usato per definire l'ordine di display or smth
-const ALL: Array[ResourceType] = [BLUE_DIAMOND, WHITE_SQUARE, WHITE_TRIANGLE, MONEY1, MONEY2, ORE1, ORE2, REFINED1, REFINED2]
+const ALL: Array[ResourceType] = [WHITE_CHIP, WHITE_STACK, WHITE_BOX, WHITE_BLOCK,
+BLUE_DIAMOND, WHITE_SQUARE, WHITE_TRIANGLE, 
+MONEY1, MONEY2, ORE1, ORE2, REFINED1, REFINED2]
 
 static var _by_id: Dictionary = {}
 
