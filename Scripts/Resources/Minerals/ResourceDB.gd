@@ -10,6 +10,7 @@ const WHITE_TRIANGLE = preload("uid://4xra85surmlh")
 const WHITE_SQUARE = preload("uid://cag2bw6x17n46")
 const BLUE_DIAMOND = preload("uid://d1r5ngv5sjq48")
 
+const RESOURCE_ROOT := "res://GameResources/"
 
 # NOTE: questo può essere usato per definire l'ordine di display or smth
 const ALL: Array[ResourceType] = [BLUE_DIAMOND, WHITE_SQUARE, WHITE_TRIANGLE, MONEY1, MONEY2, ORE1, ORE2, REFINED1, REFINED2]
@@ -36,9 +37,20 @@ static func validate() -> void:
 		else:
 			seen[t.id] = t.resource_path
 
-	for f in DirAccess.get_files_at("res://Assets/Resources/"):
-		if f.ends_with(".tres") and not _is_listed(f):
-			push_warning("ResourceDB: %s exists but is not in ALL" % f)
+	_warn_unlisted(RESOURCE_ROOT)
+	
+## Walks the folder tree and warns about any ResourceType on disk that isn't in
+## ALL. Compares the loaded object, not the file name, so a recipe that shares a
+## file name with a resource can neither hide nor fake a match.
+static func _warn_unlisted(dir: String) -> void:
+	for sub in DirAccess.get_directories_at(dir):
+		_warn_unlisted(dir.path_join(sub))
+	for f in DirAccess.get_files_at(dir):
+		if not f.ends_with(".tres"):
+			continue
+		var res := load(dir.path_join(f))
+		if res is ResourceType and not ALL.has(res):
+			push_warning("ResourceDB: %s is not in ALL" % dir.path_join(f))
 
 
 ## True if `file_name` (e.g. "ore_1.tres") is one of the resources in ALL.
