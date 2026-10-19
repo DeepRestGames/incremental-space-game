@@ -5,9 +5,8 @@ extends Control
 @export var asphyxiated_title: String = "ASPHYXIATED"
 @export var time_label: Label
 @export var destroyed_label: Label
-@export var resource_triangle_label: RichTextLabel
-@export var resource_circle_label: RichTextLabel
-@export var resource_square_label: RichTextLabel
+@export var resource_list: ResourceList
+@export var loss_label: Label
 
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
@@ -25,20 +24,22 @@ func _ready() -> void:
 	
 	destroyed_label.text = "• Nodes Mined: %d" % GameManager.expedition_destroyed_nodes
 
-	_set_resource_text(resource_triangle_label, ResourceDB.total_of(GameManager.expedition_resources_collected))
-	_set_resource_text(resource_circle_label, 0)
-	_set_resource_text(resource_square_label, 0)
+	resource_list.show_resources(GameManager.expedition_resources_collected, _gathered, _amount_text)
+
+	loss_label.visible = not GameManager.expedition_success
+	if loss_label.visible:
+		var kept_pct := roundi(SkillModifiers.get_failure_keep_ratio() * 100)
+		loss_label.text = "Lost on the way back: kept %d%% of your cargo" % kept_pct
 
 
-func _set_resource_text(label: RichTextLabel, amount: int) -> void:
+func _gathered(_t: ResourceType, amount: int) -> bool:
+	return amount > 0
+
+
+func _amount_text(t: ResourceType, collected: int) -> String:
 	if GameManager.expedition_success:
-		label.text = "x %d" % amount
-	else:
-		if amount > 0:
-			var final_amount = int(amount * 0.2)
-			label.text = "x %d [color=#ff5555](-80%%)[/color] = %d" % [amount, final_amount]
-		else:
-			label.text = "x 0"
+		return str(collected)
+	return str(GameManager.expedition_resources_kept.get(t.id, 0))
 
 
 func _on_hangar_pressed() -> void:

@@ -60,7 +60,7 @@ func _close() -> void:
 
 
 func _refresh() -> void:
-	# Guardie: something went wrong
+	# nothing to draw while closed
 	if not _panel.visible:
 		return
 	if _over_skill_tree and not GameManager.skill_tree_open:

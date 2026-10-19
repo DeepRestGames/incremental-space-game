@@ -1,59 +1,9 @@
 [gd_scene format=3 uid="uid://dmey4x1v84j3c"]
 
 [ext_resource type="Script" uid="uid://dq3kxlnugqpay" path="res://Scripts/UI/expedition_ended.gd" id="1_script"]
-[ext_resource type="Texture2D" uid="uid://d3w6yyyfejaxw" path="res://icon.svg" id="2_icon"]
+[ext_resource type="PackedScene" uid="uid://dtydx2v6tt14k" path="res://Scenes/UI/inventory/ResourceList.tscn" id="3_reslist"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_panel"]
-bg_color = Color(0.08, 0.08, 0.11, 0.96)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(0, 0.8, 1, 0.3)
-corner_radius_top_left = 12
-corner_radius_top_right = 12
-corner_radius_bottom_right = 12
-corner_radius_bottom_left = 12
-shadow_color = Color(0, 0, 0, 0.5)
-shadow_size = 15
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_btn_normal"]
-bg_color = Color(0.12, 0.12, 0.16, 1)
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
-border_color = Color(0, 0.8, 1, 0.4)
-corner_radius_top_left = 6
-corner_radius_top_right = 6
-corner_radius_bottom_right = 6
-corner_radius_bottom_left = 6
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_btn_pressed"]
-bg_color = Color(0, 0.8, 1, 0.3)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(0, 0.8, 1, 1)
-corner_radius_top_left = 6
-corner_radius_top_right = 6
-corner_radius_bottom_right = 6
-corner_radius_bottom_left = 6
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_btn_hover"]
-bg_color = Color(0, 0.8, 1, 0.15)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(0, 0.8, 1, 0.8)
-corner_radius_top_left = 6
-corner_radius_top_right = 6
-corner_radius_bottom_right = 6
-corner_radius_bottom_left = 6
-
-[node name="ExpeditionEnded" type="Control" unique_id=73982163 node_paths=PackedStringArray("title_label", "time_label", "destroyed_label", "resource_triangle_label", "resource_circle_label", "resource_square_label")]
+[node name="ExpeditionEnded" type="Control" unique_id=73982163 node_paths=PackedStringArray("title_label", "time_label", "destroyed_label", "resource_list", "loss_label")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -64,9 +14,8 @@ script = ExtResource("1_script")
 title_label = NodePath("MainPanel/TitleLabel")
 time_label = NodePath("MainPanel/ColumnsContainer/StatsContainer/TimeLabel")
 destroyed_label = NodePath("MainPanel/ColumnsContainer/StatsContainer/DestroyedLabel")
-resource_triangle_label = NodePath("MainPanel/ColumnsContainer/InventoryContainer/TriangleRow/ResourceTriangleLabel")
-resource_circle_label = NodePath("MainPanel/ColumnsContainer/InventoryContainer/CircleRow/ResourceCircleLabel")
-resource_square_label = NodePath("MainPanel/ColumnsContainer/InventoryContainer/SquareRow/ResourceSquareLabel")
+resource_list = NodePath("MainPanel/ColumnsContainer/InventoryContainer/List")
+loss_label = NodePath("MainPanel/ColumnsContainer/InventoryContainer/LossLabel")
 
 [node name="BackgroundDim" type="ColorRect" parent="." unique_id=89237645]
 layout_mode = 1
@@ -91,7 +40,6 @@ offset_right = 350.0
 offset_bottom = 210.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_panel")
 
 [node name="TitleLabel" type="Label" parent="MainPanel" unique_id=12398457]
 layout_mode = 1
@@ -163,74 +111,15 @@ theme_override_colors/font_color = Color(0, 0.8, 1, 0.7)
 theme_override_font_sizes/font_size = 24
 text = "INVENTORY"
 
-[node name="TriangleRow" type="HBoxContainer" parent="MainPanel/ColumnsContainer/InventoryContainer" unique_id=782103]
+[node name="LossLabel" type="Label" parent="MainPanel/ColumnsContainer/InventoryContainer" unique_id=1503927716]
+visible = false
 layout_mode = 2
-theme_override_constants/separation = 10
+theme_override_colors/font_color = Color(1, 0.333, 0.333, 1)
+text = "Lost on the way back"
 
-[node name="TriangleIcon" type="TextureRect" parent="MainPanel/ColumnsContainer/InventoryContainer/TriangleRow" unique_id=782110]
-modulate = Color(0.2, 0.9, 0.4, 1)
-custom_minimum_size = Vector2(24, 24)
+[node name="List" parent="MainPanel/ColumnsContainer/InventoryContainer" unique_id=1987123455 instance=ExtResource("3_reslist")]
 layout_mode = 2
-texture = ExtResource("2_icon")
-expand_mode = 3
-stretch_mode = 5
-
-[node name="ResourceTriangleLabel" type="RichTextLabel" parent="MainPanel/ColumnsContainer/InventoryContainer/TriangleRow" unique_id=782104]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_font_sizes/normal_font_size = 22
-bbcode_enabled = true
-text = "x 0"
-fit_content = true
-scroll_active = false
-autowrap_mode = 0
-
-[node name="CircleRow" type="HBoxContainer" parent="MainPanel/ColumnsContainer/InventoryContainer" unique_id=239841]
-layout_mode = 2
-theme_override_constants/separation = 10
-
-[node name="CircleIcon" type="TextureRect" parent="MainPanel/ColumnsContainer/InventoryContainer/CircleRow" unique_id=239845]
-modulate = Color(0.2, 0.6, 0.9, 1)
-custom_minimum_size = Vector2(24, 24)
-layout_mode = 2
-texture = ExtResource("2_icon")
-expand_mode = 3
-stretch_mode = 5
-
-[node name="ResourceCircleLabel" type="RichTextLabel" parent="MainPanel/ColumnsContainer/InventoryContainer/CircleRow" unique_id=239842]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_font_sizes/normal_font_size = 22
-bbcode_enabled = true
-text = "x 0"
-fit_content = true
-scroll_active = false
-autowrap_mode = 0
-
-[node name="SquareRow" type="HBoxContainer" parent="MainPanel/ColumnsContainer/InventoryContainer" unique_id=102934]
-layout_mode = 2
-theme_override_constants/separation = 10
-
-[node name="SquareIcon" type="TextureRect" parent="MainPanel/ColumnsContainer/InventoryContainer/SquareRow" unique_id=102940]
-modulate = Color(0.9, 0.3, 0.3, 1)
-custom_minimum_size = Vector2(24, 24)
-layout_mode = 2
-texture = ExtResource("2_icon")
-expand_mode = 3
-stretch_mode = 5
-
-[node name="ResourceSquareLabel" type="RichTextLabel" parent="MainPanel/ColumnsContainer/InventoryContainer/SquareRow" unique_id=102935]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_font_sizes/normal_font_size = 22
-bbcode_enabled = true
-text = "x 0"
-fit_content = true
-scroll_active = false
-autowrap_mode = 0
+columns = 5
 
 [node name="ButtonsContainer" type="HBoxContainer" parent="MainPanel" unique_id=903487]
 layout_mode = 1
@@ -256,9 +145,6 @@ theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
 theme_override_colors/font_pressed_color = Color(0, 0.8, 1, 1)
 theme_override_colors/font_hover_color = Color(0, 0.8, 1, 1)
 theme_override_font_sizes/font_size = 22
-theme_override_styles/normal = SubResource("StyleBoxFlat_btn_normal")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_btn_pressed")
-theme_override_styles/hover = SubResource("StyleBoxFlat_btn_hover")
 text = "HANGAR"
 
 [node name="AgainButton" type="Button" parent="MainPanel/ButtonsContainer" unique_id=890234]
@@ -269,9 +155,6 @@ theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
 theme_override_colors/font_pressed_color = Color(0, 0.8, 1, 1)
 theme_override_colors/font_hover_color = Color(0, 0.8, 1, 1)
 theme_override_font_sizes/font_size = 22
-theme_override_styles/normal = SubResource("StyleBoxFlat_btn_normal")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_btn_pressed")
-theme_override_styles/hover = SubResource("StyleBoxFlat_btn_hover")
 text = "AGAIN"
 
 [connection signal="pressed" from="MainPanel/ButtonsContainer/HangarButton" to="." method="_on_hangar_pressed"]

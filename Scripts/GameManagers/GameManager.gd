@@ -77,6 +77,9 @@ var open_level_select_on_lobby_load: bool = false
 var expedition_time_spent: float = 0.0
 var expedition_destroyed_nodes: int = 0
 var expedition_resources_collected: Dictionary[StringName, int]
+## What actually reached base from expedition: everything on a
+## success, the failure-keep share on a death.
+var expedition_resources_kept: Dictionary[StringName, int]
 var _expedition_start_time_msec: int = 0
 var expedition_success: bool = true
 ## Why the last expedition ended (e.g. "oxygen"). Empty when it ended normally.
@@ -204,6 +207,7 @@ func on_expedition_started() -> void:
 	_expedition_start_time_msec = Time.get_ticks_msec()
 	expedition_destroyed_nodes = 0
 	expedition_resources_collected.clear()
+	expedition_resources_kept.clear()
 	expedition_success = true
 	expedition_end_reason = ""
 	TransitionManager.change_scene(get_selected_level_path())
@@ -229,6 +233,7 @@ func end_expedition(success: bool=true, reason: String="") -> void:
 		var amount: int = expedition_resources_collected[key]
 		if not success:
 			amount = int(amount * SkillModifiers.get_failure_keep_ratio())
+		expedition_resources_kept[key] = amount
 		_gain(stored_resources, key, amount)
 
 	get_tree().change_scene_to_file("res://Scenes/UI/ExpeditionEnded.tscn")

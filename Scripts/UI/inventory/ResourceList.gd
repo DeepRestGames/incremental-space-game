@@ -1,12 +1,12 @@
 class_name ResourceList
-extends VBoxContainer
+extends GridContainer
 
-const ROW := preload("res://Scenes/UI/inventory/ResourceRow.tscn")
+const SLOT := preload("res://Scenes/UI/inventory/ResourceSlot.tscn")
 
 
 ## Rebuilds the list from `amounts`, in ResourceDB.ALL order.
-## `filter` gets (type, amount) and returns true to show that row.
-func show_resources(amounts: Dictionary, filter: Callable) -> void:
+## `filter` gets (type, amount) and returns true to show that slot.
+func show_resources(amounts: Dictionary, filter: Callable, format: Callable = Callable()) -> void:
 	for child in get_children():
 		remove_child(child)
 		child.queue_free()
@@ -15,6 +15,6 @@ func show_resources(amounts: Dictionary, filter: Callable) -> void:
 		var amount: int = amounts.get(t.id, 0)
 		if not filter.call(t, amount):
 			continue
-		var row: ResourceRow = ROW.instantiate()
-		add_child(row)
-		row.setup(t, amount)
+		var slot: ResourceSlot = SLOT.instantiate()
+		add_child(slot)
+		slot.setup(t, format.call(t, amount) if format.is_valid() else str(amount))

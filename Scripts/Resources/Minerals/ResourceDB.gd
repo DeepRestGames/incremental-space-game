@@ -53,13 +53,6 @@ static func _warn_unlisted(dir: String) -> void:
 			push_warning("ResourceDB: %s is not in ALL" % dir.path_join(f))
 
 
-## True if `file_name` (e.g. "ore_1.tres") is one of the resources in ALL.
-static func _is_listed(file_name: String) -> bool:
-	for t in ALL:
-		if t.resource_path.get_file() == file_name:
-			return true
-	return false
-
 
 #region resource-dictionary helpers
 ## These operate on resource dictionaries, not on game state, so they live here

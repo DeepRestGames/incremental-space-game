@@ -33,7 +33,7 @@ func _process(delta: float) -> void:
 				reticle_animation_player.play("tick")
 				audio_stream_player_hit.play()
 				current_drill_cooldown = drill_cooldown
-			if ! audio_stream_player_drilling.playing:
+			if not audio_stream_player_drilling.playing:
 				audio_stream_player_drilling.play()
 		else:
 			audio_stream_player_drilling.stop()

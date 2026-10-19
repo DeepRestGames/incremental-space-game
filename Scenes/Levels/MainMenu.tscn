@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://ceo6v666mpirk"]
 
 [ext_resource type="Script" uid="uid://cc41gqduwepch" path="res://Scripts/UI/MainMenu.gd" id="1_mainmenu"]
+[ext_resource type="Theme" uid="uid://cvjvny2ur7xve" path="res://Assets/UI/Themes/Crafting_theme.tres" id="2_koonp"]
 
 [node name="MainMenu" type="Control" unique_id=1566417360]
 layout_mode = 3
@@ -37,9 +38,9 @@ alignment = 1
 
 [node name="TitleLabel" type="Label" parent="CenterContainer/VBoxContainer" unique_id=1150046483]
 layout_mode = 2
-theme_override_colors/font_color = Color(0, 0.8, 1, 1)
+theme = ExtResource("2_koonp")
 theme_override_font_sizes/font_size = 76
-text = "INCREMENTAL SPACE GAME"
+text = "Explosive Mining in Outer Space"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -47,25 +48,30 @@ vertical_alignment = 1
 custom_minimum_size = Vector2(0, 20)
 layout_mode = 2
 
-[node name="ContinueButton" type="Button" parent="CenterContainer/VBoxContainer" unique_id=1564055637]
+[node name="Buttons" type="VBoxContainer" parent="CenterContainer/VBoxContainer" unique_id=99358995]
+custom_minimum_size = Vector2(600, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="ContinueButton" type="Button" parent="CenterContainer/VBoxContainer/Buttons" unique_id=1564055637]
 custom_minimum_size = Vector2(250, 45)
 layout_mode = 2
-theme_override_font_sizes/font_size = 34
+theme_override_font_sizes/font_size = 48
 disabled = true
 text = "Continue"
 
-[node name="NewGameButton" type="Button" parent="CenterContainer/VBoxContainer" unique_id=324368072]
+[node name="NewGameButton" type="Button" parent="CenterContainer/VBoxContainer/Buttons" unique_id=324368072]
 custom_minimum_size = Vector2(250, 45)
 layout_mode = 2
-theme_override_font_sizes/font_size = 34
+theme_override_font_sizes/font_size = 48
 text = "New Game"
 
-[node name="QuitButton" type="Button" parent="CenterContainer/VBoxContainer" unique_id=338835027]
+[node name="QuitButton" type="Button" parent="CenterContainer/VBoxContainer/Buttons" unique_id=338835027]
 custom_minimum_size = Vector2(250, 45)
 layout_mode = 2
-theme_override_font_sizes/font_size = 34
+theme_override_font_sizes/font_size = 48
 text = "Quit"
 
-[connection signal="pressed" from="CenterContainer/VBoxContainer/ContinueButton" to="." method="_on_continue_button_pressed"]
-[connection signal="pressed" from="CenterContainer/VBoxContainer/NewGameButton" to="." method="_on_new_game_button_pressed"]
-[connection signal="pressed" from="CenterContainer/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/Buttons/ContinueButton" to="." method="_on_continue_button_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/Buttons/NewGameButton" to="." method="_on_new_game_button_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/Buttons/QuitButton" to="." method="_on_quit_button_pressed"]

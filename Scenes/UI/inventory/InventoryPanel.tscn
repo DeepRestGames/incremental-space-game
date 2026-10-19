@@ -46,3 +46,4 @@ text = "12"
 [node name="List" parent="Panel/Margin/VBox" unique_id=639554383 instance=ExtResource("3_4l517")]
 unique_name_in_owner = true
 layout_mode = 2
+columns = 3

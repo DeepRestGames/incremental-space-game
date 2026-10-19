@@ -291,9 +291,12 @@ func display_skill_info(skill_id: String) -> void:
 		else:
 			val = float(effect_data)
 
-		var is_percentage = (type == "ADDITIVE" or type == "MULTIPLICATIVE" or effect_name.contains(
-				"chance") or effect_name.contains("ratio") or effect_name.contains(
-				"pct") or (type == "FLAT" and val < 1.0))
+		var is_percentage = (type == "ADDITIVE"
+				or type == "MULTIPLICATIVE"
+				or effect_name.contains("chance")
+				or effect_name.contains("ratio")
+				or effect_name.contains("pct")
+				or (type == "FLAT" and val < 1.0))
 
 		var current_val = _calculate_effect_value(points, type, val)
 		var cur_str = _format_effect_value(current_val, is_percentage)

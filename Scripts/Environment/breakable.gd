@@ -139,7 +139,7 @@ func take_damage(damage_value: int, is_crit: bool) -> void:
 	update_crack_sprite()
 	spawn_rock_particles(randi_range(min_rock_particles, max_rock_particles))
 	
-	if currentHP <= 0 and ! is_dead:
+	if currentHP <= 0 and not is_dead:
 		die()
 
 	else:

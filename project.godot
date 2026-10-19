@@ -44,6 +44,10 @@ folder_colors={
 Player=""
 ExpeditionShip=""
 
+[gui]
+
+theme/custom="uid://cejvp2v78r022"
+
 [input]
 
 move_left={

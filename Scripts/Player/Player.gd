@@ -47,7 +47,7 @@ var current_bombs: int = 0
 
 func _ready() -> void:
 	#Camera limits for lobby
-	if ! GameManager.expedition_started:
+	if not GameManager.expedition_started:
 		player_camera.limit_left = -1100
 		player_camera.limit_right = 2800
 		player_camera.limit_top = -1200
@@ -137,8 +137,9 @@ func _process(delta: float) -> void:
 
 func _physics_process(_delta: float) -> void:
 	var speed_multiplier := 1.0
-	var is_drilling = Input.is_action_pressed(
-			"interact") and GameManager.expedition_started and not inside_interactable_area
+	var is_drilling = (Input.is_action_pressed("interact")
+			and GameManager.expedition_started
+			and not inside_interactable_area)
 	if is_drilling:
 		speed_multiplier = mining_speed_multiplier
 	#if mining_reticle and not mining_reticle.is_active:
