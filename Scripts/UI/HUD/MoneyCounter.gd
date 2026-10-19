@@ -6,10 +6,12 @@ extends Control
 @export var resource_type: ResourceType
 
 @onready var value = $HBoxContainer/Value
+@onready var resource_icon: TextureRect = $HBoxContainer/ResourceIcon
 
 
 func _ready() -> void:
 	EventBus.update_HUD.connect(update_money_counter_value)
+	resource_icon.texture = resource_type.icon
 
 	update_money_counter_value()
 

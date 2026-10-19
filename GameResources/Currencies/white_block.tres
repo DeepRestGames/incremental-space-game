@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="ResourceType" format=3 uid="uid://5pbr7w37g0y4"]
+
+[ext_resource type="Texture2D" uid="uid://b6ech63n5t1x1" path="res://Assets/Sprites/Resources/Currencies/white_block.png" id="1_twfo6"]
+[ext_resource type="Script" uid="uid://bss1cajnebhpo" path="res://Scripts/Resources/Minerals/ResourceType.gd" id="2_4qowm"]
+
+[resource]
+script = ExtResource("2_4qowm")
+id = &"white_block"
+display_name = "WHITE BLOCK"
+icon = ExtResource("1_twfo6")
+metadata/_custom_type_script = "uid://bss1cajnebhpo"

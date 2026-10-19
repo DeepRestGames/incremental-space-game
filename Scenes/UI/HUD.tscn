@@ -6,15 +6,18 @@
 [ext_resource type="Script" uid="uid://qe84tw2v6xbm" path="res://Scripts/UI/HUD/ResourceCounter.gd" id="2_xaom8"]
 [ext_resource type="PackedScene" uid="uid://d3ixveovn637y" path="res://Scenes/UI/PauseMenu.tscn" id="3_pausemenu"]
 [ext_resource type="Script" uid="uid://b1h6en5b604x6" path="res://Scripts/UI/HUD/OxygenCounter.gd" id="4_oxygen"]
+[ext_resource type="Texture2D" uid="uid://f7045lqwy05n" path="res://Assets/UI/HUD/bagHUD.svg" id="5_55bpt"]
 [ext_resource type="PackedScene" uid="uid://cx4f5wal3t4pa" path="res://Scenes/UI/elements/ConfirmationPopup.tscn" id="5_confirmationpopup"]
 [ext_resource type="Script" uid="uid://dr7vi4ci7k7vu" path="res://Scripts/UI/HUD/BombCounter.gd" id="6_bombcounter"]
+[ext_resource type="Resource" uid="uid://2q7gnpjkf8pp" path="res://GameResources/Currencies/white_chip.tres" id="7_55bpt"]
 [ext_resource type="Texture2D" uid="uid://blslgwfnag1a4" path="res://Assets/PLACEHOLDERS/Bomb.svg" id="7_bombicon"]
+[ext_resource type="Texture2D" uid="uid://1rqdre1xa1vg" path="res://Assets/Sprites/Resources/Currencies/white_chip.png" id="8_yd1yt"]
 [ext_resource type="Script" uid="uid://d02rqtjowyuap" path="res://Scripts/UI/HUD/hud_mockup_animation.gd" id="9_pydgx"]
+[ext_resource type="Resource" uid="uid://4xra85surmlh" path="res://GameResources/Materials/white_triangle.tres" id="9_yd1yt"]
+[ext_resource type="Resource" uid="uid://cag2bw6x17n46" path="res://GameResources/Materials/white_square.tres" id="10_5h4o4"]
 [ext_resource type="Texture2D" uid="uid://1whuycuvjxsl" path="res://Assets/UI/HUD_mockup_clean_2.png" id="10_jt2rc"]
 [ext_resource type="Script" uid="uid://bc3f476l57gt1" path="res://Scripts/UI/HUD/MoneyCounter.gd" id="10_money"]
-[ext_resource type="Resource" uid="uid://it7l7a3ndxfy" path="res://GameResources/money_1.tres" id="10_restype"]
-[ext_resource type="Texture2D" uid="uid://dcisudmqov3na" path="res://Assets/PLACEHOLDERS/rock_currency.svg" id="11_rock"]
-[ext_resource type="Texture2D" uid="uid://4tr34ksq0npv" path="res://Assets/PLACEHOLDERS/money_currency.svg" id="12_money"]
+[ext_resource type="Resource" uid="uid://d1r5ngv5sjq48" path="res://GameResources/Materials/blue_diamond.tres" id="11_p4bpa"]
 [ext_resource type="PackedScene" path="res://Scenes/UI/ExpeditionIntro.tscn" id="13_intro"]
 [ext_resource type="Texture2D" uid="uid://d1pk75jr5hq0n" path="res://Assets/UI/HUD/redVignette.svg" id="14_dds1n"]
 [ext_resource type="Texture2D" uid="uid://bvjhtluwi86x4" path="res://Assets/UI/HUD/miniO2HUD.svg" id="15_gmqj4"]
@@ -115,18 +118,27 @@ text = "(E)"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="ResourcesCounter" type="Control" parent="HUD" unique_id=915960098]
-custom_minimum_size = Vector2(300, 50)
+[node name="MarginContainer" type="MarginContainer" parent="HUD" unique_id=1826865035]
 layout_mode = 1
-anchor_left = 0.711806
-anchor_top = 0.0462963
-anchor_right = 0.972222
-anchor_bottom = 0.123457
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -300.0
+offset_bottom = 158.0
 grow_horizontal = 0
+theme_override_constants/margin_top = 149
+theme_override_constants/margin_right = 58
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HUD/MarginContainer" unique_id=1730004857]
+layout_mode = 2
+
+[node name="ResourcesCounter" type="Control" parent="HUD/MarginContainer/VBoxContainer" unique_id=915960098]
+custom_minimum_size = Vector2(300, 50)
+layout_mode = 2
 script = ExtResource("2_xaom8")
 metadata/_edit_use_anchors_ = true
 
-[node name="HBoxContainer" type="HBoxContainer" parent="HUD/ResourcesCounter" unique_id=1396422376]
+[node name="HBoxContainer" type="HBoxContainer" parent="HUD/MarginContainer/VBoxContainer/ResourcesCounter" unique_id=1396422376]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -136,29 +148,24 @@ grow_vertical = 2
 theme_override_constants/separation = 10
 alignment = 2
 
-[node name="Value" type="Label" parent="HUD/ResourcesCounter/HBoxContainer" unique_id=237583456]
+[node name="Value" type="Label" parent="HUD/MarginContainer/VBoxContainer/ResourcesCounter/HBoxContainer" unique_id=237583456]
 layout_mode = 2
 text = "000000"
 
-[node name="ResourceIcon" type="TextureRect" parent="HUD/ResourcesCounter/HBoxContainer" unique_id=1053525953]
+[node name="ResourceIcon" type="TextureRect" parent="HUD/MarginContainer/VBoxContainer/ResourcesCounter/HBoxContainer" unique_id=1053525953]
+custom_minimum_size = Vector2(35, 0)
 layout_mode = 2
-texture = ExtResource("11_rock")
-expand_mode = 3
+texture = ExtResource("5_55bpt")
 stretch_mode = 5
 
-[node name="MoneyCounter" type="Control" parent="HUD" unique_id=1376059291]
+[node name="MoneyCounter" type="Control" parent="HUD/MarginContainer/VBoxContainer" unique_id=1376059291]
 custom_minimum_size = Vector2(300, 50)
-layout_mode = 1
-anchor_left = 0.711806
-anchor_top = 0.13
-anchor_right = 0.972222
-anchor_bottom = 0.207
-grow_horizontal = 0
+layout_mode = 2
 script = ExtResource("10_money")
-resource_type = ExtResource("10_restype")
+resource_type = ExtResource("7_55bpt")
 metadata/_edit_use_anchors_ = true
 
-[node name="HBoxContainer" type="HBoxContainer" parent="HUD/MoneyCounter" unique_id=1603861171]
+[node name="HBoxContainer" type="HBoxContainer" parent="HUD/MarginContainer/VBoxContainer/MoneyCounter" unique_id=1603861171]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -168,13 +175,91 @@ grow_vertical = 2
 theme_override_constants/separation = 10
 alignment = 2
 
-[node name="Value" type="Label" parent="HUD/MoneyCounter/HBoxContainer" unique_id=1993269615]
+[node name="Value" type="Label" parent="HUD/MarginContainer/VBoxContainer/MoneyCounter/HBoxContainer" unique_id=1993269615]
 layout_mode = 2
 text = "0"
 
-[node name="MoneyIcon" type="TextureRect" parent="HUD/MoneyCounter/HBoxContainer" unique_id=4532190]
+[node name="ResourceIcon" type="TextureRect" parent="HUD/MarginContainer/VBoxContainer/MoneyCounter/HBoxContainer" unique_id=4532190]
 layout_mode = 2
-texture = ExtResource("12_money")
+texture = ExtResource("8_yd1yt")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="ResourceCounter" type="Control" parent="HUD/MarginContainer/VBoxContainer" unique_id=1435379257]
+custom_minimum_size = Vector2(300, 50)
+layout_mode = 2
+script = ExtResource("10_money")
+resource_type = ExtResource("9_yd1yt")
+metadata/_edit_use_anchors_ = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HUD/MarginContainer/VBoxContainer/ResourceCounter" unique_id=1449257578]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 10
+alignment = 2
+
+[node name="Value" type="Label" parent="HUD/MarginContainer/VBoxContainer/ResourceCounter/HBoxContainer" unique_id=1149086475]
+layout_mode = 2
+text = "0"
+
+[node name="ResourceIcon" type="TextureRect" parent="HUD/MarginContainer/VBoxContainer/ResourceCounter/HBoxContainer" unique_id=122234075]
+layout_mode = 2
+expand_mode = 3
+stretch_mode = 5
+
+[node name="ResourceCounter2" type="Control" parent="HUD/MarginContainer/VBoxContainer" unique_id=675570593]
+custom_minimum_size = Vector2(300, 50)
+layout_mode = 2
+script = ExtResource("10_money")
+resource_type = ExtResource("10_5h4o4")
+metadata/_edit_use_anchors_ = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HUD/MarginContainer/VBoxContainer/ResourceCounter2" unique_id=940320773]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 10
+alignment = 2
+
+[node name="Value" type="Label" parent="HUD/MarginContainer/VBoxContainer/ResourceCounter2/HBoxContainer" unique_id=1394688860]
+layout_mode = 2
+text = "0"
+
+[node name="ResourceIcon" type="TextureRect" parent="HUD/MarginContainer/VBoxContainer/ResourceCounter2/HBoxContainer" unique_id=306329640]
+layout_mode = 2
+expand_mode = 3
+stretch_mode = 5
+
+[node name="ResourceCounter3" type="Control" parent="HUD/MarginContainer/VBoxContainer" unique_id=1736444323]
+custom_minimum_size = Vector2(300, 50)
+layout_mode = 2
+script = ExtResource("10_money")
+resource_type = ExtResource("11_p4bpa")
+metadata/_edit_use_anchors_ = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HUD/MarginContainer/VBoxContainer/ResourceCounter3" unique_id=2056828915]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 10
+alignment = 2
+
+[node name="Value" type="Label" parent="HUD/MarginContainer/VBoxContainer/ResourceCounter3/HBoxContainer" unique_id=736806927]
+layout_mode = 2
+text = "0"
+
+[node name="ResourceIcon" type="TextureRect" parent="HUD/MarginContainer/VBoxContainer/ResourceCounter3/HBoxContainer" unique_id=1510284021]
+layout_mode = 2
 expand_mode = 3
 stretch_mode = 5
 
