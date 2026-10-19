@@ -1,23 +1,32 @@
 class_name SpawnDistribution
 extends Node
 
-## Holds the spawn distribution configuration (PackedScene -> float weight)
-@export var spawn_distribution: Dictionary[PackedScene, float] = {}
+## What this planet spawns. One entry per rock type.
+@export var entries: Array[SpawnEntry] = []
 
-## Optional: which skill stat scales each entry's weight on THIS planet.
-## Entries not listed are never touched by skills. Several entries can share
-## one stat, so a single upgrade can thin out every common rock at once.
-@export var weight_stats: Dictionary[PackedScene, StringName] = {}
+
+## scene -> weight as authored, before skills.
+var spawn_distribution: Dictionary:
+	get:
+		var out := {}
+		for e in entries:
+			if e and e.scene:
+				out[e.scene] = e.weight
+		return out
 
 
 ## The weights actually used to spawn, skills applied. Generation and the level
 ## select both read this, so the percentages shown can't drift from what spawns.
-func get_effective_weights() -> Dictionary[PackedScene, float]:
-	var out: Dictionary[PackedScene, float] = {}
-	for scene in spawn_distribution:
-		var w: float = spawn_distribution[scene]
-		var stat: StringName = weight_stats.get(scene, &"")
-		if stat != &"":
-			w = SkillModifiers.get_modified_stat(stat, w)
-		out[scene] = maxf(w, 0.0)
+func get_effective_weights() -> Dictionary:
+	var out := {}
+	for e in entries:
+		if not e or not e.scene:
+			continue
+		var w := e.weight
+		if e.weight_stat != "":
+			if not BaseValuesDB.BASE_VALUES.has(e.weight_stat):
+				push_warning("SpawnDistribution: unknown weight_stat '%s' on %s" % [
+					e.weight_stat, e.scene.resource_path.get_file()])
+			w = SkillModifiers.get_modified_stat(e.weight_stat, w)
+		out[e.scene] = maxf(w, 0.0)
 	return out

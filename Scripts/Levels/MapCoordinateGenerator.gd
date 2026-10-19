@@ -21,24 +21,24 @@ extends Node
 @export var custom_exclusion_radius: float = 400.0  ## Safe radius around custom exclusion points.
 ## / ----- ALGORITHM PARAMETERS -----
 
+## The planet's own entries if it has any, otherwise the in-code fallback that
+## BaseLevel fills in for planets left empty in the editor.
+func _dist_node() -> SpawnDistribution:
+	var node := get_node_or_null("SpawnDistribution") as SpawnDistribution
+	return node if node and not node.entries.is_empty() else null
+
+
 var spawn_distribution: Dictionary:
 	get:
-		var dist_node = get_node_or_null("SpawnDistribution")
-		if dist_node:
-			return dist_node.spawn_distribution
-		return _spawn_distribution_fallback
+		var node := _dist_node()
+		return node.spawn_distribution if node else _spawn_distribution_fallback
 	set(value):
-		var dist_node = get_node_or_null("SpawnDistribution")
-		if dist_node:
-			dist_node.spawn_distribution = value
-		else:
-			_spawn_distribution_fallback = value
-			
+		_spawn_distribution_fallback = value
+
+
 func get_effective_weights() -> Dictionary:
-	var dist_node = get_node_or_null("SpawnDistribution")
-	if dist_node:
-		return dist_node.get_effective_weights()
-	return _spawn_distribution_fallback
+	var node := _dist_node()
+	return node.get_effective_weights() if node else _spawn_distribution_fallback
 
 var _spawn_distribution_fallback: Dictionary = {}
 
