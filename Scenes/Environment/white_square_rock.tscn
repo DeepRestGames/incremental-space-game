@@ -17,7 +17,7 @@ metadata/_custom_type_script = "uid://cq1k63dpg13de"
 points = PackedVector2Array(0.00040197372, 111, -24.999733, 74.00009, -25.000286, -78.99991, 0.99958754, -114.00001, 31.999718, -78.000114, 44.000034, 8.999841, 24.000282, 77.99991)
 
 [node name="white_triangle_rock_small" unique_id=1949437542 instance=ExtResource("1_3n3cf")]
-totalHP = 200
+totalHP = 160
 particle_modulate = Color(0.43710002, 0.80677503, 0.93, 1)
 drops = Array[ExtResource("2_am7h0")]([SubResource("Resource_dxuha")])
 
