@@ -254,14 +254,17 @@ func update_appearance() -> void:
 			max_points = GameManager.get_skill_max_levels(skill_id)
 			current_points = GameManager.get_skill_points(skill_id)
 
+		# Defaults first: each branch below overrides only what differs
+		progress_bar_background.hide()
+		radial_progress_bar.hide()
+		skill_icon.texture = icon
+		border.modulate = COLOR_BRIGHT
+		skill_icon.modulate = COLOR_BRIGHT
+
 		if current_points > 0:
 			if current_points == max_points:
 				background.modulate = COLOR_BRIGHT
-				border.modulate = COLOR_BRIGHT
-				skill_icon.texture = icon
 				skill_icon.modulate = COLOR_DARK
-				progress_bar_background.hide()
-				radial_progress_bar.hide()
 			else:
 				background.modulate = COLOR_DARK
 				# CIRCULAR PROGRESS BAR
