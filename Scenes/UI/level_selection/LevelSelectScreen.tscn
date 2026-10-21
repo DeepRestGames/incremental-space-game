@@ -50,7 +50,7 @@ theme_override_constants/separation = 24
 layout_mode = 2
 size_flags_horizontal = 4
 theme = ExtResource("2_j85ej")
-theme_override_font_sizes/font_size = 30
+theme_override_font_sizes/font_size = 48
 text = "Start Expedition"
 
 [node name="PlanetsPanel" type="PanelContainer" parent="Layout/VBox" unique_id=1996523459]
@@ -87,6 +87,9 @@ offset_bottom = 108.0
 focus_mode = 2
 disabled = false
 level = ExtResource("3_0kuvs")
+float_height = 4.0
+float_period = 3.0
+lit_scale = 1.08
 
 [node name="Yam" parent="Layout/VBox/PlanetsPanel/Margin/VBox/Planets" unique_id=1674823820 instance=ExtResource("2_1d0hj")]
 layout_mode = 0
@@ -97,6 +100,9 @@ offset_bottom = 311.0
 focus_mode = 2
 disabled = false
 level = ExtResource("4_hd1hx")
+float_height = 4.0
+float_period = 3.0
+lit_scale = 1.08
 
 [node name="Hathor" parent="Layout/VBox/PlanetsPanel/Margin/VBox/Planets" unique_id=1769866808 instance=ExtResource("2_1d0hj")]
 layout_mode = 0
@@ -105,6 +111,9 @@ offset_top = 47.0
 offset_right = 969.0
 offset_bottom = 262.0
 level = ExtResource("5_hd1hx")
+float_height = 4.0
+float_period = 3.0
+lit_scale = 1.08
 
 [node name="Ptah" parent="Layout/VBox/PlanetsPanel/Margin/VBox/Planets" unique_id=93604097 instance=ExtResource("2_1d0hj")]
 layout_mode = 0
@@ -113,6 +122,9 @@ offset_top = 257.0
 offset_right = 1017.0
 offset_bottom = 312.0
 level = ExtResource("6_cfpvn")
+float_height = 4.0
+float_period = 3.0
+lit_scale = 1.08
 
 [node name="Bottom" type="HBoxContainer" parent="Layout/VBox" unique_id=2077737246]
 layout_mode = 2

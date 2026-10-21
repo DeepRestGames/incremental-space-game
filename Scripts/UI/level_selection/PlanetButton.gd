@@ -11,9 +11,9 @@ extends Button
 		if is_node_ready():
 			_apply_level()
 
-@export var float_height: float = 4.0
-@export var float_period: float = 3.0
-@export var lit_scale: float = 1.08
+@export var float_height: float = 5.0
+@export var float_period: float = 2.0
+@export var lit_scale: float = 1.10
 
 ## Clickable circle as a fraction of the button's smaller side. Lower it for
 ## planets whose image has rings or empty space around the disc.

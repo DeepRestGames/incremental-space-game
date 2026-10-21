@@ -22,7 +22,7 @@ adjustment_brightness = 1.15
 adjustment_contrast = 1.08
 adjustment_color_correction = SubResource("GradientTexture1D_0d1xb")
 
-[node name="BaseLevel" unique_id=705757094 instance=ExtResource("1_tvbdx")]
+[node name="Yam" unique_id=705757094 instance=ExtResource("1_tvbdx")]
 y_sort_enabled = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." index="1" unique_id=401950983]
