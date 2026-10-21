@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="LevelData" format=3 uid="uid://dsxyl5ii3p3px"]
+
+[ext_resource type="Script" uid="uid://bh6djmbsvu7qw" path="res://Scripts/Levels/LevelData.gd" id="1_4btf4"]
+[ext_resource type="Texture2D" uid="uid://oeg06ww1lloc" path="res://Assets/UI/planets/bastet.svg" id="1_lmchs"]
+
+[resource]
+script = ExtResource("1_4btf4")
+id = &"bastet"
+display_name = "Bastet"
+scene_path = "uid://5c3751t48a6v"
+planet_texture = ExtResource("1_lmchs")
+planet_color = Color(0.69358724, 0.9439168, 0.9239147, 1)
+metadata/_custom_type_script = "uid://bh6djmbsvu7qw"

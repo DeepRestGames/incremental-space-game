@@ -27,7 +27,7 @@ func check_ship_interaction() -> void:
 				GameManager.end_expedition()
 		else:
 			# In the lobby, interacting with the ship opens the Level Select UI
-			var ui := get_tree().current_scene.get_node_or_null("CanvasLayer/LevelSelectUI")
+			var ui := get_tree().get_first_node_in_group("level_select")
 			if ui:
 				if ui.visible:
 					ui.close()
@@ -57,6 +57,6 @@ func _on_body_exited(body: Node2D) -> void:
 			EventBus.player_exit_expedition_ship_area.emit()
 
 		# Close the Level Select UI if the player flies away
-		var ui := get_tree().current_scene.get_node_or_null("CanvasLayer/LevelSelectUI")
+		var ui := get_tree().get_first_node_in_group("level_select")
 		if ui and ui.visible:
 			ui.close()

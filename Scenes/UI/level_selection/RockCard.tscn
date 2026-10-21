@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://b7vhqpaj11ypu"]
+
+[ext_resource type="Script" uid="uid://tdhfydrcd8jq" path="res://Scripts/UI/level_selection/RockCard.gd" id="1_gcub1"]
+[ext_resource type="PackedScene" uid="uid://bsouoomfrkjey" path="res://Scenes/UI/inventory/ResourceSlot.tscn" id="2_gcub1"]
+
+[node name="RockCard" type="VBoxContainer" unique_id=1920148328]
+alignment = 1
+script = ExtResource("1_gcub1")
+
+[node name="Slot" parent="." unique_id=802071946 instance=ExtResource("2_gcub1")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Drops" type="VBoxContainer" parent="." unique_id=839798498]
+unique_name_in_owner = true
+layout_mode = 2

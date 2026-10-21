@@ -1,53 +1,50 @@
 class_name LevelDB
 
-## Read-only database of every playable level, keyed by level id.
-##
-## Same role as SkillDB: the single place where level data lives. Nothing writes
-## to it at runtime (it is a const, so Godot enforces that) - LevelSelectUI keeps
-## the values it computes per run in its own dictionary instead.
+## Every playable planet, in the order the level select shows them.
+## Same pattern as ResourceDB: one LevelData .tres per planet, listed here.
 
-const PLANET_PATH: String = "res://Scenes/Levels/Planets/"
+const BASTET := preload("res://GameResources/Levels/bastet.tres")
+const YAM := preload("res://GameResources/Levels/yam.tres")
 
-const DATABASE: Dictionary = {
-	"moon_1234": {
-		"name": "BASTET",
-		"scene_path": PLANET_PATH + "Bastet.tscn",
-		"planet_color": Color(0.15, 0.268, 0.321, 1.0)
-	},
-	"nebula_alpha": {
-		"name": "MOON 2",
-		"scene_path": PLANET_PATH + "Moon2.tscn",
-		"planet_color": Color(0.712, 0.253, 0.582, 1.0)
-	}
-}
+const ALL: Array[LevelData] = [BASTET, YAM]
 
 ## Level id used when nothing has been selected yet.
-const DEFAULT_LEVEL_ID: String = "moon_1234"
+const DEFAULT_LEVEL_ID: StringName = &"bastet"
+
+static var _by_id: Dictionary = {}
+
+
+static func _index() -> Dictionary:
+	if _by_id.is_empty():
+		for l in ALL:
+			_by_id[l.id] = l
+	return _by_id
 
 
 static func has_level(level_id: String) -> bool:
-	return DATABASE.has(level_id)
+	return _index().has(StringName(level_id))
 
 
-## Level ids in declaration order - the order the level select carousel uses.
-static func get_ids() -> Array:
-	return DATABASE.keys()
-
-
-static func get_level(level_id: String) -> Dictionary:
-	if not DATABASE.has(level_id):
+static func get_level(level_id: String) -> LevelData:
+	var l = _index().get(StringName(level_id))
+	if l == null:
 		push_error("LevelDB: unknown level id '%s'." % level_id)
-		return DATABASE[DEFAULT_LEVEL_ID]
-	return DATABASE[level_id]
+		return _index()[DEFAULT_LEVEL_ID]
+	return l
+
+
+## Level ids in display order.
+static func get_ids() -> Array:
+	return ALL.map(func(l): return l.id)
 
 
 static func get_level_name(level_id: String) -> String:
-	return get_level(level_id)["name"]
+	return get_level(level_id).display_name
 
 
 static func get_scene_path(level_id: String) -> String:
-	return get_level(level_id)["scene_path"]
+	return get_level(level_id).scene_path
 
 
-static func get_planet_color(level_id: String) -> Color:
-	return get_level(level_id)["planet_color"]
+static func get_planet_texture(level_id: String) -> Texture2D:
+	return get_level(level_id).planet_texture

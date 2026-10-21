@@ -8,7 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://duq1gioflog65" path="res://Assets/Sprites/environment/lobby/BlueCircle.png" id="8_8haom"]
 [ext_resource type="PackedScene" uid="uid://bngmoa84fkagd" path="res://Scenes/Levels/SkillTreeTerminal.tscn" id="8_terminal"]
 [ext_resource type="Texture2D" uid="uid://c76txulc8ihss" path="res://Assets/Sprites/environment/lobby/BluePlus.png" id="9_n3su3"]
-[ext_resource type="PackedScene" uid="uid://b76okat8058e5" path="res://Scenes/UI/LevelSelectUI.tscn" id="9_ui"]
+[ext_resource type="PackedScene" uid="uid://cyf0gp5u2tbw5" path="res://Scenes/UI/level_selection/LevelSelectScreen.tscn" id="10_8haom"]
 [ext_resource type="PackedScene" uid="uid://w7h5832edy6i" path="res://Scenes/UI/skill_tree.tscn" id="10_skill_tree"]
 [ext_resource type="PackedScene" uid="uid://bapthsmhysjpt" path="res://Scenes/Levels/Shop.tscn" id="11_shop"]
 
@@ -173,8 +173,7 @@ speed_scale = 0.4
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1382719696]
 
-[node name="LevelSelectUI" parent="CanvasLayer" unique_id=989327793 instance=ExtResource("9_ui")]
-visible = false
+[node name="LevelSelectScreen" parent="CanvasLayer" unique_id=1045728006 instance=ExtResource("10_8haom")]
 
 [node name="SkillTree" parent="CanvasLayer" unique_id=1912863450 instance=ExtResource("10_skill_tree")]
 visible = false

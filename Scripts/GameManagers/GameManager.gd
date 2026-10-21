@@ -73,7 +73,6 @@ var game_paused: bool = false:
 		EventBus.ui_state_changed.emit()
 
 # Expedition Stats & Persistence
-var open_level_select_on_lobby_load: bool = false
 var expedition_time_spent: float = 0.0
 var expedition_destroyed_nodes: int = 0
 var expedition_resources_collected: Dictionary[StringName, int]

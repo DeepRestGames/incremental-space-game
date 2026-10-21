@@ -1,0 +1,167 @@
+[gd_scene format=3 uid="uid://cyf0gp5u2tbw5"]
+
+[ext_resource type="Script" uid="uid://cjmv8oniow5c8" path="res://Scripts/UI/level_selection/LevelSelectScreen.gd" id="1_erg66"]
+[ext_resource type="PackedScene" uid="uid://bi2rgk0ss5rwb" path="res://Scenes/UI/level_selection/PlanetButton.tscn" id="2_1d0hj"]
+[ext_resource type="Theme" uid="uid://cvjvny2ur7xve" path="res://Assets/UI/Themes/Crafting_theme.tres" id="2_j85ej"]
+[ext_resource type="Resource" uid="uid://dsxyl5ii3p3px" path="res://GameResources/Levels/bastet.tres" id="3_0kuvs"]
+[ext_resource type="Resource" uid="uid://dtcsuntsl8ol0" path="res://GameResources/Levels/yam.tres" id="4_hd1hx"]
+[ext_resource type="Resource" uid="uid://fam8tjdpst08" path="res://GameResources/Levels/hathor.tres" id="5_hd1hx"]
+[ext_resource type="Resource" uid="uid://csuom7ld52qpf" path="res://GameResources/Levels/ptah.tres" id="6_cfpvn"]
+[ext_resource type="Script" uid="uid://ctwuher5dbss6" path="res://Scripts/UI/level_selection/MiningNodesPanel.gd" id="7_cfpvn"]
+[ext_resource type="Script" uid="uid://d3i00bipuo6xd" path="res://Scripts/UI/level_selection/HazardsPanel.gd" id="8_3i2ml"]
+[ext_resource type="Theme" uid="uid://cejvp2v78r022" path="res://Assets/UI/Themes/UI_theme.tres" id="9_6pfwv"]
+[ext_resource type="Texture2D" uid="uid://7fufexxrh3d0" path="res://Assets/UI/skill tree/skill icons/Oxygen.svg" id="9_fttwq"]
+
+[node name="LevelSelectScreen" type="Control" unique_id=1045728006]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_erg66")
+
+[node name="Dim" type="ColorRect" parent="." unique_id=549832846]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.4)
+
+[node name="Layout" type="MarginContainer" parent="." unique_id=739557485]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 400
+theme_override_constants/margin_top = 200
+theme_override_constants/margin_right = 400
+theme_override_constants/margin_bottom = 200
+
+[node name="VBox" type="VBoxContainer" parent="Layout" unique_id=654053042]
+layout_mode = 2
+theme_override_constants/separation = 24
+
+[node name="StartButton" type="Button" parent="Layout/VBox" unique_id=1201784335]
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("2_j85ej")
+theme_override_font_sizes/font_size = 30
+text = "Start Expedition"
+
+[node name="PlanetsPanel" type="PanelContainer" parent="Layout/VBox" unique_id=1996523459]
+layout_mode = 2
+
+[node name="Margin" type="MarginContainer" parent="Layout/VBox/PlanetsPanel" unique_id=1193516866]
+layout_mode = 2
+theme_override_constants/margin_left = 28
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 28
+theme_override_constants/margin_bottom = 24
+
+[node name="VBox" type="VBoxContainer" parent="Layout/VBox/PlanetsPanel/Margin" unique_id=1569800088]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="Layout/VBox/PlanetsPanel/Margin/VBox" unique_id=1379445827]
+layout_mode = 2
+offset_transform_enabled = true
+theme = ExtResource("2_j85ej")
+theme_override_font_sizes/font_size = 40
+text = "Select a destination"
+
+[node name="Planets" type="Control" parent="Layout/VBox/PlanetsPanel/Margin/VBox" unique_id=1349187128]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(1700, 380)
+layout_mode = 2
+
+[node name="Bastet" parent="Layout/VBox/PlanetsPanel/Margin/VBox/Planets" unique_id=1771708594 instance=ExtResource("2_1d0hj")]
+layout_mode = 0
+offset_left = 618.0
+offset_top = 16.0
+offset_right = 689.0
+offset_bottom = 108.0
+focus_mode = 2
+disabled = false
+level = ExtResource("3_0kuvs")
+
+[node name="Yam" parent="Layout/VBox/PlanetsPanel/Margin/VBox/Planets" unique_id=1674823820 instance=ExtResource("2_1d0hj")]
+layout_mode = 0
+offset_left = 571.0
+offset_top = 256.0
+offset_right = 638.0
+offset_bottom = 311.0
+focus_mode = 2
+disabled = false
+level = ExtResource("4_hd1hx")
+
+[node name="Hathor" parent="Layout/VBox/PlanetsPanel/Margin/VBox/Planets" unique_id=1769866808 instance=ExtResource("2_1d0hj")]
+layout_mode = 0
+offset_left = 686.0
+offset_top = 47.0
+offset_right = 969.0
+offset_bottom = 262.0
+level = ExtResource("5_hd1hx")
+
+[node name="Ptah" parent="Layout/VBox/PlanetsPanel/Margin/VBox/Planets" unique_id=93604097 instance=ExtResource("2_1d0hj")]
+layout_mode = 0
+offset_left = 971.0
+offset_top = 257.0
+offset_right = 1017.0
+offset_bottom = 312.0
+level = ExtResource("6_cfpvn")
+
+[node name="Bottom" type="HBoxContainer" parent="Layout/VBox" unique_id=2077737246]
+layout_mode = 2
+theme_override_constants/separation = 24
+alignment = 1
+
+[node name="NodesPanel" type="PanelContainer" parent="Layout/VBox/Bottom" unique_id=1250865068]
+unique_name_in_owner = true
+layout_mode = 2
+script = ExtResource("7_cfpvn")
+
+[node name="Margin" type="MarginContainer" parent="Layout/VBox/Bottom/NodesPanel" unique_id=1685041729]
+custom_minimum_size = Vector2(300, 200)
+layout_mode = 2
+theme_override_constants/margin_left = 28
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 28
+theme_override_constants/margin_bottom = 24
+
+[node name="VBox" type="VBoxContainer" parent="Layout/VBox/Bottom/NodesPanel/Margin" unique_id=365874691]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="Layout/VBox/Bottom/NodesPanel/Margin/VBox" unique_id=586846747]
+layout_mode = 2
+offset_transform_enabled = true
+theme = ExtResource("2_j85ej")
+text = "Mining Nodes"
+
+[node name="Cards" type="HBoxContainer" parent="Layout/VBox/Bottom/NodesPanel/Margin/VBox" unique_id=271930812]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="HazardsPanel" type="PanelContainer" parent="Layout/VBox/Bottom" unique_id=1366514825]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(360, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource("9_6pfwv")
+theme_type_variation = &"DangerPanel"
+script = ExtResource("8_3i2ml")
+oxygen_icon = ExtResource("9_fttwq")
+
+[node name="Margin" type="MarginContainer" parent="Layout/VBox/Bottom/HazardsPanel" unique_id=2089776062]
+layout_mode = 2
+
+[node name="Rows" type="VBoxContainer" parent="Layout/VBox/Bottom/HazardsPanel/Margin" unique_id=1697587624]
+unique_name_in_owner = true
+layout_mode = 2
+
+[connection signal="pressed" from="Layout/VBox/StartButton" to="." method="_on_start_pressed"]

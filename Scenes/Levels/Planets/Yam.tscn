@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://co522yyv0i0v3"]
 
-[ext_resource type="PackedScene" uid="uid://cl1025m5bhlxa" path="res://Scenes/Levels/Planets/BaseLevel.tscn" id="1_tgogl"]
+[ext_resource type="PackedScene" uid="uid://cl1025m5bhlxa" path="res://Scenes/Levels/Planets/BaseLevel.tscn" id="1_tvbdx"]
 
 [sub_resource type="Gradient" id="Gradient_u0hgq"]
 offsets = PackedFloat32Array(0, 0.19945355, 0.4398907, 0.7240437, 1)
@@ -22,7 +22,7 @@ adjustment_brightness = 1.15
 adjustment_contrast = 1.08
 adjustment_color_correction = SubResource("GradientTexture1D_0d1xb")
 
-[node name="BaseLevel" unique_id=705757094 instance=ExtResource("1_tgogl")]
+[node name="BaseLevel" unique_id=705757094 instance=ExtResource("1_tvbdx")]
 y_sort_enabled = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." index="1" unique_id=401950983]
@@ -35,6 +35,3 @@ custom_texture = null
 min_distance = 150.0
 min_spawn_count = 80
 max_spawn_count = 130
-
-[node name="SpawnDistribution" parent="Objects/MapCoordinateGenerator" index="0" unique_id=987654321]
-spawn_distribution = Dictionary[PackedScene, float]({})

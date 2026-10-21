@@ -1,0 +1,68 @@
+[gd_scene format=3 uid="uid://bi2rgk0ss5rwb"]
+
+[ext_resource type="Script" uid="uid://bsdug68gu3c03" path="res://Scripts/UI/level_selection/PlanetButton.gd" id="1_hvbjq"]
+[ext_resource type="Theme" uid="uid://cvjvny2ur7xve" path="res://Assets/UI/Themes/Crafting_theme.tres" id="2_oskdj"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hjp0y"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oskdj"]
+draw_center = false
+border_width_left = 2
+border_width_right = 2
+border_color = Color(0.09411765, 0.8, 0.8, 1)
+
+[node name="PlanetButton" type="Button" unique_id=1771708594]
+custom_minimum_size = Vector2(40, 40)
+focus_mode = 0
+theme_override_styles/focus = SubResource("StyleBoxEmpty_hjp0y")
+disabled = true
+toggle_mode = true
+flat = true
+script = ExtResource("1_hvbjq")
+
+[node name="Planet" type="TextureRect" parent="." unique_id=2081026679]
+unique_name_in_owner = true
+modulate = Color(0.5, 0.5, 0.5, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(20, 20)
+mouse_filter = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Bracket" type="Panel" parent="." unique_id=1427147606]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -10.0
+offset_top = -10.0
+offset_right = 10.0
+offset_bottom = 10.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_oskdj")
+
+[node name="NameLabel" type="Label" parent="." unique_id=1612578497]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -100.0
+offset_top = 10.0
+offset_right = 100.0
+offset_bottom = 40.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = ExtResource("2_oskdj")
+theme_override_font_sizes/font_size = 24
+horizontal_alignment = 1

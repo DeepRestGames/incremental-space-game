@@ -14,5 +14,11 @@ var type: ResourceType
 
 func setup(t: ResourceType, amount_text: String) -> void:
 	type = t
-	_icon.texture = t.icon
-	_amount.text = amount_text
+	show_texture(t.icon, amount_text)
+
+
+## The same square for things that aren't a ResourceType, e.g. a rock in the
+## level select with its spawn chance in the corner.
+func show_texture(texture: Texture2D, corner_text: String) -> void:
+	_icon.texture = texture
+	_amount.text = corner_text

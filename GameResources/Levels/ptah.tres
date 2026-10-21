@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="LevelData" format=3 uid="uid://csuom7ld52qpf"]
+
+[ext_resource type="Texture2D" uid="uid://bgjgpwfdc778v" path="res://Assets/UI/planets/ptah.svg" id="1_b47we"]
+[ext_resource type="Script" uid="uid://bh6djmbsvu7qw" path="res://Scripts/Levels/LevelData.gd" id="1_lbtb7"]
+
+[resource]
+script = ExtResource("1_lbtb7")
+id = &"ptah"
+display_name = "Ptah"
+planet_texture = ExtResource("1_b47we")
+metadata/_custom_type_script = "uid://bh6djmbsvu7qw"

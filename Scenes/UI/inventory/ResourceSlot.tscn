@@ -5,16 +5,16 @@
 [ext_resource type="Texture2D" uid="uid://dkrwk0exgfubs" path="res://Addons/at-icons/node2d/at.svg" id="3_mo6oc"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_slot"]
+content_margin_left = 4.0
+content_margin_top = 2.0
+content_margin_right = 5.0
+content_margin_bottom = 2.0
 bg_color = Color(0.043, 0.063, 0.125, 0.9)
 border_width_left = 2
 border_width_top = 2
 border_width_right = 2
 border_width_bottom = 2
 border_color = Color(0.051, 0.949, 0.949, 1)
-content_margin_left = 4.0
-content_margin_top = 2.0
-content_margin_right = 5.0
-content_margin_bottom = 2.0
 
 [node name="ResourceSlot" type="PanelContainer" unique_id=802071946]
 custom_minimum_size = Vector2(64, 64)
@@ -44,6 +44,7 @@ layout_mode = 2
 size_flags_vertical = 3
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 4
+theme_override_font_sizes/font_size = 24
 text = "9999"
 horizontal_alignment = 2
 vertical_alignment = 2
