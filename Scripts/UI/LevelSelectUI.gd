@@ -20,6 +20,7 @@ func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	_load_dynamic_level_data()
 	update_ui()
+	EventBus.stats_changed.connect(_on_stats_changed)
 	if GameManager.open_level_select_on_lobby_load:
 		GameManager.open_level_select_on_lobby_load = false
 		call_deferred("open")
@@ -36,7 +37,7 @@ func _load_dynamic_level_data() -> void:
 			continue
 
 		var temp_instance = scene_pack.instantiate()
-		var gen = temp_instance.get_node_or_null("MapCoordinateGenerator")
+		var gen = temp_instance.get_node_or_null("Objects/MapCoordinateGenerator")
 		if gen:
 			# Calculate percentages
 			var dist: Dictionary = gen.get_effective_weights()
@@ -53,7 +54,7 @@ func _load_dynamic_level_data() -> void:
 					var pct = (dist[sc] / total_w) * 100.0
 					var raw_name = sc.resource_path.get_file().get_basename()
 					var name_clean = raw_name.replace("breakable_", "").capitalize() + " Breakable"
-					items_pct.append({"name": name_clean, "pct": int(pct)})
+					items_pct.append({"name": name_clean, "pct": roundi(pct)})
 
 			# Sort resources to have a consistent UI display
 			items_pct.sort_custom(func(a, b): return a["name"] < b["name"])
@@ -61,7 +62,7 @@ func _load_dynamic_level_data() -> void:
 
 			# Build dynamic conditions from Modifiers node or fallback to MapCoordinateGenerator
 			var conditions_list: Array[Dictionary] = []
-			var modifiers = temp_instance.get_node_or_null("Modifiers")
+			var modifiers = temp_instance.get_node_or_null("Objects/Modifiers")
 			if modifiers:
 				if "conditions" in modifiers:
 					var cond_array = modifiers.conditions
@@ -154,3 +155,10 @@ func _on_select_button_pressed() -> void:
 
 func _on_close_button_pressed() -> void:
 	close()
+
+
+
+## Comprare o rimborsare una skill può cambiare i pesi di spawn di un pianeta.
+func _on_stats_changed() -> void:
+	_load_dynamic_level_data()
+	update_ui()
