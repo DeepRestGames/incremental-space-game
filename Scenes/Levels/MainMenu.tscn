@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cc41gqduwepch" path="res://Scripts/UI/MainMenu.gd" id="1_mainmenu"]
 [ext_resource type="Theme" uid="uid://cvjvny2ur7xve" path="res://Assets/UI/Themes/Crafting_theme.tres" id="2_koonp"]
+[ext_resource type="Script" uid="uid://yfpu8je8xrkh" path="res://Scripts/UI/PulseLabel.gd" id="3_d2tbo"]
 
 [node name="MainMenu" type="Control" unique_id=1566417360]
 layout_mode = 3
@@ -20,6 +21,22 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.08, 0.08, 0.12, 1)
+
+[node name="PLAYTEST" type="Label" parent="." unique_id=254635298]
+layout_mode = 0
+offset_left = -79.0255
+offset_top = 185.19382
+offset_right = 802.0664
+offset_bottom = 337.5148
+rotation = -0.5602507
+pivot_offset = Vector2(440.54596, 76.16049)
+theme = ExtResource("2_koonp")
+theme_override_colors/font_color = Color(0.86770296, 0.8344824, 0, 1)
+theme_override_font_sizes/font_size = 76
+text = "PLAYTEST EDITION!"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("3_d2tbo")
 
 [node name="CenterContainer" type="CenterContainer" parent="." unique_id=1730205180]
 layout_mode = 1
