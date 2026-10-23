@@ -190,6 +190,9 @@ layout_mode = 2
 expand_mode = 3
 stretch_mode = 5
 
+[node name="Name" type="Label" parent="HUD/MarginContainer/VBoxContainer/MoneyCounter/HBoxContainer" unique_id=82573643]
+layout_mode = 2
+
 [node name="ResourceCounter" type="Control" parent="HUD/MarginContainer/VBoxContainer" unique_id=1435379257]
 custom_minimum_size = Vector2(300, 50)
 layout_mode = 2
@@ -215,6 +218,9 @@ text = "0"
 layout_mode = 2
 expand_mode = 3
 stretch_mode = 5
+
+[node name="Name" type="Label" parent="HUD/MarginContainer/VBoxContainer/ResourceCounter/HBoxContainer" unique_id=314004170]
+layout_mode = 2
 
 [node name="ResourceCounter2" type="Control" parent="HUD/MarginContainer/VBoxContainer" unique_id=675570593]
 custom_minimum_size = Vector2(300, 50)
@@ -242,6 +248,9 @@ layout_mode = 2
 expand_mode = 3
 stretch_mode = 5
 
+[node name="Name" type="Label" parent="HUD/MarginContainer/VBoxContainer/ResourceCounter2/HBoxContainer" unique_id=332152411]
+layout_mode = 2
+
 [node name="ResourceCounter3" type="Control" parent="HUD/MarginContainer/VBoxContainer" unique_id=1736444323]
 custom_minimum_size = Vector2(300, 50)
 layout_mode = 2
@@ -267,6 +276,9 @@ text = "0"
 layout_mode = 2
 expand_mode = 3
 stretch_mode = 5
+
+[node name="Name" type="Label" parent="HUD/MarginContainer/VBoxContainer/ResourceCounter3/HBoxContainer" unique_id=1193120336]
+layout_mode = 2
 
 [node name="OxygenBar" type="Control" parent="HUD" unique_id=987123456]
 visible = false

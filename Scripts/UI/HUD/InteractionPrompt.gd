@@ -16,8 +16,8 @@ func _ready() -> void:
 	EventBus.player_enter_skill_terminal_area.connect(_push.bind("Access Skill Tree"))
 	EventBus.player_exit_skill_terminal_area.connect(_pop.bind("Access Skill Tree"))
 
-	EventBus.player_enter_shop_area.connect(_push.bind("Sell resources"))
-	EventBus.player_exit_shop_area.connect(_pop.bind("Sell resources"))
+	EventBus.player_enter_shop_area.connect(_push.bind("Process resources"))
+	EventBus.player_exit_shop_area.connect(_pop.bind("Process resources"))
 
 	EventBus.ui_state_changed.connect(_refresh)
 
