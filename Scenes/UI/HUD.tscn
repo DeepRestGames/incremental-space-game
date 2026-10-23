@@ -11,7 +11,6 @@
 [ext_resource type="Script" uid="uid://dr7vi4ci7k7vu" path="res://Scripts/UI/HUD/BombCounter.gd" id="6_bombcounter"]
 [ext_resource type="Resource" uid="uid://2q7gnpjkf8pp" path="res://GameResources/Currencies/white_chip.tres" id="7_55bpt"]
 [ext_resource type="Texture2D" uid="uid://blslgwfnag1a4" path="res://Assets/PLACEHOLDERS/Bomb.svg" id="7_bombicon"]
-[ext_resource type="Texture2D" uid="uid://1rqdre1xa1vg" path="res://Assets/Sprites/Resources/Currencies/white_chip.png" id="8_yd1yt"]
 [ext_resource type="Script" uid="uid://d02rqtjowyuap" path="res://Scripts/UI/HUD/hud_mockup_animation.gd" id="9_pydgx"]
 [ext_resource type="Resource" uid="uid://4xra85surmlh" path="res://GameResources/Materials/white_triangle.tres" id="9_yd1yt"]
 [ext_resource type="Resource" uid="uid://cag2bw6x17n46" path="res://GameResources/Materials/white_square.tres" id="10_5h4o4"]
@@ -158,6 +157,13 @@ layout_mode = 2
 texture = ExtResource("5_55bpt")
 stretch_mode = 5
 
+[node name="Label" type="Label" parent="HUD/MarginContainer/VBoxContainer/ResourcesCounter/HBoxContainer" unique_id=205835305]
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_font_sizes/font_size = 20
+text = "TAB"
+vertical_alignment = 1
+
 [node name="MoneyCounter" type="Control" parent="HUD/MarginContainer/VBoxContainer" unique_id=1376059291]
 custom_minimum_size = Vector2(300, 50)
 layout_mode = 2
@@ -181,7 +187,6 @@ text = "0"
 
 [node name="ResourceIcon" type="TextureRect" parent="HUD/MarginContainer/VBoxContainer/MoneyCounter/HBoxContainer" unique_id=4532190]
 layout_mode = 2
-texture = ExtResource("8_yd1yt")
 expand_mode = 3
 stretch_mode = 5
 

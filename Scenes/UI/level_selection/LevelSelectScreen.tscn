@@ -46,13 +46,6 @@ theme_override_constants/margin_bottom = 200
 layout_mode = 2
 theme_override_constants/separation = 24
 
-[node name="StartButton" type="Button" parent="Layout/VBox" unique_id=1201784335]
-layout_mode = 2
-size_flags_horizontal = 4
-theme = ExtResource("2_j85ej")
-theme_override_font_sizes/font_size = 48
-text = "Start Expedition"
-
 [node name="PlanetsPanel" type="PanelContainer" parent="Layout/VBox" unique_id=1996523459]
 layout_mode = 2
 
@@ -137,7 +130,7 @@ layout_mode = 2
 script = ExtResource("7_cfpvn")
 
 [node name="Margin" type="MarginContainer" parent="Layout/VBox/Bottom/NodesPanel" unique_id=1685041729]
-custom_minimum_size = Vector2(300, 200)
+custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 theme_override_constants/margin_left = 28
 theme_override_constants/margin_top = 20
@@ -175,5 +168,12 @@ layout_mode = 2
 [node name="Rows" type="VBoxContainer" parent="Layout/VBox/Bottom/HazardsPanel/Margin" unique_id=1697587624]
 unique_name_in_owner = true
 layout_mode = 2
+
+[node name="StartButton" type="Button" parent="Layout/VBox" unique_id=1201784335]
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("2_j85ej")
+theme_override_font_sizes/font_size = 48
+text = "Start Expedition"
 
 [connection signal="pressed" from="Layout/VBox/StartButton" to="." method="_on_start_pressed"]

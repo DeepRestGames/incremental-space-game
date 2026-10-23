@@ -42,11 +42,11 @@ const DATABASE: Dictionary = {
 	"drill_damage_2": {
 		"name": "That's gonna hurt",
 		"description": "Significantly increases drill damage per tick.",
-		"cost": [{ResourceDB.WHITE_CHIP: 25}],
+		"cost": [{ResourceDB.WHITE_CHIP: 30}],
 		"effects": {
 			"drill_damage_per_tick": {
 				"type": "ADDITIVE",
-				"value": 1
+				"value": 1.5
 			}
 		}
 	},
@@ -230,14 +230,27 @@ const DATABASE: Dictionary = {
 	# ---------------- PLANET SPECIFIC
 	"deep_scan_bastet": {
 		"name": "Deep Scan: Bastet",
-		"description": "Fewer common rocks on Bastet, more of the valuable ones.",
+		"description": "Improved mining nodes quality on Bastet",
 		"cost": [{ResourceDB.WHITE_CHIP: 30}, {ResourceDB.WHITE_CHIP: 60}],
 		"effects": {
 			"bastet_common_weight": 
 				{"type": "ADDITIVE",
-				 "value": -0.25}
+				 "value": -0.5}
 		}
 	},
+	
+	# ---------------- DESTINATION UNLOCK
+	"new_destination_yam": {
+		"name": "New Destination: Yam",
+		"description": "Unlock a new destination",
+		"cost": [{ResourceDB.BLUE_DIAMOND: 999}],
+		"effects": {
+			"drops_on_destruction": 
+				{"type": "ADDITIVE",
+				 "value": 1}
+		}
+	},
+	
 	
 	#"XXX": {
 	#"name": "XXX Box",
