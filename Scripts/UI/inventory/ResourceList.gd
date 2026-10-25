@@ -17,4 +17,4 @@ func show_resources(amounts: Dictionary, filter: Callable, format: Callable = Ca
 			continue
 		var slot: ResourceSlot = SLOT.instantiate()
 		add_child(slot)
-		slot.setup(t, format.call(t, amount) if format.is_valid() else str(amount))
+		slot.setup(t, format.call(t, amount) if format.is_valid() else ResourceDB.format_amount(amount))

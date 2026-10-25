@@ -1,8 +1,14 @@
 [gd_resource type="Theme" format=3 uid="uid://cvjvny2ur7xve"]
 
 [ext_resource type="FontFile" uid="uid://c7ja2qj7yn1xc" path="res://Assets/Fonts/oxanium/ttf/Oxanium-SemiBold.ttf" id="1_t8060"]
+[ext_resource type="FontFile" uid="uid://bo6sros8myby6" path="res://Assets/Fonts/oxanium/ttf/Oxanium-Medium.ttf" id="2_nqigr"]
 
 [resource]
 Label/colors/font_color = Color(0.050980393, 0.92156863, 0.92156863, 1)
 Label/font_sizes/font_size = 30
 Label/fonts/font = ExtResource("1_t8060")
+SlotAmount/base_type = &"Label"
+SlotAmount/colors/font_outline_color = Color(0, 0, 0, 1)
+SlotAmount/constants/outline_size = 4
+SlotAmount/font_sizes/font_size = 20
+SlotAmount/fonts/font = ExtResource("2_nqigr")

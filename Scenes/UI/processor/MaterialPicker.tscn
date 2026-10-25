@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://dij64k244mpv0"]
+
+[ext_resource type="Script" uid="uid://rv0u3xdo7w2i" path="res://Scripts/UI/processor/MaterialPicker.gd" id="1_ae3y8"]
+
+[node name="MaterialPicker" type="PanelContainer" unique_id=741773418]
+visible = false
+script = ExtResource("1_ae3y8")
+
+[node name="Margin" type="MarginContainer" parent="." unique_id=1668172583]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="Grid" type="GridContainer" parent="Margin" unique_id=1228808161]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/h_separation = 12
+theme_override_constants/v_separation = 12
+columns = 3

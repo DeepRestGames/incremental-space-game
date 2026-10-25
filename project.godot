@@ -22,6 +22,7 @@ InputManager="*res://Scripts/GameManagers/InputManager.gd"
 GameManager="*res://Scripts/GameManagers/GameManager.gd"
 MusicManager="*uid://dp73x5kon5gdx"
 TransitionManager="*uid://wioq4o58mex1"
+ProcessorManager="*uid://dsikfp6h47xs7"
 
 [display]
 

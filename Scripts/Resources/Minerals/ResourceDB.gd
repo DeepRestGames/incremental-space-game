@@ -60,7 +60,26 @@ static func _warn_unlisted(dir: String) -> void:
 		if res is ResourceType and not ALL.has(res):
 			push_warning("ResourceDB: %s is not in ALL" % dir.path_join(f))
 
+	
+const _SUFFIXES: Array[String] = ["", "K", "M", "B", "T"]
 
+## 999 -> "999", 1999 -> "1.9K", 12345 -> "12K", 1500000 -> "1.5M".
+## Rounds DOWN on purpose: the slot should never show more than you own.
+@warning_ignore_start("integer_division")
+static func format_amount(n: int) -> String:
+	var div := 1
+	var i := 0
+	while absi(n) / div >= 1000 and i < _SUFFIXES.size() - 1:
+		div *= 1000
+		i += 1
+	if i == 0:
+		return str(n)
+	var whole := n / div
+	var tenth := (absi(n) % div) * 10 / div
+	if absi(whole) < 10 and tenth > 0:
+		return "%d.%d%s" % [whole, tenth, _SUFFIXES[i]]
+	return "%d%s" % [whole, _SUFFIXES[i]]
+@warning_ignore_restore("integer_division")
 
 #region resource-dictionary helpers
 ## These operate on resource dictionaries, not on game state, so they live here
@@ -88,4 +107,4 @@ static func format_cost(cost: Dictionary) -> String:
 	for t in cost:
 		parts.append("%d %s" % [cost[t], t.display_name])
 	return ", ".join(parts)
-	#endregion
+#endregion

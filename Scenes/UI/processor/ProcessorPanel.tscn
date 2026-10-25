@@ -1,0 +1,61 @@
+[gd_scene format=3 uid="uid://douw7fnqbcwbf"]
+
+[ext_resource type="Script" uid="uid://7tfpxj7l5fyi" path="res://Scripts/UI/processor/ProcessorPanel.gd" id="1_posdf"]
+[ext_resource type="PackedScene" uid="uid://dij64k244mpv0" path="res://Scenes/UI/processor/MaterialPicker.tscn" id="2_57cpm"]
+[ext_resource type="Theme" uid="uid://cvjvny2ur7xve" path="res://Assets/UI/Themes/Crafting_theme.tres" id="2_x63fa"]
+[ext_resource type="PackedScene" uid="uid://bm76vdd42r0kf" path="res://Scenes/UI/processor/ProcessorTooltip.tscn" id="3_07ype"]
+
+[node name="ProcessorPanel" type="Control" unique_id=242882624]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_posdf")
+
+[node name="Panel" type="PanelContainer" parent="." unique_id=110290903]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -106.5
+offset_top = -53.5
+offset_right = 106.5
+offset_bottom = 53.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_x63fa")
+
+[node name="Margin" type="MarginContainer" parent="Panel" unique_id=1072852168]
+layout_mode = 2
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 30
+
+[node name="VBox" type="VBoxContainer" parent="Panel/Margin" unique_id=898821714]
+layout_mode = 2
+theme_override_constants/separation = 30
+
+[node name="Title" type="Label" parent="Panel/Margin/VBox" unique_id=1902165048]
+layout_mode = 2
+text = "Material Processor"
+
+[node name="Rows" type="VBoxContainer" parent="Panel/Margin/VBox" unique_id=683442780]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="MaterialPicker" parent="." unique_id=741773418 instance=ExtResource("2_57cpm")]
+unique_name_in_owner = true
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 36.0
+
+[node name="ProcessorTooltip" parent="." unique_id=1855726579 instance=ExtResource("3_07ype")]
+unique_name_in_owner = true
+layout_mode = 0

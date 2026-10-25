@@ -8,4 +8,5 @@ script = ExtResource("2_8rlug")
 id = &"blue_diamond"
 display_name = "Blue Diamond"
 icon = ExtResource("1_wf7xs")
+description = "BLUE DIAMOND! description. TODO."
 metadata/_custom_type_script = "uid://bss1cajnebhpo"

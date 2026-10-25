@@ -143,3 +143,9 @@ static func get_drop_chance_per_tick(base_value: float=BaseValuesDB.RESOURCE_SPA
 
 static func get_failure_keep_ratio() -> float:
 	return minf(get_stat("failure_keep_ratio"), 1.0)
+
+static func get_processor_slots() -> int:
+	return int(get_stat("processor_slots"))
+
+static func get_processor_speed() -> float:
+	return get_stat("processor_speed")

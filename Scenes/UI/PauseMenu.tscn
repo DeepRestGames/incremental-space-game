@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://d3ixveovn637y"]
 
+[ext_resource type="Theme" uid="uid://cejvp2v78r022" path="res://Assets/UI/Themes/UI_theme.tres" id="1_n4i8v"]
 [ext_resource type="Script" uid="uid://tecf3onopkef" path="res://Scripts/UI/PauseMenu.gd" id="1_pausemenu"]
 
 [node name="PauseMenu" type="Control" unique_id=1510825020]
@@ -9,6 +10,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_n4i8v")
 script = ExtResource("1_pausemenu")
 
 [node name="BackgroundOverlay" type="ColorRect" parent="." unique_id=1530470948]
@@ -36,7 +38,7 @@ alignment = 1
 [node name="TitleLabel" type="Label" parent="CenterContainer/VBoxContainer" unique_id=1458415763]
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 0.4, 0, 1)
-theme_override_font_sizes/font_size = 48
+theme_override_font_sizes/font_size = 72
 text = "GAME PAUSED"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -48,13 +50,13 @@ layout_mode = 2
 [node name="ResumeButton" type="Button" parent="CenterContainer/VBoxContainer" unique_id=1243564571]
 custom_minimum_size = Vector2(250, 45)
 layout_mode = 2
-theme_override_font_sizes/font_size = 22
+theme_override_font_sizes/font_size = 48
 text = "Resume"
 
 [node name="BackToMenuButton" type="Button" parent="CenterContainer/VBoxContainer" unique_id=462782924]
 custom_minimum_size = Vector2(250, 45)
 layout_mode = 2
-theme_override_font_sizes/font_size = 22
+theme_override_font_sizes/font_size = 48
 text = "Back to Menu"
 
 [connection signal="pressed" from="CenterContainer/VBoxContainer/ResumeButton" to="." method="_on_resume_button_pressed"]

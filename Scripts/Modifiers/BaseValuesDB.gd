@@ -33,6 +33,10 @@ const DRILL_ATTACK_SPEED: float = 1
 const RESOURCE_SPAWN_CHANCE_ON_DAMAGED: float = 0
 const FAILURE_KEEP_RATIO: float = 0.2
 
+# Processor Stats
+const PROCESSOR_SLOTS: int = 1
+const PROCESSOR_SPEED: float = 1.0
+
 ## Registry of every stat that skills are allowed to modify: stat id -> base value.
 ## This is the single list of "modifiable stats" in the game: SkillModifiers builds
 ## its cache from these keys, so a skill in SkillDB pointing at a stat that is not
@@ -59,4 +63,7 @@ const BASE_VALUES: Dictionary = {
 	# Spawn-weight scalers. The real base is each entry's weight in that planet's
 	# SpawnDistribution; these only register the ids so skills may target them.
 	"bastet_common_weight": 1.0,
+	# Processor	
+	"processor_slots": PROCESSOR_SLOTS,
+	"processor_speed": PROCESSOR_SPEED,
 }

@@ -8,4 +8,5 @@ script = ExtResource("2_bmksr")
 id = &"white_triangle"
 display_name = "White Triangle"
 icon = ExtResource("1_vdj48")
+description = "White triangle description. TODO."
 metadata/_custom_type_script = "uid://bss1cajnebhpo"

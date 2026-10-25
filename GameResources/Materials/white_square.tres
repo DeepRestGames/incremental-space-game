@@ -8,4 +8,5 @@ script = ExtResource("2_aqksq")
 id = &"white_square"
 display_name = "White Square"
 icon = ExtResource("1_q6y2u")
+description = "White SQUARE description. TODO."
 metadata/_custom_type_script = "uid://bss1cajnebhpo"

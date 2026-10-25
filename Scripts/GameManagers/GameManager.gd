@@ -54,6 +54,13 @@ var inventory_open: bool = false:
 		inventory_open = value
 		EventBus.ui_state_changed.emit()
 
+var processor_open: bool = false:
+	set(value):
+		if processor_open == value:
+			return
+		processor_open = value
+		EventBus.ui_state_changed.emit()
+
 ## True for the whole duration of a screen transition. Doubles as the
 ## re-entrancy guard for TransitionManager.change_scene().
 var transitioning: bool = false:
@@ -359,7 +366,8 @@ func is_modal_ui_open() -> bool:
 			or level_select_open
 			or confirmation_popup_open
 			or inventory_open
-			or transitioning)
+			or transitioning
+			or processor_open)
 ## The world is covered: world-space HUD elements should hide.
 func is_world_obscured() -> bool:
 	return is_modal_ui_open() or game_paused

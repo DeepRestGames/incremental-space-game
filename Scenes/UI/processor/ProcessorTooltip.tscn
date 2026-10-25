@@ -1,0 +1,57 @@
+[gd_scene format=3 uid="uid://bm76vdd42r0kf"]
+
+[ext_resource type="Theme" uid="uid://dr0f2ho71cvjo" path="res://Assets/UI/Themes/MouseOverDesc_theme.tres" id="1_kou84"]
+[ext_resource type="Script" uid="uid://d03pvpdae8jmt" path="res://Scripts/UI/processor/ProcessorTooltip.gd" id="2_2d23c"]
+
+[node name="ProcessorTooltip" type="PanelContainer" unique_id=1855726579]
+mouse_filter = 2
+theme = ExtResource("1_kou84")
+script = ExtResource("2_2d23c")
+
+[node name="Margin" type="MarginContainer" parent="." unique_id=775612955]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 30
+
+[node name="VBox" type="VBoxContainer" parent="Margin" unique_id=1206616563]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 8
+
+[node name="RecipeRow" type="HBoxContainer" parent="Margin/VBox" unique_id=967516899]
+unique_name_in_owner = true
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 8
+
+[node name="InText" type="Label" parent="Margin/VBox/RecipeRow" unique_id=116125677]
+unique_name_in_owner = true
+layout_mode = 2
+text = "1x"
+
+[node name="InIcon" type="TextureRect" parent="Margin/VBox/RecipeRow" unique_id=1798878116]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(28, 28)
+layout_mode = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="OutText" type="Label" parent="Margin/VBox/RecipeRow" unique_id=384724439]
+unique_name_in_owner = true
+layout_mode = 2
+text = "15x"
+
+[node name="OutIcon" type="TextureRect" parent="Margin/VBox/RecipeRow" unique_id=312166629]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(28, 28)
+layout_mode = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="DescLabel" type="Label" parent="Margin/VBox" unique_id=1766984592]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Description"

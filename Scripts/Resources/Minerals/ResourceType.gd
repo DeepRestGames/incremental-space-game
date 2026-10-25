@@ -5,3 +5,5 @@ extends Resource
 @export var id: StringName                  # &"titanium"
 @export var display_name: String            # "Titanium"
 @export var icon: Texture2D
+## Shown in tooltips, e.g. "Raw material. Only valuable if processed."
+@export_multiline var description: String

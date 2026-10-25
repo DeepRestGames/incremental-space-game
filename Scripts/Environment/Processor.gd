@@ -1,29 +1,45 @@
 extends Area2D
 
-## Shop / Merchant Interactable
-## When the player is nearby and presses the interact key, converts all
-## collected resources stored at the base into money to spend in the skill tree.
+## Material Processor Interactable
+## Opens the ProcessorPanel UI when the player is nearby and presses interact.
 
-## How much money one unit of resource is worth. Tweak in the Inspector.
-@export var conversion_rate: float = 1.0
 var player_in_area: bool = false
 
-@onready var sprite_2d: Sprite2D = $Sprite2D
+
+## Shake while any processor row is converting.
+@export var shake_amplitude: float = 2.0  ## max pixels away from rest
+@export var shake_rate: float = 30.0      ## new random offsets per second
+
+@onready var _sprite: Sprite2D = $Sprite2D
+@onready var _rest_position: Vector2 = _sprite.position
+var _shake_timer: float = 0.0
 
 func _ready() -> void:
 	EventBus.action_trigger_interact.connect(check_interaction)
+	# The panel pauses the game, but the machine keeps working, so keep shaking.
+	process_mode = Node.PROCESS_MODE_ALWAYS
 
-## Shop / Merchant Interactable
-## When the player is nearby and presses interact, runs every shop recipe as
-## many times as the stored resources allow.
-## TODO: replace with a selection UI once recipes are more than one.
+
+func _process(delta: float) -> void:
+	if not ProcessorManager.is_working():
+		_sprite.position = _rest_position
+		return
+	_shake_timer -= delta
+	if _shake_timer <= 0.0:
+		_shake_timer = 1.0 / shake_rate
+		var offset := Vector2(randf_range(-1.0, 1.0), randf_range(-1.0, 1.0))
+		_sprite.position = _rest_position + offset * shake_amplitude
 
 func check_interaction() -> void:
 	if not player_in_area:
 		return
-	for recipe in RecipeDB.recipes_for(&"processor"):
-		GameManager.craft(recipe, GameManager.max_crafts(recipe))
-		shake()
+	var ui = get_tree().current_scene.get_node_or_null("CanvasLayer/ProcessorPanel")
+	if ui:
+		if ui.visible:
+			ui.close()
+		else:
+			ui.open()
+
 
 func _on_body_entered(body: Node2D) -> void:
 	if body.is_in_group("Player"):
@@ -40,18 +56,6 @@ func _on_body_exited(body: Node2D) -> void:
 			body.inside_interactable_area = false
 		EventBus.player_exit_shop_area.emit()
 
-func shake() -> void:
-	var tween_x = get_tree().create_tween().set_trans(Tween.TRANS_CUBIC)
-	tween_x.set_loops(5)
-	tween_x.tween_property(sprite_2d, "position:x", 15, 0.01)
-	tween_x.tween_property(sprite_2d, "position:x", 0, 0.01)
-	tween_x.tween_property(sprite_2d, "position:x", -15, 0.01)
-	tween_x.tween_property(sprite_2d, "position:x", 0, 0.01)
-
-	
-	#var tween = get_tree().create_tween().set_trans(Tween.TRANS_CUBIC)
-	#tween.set_loops(5)
-	#tween.tween_property(sprite_2d, "skew", 5, 0.01)
-	#tween.tween_property(sprite_2d, "skew", 0, 0.01)
-	#tween.tween_property(sprite_2d, "skew", -5, 0.01)
-	#tween.tween_property(sprite_2d, "skew", 0, 0.01)
+		var ui = get_tree().current_scene.get_node_or_null("CanvasLayer/ProcessorPanel")
+		if ui and ui.visible:
+			ui.close()

@@ -22,3 +22,7 @@ func setup(t: ResourceType, amount_text: String) -> void:
 func show_texture(texture: Texture2D, corner_text: String) -> void:
 	_icon.texture = texture
 	_amount.text = corner_text
+
+func clear() -> void:
+	type = null
+	show_texture(null, "")
