@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://bapthsmhysjpt"]
 
-[ext_resource type="Script" uid="uid://tthwx78tpsd4" path="res://Scripts/Environment/Shop.gd" id="1_script"]
-[ext_resource type="Texture2D" uid="uid://belkl54swrnt2" path="res://Assets/Sprites/environment/lobby/Processor.png" id="2_iqt57"]
+[ext_resource type="Script" uid="uid://tthwx78tpsd4" path="res://Scripts/Environment/Processor.gd" id="1_vql6b"]
+[ext_resource type="Texture2D" uid="uid://belkl54swrnt2" path="res://Assets/Sprites/environment/lobby/Processor.png" id="2_kmg0v"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_mttpf"]
 radius = 183.0
@@ -10,8 +10,8 @@ height = 772.0
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yf5fn"]
 size = Vector2(575, 87)
 
-[node name="Shop" type="Area2D" unique_id=1206467428]
-script = ExtResource("1_script")
+[node name="Processor" type="Area2D" unique_id=1206467428]
+script = ExtResource("1_vql6b")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1356233920]
 position = Vector2(0, -132)
@@ -20,7 +20,7 @@ shape = SubResource("CapsuleShape2D_mttpf")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1495077441]
 position = Vector2(0, -20)
-texture = ExtResource("2_iqt57")
+texture = ExtResource("2_kmg0v")
 offset = Vector2(0, -130)
 
 [node name="ProcessorCollision" type="StaticBody2D" parent="." unique_id=1475375597]

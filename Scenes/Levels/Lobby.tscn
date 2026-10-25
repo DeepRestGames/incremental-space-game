@@ -10,7 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://c76txulc8ihss" path="res://Assets/Sprites/environment/lobby/BluePlus.png" id="9_n3su3"]
 [ext_resource type="PackedScene" uid="uid://cyf0gp5u2tbw5" path="res://Scenes/UI/level_selection/LevelSelectScreen.tscn" id="10_8haom"]
 [ext_resource type="PackedScene" uid="uid://w7h5832edy6i" path="res://Scenes/UI/skill_tree.tscn" id="10_skill_tree"]
-[ext_resource type="PackedScene" uid="uid://bapthsmhysjpt" path="res://Scenes/Levels/Shop.tscn" id="11_shop"]
+[ext_resource type="PackedScene" uid="uid://bapthsmhysjpt" path="res://Scenes/Levels/Processor.tscn" id="11_shop"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_g4v7s"]
 
