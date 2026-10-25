@@ -7,12 +7,14 @@ extends Control
 
 @onready var value = $HBoxContainer/Value
 @onready var resource_icon: TextureRect = $HBoxContainer/ResourceIcon
+@onready var resource_name: Label = $HBoxContainer/Name
 
 
 func _ready() -> void:
 	EventBus.update_HUD.connect(update_money_counter_value)
 	resource_icon.texture = resource_type.icon
-
+	resource_name.text = resource_type.display_name
+	
 	update_money_counter_value()
 	
 	visible = !GameManager.expedition_started

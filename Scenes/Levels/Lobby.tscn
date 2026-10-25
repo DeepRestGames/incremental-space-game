@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://bkatbh04wm0me" path="res://Assets/Sprites/environment/lobby/Hangar_Background_test.png" id="3_8haom"]
 [ext_resource type="PackedScene" uid="uid://ccmhp41okc8g0" path="res://Scenes/HUB/ExpeditionShip/ExpeditionShip.tscn" id="4_ship"]
 [ext_resource type="Texture2D" uid="uid://duq1gioflog65" path="res://Assets/Sprites/environment/lobby/BlueCircle.png" id="8_8haom"]
+[ext_resource type="Texture2D" uid="uid://3h07rgr61wbj" path="res://Assets/UI/Help.png" id="8_n3su3"]
 [ext_resource type="PackedScene" uid="uid://bngmoa84fkagd" path="res://Scenes/Levels/SkillTreeTerminal.tscn" id="8_terminal"]
 [ext_resource type="Texture2D" uid="uid://c76txulc8ihss" path="res://Assets/Sprites/environment/lobby/BluePlus.png" id="9_n3su3"]
 [ext_resource type="PackedScene" uid="uid://cyf0gp5u2tbw5" path="res://Scenes/UI/level_selection/LevelSelectScreen.tscn" id="10_8haom"]
@@ -152,6 +153,12 @@ position = Vector2(832, -562)
 
 [node name="Shop" parent="Objects" unique_id=1394191487 instance=ExtResource("11_shop")]
 position = Vector2(1376, 51)
+
+[node name="Help" type="Sprite2D" parent="Objects" unique_id=1592947292]
+modulate = Color(0.88, 0.88, 0.88, 1)
+position = Vector2(1367, 109.00001)
+scale = Vector2(0.40697676, 0.40697676)
+texture = ExtResource("8_n3su3")
 
 [node name="MonitorEffect" type="Node2D" parent="Objects" unique_id=1870331636]
 modulate = Color(1, 1, 1, 0.78431374)

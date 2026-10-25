@@ -14,7 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://dyapnxc8yihmf" path="res://Assets/UI/skill tree/skill icons/DrillCritBig.svg" id="10_etyxl"]
 [ext_resource type="Texture2D" uid="uid://mwbu773nihse" path="res://Assets/UI/skill tree/skill icons/Scanner.svg" id="11_tt40d"]
 [ext_resource type="Texture2D" uid="uid://d0kvveeacf4j0" path="res://Assets/UI/skill tree/skill icons/DrillShine.svg" id="12_y0o01"]
-[ext_resource type="Texture2D" uid="uid://dbc0nwinib2qa" path="res://Assets/UI/skill tree/skill icons/Fragments.svg" id="13_5m2m7"]
+[ext_resource type="Texture2D" uid="uid://dsrrrgh8n4pap" path="res://Assets/UI/skill tree/skill icons/Speed2.svg" id="13_y0o01"]
 [ext_resource type="Texture2D" uid="uid://dhndktijayxr7" path="res://Assets/UI/skill tree/skill icons/Bomb2.svg" id="15_exa8l"]
 [ext_resource type="Texture2D" uid="uid://cqwlreb6f151w" path="res://Assets/Sprites/particles/Vignette.png" id="17_tt40d"]
 [ext_resource type="Texture2D" uid="uid://bwfdkfuma5fs" path="res://Assets/UI/skill tree/skill icons/DoubleBomb.svg" id="17_y0o01"]
@@ -314,21 +314,6 @@ skill_id = "drill_crit_damage"
 icon = ExtResource("10_etyxl")
 parent_node = NodePath("../DrillCritNode")
 
-[node name="BastetImprovement" parent="TreeView" unique_id=463258676 node_paths=PackedStringArray("parent_node") instance=ExtResource("1_c1qs3")]
-layout_mode = 0
-anchors_preset = 0
-anchor_right = 0.0
-anchor_bottom = 0.0
-offset_left = 570.0
-offset_top = 470.0
-offset_right = 710.0
-offset_bottom = 610.0
-grow_horizontal = 1
-grow_vertical = 1
-skill_id = "deep_scan_bastet"
-icon = ExtResource("11_tt40d")
-parent_node = NodePath("../Core")
-
 [node name="ConnectorNode5" parent="TreeView" unique_id=428899155 node_paths=PackedStringArray("parent_node") instance=ExtResource("1_c1qs3")]
 modulate = Color(1, 1, 1, 0.4)
 layout_mode = 0
@@ -380,14 +365,14 @@ layout_mode = 0
 anchors_preset = 0
 anchor_right = 0.0
 anchor_bottom = 0.0
-offset_left = 410.0
-offset_top = 630.0
-offset_right = 550.0
-offset_bottom = 770.0
+offset_left = 840.0
+offset_top = -220.0
+offset_right = 1080.0
+offset_bottom = 20.0
 grow_horizontal = 1
 grow_vertical = 1
-skill_id = "destroy_drops"
-icon = ExtResource("13_5m2m7")
+skill_id = "new_destination_yam"
+icon = ExtResource("13_y0o01")
 parent_node = NodePath("../BastetImprovement")
 
 [node name="ConnectorNode3" parent="TreeView" unique_id=1032691374 node_paths=PackedStringArray("parent_node") instance=ExtResource("1_c1qs3")]
@@ -426,10 +411,10 @@ layout_mode = 0
 anchors_preset = 0
 anchor_right = 0.0
 anchor_bottom = 0.0
-offset_left = 840.0
-offset_top = 100.0
-offset_right = 1080.0
-offset_bottom = 340.0
+offset_left = 520.0
+offset_top = 420.0
+offset_right = 760.0
+offset_bottom = 660.0
 grow_horizontal = 1
 grow_vertical = 1
 skill_id = "bomb_unlock"
@@ -441,15 +426,30 @@ layout_mode = 0
 anchors_preset = 0
 anchor_right = 0.0
 anchor_bottom = 0.0
-offset_left = 570.0
-offset_top = 150.0
-offset_right = 710.0
-offset_bottom = 290.0
+offset_left = 250.0
+offset_top = 470.0
+offset_right = 390.0
+offset_bottom = 610.0
 grow_horizontal = 1
 grow_vertical = 1
 skill_id = "bomb_charges"
 icon = ExtResource("17_y0o01")
 parent_node = NodePath("../BombUnlock")
+
+[node name="BastetImprovement" parent="TreeView" unique_id=463258676 node_paths=PackedStringArray("parent_node") instance=ExtResource("1_c1qs3")]
+layout_mode = 0
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 890.0
+offset_top = 150.0
+offset_right = 1030.0
+offset_bottom = 290.0
+grow_horizontal = 1
+grow_vertical = 1
+skill_id = "deep_scan_bastet"
+icon = ExtResource("11_tt40d")
+parent_node = NodePath("../Core")
 
 [node name="Effects" type="Control" parent="." unique_id=597609919]
 layout_mode = 1

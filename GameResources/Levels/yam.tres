@@ -7,6 +7,5 @@
 script = ExtResource("1_7nxbi")
 id = &"yam"
 display_name = "Yam"
-scene_path = "uid://co522yyv0i0v3"
 planet_texture = ExtResource("1_7jk10")
 metadata/_custom_type_script = "uid://bh6djmbsvu7qw"
