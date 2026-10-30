@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://dkrwk0exgfubs" path="res://Addons/at-icons/node2d/at.svg" id="3_mo6oc"]
 
 [node name="ResourceSlot" type="PanelContainer" unique_id=802071946]
-custom_minimum_size = Vector2(64, 64)
+custom_minimum_size = Vector2(100, 100)
 theme = ExtResource("1_w5t0q")
 theme_type_variation = &"SlotPanel"
 script = ExtResource("2_w5t0q")
@@ -29,7 +29,8 @@ stretch_mode = 5
 [node name="Amount" type="Label" parent="." unique_id=1845619408]
 unique_name_in_owner = true
 layout_mode = 2
-size_flags_vertical = 3
+size_flags_horizontal = 8
+size_flags_vertical = 10
 theme_type_variation = &"SlotAmount"
 text = "9999"
 horizontal_alignment = 2

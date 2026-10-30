@@ -1,12 +1,12 @@
 [gd_resource type="Resource" script_class="ResourceType" format=3 uid="uid://cag2bw6x17n46"]
 
-[ext_resource type="Texture2D" uid="uid://d0l37aljkbdpu" path="res://Assets/Sprites/Resources/drops/white_square_drop.png" id="1_q6y2u"]
+[ext_resource type="Texture2D" uid="uid://dqqt0nmobdilf" path="res://Assets/Sprites/Resources/icons/white_square_icon.png" id="1_meetb"]
 [ext_resource type="Script" uid="uid://bss1cajnebhpo" path="res://Scripts/Resources/Minerals/ResourceType.gd" id="2_aqksq"]
 
 [resource]
 script = ExtResource("2_aqksq")
 id = &"white_square"
 display_name = "White Square"
-icon = ExtResource("1_q6y2u")
+icon = ExtResource("1_meetb")
 description = "White SQUARE description. TODO."
 metadata/_custom_type_script = "uid://bss1cajnebhpo"

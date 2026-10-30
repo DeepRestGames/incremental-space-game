@@ -13,7 +13,7 @@ metadata/_custom_type_script = "uid://cq1k63dpg13de"
 [sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_a76hy"]
 points = PackedVector2Array(-7.9995985, 111.00003, -35.99975, 70.00013, -30.000336, -92.99989, 10.999558, -122.00004, 55.999752, -68.000206, 55.000156, 42.999798, 31.000387, 106.999886, 16.000443, 121.99994)
 
-[node name="white_triangle_rock_small" unique_id=1949437542 instance=ExtResource("1_5j7a6")]
+[node name="blue_triangle_rock_small" unique_id=1949437542 instance=ExtResource("1_5j7a6")]
 totalHP = 400
 particle_modulate = Color(0.93, 0.51925004, 0.43710002, 1)
 drops = Array[ExtResource("2_2pa26")]([SubResource("Resource_dit80")])

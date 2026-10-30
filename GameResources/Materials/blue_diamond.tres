@@ -1,12 +1,12 @@
 [gd_resource type="Resource" script_class="ResourceType" format=3 uid="uid://d1r5ngv5sjq48"]
 
-[ext_resource type="Texture2D" uid="uid://dc5icbfwlxdwv" path="res://Assets/Sprites/Resources/drops/blue_diamond_drop.png" id="1_wf7xs"]
+[ext_resource type="Texture2D" uid="uid://c8ocv1d8l008m" path="res://Assets/Sprites/Resources/icons/blue_diamond_icon.png" id="1_e44ni"]
 [ext_resource type="Script" uid="uid://bss1cajnebhpo" path="res://Scripts/Resources/Minerals/ResourceType.gd" id="2_8rlug"]
 
 [resource]
 script = ExtResource("2_8rlug")
 id = &"blue_diamond"
 display_name = "Blue Diamond"
-icon = ExtResource("1_wf7xs")
+icon = ExtResource("1_e44ni")
 description = "BLUE DIAMOND! description. TODO."
 metadata/_custom_type_script = "uid://bss1cajnebhpo"
