@@ -146,6 +146,9 @@ func reset_view() -> void:
 	_dragging = false
 	tree_view.position = Vector2.ZERO
 	tree_view.scale = Vector2.ONE
+	_zoom_at(Vector2(1920/2, 1080/2), -0.15) # zoom out default zoom slightly
+	# eventually I would like to zoom in slightly when the skill tree is opened the first time
+	# to shortly show the locked skill tree to the player and suggest that they can zoom.
 	_clamp_view()
 
 

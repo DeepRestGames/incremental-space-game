@@ -34,6 +34,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("2_skilltree")
 zoom_max = 1.6
+reset_view_on_open = false
 
 [node name="Control" type="Control" parent="." unique_id=1331112669]
 layout_mode = 1
