@@ -14,4 +14,5 @@ ExtResource("2_e1pgq"): 1
 output = ExtResource("3_duh12")
 output_amount = 20
 station = &"processor"
+duration = 0.8
 metadata/_custom_type_script = "uid://fji2tdcre58v"
