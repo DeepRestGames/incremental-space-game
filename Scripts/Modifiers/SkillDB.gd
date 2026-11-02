@@ -151,8 +151,8 @@ const DATABASE: Dictionary = {
 		}
 	},
 	"chip_chance_unlock": {
-		"name": "Chipping tech",
-		"description": "Adds chance to find additional while drilling.",
+		"name": "Unlock chipping tech",
+		"description": "Unlock chance to find additional resources while drilling.",
 		"cost": [{ResourceDB.WHITE_CHIP: 50}],
 		"effects": {
 			"drop_chance_per_tick": {
@@ -162,8 +162,8 @@ const DATABASE: Dictionary = {
 		}
 	},
 	"chip_chance": {
-		"name": "Chipping tech",
-		"description": "Increases chance to find additional resources while drilling.",
+		"name": "Firmer chisel",
+		"description": "Increase chance to find additional resources while drilling.",
 		"cost": [{ResourceDB.WHITE_CHIP: 25}, {ResourceDB.WHITE_CHIP: 25}],
 		"effects": {
 			"drop_chance_per_tick": {
@@ -174,7 +174,7 @@ const DATABASE: Dictionary = {
 	},
 	"destroy_drops": {
 		"name": "Precise Drilling",
-		"description": "Increases drops generated when a node is destroyed.",
+		"description": "Increase drops generated when a node is destroyed.",
 		"cost": [{ResourceDB.WHITE_CHIP: 50}, {ResourceDB.WHITE_CHIP: 50}],
 		"effects": {
 			"drops_on_destruction": {
@@ -185,7 +185,7 @@ const DATABASE: Dictionary = {
 	},
 	"move_speed": {
 		"name": "Thruster Tuning",
-		"description": "Increases movement speed.",
+		"description": "Increase movement speed.",
 		"cost": [{ResourceDB.WHITE_CHIP: 10}],
 		"effects": {
 			"movement_speed": {
@@ -196,7 +196,7 @@ const DATABASE: Dictionary = {
 	},
 	"inventory_capacity": {
 		"name": "Big Bag",
-		"description": "Increases expedition inventory capacity",
+		"description": "Increase expedition inventory capacity",
 		"cost": [{ResourceDB.WHITE_CHIP: 6}],
 		"effects": {
 			"inventory_capacity": {
@@ -206,8 +206,8 @@ const DATABASE: Dictionary = {
 		}
 	},
 	"bomb_unlock": {
-		"name": "Geofracturing Device",
-		"description": "Unlocks a powerful device which fractures rocks in an area",
+		"name": "Unlock Geofracturing Device",
+		"description": "Unlock a powerful device which fractures rocks in an area. Use with space bar.",
 		"cost": [{ResourceDB.BLUE_DIAMOND: 1}],
 		"effects": {
 			"bomb_charges": {
@@ -218,7 +218,7 @@ const DATABASE: Dictionary = {
 	},
 	"bomb_charges": {
 		"name": "GFD Charges",
-		"description": "Increases Geofracturing Device charges.",
+		"description": "Increase Geofracturing Device charges.",
 		"cost": [{ResourceDB.WHITE_CHIP: 45}, {ResourceDB.WHITE_CHIP: 45}, {ResourceDB.WHITE_CHIP: 45}],
 		"effects": {
 			"bomb_charges": {
@@ -230,7 +230,7 @@ const DATABASE: Dictionary = {
 	# ---------------- PLANET SPECIFIC
 	"deep_scan_bastet": {
 		"name": "Deep Scan: Bastet",
-		"description": "Improved mining nodes quality on Bastet",
+		"description": "Improve mining nodes quality on Bastet",
 		"cost": [{ResourceDB.WHITE_CHIP: 30}, {ResourceDB.WHITE_CHIP: 60}],
 		"effects": {
 			"bastet_common_weight": 
