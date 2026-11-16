@@ -142,7 +142,7 @@ const DATABASE: Dictionary = {
 	"oxygen_capacity_2": {
 		"name": "Bigger Oxygen Reserve",
 		"description": "Increases oxygen tank capacity.",
-		"cost": [{ResourceDB.WHITE_CHIP: 25}],
+		"cost": [{ResourceDB.WHITE_SQUARE: 7}],
 		"effects": {
 			"oxygen_tank_capacity": {
 				"type": "ADDITIVE",
