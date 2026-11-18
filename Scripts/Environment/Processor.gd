@@ -46,7 +46,7 @@ func _on_body_entered(body: Node2D) -> void:
 		player_in_area = true
 		if "inside_interactable_area" in body:
 			body.inside_interactable_area = true
-		EventBus.player_enter_shop_area.emit()
+		EventBus.player_enter_processor_area.emit()
 
 
 func _on_body_exited(body: Node2D) -> void:
@@ -54,7 +54,7 @@ func _on_body_exited(body: Node2D) -> void:
 		player_in_area = false
 		if "inside_interactable_area" in body:
 			body.inside_interactable_area = false
-		EventBus.player_exit_shop_area.emit()
+		EventBus.player_exit_processor_area.emit()
 
 		var ui = get_tree().current_scene.get_node_or_null("CanvasLayer/ProcessorPanel")
 		if ui and ui.visible:

@@ -118,6 +118,3 @@ bus = &"SFX"
 [node name="Destroy" type="AudioStreamPlayer" parent="Audio" unique_id=124195570]
 stream = SubResource("AudioStreamRandomizer_qituv")
 bus = &"SFX"
-
-[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
-[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

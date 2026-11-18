@@ -8,7 +8,6 @@ var is_dead: bool = false
 #endregion
 
 #region collisions
-@onready var control: Control = $Control
 @onready var collision_walk: CollisionShape2D = $CollisionWalk
 
 var player_is_in_range: bool = false
@@ -216,23 +215,13 @@ func spawn_damage_number(damage_amount: int, is_crit: bool) -> void:
 	number.show_damage(damage_amount, is_crit)
 
 
-func _on_area_2d_body_entered(_body: Node2D) -> void:
-	pass
-
-
-func _on_area_2d_body_exited(_body: Node2D) -> void:
-	pass
-
-
 func _on_area_entered(area: Area2D) -> void:
 	if area.is_in_group("MiningReticle"):
-		#control.show()
 		player_is_in_range = true
 
 
 func _on_area_exited(area: Area2D) -> void:
 	if area.is_in_group("MiningReticle"):
-		#control.hide()
 		player_is_in_range = false
 
 

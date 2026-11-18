@@ -28,10 +28,6 @@ var movement_direction = Vector2.ZERO
 var inside_interactable_area: bool = false
 var mining_reticle: Area2D
 
-# Consumables
-var fabricator_material_quantity: int = BaseValuesDB.STARTING_FABRICATOR_MATERIAL
-var powerup_chips_quantity: int = BaseValuesDB.STARTING_POWERUP_CHIPS
-
 # Oxygen
 @export var max_oxygen: float = BaseValuesDB.OXYGEN_TANK_CAPACITY
 @export var base_oxygen_drain_rate: float = BaseValuesDB.BASE_OXYGEN_DRAIN_RATE
@@ -180,14 +176,10 @@ func remove_hp(value: int) -> void:
 	currentHP -= value
 
 	if currentHP <= 0:
-		clearConsumables()
 		set_process_mode.call_deferred(Node.PROCESS_MODE_DISABLED)
 		if GameManager.expedition_started:
 			GameManager.end_expedition(false, death_reason)
 
-func clearConsumables() -> void:
-	fabricator_material_quantity = 0
-	powerup_chips_quantity = 0
 
 
 func _on_hitbox_body_entered(body: Node2D) -> void:

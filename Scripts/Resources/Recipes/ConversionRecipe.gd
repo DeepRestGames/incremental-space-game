@@ -10,7 +10,7 @@ extends Resource
 @export var output_amount: int = 1
 
 ## Which station offers this, if we want to differentiate them
-@export var station: StringName = &"shop"
+@export var station: StringName = &"processor"
 
 ## Base seconds one cycle takes before processor_speed upgrades.
 @export var duration: float = 2.0

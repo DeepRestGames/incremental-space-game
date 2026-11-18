@@ -23,9 +23,9 @@ extends Node
 @warning_ignore("unused_signal") signal player_enter_skill_terminal_area
 @warning_ignore("unused_signal") signal player_exit_skill_terminal_area
 
-# Shop
-@warning_ignore("unused_signal") signal player_enter_shop_area
-@warning_ignore("unused_signal") signal player_exit_shop_area
+# Processor
+@warning_ignore("unused_signal") signal player_enter_processor_area
+@warning_ignore("unused_signal") signal player_exit_processor_area
 
 # Expedition
 @warning_ignore("unused_signal") signal expedition_started

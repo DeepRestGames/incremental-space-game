@@ -20,8 +20,8 @@ func _ready() -> void:
 	EventBus.player_exit_skill_terminal_area.connect(_pop.bind(skilltree_text))
 
 	const processor_text: String = "Open Processor"
-	EventBus.player_enter_shop_area.connect(_push.bind(processor_text))
-	EventBus.player_exit_shop_area.connect(_pop.bind(processor_text))
+	EventBus.player_enter_processor_area.connect(_push.bind(processor_text))
+	EventBus.player_exit_processor_area.connect(_pop.bind(processor_text))
 
 	EventBus.ui_state_changed.connect(_refresh)
 

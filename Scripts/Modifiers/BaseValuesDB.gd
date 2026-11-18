@@ -18,8 +18,6 @@ const EXPEDITION_GRACE_PERIOD: float = 3.0
 const MINING_SPEED_MULTIPLIER: float = 0.0  # player movement speed while mining; 0 = they can't move while mining
 
 # Starting Inventory Quantities
-const STARTING_FABRICATOR_MATERIAL: int = 100
-const STARTING_POWERUP_CHIPS: int = 0
 const INVENTORY_CAPACITY: int = 10  # max resources the player can carry in one expedition
 
 # Mining & Drilling Stats
