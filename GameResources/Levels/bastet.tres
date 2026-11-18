@@ -9,5 +9,4 @@ id = &"bastet"
 display_name = "Bastet"
 scene_path = "uid://5c3751t48a6v"
 planet_texture = ExtResource("1_lmchs")
-planet_color = Color(0.69358724, 0.9439168, 0.9239147, 1)
 metadata/_custom_type_script = "uid://bh6djmbsvu7qw"
