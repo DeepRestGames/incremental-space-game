@@ -57,10 +57,14 @@ func _ready() -> void:
 	vignette.modulate.a = 0.0
 	self.modulate = _modulate_target
 	
-	EventBus.hud_booted.connect(show)
+	EventBus.hud_booted.connect(_appear)
 
 
-
+## Fades in instead of popping: _process already lerps modulate toward
+## _modulate_target (alpha 1), so starting from 0 is all it takes.
+func _appear() -> void:
+	modulate.a = 0.0
+	show()
 
 func on_update_oxygen(current: float, max_val: float) -> void:
 	var oxygen_ratio: float = clampf(current / max_val, 0.0, 1.0)
