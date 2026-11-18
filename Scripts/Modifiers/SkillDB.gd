@@ -245,9 +245,6 @@ const DATABASE: Dictionary = {
 		"description": "Unlock a new destination",
 		"cost": [{ResourceDB.BLUE_DIAMOND: 999}],
 		"effects": {
-			"drops_on_destruction": 
-				{"type": "ADDITIVE",
-				 "value": 1}
 		}
 	},
 	

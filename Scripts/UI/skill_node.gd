@@ -18,6 +18,25 @@ const COLOR_DARK: Color = Color(0.08, 0.16, 0.28, 1.0)
 
 @export var parent_node: SkillNode
 @export var is_connector: bool = false
+
+## Turns skill_id into a dropdown of the skills no other node in this tree uses
+## yet (plus this node's own), so a typo or a duplicate can't happen.
+## Editor-only: it runs because this script is @tool.
+func _validate_property(property: Dictionary) -> void:
+	if property.name != "skill_id":
+		return
+	var taken: Array[String] = []
+	if get_parent():
+		for sibling in get_parent().get_children():
+			if sibling != self and sibling is SkillNode:
+				taken.append(sibling.skill_id)
+	var options: Array[String] = [""]  # first entry: no skill (connectors)
+	for id in SkillDB.DATABASE:
+		if id == skill_id or not taken.has(id):
+			options.append(id)
+	property.hint = PROPERTY_HINT_ENUM
+	property.hint_string = ",".join(options)
+
 var width: int = 6
 
 @onready var background: TextureRect = $BackgroundFill

@@ -15,6 +15,7 @@
 [ext_resource type="Texture2D" uid="uid://mwbu773nihse" path="res://Assets/UI/skill tree/skill icons/Scanner.svg" id="11_tt40d"]
 [ext_resource type="Texture2D" uid="uid://d0kvveeacf4j0" path="res://Assets/UI/skill tree/skill icons/DrillShine.svg" id="12_y0o01"]
 [ext_resource type="Texture2D" uid="uid://dsrrrgh8n4pap" path="res://Assets/UI/skill tree/skill icons/Speed2.svg" id="13_y0o01"]
+[ext_resource type="Texture2D" uid="uid://dilkyujh23yjg" path="res://Addons/at-icons/node/at.svg" id="14_5m2m7"]
 [ext_resource type="Texture2D" uid="uid://dhndktijayxr7" path="res://Assets/UI/skill tree/skill icons/Bomb2.svg" id="15_exa8l"]
 [ext_resource type="Texture2D" uid="uid://cqwlreb6f151w" path="res://Assets/Sprites/particles/Vignette.png" id="17_tt40d"]
 [ext_resource type="Texture2D" uid="uid://bwfdkfuma5fs" path="res://Assets/UI/skill tree/skill icons/DoubleBomb.svg" id="17_y0o01"]
@@ -362,7 +363,22 @@ skill_id = "chip_chance"
 icon = ExtResource("12_y0o01")
 parent_node = NodePath("../ChipChance")
 
-[node name="DestroyDropsNode" parent="TreeView" unique_id=1036982031 node_paths=PackedStringArray("parent_node") instance=ExtResource("1_c1qs3")]
+[node name="ChipChance3" parent="TreeView" unique_id=34979786 node_paths=PackedStringArray("parent_node") instance=ExtResource("1_c1qs3")]
+layout_mode = 0
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 1189.0
+offset_top = 151.0
+offset_right = 1329.0
+offset_bottom = 291.0
+grow_horizontal = 1
+grow_vertical = 1
+skill_id = "destroy_drops"
+icon = ExtResource("14_5m2m7")
+parent_node = NodePath("../BastetImprovement")
+
+[node name="YamDestination" parent="TreeView" unique_id=1036982031 node_paths=PackedStringArray("parent_node") instance=ExtResource("1_c1qs3")]
 layout_mode = 0
 anchors_preset = 0
 anchor_right = 0.0
