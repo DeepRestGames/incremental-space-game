@@ -27,6 +27,10 @@ extends Node
 @warning_ignore("unused_signal") signal player_enter_processor_area
 @warning_ignore("unused_signal") signal player_exit_processor_area
 
+# Descent hole
+@warning_ignore("unused_signal") signal player_enter_descent_area
+@warning_ignore("unused_signal") signal player_exit_descent_area
+
 # Expedition
 @warning_ignore("unused_signal") signal expedition_started
 
@@ -36,6 +40,8 @@ extends Node
 @warning_ignore("unused_signal") signal update_bomb_HUD(current, max_val)
 ## Emitted by the Player but not displayed yet: there is no HP counter in the HUD.
 @warning_ignore("unused_signal") signal update_current_hp_HUD(hp_amount)
+## The visor boot animation finished: HUD readouts that wait for it can appear.
+@warning_ignore("unused_signal") signal hud_booted
 
 # UI state
 ## Emitted whenever a full-screen UI opens or closes. Anything whose visibility
@@ -44,3 +50,4 @@ extends Node
 
 # Environment
 @warning_ignore("unused_signal") signal breakable_damaged(damage_value: int, is_crit: bool)
+@warning_ignore("unused_signal") signal breakable_destroyed(rock: Breakable)

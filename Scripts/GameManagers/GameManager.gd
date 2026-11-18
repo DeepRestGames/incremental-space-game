@@ -1,10 +1,19 @@
 extends Node
 
-# Scenes
+#region Scenes
 var lobby_scene = preload("res://Scenes/Levels/Lobby.tscn")
 ## Which level the next expeditiexpedition runs on. Only the id is stored: scene path and
 ## display name are always looked up from LevelDB, so they cannot drift apart.
 var selected_level_id: String = LevelDB.DEFAULT_LEVEL_ID
+
+## How deep the current expedition is: 0 = surface. 
+# NOTE: Not saved: every expedition starts at the top.
+var current_depth: int = 0
+
+## Player oxygen/HP/bombs handed from one layer to the next. Empty when not descending.
+# TODO: might expand with other resources
+var _carried_player_state: Dictionary = {}
+#endregion
 
 # Player
 var player: Player
@@ -196,7 +205,41 @@ func get_selected_level_path() -> String:
 
 func get_selected_level_name() -> String:
 	return LevelDB.get_level_name(selected_level_id)
+	
+## "X" on the surface, "%..." below. Shown by the expedition intro.
+func get_current_location_name() -> String:
+	var level_name := get_selected_level_name()
+	return level_name if current_depth == 0 else "%s - Depth %d" % [level_name, current_depth]
 
+func get_selected_level() -> LevelData:
+	return LevelDB.get_level(selected_level_id)
+
+#region planet layers
+## True when the planet has a layer below the one the player is on.
+func can_descend() -> bool:
+	return get_selected_level().has_layer_below(current_depth)
+	
+## Takes the player one layer down. Cargo is kept: it lives here, not in the scene.
+func descend() -> void:
+	if transitioning or not can_descend():
+		return
+	current_depth += 1
+	_start_landing_grace()
+	if player:
+		_carried_player_state = player.get_carry_state()
+	TransitionManager.change_scene(get_selected_level().get_scene_path_at(current_depth))
+
+## Returns the carried state once, then forgets it, so a later fresh Player
+## (e.g. the next expedition) can't pick up stale values.
+func take_carried_player_state() -> Dictionary:
+	var state := _carried_player_state
+	_carried_player_state = {}
+	return state
+
+## Every landing (surface or a layer below) starts with the deploy grace
+func _start_landing_grace() -> void:
+	expedition_grace_remaining = BaseValuesDB.EXPEDITION_GRACE_PERIOD
+#endregion
 
 ## False during the opening grace period, so the player gets a moment to look
 ## around before the countdown starts.
@@ -209,16 +252,20 @@ func is_expedition_starting() -> bool:
 
 func on_expedition_started() -> void:
 	expedition_started = true
-	expedition_grace_remaining = BaseValuesDB.EXPEDITION_GRACE_PERIOD
+	current_depth = 0
+		
+	_start_landing_grace()
 	_expedition_start_time_msec = Time.get_ticks_msec()
+	
 	expedition_destroyed_nodes = 0
 	expedition_resources_collected.clear()
 	expedition_resources_kept.clear()
 	# Every run starts empty, however the previous one ended
 	expedition_player_resources.clear()
+	
 	expedition_success = true
 	expedition_end_reason = ""
-	TransitionManager.change_scene(get_selected_level_path())
+	TransitionManager.change_scene(get_selected_level().get_scene_path_at(current_depth))
 
 
 func end_expedition(success: bool=true, reason: String="") -> void:

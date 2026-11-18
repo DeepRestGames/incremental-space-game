@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://ndy76165jxgp"]
+
+[ext_resource type="PackedScene" uid="uid://cl1025m5bhlxa" path="res://Scenes/Levels/Planets/BaseLevel.tscn" id="1_3omu3"]
+[ext_resource type="Script" uid="uid://b403aot4lk3oo" path="res://Scripts/Levels/SpawnEntry.gd" id="2_1b4ln"]
+[ext_resource type="PackedScene" uid="uid://syb24ng5dl8b" path="res://Scenes/Environment/rocks/white_square_rock.tscn" id="3_q0iiv"]
+[ext_resource type="PackedScene" uid="uid://cqsu8owqwvqmd" path="res://Scenes/Environment/rocks/blue_diamond_rock.tscn" id="4_yhov4"]
+
+[sub_resource type="Resource" id="Resource_5714e"]
+script = ExtResource("2_1b4ln")
+scene = ExtResource("3_q0iiv")
+weight = 4.0
+metadata/_custom_type_script = "uid://b403aot4lk3oo"
+
+[sub_resource type="Resource" id="Resource_1egrp"]
+script = ExtResource("2_1b4ln")
+scene = ExtResource("4_yhov4")
+weight = 2.0
+metadata/_custom_type_script = "uid://b403aot4lk3oo"
+
+[node name="BastetD1" unique_id=705757094 instance=ExtResource("1_3omu3")]
+
+[node name="SpawnDistribution" parent="Objects/MapCoordinateGenerator" parent_id_path=PackedInt32Array(1573320358) index="0" unique_id=987654321]
+entries = Array[ExtResource("2_1b4ln")]([SubResource("Resource_5714e"), SubResource("Resource_1egrp")])

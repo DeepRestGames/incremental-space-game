@@ -62,6 +62,9 @@ func _play_boot_sequence() -> void:
 	tween.tween_callback(_set_texture.bind(VISOR_CLOSED))
 	tween.tween_interval(0.1)
 	tween.tween_callback(_set_texture.bind(VISOR_OPEN))
+	
+	# Booted: let the readouts come up.
+	tween.tween_callback(EventBus.hud_booted.emit)
 
 	# Activate the HUD. Disabled for now; uncomment to extend the sequence.
 	#tween.tween_interval(0.4)

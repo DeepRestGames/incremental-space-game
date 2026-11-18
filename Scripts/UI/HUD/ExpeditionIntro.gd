@@ -51,7 +51,7 @@ func _ready() -> void:
 	if not GameManager.expedition_started:
 		return
 
-	_full_text = GameManager.get_selected_level_name()
+	_full_text = GameManager.get_current_location_name()
 
 	# The intro plays to the player, not to the back of a transition wipe. This
 	# node is PROCESS_MODE_INHERIT, so it is frozen while the transition holds

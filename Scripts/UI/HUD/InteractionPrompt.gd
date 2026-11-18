@@ -22,6 +22,10 @@ func _ready() -> void:
 	const processor_text: String = "Open Processor"
 	EventBus.player_enter_processor_area.connect(_push.bind(processor_text))
 	EventBus.player_exit_processor_area.connect(_pop.bind(processor_text))
+	
+	const descend_text: String = "Descend"
+	EventBus.player_enter_descent_area.connect(_push.bind(descend_text))
+	EventBus.player_exit_descent_area.connect(_pop.bind(descend_text))
 
 	EventBus.ui_state_changed.connect(_refresh)
 

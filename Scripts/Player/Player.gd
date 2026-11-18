@@ -61,6 +61,11 @@ func _ready() -> void:
 
 	update_stats()
 	current_bombs = max_bombs
+		# Coming down a hole: continue with what we had on the layer above.
+	var carried := GameManager.take_carried_player_state()
+	if not carried.is_empty():
+		apply_carry_state(carried)
+
 	EventBus.update_bomb_HUD.emit(current_bombs, max_bombs)
 
 	# Animations
@@ -91,6 +96,19 @@ func use_bomb() -> bool:
 		EventBus.update_bomb_HUD.emit(current_bombs, max_bombs)
 		return true
 	return false
+	
+## What survives a descent
+func get_carry_state() -> Dictionary:
+	# TODO: not super clean if we add other resources.
+	return {"oxygen": current_oxygen, "hp": currentHP, "bombs": current_bombs}
+
+
+func apply_carry_state(state: Dictionary) -> void:
+	# TODO: not super clean if we add other resources.
+	current_oxygen = state["oxygen"]
+	currentHP = state["hp"]
+	current_bombs = state["bombs"]
+	EventBus.update_bomb_HUD.emit(current_bombs, max_bombs)
 
 
 func update_movement_direction(new_movement_direction: Vector2) -> void:

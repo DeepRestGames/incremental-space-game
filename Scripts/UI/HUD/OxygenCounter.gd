@@ -47,25 +47,22 @@ func _ready() -> void:
 	chromatic_aberration.hide()
 
 	EventBus.update_oxygen_HUD.connect(on_update_oxygen)
-	EventBus.expedition_started.connect(on_expedition_started)
 
 	if GameManager.expedition_started:
 		vignette.show()
 		chromatic_aberration.show()
-		show()
 		
 	_aberration_current = 0.0
 	chromatic_aberration.material.set_shader_parameter("intensity", 0.0)
 	vignette.modulate.a = 0.0
 	self.modulate = _modulate_target
+	
+	EventBus.hud_booted.connect(show)
 
 
 
 
 func on_update_oxygen(current: float, max_val: float) -> void:
-	if not visible:
-		show()
-		
 	var oxygen_ratio: float = clampf(current / max_val, 0.0, 1.0)
 	pct_label.text = "%d" % roundi(oxygen_ratio * 100.0)
 	
@@ -133,7 +130,3 @@ func _fill_of(index: int) -> TextureRect:
 		return null
 	# (the empty bar whose children is the fill)
 	return seg.get_child(0) as TextureRect
-
-
-func on_expedition_started() -> void:
-	show()

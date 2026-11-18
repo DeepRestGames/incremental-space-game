@@ -5,6 +5,8 @@ extends StaticBody2D
 @export var totalHP: int = 3
 var currentHP: int
 var is_dead: bool = false
+## When this rock is destroyed after enough mining on a layer, it leaves the hole down.
+@export var can_open_hole: bool = true
 #endregion
 
 #region collisions
@@ -106,6 +108,9 @@ func on_interacted() -> void:
 
 	take_damage(damage, is_crit)
 	spawn_damage_number(damage, is_crit)
+	
+	if is_dead:
+		return  # still in the tree while its destroy sound plays
 
 
 func take_damage(damage_value: int, is_crit: bool) -> void:
@@ -227,6 +232,7 @@ func _on_area_exited(area: Area2D) -> void:
 
 func die() -> void:
 	is_dead = true
+	EventBus.breakable_destroyed.emit(self)
 	if GameManager.expedition_started:
 		GameManager.expedition_destroyed_nodes += 1
 

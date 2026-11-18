@@ -6,7 +6,7 @@ extends Node2D
 
 @onready var objects: Node2D = $Objects
 @onready var coordinate_generator: MapCoordinateGenerator = $Objects/MapCoordinateGenerator
-@onready var seamless_background: Sprite2D = $Parallax2D/SeamlessBackground
+@onready var seamless_background: Sprite2D = %SeamlessBackground
 
 func _ready() -> void:
 	# MusicManager.play(preload("res://Assets/Audio/ST/ST_Expedition.wav"), "expedition")
@@ -26,12 +26,10 @@ func _ready() -> void:
 	spawn_level_objects()
 
 func spawn_level_objects() -> void:
-	var start_time := Time.get_ticks_msec()
 
 	var spawn_points := coordinate_generator.generate_sync()
 	var map_size := coordinate_generator.map_size
 
-	var spawned_count := 0
 	for point in spawn_points:
 		var pos: Vector2 = point.position
 		var scene: PackedScene = point.scene
@@ -45,7 +43,6 @@ func spawn_level_objects() -> void:
 
 		var instance := scene.instantiate() as Node2D
 
-		objects.add_child(instance)
 		# Translate generator top-left (0 to map_size) coords to centered level coords (-map_size/2 to +map_size/2)
 		instance.global_position = pos - (map_size / 2.0)
 
@@ -58,10 +55,5 @@ func spawn_level_objects() -> void:
 		instance.modulate.v += random_value
 		var random_hue = randf_range(-10.0/360, 10.0/360)
 		instance.modulate.h += random_hue
-	
 		
-		
-
-		spawned_count += 1
-
-	var duration := Time.get_ticks_msec() - start_time
+		objects.add_child(instance)

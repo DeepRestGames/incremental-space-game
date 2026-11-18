@@ -10,7 +10,7 @@ var player_in_area: bool = false
 func _ready() -> void:
 	EventBus.action_trigger_interact.connect(check_ship_interaction)
 	if custom_texture:
-		$ExpeditionShipBody/ExpeditionShipBodySprite.texture = custom_texture
+		%ExpeditionShipBodySprite.texture = custom_texture
 
 
 func check_ship_interaction() -> void:

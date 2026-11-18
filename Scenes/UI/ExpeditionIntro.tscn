@@ -1,6 +1,6 @@
-[gd_scene load_steps=3 format=3]
+[gd_scene format=3 uid="uid://d4f1sfj1pbhqq"]
 
-[ext_resource type="Script" path="res://Scripts/UI/HUD/ExpeditionIntro.gd" id="1_intro"]
+[ext_resource type="Script" uid="uid://dckys5doctgcn" path="res://Scripts/UI/HUD/ExpeditionIntro.gd" id="1_intro"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_titlebox"]
 content_margin_left = 40.0
@@ -18,7 +18,7 @@ corner_radius_top_right = 6
 corner_radius_bottom_right = 6
 corner_radius_bottom_left = 6
 
-[node name="ExpeditionIntro" type="Control"]
+[node name="ExpeditionIntro" type="Control" unique_id=1308128529]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -28,7 +28,7 @@ grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("1_intro")
 
-[node name="Dim" type="ColorRect" parent="."]
+[node name="Dim" type="ColorRect" parent="." unique_id=1773512435]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -38,7 +38,7 @@ grow_vertical = 2
 mouse_filter = 2
 color = Color(0, 0, 0, 0.45)
 
-[node name="Center" type="CenterContainer" parent="."]
+[node name="Center" type="CenterContainer" parent="." unique_id=218376212]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -47,20 +47,19 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="TitlePanel" type="PanelContainer" parent="Center"]
+[node name="TitlePanel" type="PanelContainer" parent="Center" unique_id=1426748318]
 layout_mode = 2
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_titlebox")
 
-[node name="LevelName" type="Label" parent="Center/TitlePanel"]
+[node name="LevelName" type="Label" parent="Center/TitlePanel" unique_id=1305050075]
 layout_mode = 2
-mouse_filter = 2
 theme_override_font_sizes/font_size = 44
 text = "MOON 1234"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Ghost" type="Label" parent="Center/TitlePanel/LevelName"]
+[node name="Ghost" type="Label" parent="Center/TitlePanel/LevelName" unique_id=28650238]
 modulate = Color(0, 1, 1, 0.5)
 layout_mode = 1
 anchors_preset = 15
@@ -68,7 +67,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-mouse_filter = 2
 theme_override_font_sizes/font_size = 44
 text = "MOON 1234"
 horizontal_alignment = 1

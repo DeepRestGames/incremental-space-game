@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://cl1025m5bhlxa" path="res://Scenes/Levels/Planets/BaseLevel.tscn" id="1_tvbdx"]
 [ext_resource type="Script" uid="uid://b403aot4lk3oo" path="res://Scripts/Levels/SpawnEntry.gd" id="2_udd5b"]
-[ext_resource type="PackedScene" uid="uid://cqsu8owqwvqmd" path="res://Scenes/Environment/blue_diamond_rock.tscn" id="3_lioyu"]
+[ext_resource type="PackedScene" uid="uid://cqsu8owqwvqmd" path="res://Scenes/Environment/rocks/blue_diamond_rock.tscn" id="3_lioyu"]
 
 [sub_resource type="Gradient" id="Gradient_u0hgq"]
 offsets = PackedFloat32Array(0, 0.19945355, 0.4398907, 0.7240437, 1)

@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cqsu8owqwvqmd"]
 
-[ext_resource type="PackedScene" uid="uid://c6qwwmff8anwx" path="res://Scenes/Environment/breakable_template.tscn" id="1_5j7a6"]
+[ext_resource type="PackedScene" uid="uid://c6qwwmff8anwx" path="res://Scenes/Environment/rocks/breakable_template.tscn" id="1_5j7a6"]
 [ext_resource type="Script" uid="uid://cq1k63dpg13de" path="res://Scripts/Environment/DropEntry.gd" id="2_2pa26"]
 [ext_resource type="PackedScene" uid="uid://4hy8d2s1ddhs" path="res://Scenes/Resources/blue_diamond.tscn" id="3_5j7a6"]
 [ext_resource type="Texture2D" uid="uid://blkuu0km0qxuo" path="res://Assets/Sprites/environment/rocks/blue_diamond_rock.png" id="4_5j7a6"]
