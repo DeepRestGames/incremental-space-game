@@ -40,7 +40,7 @@ func _process(delta: float) -> void:
 	else:
 		if Input.is_action_pressed("interact"):
 			EventBus.action_trigger_interact.emit()
-		if Input.is_action_just_pressed("cheat"):
+		if OS.is_debug_build() and Input.is_action_just_pressed("cheat"):
 			for t in ResourceDB.ALL:
 				GameManager.grant({t: 100})
 

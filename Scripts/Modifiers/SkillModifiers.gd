@@ -123,10 +123,6 @@ static func get_drill_crit_damage() -> float:
 	return get_stat("drill_crit_damage")
 
 
-static func get_nodes_on_landing(base_value: float=0.0) -> float:
-	return get_modified_stat("nodes_on_landing", base_value)
-
-
 static func get_drops_on_destruction() -> float:
 	return get_stat("drops_on_destruction")
 

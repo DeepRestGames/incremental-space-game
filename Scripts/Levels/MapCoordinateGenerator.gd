@@ -57,9 +57,8 @@ func generate_sync() -> Array[Dictionary]:
 		push_error("MapCoordinateGenerator: Spawning distribution is empty. Cannot generate coordinates.")
 		return results
 
-	# Select a random target count within the range, poi le skill del giocatore
-	var target_count := int(SkillModifiers.get_nodes_on_landing(randi_range(min_spawn_count, max_spawn_count)))
-
+	var target_count := randi_range(min_spawn_count, max_spawn_count)
+	
 	# Generate seed points
 	var seeds := _generate_seed_points()
 	if seeds.is_empty():

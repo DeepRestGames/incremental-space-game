@@ -8,7 +8,7 @@ const INVINCIBILITY_COOLDOWN: float = 0.5
 const BASE_OXYGEN_DRAIN_RATE: float = 1  # drain rate in O2units / seconds#
 
 const BOMB_CHARGES: int = 0
-const BOMB_DAMAGE: float = 30.0
+const BOMB_DAMAGE: float = 300.0
 # Seconds of grace at the start of an expedition, before oxygen starts draining.
 # The player is free to move during it; it exists to let them get their bearings.
 # Sized to outlast the intro animation (~3.0s) with a beat of clean screen after it.
@@ -58,7 +58,6 @@ const BASE_VALUES: Dictionary = {
 	"drill_attack_speed": DRILL_ATTACK_SPEED,
 	"drop_chance_per_tick": RESOURCE_SPAWN_CHANCE_ON_DAMAGED,
 	"failure_keep_ratio": FAILURE_KEEP_RATIO,
-	"nodes_on_landing": 0.0,
 	"drops_on_destruction": 0.0,
 	# Spawn-weight scalers. The real base is each entry's weight in that planet's
 	# SpawnDistribution; these only register the ids so skills may target them.

@@ -214,6 +214,8 @@ func on_expedition_started() -> void:
 	expedition_destroyed_nodes = 0
 	expedition_resources_collected.clear()
 	expedition_resources_kept.clear()
+	# Every run starts empty, however the previous one ended
+	expedition_player_resources.clear()
 	expedition_success = true
 	expedition_end_reason = ""
 	TransitionManager.change_scene(get_selected_level_path())

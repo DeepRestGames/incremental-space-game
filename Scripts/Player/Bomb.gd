@@ -6,7 +6,6 @@ extends Node2D
 @onready var sprite = $CanvasGroup
 @onready var explosion_particles = $ExplosionParticles
 
-@export var bomb_damage = 30  # TODO:
 
 
 func _ready() -> void:
@@ -22,17 +21,8 @@ func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	sprite.visible = false
 
 	for body in hitbox_area.get_overlapping_bodies():
-		#if body.is_in_group("Player"):
-		#body.take_damage(1)
-
-		#print("Overlapping body:")
-		#print(body.name)
-		
 		if body is Breakable:
-			#print("BODY IS BREAKABLE")
-			# TODO: check if ok rounding to int
-			body.take_damage(int(SkillModifiers.get_bomb_damage(bomb_damage)), 0)
-			print(bomb_damage)
+			body.take_damage(int(SkillModifiers.get_bomb_damage()), false)
 
 
 func _on_explosion_particles_finished() -> void:

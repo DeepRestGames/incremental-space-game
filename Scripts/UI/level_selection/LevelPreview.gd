@@ -23,7 +23,7 @@ static func read(level: LevelData) -> Dictionary:
 		# planet generates nothing - we only read its configuration.
 		var planet: Node = load(level.scene_path).instantiate()
 		info["rocks"] = _read_rocks(planet)
-		var mods := planet.get_node_or_null("Objects/Modifiers") as LevelModifiers
+		var mods := LevelModifiers.of(planet)
 		if mods:
 			info["conditions"] = mods.get_conditions()
 			info["oxygen_multiplier"] = mods.get_oxygen_drain_multiplier()

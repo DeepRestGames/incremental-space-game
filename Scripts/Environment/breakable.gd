@@ -182,7 +182,7 @@ func play_hurt_animation() -> void:
 
 func update_crack_sprite() -> void:
 	var hp_ratio: float = clampf(float(currentHP) / totalHP, 0.0, 1.0)
-	print(hp_ratio)
+	#print(hp_ratio)
 	
 	if hp_ratio == 1.0:
 		damage_crack.visible = false
