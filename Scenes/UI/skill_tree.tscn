@@ -91,6 +91,14 @@ mouse_filter = 2
 texture = ExtResource("2_y0o01")
 stretch_mode = 1
 
+[node name="ColorRect" type="ColorRect" parent="TreeView" unique_id=1581173537]
+layout_mode = 0
+offset_left = 840.0
+offset_top = 420.0
+offset_right = 1080.0
+offset_bottom = 660.0
+color = Color(0.050980393, 0.9490196, 0.9490196, 1)
+
 [node name="Core" parent="TreeView" unique_id=351642366 instance=ExtResource("1_c1qs3")]
 layout_mode = 0
 anchors_preset = 0
@@ -470,7 +478,6 @@ icon = ExtResource("11_tt40d")
 parent_node = NodePath("../Core")
 
 [node name="Effects" type="Control" parent="." unique_id=597609919]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
