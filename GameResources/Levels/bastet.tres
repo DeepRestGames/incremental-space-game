@@ -9,5 +9,5 @@ id = &"bastet"
 display_name = "Bastet"
 scene_path = "uid://5c3751t48a6v"
 planet_texture = ExtResource("1_lmchs")
-layer_paths = Array[String](["uid://ndy76165jxgp"])
+layer_paths = Array[String](["uid://ndy76165jxgp", "uid://dbtd58ybulcfc"])
 metadata/_custom_type_script = "uid://bh6djmbsvu7qw"

@@ -7,7 +7,6 @@
 [ext_resource type="PackedScene" uid="uid://tpsnqnen1s5g" path="res://Scenes/Environment/rocks/white_triangle_rock_small.tscn" id="4_7ycos"]
 [ext_resource type="PackedScene" uid="uid://0itrhjtld40u" path="res://Scenes/Environment/rocks/white_triangle_rock_medium.tscn" id="5_1p6vp"]
 [ext_resource type="PackedScene" uid="uid://syb24ng5dl8b" path="res://Scenes/Environment/rocks/white_square_rock.tscn" id="6_7ycos"]
-[ext_resource type="PackedScene" uid="uid://cqsu8owqwvqmd" path="res://Scenes/Environment/rocks/blue_diamond_rock.tscn" id="7_svvui"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_d3for"]
 shader = ExtResource("2_sptsf")
@@ -40,12 +39,6 @@ metadata/_custom_type_script = "uid://b403aot4lk3oo"
 [sub_resource type="Resource" id="Resource_83fa0"]
 script = ExtResource("4_1p6vp")
 scene = ExtResource("6_7ycos")
-weight = 4.0
-metadata/_custom_type_script = "uid://b403aot4lk3oo"
-
-[sub_resource type="Resource" id="Resource_j8r6p"]
-script = ExtResource("4_1p6vp")
-scene = ExtResource("7_svvui")
 metadata/_custom_type_script = "uid://b403aot4lk3oo"
 
 [node name="Bastet" unique_id=119943232 instance=ExtResource("1_sptsf")]
@@ -72,11 +65,6 @@ environment = SubResource("Environment_lbst8")
 
 [node name="Player" parent="Objects" parent_id_path=PackedInt32Array(1539187237) index="3" unique_id=102267496]
 dust_color = Color(0.31, 0.79299986, 1, 1)
-maxHP = null
-movement_speed = null
-mining_speed_multiplier = null
-max_oxygen = null
-base_oxygen_drain_rate = null
 
 [node name="ExpeditionShip" parent="Objects" parent_id_path=PackedInt32Array(1539187237) index="4" unique_id=1704699913]
 custom_texture = null
@@ -87,7 +75,7 @@ min_spawn_count = 50
 max_spawn_count = 100
 
 [node name="SpawnDistribution" parent="Objects/MapCoordinateGenerator" index="0" unique_id=987654321]
-entries = Array[ExtResource("4_1p6vp")]([SubResource("Resource_1egrp"), SubResource("Resource_svvui"), SubResource("Resource_83fa0"), SubResource("Resource_j8r6p")])
+entries = Array[ExtResource("4_1p6vp")]([SubResource("Resource_1egrp"), SubResource("Resource_svvui"), SubResource("Resource_83fa0")])
 
 [node name="DepthTracker" parent="Objects" parent_id_path=PackedInt32Array(1539187237) index="7" unique_id=1775806529]
-hp_to_open = 15
+hp_to_open = 301

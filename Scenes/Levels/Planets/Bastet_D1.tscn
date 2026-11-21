@@ -3,21 +3,37 @@
 [ext_resource type="PackedScene" uid="uid://cl1025m5bhlxa" path="res://Scenes/Levels/Planets/BaseLevel.tscn" id="1_3omu3"]
 [ext_resource type="Script" uid="uid://b403aot4lk3oo" path="res://Scripts/Levels/SpawnEntry.gd" id="2_1b4ln"]
 [ext_resource type="PackedScene" uid="uid://syb24ng5dl8b" path="res://Scenes/Environment/rocks/white_square_rock.tscn" id="3_q0iiv"]
+[ext_resource type="PackedScene" uid="uid://0itrhjtld40u" path="res://Scenes/Environment/rocks/white_triangle_rock_medium.tscn" id="3_yhov4"]
 [ext_resource type="PackedScene" uid="uid://cqsu8owqwvqmd" path="res://Scenes/Environment/rocks/blue_diamond_rock.tscn" id="4_yhov4"]
 
 [sub_resource type="Resource" id="Resource_5714e"]
 script = ExtResource("2_1b4ln")
-scene = ExtResource("3_q0iiv")
-weight = 4.0
+scene = ExtResource("3_yhov4")
+weight = 16.0
 metadata/_custom_type_script = "uid://b403aot4lk3oo"
 
 [sub_resource type="Resource" id="Resource_1egrp"]
 script = ExtResource("2_1b4ln")
-scene = ExtResource("4_yhov4")
-weight = 2.0
+scene = ExtResource("3_q0iiv")
+weight = 8.0
 metadata/_custom_type_script = "uid://b403aot4lk3oo"
+
+[sub_resource type="Resource" id="Resource_0athj"]
+script = ExtResource("2_1b4ln")
+scene = ExtResource("4_yhov4")
+metadata/_custom_type_script = "uid://b403aot4lk3oo"
+
+[sub_resource type="Environment" id="Environment_g4v7s"]
+background_mode = 3
+tonemap_exposure = 0.8
 
 [node name="BastetD1" unique_id=705757094 instance=ExtResource("1_3omu3")]
 
 [node name="SpawnDistribution" parent="Objects/MapCoordinateGenerator" parent_id_path=PackedInt32Array(1573320358) index="0" unique_id=987654321]
-entries = Array[ExtResource("2_1b4ln")]([SubResource("Resource_5714e"), SubResource("Resource_1egrp")])
+entries = Array[ExtResource("2_1b4ln")]([SubResource("Resource_5714e"), SubResource("Resource_1egrp"), SubResource("Resource_0athj")])
+
+[node name="DepthTracker" parent="Objects" parent_id_path=PackedInt32Array(1539187237) index="7" unique_id=1775806529]
+hp_to_open = 1000
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." index="2" unique_id=1022869780]
+environment = SubResource("Environment_g4v7s")
