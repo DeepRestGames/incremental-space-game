@@ -226,6 +226,7 @@ func descend() -> void:
 	current_depth += 1
 	_start_landing_grace()
 	if player:
+		player.current_oxygen += 0.5*player.max_oxygen # player recovers 5 oxygen when they go down a level (testing) 
 		_carried_player_state = player.get_carry_state()
 	TransitionManager.change_scene(get_selected_level().get_scene_path_at(current_depth))
 
