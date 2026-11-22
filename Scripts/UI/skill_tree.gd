@@ -57,35 +57,39 @@ func _draw() -> void:
 
 	var nodes = get_all_skill_nodes()
 	for child in nodes:
-		if child.parent_node != null:
-			var start_pos = (child.global_position - global_position) + child.size * zoom / 2.0
-			var end_pos = (child.parent_node.global_position - global_position) + child.parent_node.size * zoom / 2.0
+		if child.parent_node == null:
+			continue
+		# 
+		if not Engine.is_editor_hint() and child.is_fogged():
+			continue  # the line belongs to the hidden end
+		var start_pos = (child.global_position - global_position) + child.size * zoom / 2.0
+		var end_pos = (child.parent_node.global_position - global_position) + child.parent_node.size * zoom / 2.0
 
-			var line_color: Color = COLOR_LOCKED  # Unreachable node
+		var line_color: Color = COLOR_LOCKED  # Unreachable node
 
-			if not Engine.is_editor_hint():
-				var a_std = get_nearest_standard_ancestor(child)
-				var d_stds = get_nearest_standard_descendants(child)
+		if not Engine.is_editor_hint():
+			var a_std = get_nearest_standard_ancestor(child)
+			var d_stds = get_nearest_standard_descendants(child)
 
-				if a_std != null and not d_stds.is_empty():
-					var a_pts = GameManager.get_skill_points(a_std.skill_id)
-					var has_blue_path = false
-					var has_green_path = false
+			if a_std != null and not d_stds.is_empty():
+				var a_pts = GameManager.get_skill_points(a_std.skill_id)
+				var has_blue_path = false
+				var has_green_path = false
 
-					for d_std in d_stds:
-						if is_node_fully_upgraded(a_std) and is_node_fully_upgraded(d_std):
-							has_blue_path = true
-							break
-						elif a_pts > 0:
-							has_green_path = true
+				for d_std in d_stds:
+					if is_node_fully_upgraded(a_std) and is_node_fully_upgraded(d_std):
+						has_blue_path = true
+						break
+					elif a_pts > 0:
+						has_green_path = true
 
-					if has_blue_path:
-						line_color = COLOR_BRIGHT  # Unlocked
-					elif has_green_path:
-						line_color = COLOR_BRIGHT_OFF  # Not Unlocked
+				if has_blue_path:
+					line_color = COLOR_BRIGHT  # Unlocked
+				elif has_green_path:
+					line_color = COLOR_BRIGHT_OFF  # Not Unlocked
 
-			var line_width = (child.width if "width" in child else 6) * zoom
-			draw_line(start_pos, end_pos, line_color, line_width, true)
+		var line_width = (child.width if "width" in child else 6) * zoom
+		draw_line(start_pos, end_pos, line_color, line_width, true)
 
 
 func get_all_skill_nodes() -> Array[SkillNode]:

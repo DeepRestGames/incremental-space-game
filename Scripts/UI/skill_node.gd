@@ -93,7 +93,7 @@ func _apply_icon() -> void:
 
 
 func _on_mouse_entered() -> void:
-	if is_connector:
+	if is_connector or is_locked():
 		return
 	var skill_tree = get_skill_tree()
 	if skill_tree and skill_tree.has_method("display_skill_info"):
@@ -171,6 +171,26 @@ func can_remove_point() -> bool:
 			if GameManager.get_skill_points(desc.skill_id) > 0:
 				return false
 	return true
+	
+## No points yet and the skill before it isn't bought: shown as a lock only,
+## with no tooltip and no buying.
+func is_locked() -> bool:
+	return GameManager.get_skill_points(skill_id) == 0 and not can_add_point()
+
+## "Fog of war": a locked skill whose parent skill is ALSO locked stays hidden,
+## so the tree shows what's bought, what's reachable, and one locked step beyond.
+## Connectors (line bends) are fogged when every skill they lead to is fogged.
+func is_fogged() -> bool:
+	if is_connector:
+		var tree := get_skill_tree()
+		if tree == null:
+			return false
+		for desc in tree.get_nearest_standard_descendants(self):
+			if not desc.is_fogged():
+				return false
+		return true
+	var ancestor := get_nearest_standard_ancestor()
+	return is_locked() and ancestor != null and ancestor.is_locked()
 
 
 func add_point() -> void:
@@ -267,54 +287,35 @@ func update_appearance() -> void:
 		skill_icon.modulate = COLOR_BRIGHT
 
 	else:  # in game visuals
-		var max_points = 5
-		var current_points = 0
-		if not Engine.is_editor_hint():
-			max_points = GameManager.get_skill_max_levels(skill_id)
-			current_points = GameManager.get_skill_points(skill_id)
+		visible = not is_fogged()
+		# A hidden Control also stops receiving the mouse, 
+		# so fogged nodes get no hover and no clicks for free.
+		if not visible:# 
+			return  # nothing else to style
+		var max_points: int = GameManager.get_skill_max_levels(skill_id)
+		var current_points: int = GameManager.get_skill_points(skill_id)
+		var maxed := current_points >= max_points
+		var partial := current_points > 0 and not maxed
 
-		# Defaults first: each branch below overrides only what differs
-		progress_bar_background.hide()
-		radial_progress_bar.hide()
-		skill_icon.texture = icon
+		# Defaults = reachable and affordable. Each case below overrides only what differs.
+		background.modulate = COLOR_DARK
 		border.modulate = COLOR_BRIGHT
+		skill_icon.texture = icon
 		skill_icon.modulate = COLOR_BRIGHT
+		progress_bar_background.visible = partial
+		radial_progress_bar.visible = partial
+		if partial:
+			radial_progress_bar.set_instance_shader_parameter("progress", float(current_points) / max_points)
 
-		if current_points > 0:
-			if current_points == max_points:
-				background.modulate = COLOR_BRIGHT
-				skill_icon.modulate = COLOR_DARK
-			else:
-				background.modulate = COLOR_DARK
-				# CIRCULAR PROGRESS BAR
-				progress_bar_background.show()
-				radial_progress_bar.show()
-				var ratio = float(current_points) / float(max_points)
-				radial_progress_bar.set_instance_shader_parameter("progress", ratio)
-		# Active (Blue, scaling from a soft sky blue to a very strong, vibrant electric blue based on points ratio)
-
-		#var bg_color = Color(0.6 * (1.0 - ratio), 0.8 - 0.45 * ratio, 1.0, 1.0)
-		#var icon_color = Color(0.5 * (1.0 - ratio), 0.7 - 0.3 * ratio, 1.0, 1.0)
-		#background.modulate = bg_color
-		#skill_icon.modulate = icon_color
-		else:
-			# 0 points: check if reachable or locked
-			if can_add_point():
-				# Unlocked / Reachable, too expensive
-				if _is_too_expensive():
-					background.modulate = COLOR_DARK
-					border.modulate = COLOR_BRIGHT_OFF
-					skill_icon.texture = icon
-					skill_icon.modulate = COLOR_BRIGHT_OFF
-				# Unlocked / Reachable, can afford
-				else:
-					background.modulate = COLOR_DARK
-					border.modulate = COLOR_BRIGHT
-					skill_icon.texture = icon
-					skill_icon.modulate = COLOR_BRIGHT
-			else:
-				# Unreachable / Locked (Dark)
-				background.modulate = COLOR_DARK
-				border.modulate = COLOR_LOCKED
-				skill_icon.texture = locked_icon
-				skill_icon.modulate = COLOR_LOCKED
+		if maxed:
+			background.modulate = COLOR_BRIGHT
+			skill_icon.modulate = COLOR_DARK
+		elif is_locked():
+			# Locked: the skill before it has no points yet.
+			border.modulate = COLOR_LOCKED
+			skill_icon.texture = locked_icon
+			skill_icon.modulate = COLOR_LOCKED
+		elif _is_too_expensive():
+			# Reachable, new OR partly bought, but the next rank costs too much.
+			border.modulate = COLOR_BRIGHT_OFF
+			skill_icon.modulate = COLOR_BRIGHT_OFF
