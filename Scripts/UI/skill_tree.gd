@@ -59,7 +59,7 @@ func _draw() -> void:
 	for child in nodes:
 		if child.parent_node == null:
 			continue
-		# 
+		# Per poterlo vedere nell'editor (dato che ha tool), altrimenti c'è la fog mentre editi
 		if not Engine.is_editor_hint() and child.is_fogged():
 			continue  # the line belongs to the hidden end
 		var start_pos = (child.global_position - global_position) + child.size * zoom / 2.0
