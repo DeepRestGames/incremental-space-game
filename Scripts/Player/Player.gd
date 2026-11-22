@@ -86,8 +86,9 @@ func update_stats() -> void:
 	EventBus.update_bomb_HUD.emit(current_bombs, max_bombs)
 
 
+## Bombs only work on an expedition
 func can_use_bomb() -> bool:
-	return current_bombs > 0
+	return GameManager.expedition_started and current_bombs > 0
 
 
 func use_bomb() -> bool:

@@ -92,6 +92,9 @@ var game_paused: bool = false:
 var expedition_time_spent: float = 0.0
 var expedition_destroyed_nodes: int = 0
 var expedition_resources_collected: Dictionary[StringName, int]
+## Cargo left in the ship on the way down. Counts as collected, and is safe:
+## a failed run doesn't cut it.
+var expedition_resources_deposited: Dictionary[StringName, int]
 ## What actually reached base from expedition: everything on a
 ## success, the failure-keep share on a death.
 var expedition_resources_kept: Dictionary[StringName, int]
@@ -225,8 +228,10 @@ func descend() -> void:
 		return
 	current_depth += 1
 	_start_landing_grace()
+	_deposit_backpack()
 	if player:
-		player.current_oxygen += 0.5*player.max_oxygen # player recovers 5 oxygen when they go down a level (testing) 
+		# Descending refills half the tank (testing value), never above full.
+		player.current_oxygen = minf(player.current_oxygen + 0.5 * player.max_oxygen, player.max_oxygen)
 		_carried_player_state = player.get_carry_state()
 	TransitionManager.change_scene(get_selected_level().get_scene_path_at(current_depth))
 
@@ -236,6 +241,14 @@ func take_carried_player_state() -> Dictionary:
 	var state := _carried_player_state
 	_carried_player_state = {}
 	return state
+	
+## Empties the backpack into the ship's hold. Called on every descent, so each
+## layer starts with free space.
+func _deposit_backpack() -> void:
+	for id in expedition_player_resources:
+		ResourceDB.add_to(expedition_resources_deposited, id, expedition_player_resources[id])
+	expedition_player_resources.clear()
+	EventBus.update_HUD.emit()
 
 ## Every landing (surface or a layer below) starts with the deploy grace
 func _start_landing_grace() -> void:
@@ -254,13 +267,14 @@ func is_expedition_starting() -> bool:
 func on_expedition_started() -> void:
 	expedition_started = true
 	current_depth = 0
-		
+	
 	_start_landing_grace()
 	_expedition_start_time_msec = Time.get_ticks_msec()
 	
 	expedition_destroyed_nodes = 0
 	expedition_resources_collected.clear()
 	expedition_resources_kept.clear()
+	expedition_resources_deposited.clear()
 	# Every run starts empty, however the previous one ended
 	expedition_player_resources.clear()
 	
@@ -280,17 +294,25 @@ func end_expedition(success: bool=true, reason: String="") -> void:
 	# Calculate stats
 	expedition_time_spent = (Time.get_ticks_msec() - _expedition_start_time_msec) / 1000.0
 
-	# Add any carrying inventory resources to the total collected during expedition
+	# The summary shows everything the run brought in: the hold plus the backpack.
+	for key in expedition_resources_deposited:
+		_gain(expedition_resources_collected, key, expedition_resources_deposited[key])
 	for key in expedition_player_resources:
 		_gain(expedition_resources_collected, key, expedition_player_resources[key])
-	expedition_player_resources.clear()
-	# Finalize stashed resources based on success status
+
+	# The hold is already safe in the ship; only the backpack is at risk on a failure.
+	var keep_ratio := 1.0 if success else SkillModifiers.get_failure_keep_ratio()
 	for key in expedition_resources_collected:
-		var amount: int = expedition_resources_collected[key]
-		if not success:
-			amount = int(amount * SkillModifiers.get_failure_keep_ratio())
+		var safe: int = expedition_resources_deposited.get(key, 0)
+		var carried: int = expedition_player_resources.get(key, 0)
+		# NOTE: to switch to "death cuts cargo hold":
+		# int((safe + carried) * keep_ratio)
+		var amount: int = safe + int(carried * keep_ratio)
 		expedition_resources_kept[key] = amount
 		_gain(stored_resources, key, amount)
+
+	expedition_player_resources.clear()
+	expedition_resources_deposited.clear()
 
 	get_tree().change_scene_to_file("res://Scenes/UI/ExpeditionEnded.tscn")
 	expedition_started = false
