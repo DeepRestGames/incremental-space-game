@@ -6,10 +6,12 @@ extends Control
 @export var zoom_max: float = 1.2
 ## Zoom added or removed per mouse wheel notch.
 @export var zoom_step: float = 0.1
-## Reset pan and zoom every time the tree is opened. Turn off to keep the last view.
-@export var reset_view_on_open: bool = true
+## Reset pan and zoom every time the tree is opened. Off = keep the last view (the first open always resets).
+@export var reset_view_on_open: bool = false
 ## Extra PIXELS past the content edge. 0 = hard stop at the edges.
 @export var pan_slack: float = 300.0
+## Zoom the tree opens at (1.0 = authored size). 0.85 = slightly zoomed out.
+@export var default_zoom: float = 0.85
 
 ## Holds every SkillNode. Panning moves it and zooming scales it, so the detail
 ## panel and the background stay put.
@@ -30,6 +32,9 @@ const COLOR_DARK: Color = Color(0.08, 0.16, 0.28, 1.0)
 
 var _dragging: bool = false
 var _content_rect: Rect2 = Rect2()  # cache for panning edge
+## False until the first open has placed the view.
+var _view_initialized: bool = false
+
 
 func _ready() -> void:
 	if Engine.is_editor_hint():
@@ -137,8 +142,9 @@ func open() -> void:
 	GameManager.skill_tree_open = true
 	clear_skill_info()
 	_cache_content_rect()
-	if reset_view_on_open:
+	if reset_view_on_open or not _view_initialized:
 		reset_view()
+		_view_initialized = true
 	_clamp_view()
 
 ## Puts the tree back to its authored position and scale.
@@ -146,7 +152,7 @@ func reset_view() -> void:
 	_dragging = false
 	tree_view.position = Vector2.ZERO
 	tree_view.scale = Vector2.ONE
-	_zoom_at(size / 2.0, -0.15) # zoom out default zoom slightly
+	_zoom_at(size / 2.0, default_zoom - 1.0)  # from 1.0 to default_zoom, around the screen centre
 	# eventually I would like to zoom in slightly when the skill tree is opened the first time
 	# to shortly show the locked skill tree to the player and suggest that they can zoom.
 	_clamp_view()
