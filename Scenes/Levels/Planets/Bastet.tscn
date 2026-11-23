@@ -20,6 +20,7 @@ glow_levels/3 = 1.0
 glow_levels/4 = 0.5
 glow_levels/5 = 0.2
 glow_strength = 1.66
+adjustment_enabled = true
 adjustment_brightness = 1.15
 adjustment_contrast = 1.08
 
@@ -51,23 +52,24 @@ repeat_times = 5
 modulate = Color(0.88, 0.88, 0.88, 1)
 offset = Vector2(0, 0)
 
-[node name="Parallax2D2" type="Parallax2D" parent="." index="1" unique_id=601970982]
+[node name="Parallax2D2" type="Parallax2D" parent="Background" parent_id_path=PackedInt32Array(1409712605) index="1" unique_id=601970982]
 repeat_size = Vector2(1024, 512)
 repeat_times = 5
 
-[node name="Texture" type="Sprite2D" parent="Parallax2D2" index="0" unique_id=1331186534]
+[node name="Texture" type="Sprite2D" parent="Background/Parallax2D2" index="0" unique_id=1331186534]
 material = SubResource("ShaderMaterial_d3for")
 scale = Vector2(1, 0.5)
 texture = ExtResource("2_u80cw")
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="." index="2" unique_id=248897781]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." index="1" unique_id=248897781]
 environment = SubResource("Environment_lbst8")
 
 [node name="Player" parent="Objects" parent_id_path=PackedInt32Array(1539187237) index="3" unique_id=102267496]
-dust_color = Color(0.31, 0.79299986, 1, 1)
+dust_color = Color(0.30980393, 0.7921569, 1, 1)
+player_modulate = Color(0.8075, 0.890625, 0.95, 1)
 
 [node name="ExpeditionShip" parent="Objects" parent_id_path=PackedInt32Array(1539187237) index="4" unique_id=1704699913]
-custom_texture = null
+ship_modulate = Color(0.8075, 0.890625, 0.95, 1)
 
 [node name="MapCoordinateGenerator" parent="Objects" parent_id_path=PackedInt32Array(1539187237) index="5" unique_id=1573320358]
 min_distance = 150.0

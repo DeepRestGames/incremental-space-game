@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://8qda1cx3nlgd" path="res://Scripts/HUB/ExpeditionShip/ExpeditionShip.gd" id="1_keioi"]
 [ext_resource type="Texture2D" uid="uid://cy5oo1hlihmjd" path="res://Assets/Sprites/player/ShuttleLanded.png" id="2_keioi"]
+[ext_resource type="Texture2D" uid="uid://4vm52amqhimj" path="res://Assets/Sprites/player/shadow.png" id="2_q2n55"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_wpc3r"]
 radius = 181.0
@@ -9,12 +10,18 @@ radius = 181.0
 [node name="ExpeditionShip" type="Area2D" unique_id=644122719 groups=["ExpeditionShip"]]
 script = ExtResource("1_keioi")
 
+[node name="Shadow" type="Sprite2D" parent="." unique_id=1486700224]
+modulate = Color(1, 1, 1, 0.3019608)
+position = Vector2(0, 106)
+texture = ExtResource("2_q2n55")
+
 [node name="ExpeditionShipInteractionArea" type="CollisionShape2D" parent="." unique_id=556325045]
 position = Vector2(0, 60)
 shape = SubResource("CircleShape2D_wpc3r")
 
 [node name="ExpeditionShipBodySprite" type="Sprite2D" parent="." unique_id=690489644]
 unique_name_in_owner = true
+position = Vector2(0, -11)
 texture = ExtResource("2_keioi")
 offset = Vector2(0, -150.88)
 
@@ -22,7 +29,7 @@ offset = Vector2(0, -150.88)
 collision_layer = 4
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="ExpeditionShipBody" unique_id=1899923445]
-polygon = PackedVector2Array(-47, 169, -47, 65, -89, 58, -112, 119, -134, 124, -156, 118, -149, 97, -132, 90, -122, 39, -134, 25, -134, 0, -75, -21, -1, -29, 84, -19, 134, -2, 133, 25, 122, 40, 132, 94, 149, 99, 155, 117, 134, 123, 111, 117, 89, 55, 47, 67, 47, 168, 42, 168, 41, 42, 47, 42, 52, 48, 101, 35, 121, 19, 120, 11, 79, -3, 1, -11, -73, -4, -122, 12, -122, 20, -92, 39, -50, 48, -47, 42, -41, 42, -41, 169)
+polygon = PackedVector2Array(-47, 169, -47, 65, -107, 53, -125, 58, -126, 89, -106, 108, -113, 124, -157, 123, -161, 107, -148, 93, -156, 54, -129, 34, -134, 25, -134, 0, -75, -21, -1, -29, 84, -19, 134, -2, 133, 25, 129, 33, 155, 56, 151, 95, 161, 110, 156, 124, 112, 124, 108, 105, 126, 88, 127, 62, 108, 50, 47, 67, 47, 168, 42, 168, 41, 48, 52, 48, 96, 33, 112, 18, 111, 7, 79, -3, 1, -11, -73, -4, -112, 7, -112, 19, -91, 37, -50, 48, -41, 48, -41, 169)
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]

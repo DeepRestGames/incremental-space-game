@@ -2,8 +2,27 @@
 
 [ext_resource type="PackedScene" uid="uid://cl1025m5bhlxa" path="res://Scenes/Levels/Planets/BaseLevel.tscn" id="1_yismc"]
 [ext_resource type="Script" uid="uid://b403aot4lk3oo" path="res://Scripts/Levels/SpawnEntry.gd" id="2_qbx6w"]
+[ext_resource type="Shader" uid="uid://bba03aoftrdpw" path="res://Shaders/blend_mode_overlay.gdshader" id="2_yp8i4"]
 [ext_resource type="PackedScene" uid="uid://syb24ng5dl8b" path="res://Scenes/Environment/rocks/white_square_rock.tscn" id="3_j8d84"]
+[ext_resource type="Texture2D" uid="uid://brkolo5onk4f5" path="res://Assets/Sprites/environment/backgrounds/textures/moon_04_ao_1k.jpg" id="3_x3ggb"]
 [ext_resource type="PackedScene" uid="uid://cqsu8owqwvqmd" path="res://Scenes/Environment/rocks/blue_diamond_rock.tscn" id="3_x8wct"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jle1m"]
+shader = ExtResource("2_yp8i4")
+shader_parameter/overlay_opacity = 0.1470000069825
+
+[sub_resource type="Environment" id="Environment_wbrt4"]
+background_mode = 3
+glow_enabled = true
+glow_levels/2 = 1.0
+glow_levels/3 = 1.0
+glow_levels/4 = 0.5
+glow_levels/5 = 0.2
+glow_strength = 1.66
+adjustment_enabled = true
+adjustment_brightness = 0.82
+adjustment_contrast = 1.2
+adjustment_saturation = 1.2
 
 [sub_resource type="Resource" id="Resource_5714e"]
 script = ExtResource("2_qbx6w")
@@ -17,17 +36,32 @@ scene = ExtResource("3_x8wct")
 weight = 8.0
 metadata/_custom_type_script = "uid://b403aot4lk3oo"
 
-[sub_resource type="Environment" id="Environment_yismc"]
-background_mode = 3
-tonemap_exposure = 0.6
-
 [node name="BastetD2" unique_id=705757094 instance=ExtResource("1_yismc")]
+
+[node name="Parallax2D" parent="Background" parent_id_path=PackedInt32Array(1409712605) index="0" unique_id=1285738294]
+scale = Vector2(0.7, 0.7)
+
+[node name="Parallax2D2" type="Parallax2D" parent="Background" parent_id_path=PackedInt32Array(1409712605) index="1" unique_id=1235743495]
+repeat_size = Vector2(1024, 512)
+repeat_times = 5
+
+[node name="Texture" type="Sprite2D" parent="Background/Parallax2D2" index="0" unique_id=1621606244]
+material = SubResource("ShaderMaterial_jle1m")
+scale = Vector2(1, 0.5)
+texture = ExtResource("3_x3ggb")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." index="1" unique_id=1337584501]
+environment = SubResource("Environment_wbrt4")
+
+[node name="Player" parent="Objects" parent_id_path=PackedInt32Array(1539187237) index="3" unique_id=102267496]
+dust_color = Color(0.30980393, 0.7921569, 1, 1)
+player_modulate = Color(0.8075, 0.890625, 0.95, 1)
+
+[node name="ExpeditionShip" parent="Objects" parent_id_path=PackedInt32Array(1539187237) index="4" unique_id=1704699913]
+ship_modulate = Color(0.8075, 0.890625, 0.95, 1)
 
 [node name="SpawnDistribution" parent="Objects/MapCoordinateGenerator" parent_id_path=PackedInt32Array(1573320358) index="0" unique_id=987654321]
 entries = Array[ExtResource("2_qbx6w")]([SubResource("Resource_5714e"), SubResource("Resource_1egrp")])
 
 [node name="DepthTracker" parent="Objects" parent_id_path=PackedInt32Array(1539187237) index="7" unique_id=1775806529]
 hp_to_open = 3000
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="." index="2" unique_id=1059863189]
-environment = SubResource("Environment_yismc")

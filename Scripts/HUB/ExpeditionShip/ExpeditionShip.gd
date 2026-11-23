@@ -3,11 +3,13 @@ extends Area2D
 
 
 @export var custom_texture: Texture2D
+@export var ship_modulate = Color(1.0, 1.0, 1.0, 1.0)
 
 var player_in_area: bool = false
 
 
 func _ready() -> void:
+	modulate = ship_modulate
 	EventBus.action_trigger_interact.connect(check_ship_interaction)
 	if custom_texture:
 		%ExpeditionShipBodySprite.texture = custom_texture
