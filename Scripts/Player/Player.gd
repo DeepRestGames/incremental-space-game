@@ -12,6 +12,8 @@ extends CharacterBody2D
 @onready var camera_shake: ScreenShake = $PlayerCamera/ScreenShake
 @export var dust_color: Color = Color(1.0, 1.0, 1.0, 1.0)
 @export var player_modulate: Color = Color(1.0, 1.0, 1.0, 1.0)
+@onready var hud: CanvasLayer = $HUD
+
 
 # HP
 @export var maxHP: int = BaseValuesDB.MAX_HP
@@ -44,6 +46,7 @@ var current_bombs: int = 0
 
 func _ready() -> void:
 	modulate = player_modulate
+	hud.visible = true
 	
 	#Camera limits for lobby
 	if not GameManager.expedition_started:

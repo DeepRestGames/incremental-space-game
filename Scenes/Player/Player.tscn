@@ -6,14 +6,24 @@
 [ext_resource type="Script" uid="uid://q2mkqd6f05cm" path="res://Scripts/Player/bomb_spawner.gd" id="3_t26db"]
 [ext_resource type="PackedScene" uid="uid://beyb44q40vqlr" path="res://Scenes/UI/HUD.tscn" id="3_ude3g"]
 [ext_resource type="Texture2D" uid="uid://b8k587am8xmnh" path="res://Assets/Sprites/player/PlayerSpriteSheet.png" id="4_4wape"]
+[ext_resource type="Texture2D" uid="uid://bat8u0tp60lr7" path="res://Assets/Sprites/player/DrillCable.png" id="5_e5iqy"]
 [ext_resource type="PackedScene" uid="uid://bwivuxjtkggc0" path="res://Scenes/Particles/dust_particles.tscn" id="5_epg6k"]
 [ext_resource type="Script" uid="uid://dgjxtrxxs5cmk" path="res://Scripts/Player/MiningReticle.gd" id="5_reticle"]
+[ext_resource type="Texture2D" uid="uid://cjp4k7l36vp6i" path="res://Assets/Sprites/player/DrillBody.png" id="6_8t5qx"]
 [ext_resource type="Texture2D" uid="uid://cudg8ldkwnlxw" path="res://Assets/Sprites/kenney_particle-pack/PNG (Transparent)/circle_05.png" id="6_outer_circle"]
+[ext_resource type="Texture2D" uid="uid://dwtge20wu4a2f" path="res://Assets/Sprites/player/Backpack.png" id="7_8rd5p"]
+[ext_resource type="Texture2D" uid="uid://cnma827eq6bts" path="res://Assets/Sprites/player/Head.png" id="8_wwmao"]
+[ext_resource type="Texture2D" uid="uid://dfwuycrby063e" path="res://Assets/Sprites/player/Body.png" id="9_7xdrn"]
 [ext_resource type="AudioStream" uid="uid://b4ietx0tcyn2r" path="res://Assets/Audio/SFX/Steps_audioStreamRandomizer.tres" id="9_esmjy"]
 [ext_resource type="Material" uid="uid://bsrdobvxmywkd" path="res://Shaders/ShaderMaterials/MiningReticle.tres" id="10_0kmp4"]
 [ext_resource type="Texture2D" uid="uid://lf15ab2rjk0" path="res://Assets/Sprites/kenney_particle-pack/PNG (Transparent)/magic_03.png" id="10_ji083"]
+[ext_resource type="Texture2D" uid="uid://dxc8tby0uuq8x" path="res://Assets/Sprites/player/DrillTip.png" id="10_wid83"]
+[ext_resource type="Texture2D" uid="uid://r4a7erp73m2i" path="res://Assets/Sprites/player/HandBack.png" id="11_g7gci"]
 [ext_resource type="Texture2D" uid="uid://cvikujjtk8n44" path="res://Assets/UI/skill tree/CircleFull.png" id="12_i5acl"]
+[ext_resource type="Texture2D" uid="uid://d4lqax5wkcjw4" path="res://Assets/Sprites/player/HandFront.png" id="12_r6t50"]
+[ext_resource type="Texture2D" uid="uid://s705nq4u6mvi" path="res://Assets/Sprites/player/Leg.png" id="13_6rswy"]
 [ext_resource type="AudioStream" uid="uid://bvct7d5k0elh5" path="res://Assets/Audio/SFX/BubblePop2.wav" id="14_0u84n"]
+[ext_resource type="Texture2D" uid="uid://c46rquynh15vd" path="res://Assets/Sprites/player/Visor.png" id="14_jbjyn"]
 [ext_resource type="AudioStream" uid="uid://cclila0mwxdt4" path="res://Assets/Audio/SFX/Drilling2.wav" id="16_6tu5v"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ji083"]
@@ -605,7 +615,62 @@ position = Vector2(0, -20)
 scale = Vector2(2, 2)
 emitting = false
 
+[node name="Sprite" type="Node2D" parent="." unique_id=461852998]
+position = Vector2(0, -20)
+scale = Vector2(2, 2)
+
+[node name="DrillCable" type="Sprite2D" parent="Sprite" unique_id=952205961]
+position = Vector2(-20, -84.5)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("5_e5iqy")
+
+[node name="DrillBody" type="Sprite2D" parent="Sprite" unique_id=1491975504]
+position = Vector2(0, -92.5)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("6_8t5qx")
+
+[node name="Backpack" type="Sprite2D" parent="Sprite" unique_id=67963405]
+position = Vector2(-11.5, -46.25)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("7_8rd5p")
+
+[node name="Head" type="Sprite2D" parent="Sprite" unique_id=893077387]
+position = Vector2(0, -62.5)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("8_wwmao")
+
+[node name="Body" type="Sprite2D" parent="Sprite" unique_id=362101508]
+position = Vector2(0, -46.25)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("9_7xdrn")
+
+[node name="DrillTip" type="Sprite2D" parent="Sprite" unique_id=569714965]
+position = Vector2(34.5, -92.5)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("10_wid83")
+
+[node name="HandBack" type="Sprite2D" parent="Sprite" unique_id=850538727]
+position = Vector2(29, -46.25)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("11_g7gci")
+
+[node name="HandFront" type="Sprite2D" parent="Sprite" unique_id=2097499757]
+position = Vector2(-54.5, -46.25)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("12_r6t50")
+
+[node name="Leg" type="Sprite2D" parent="Sprite" unique_id=489526305]
+position = Vector2(-4, -31)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("13_6rswy")
+
+[node name="Visor" type="Sprite2D" parent="Sprite" unique_id=265260200]
+position = Vector2(4, -62.5)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("14_jbjyn")
+
 [node name="PlayerSprite" type="Sprite2D" parent="." unique_id=725788908]
+visible = false
 texture = ExtResource("4_4wape")
 offset = Vector2(0, -64)
 flip_h = true
@@ -621,6 +686,7 @@ position = Vector2(0, -128)
 script = ExtResource("3_jmcll")
 
 [node name="HUD" parent="." unique_id=1682648843 instance=ExtResource("3_ude3g")]
+visible = false
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=510835633]
 libraries/ = SubResource("AnimationLibrary_i5acl")
