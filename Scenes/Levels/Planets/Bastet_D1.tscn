@@ -61,10 +61,10 @@ environment = SubResource("Environment_58doy")
 
 [node name="Player" parent="Objects" parent_id_path=PackedInt32Array(1539187237) index="3" unique_id=102267496]
 dust_color = Color(0.31, 0.79299986, 1, 1)
-player_modulate = Color(0.8075, 0.890625, 0.95, 1)
+player_modulate = Color(0.73333335, 0.85882354, 0.9490196, 1)
 
 [node name="ExpeditionShip" parent="Objects" parent_id_path=PackedInt32Array(1539187237) index="4" unique_id=1704699913]
-ship_modulate = Color(0.8075, 0.890625, 0.95, 1)
+ship_modulate = Color(0.73333335, 0.85882354, 0.9490196, 1)
 
 [node name="SpawnDistribution" parent="Objects/MapCoordinateGenerator" parent_id_path=PackedInt32Array(1573320358) index="0" unique_id=987654321]
 entries = Array[ExtResource("2_1b4ln")]([SubResource("Resource_5714e"), SubResource("Resource_1egrp"), SubResource("Resource_0athj")])

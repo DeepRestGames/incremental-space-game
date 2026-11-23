@@ -66,10 +66,10 @@ environment = SubResource("Environment_lbst8")
 
 [node name="Player" parent="Objects" parent_id_path=PackedInt32Array(1539187237) index="3" unique_id=102267496]
 dust_color = Color(0.30980393, 0.7921569, 1, 1)
-player_modulate = Color(0.8075, 0.890625, 0.95, 1)
+player_modulate = Color(0.73149997, 0.85895836, 0.95, 1)
 
 [node name="ExpeditionShip" parent="Objects" parent_id_path=PackedInt32Array(1539187237) index="4" unique_id=1704699913]
-ship_modulate = Color(0.8075, 0.890625, 0.95, 1)
+ship_modulate = Color(0.73149997, 0.85895836, 0.95, 1)
 
 [node name="MapCoordinateGenerator" parent="Objects" parent_id_path=PackedInt32Array(1539187237) index="5" unique_id=1573320358]
 min_distance = 150.0
