@@ -13,7 +13,7 @@ extends CharacterBody2D
 @export var dust_color: Color = Color(1.0, 1.0, 1.0, 1.0)
 @export var player_modulate: Color = Color(1.0, 1.0, 1.0, 1.0)
 @onready var hud: CanvasLayer = $HUD
-
+@onready var player_light: PointLight2D = %PlayerLight
 # HP
 @export var maxHP: int = BaseValuesDB.MAX_HP
 var currentHP: int = BaseValuesDB.MAX_HP:
@@ -46,6 +46,15 @@ var current_bombs: int = 0
 func _ready() -> void:
 	modulate = player_modulate
 	hud.visible = true
+	
+	# Light only where the level is dark
+	var modifiers := LevelModifiers.of(get_tree().current_scene)
+	player_light.enabled = modifiers != null and modifiers.is_dark()
+	if player_light.enabled:
+		# Ambient + light = 1.0 at the center: fully lit, never overexposed.
+		# Darker layers automatically get a stronger light.
+		player_light.energy = 1.0 - modifiers.ambient_color.get_luminance()
+	
 	#Camera limits for lobby
 	if not GameManager.expedition_started:
 		player_camera.limit_left = -1100

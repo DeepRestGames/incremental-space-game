@@ -7,6 +7,25 @@ const PATH := ^"Objects/Modifiers"
 @export var drain_rate_multiplier: float = 1.0
 @export var conditions: Array[LevelCondition] = []
 
+#region lighting
+## Ambient light of this level. White = fully lit (surface); darker = deeper layers.
+@export var ambient_color: Color = Color.WHITE
+
+
+func _ready() -> void:
+	if not is_dark():
+		return
+	# Tints every CanvasItem on the main canvas: background, rocks, player, ship.
+	# The HUD lives on its own CanvasLayer, so it stays bright.
+	var darkness := CanvasModulate.new()
+	darkness.color = ambient_color
+	add_child(darkness)
+
+
+func is_dark() -> bool:
+	return ambient_color != Color.WHITE
+#endregion
+
 func get_oxygen_drain_multiplier() -> float:
 	return drain_rate_multiplier
 

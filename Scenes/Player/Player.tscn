@@ -26,6 +26,19 @@
 [ext_resource type="Texture2D" uid="uid://c46rquynh15vd" path="res://Assets/Sprites/player/Visor.png" id="14_jbjyn"]
 [ext_resource type="AudioStream" uid="uid://cclila0mwxdt4" path="res://Assets/Audio/SFX/Drilling2.wav" id="16_6tu5v"]
 
+[sub_resource type="Gradient" id="Gradient_d5qys"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.28677687, 0.5198347, 0.7661157, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0.8572954, 0.8572954, 0.8572954, 0.8572954, 0.7413223, 0.7413223, 0.7413223, 0.7413223, 0.36109155, 0.36109155, 0.36109155, 0.36109155, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_hjp0y"]
+gradient = SubResource("Gradient_d5qys")
+width = 512
+height = 512
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(1, 0.5)
+
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ji083"]
 radius = 8.0
 height = 80.00001
@@ -598,6 +611,14 @@ stream_0/stream = ExtResource("16_6tu5v")
 collision_mask = 4
 motion_mode = 1
 script = ExtResource("1_kyqiw")
+
+[node name="PlayerLight" type="PointLight2D" parent="." unique_id=1321622287]
+unique_name_in_owner = true
+enabled = false
+energy = 0.8
+texture = SubResource("GradientTexture2D_hjp0y")
+offset = Vector2(0, -40)
+texture_scale = 2.0
 
 [node name="PlayerInput" type="Node2D" parent="." unique_id=1419996874]
 script = ExtResource("2_4wape")

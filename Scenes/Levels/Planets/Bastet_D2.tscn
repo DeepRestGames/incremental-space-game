@@ -63,5 +63,8 @@ ship_modulate = Color(0.73333335, 0.85882354, 0.9490196, 1)
 [node name="SpawnDistribution" parent="Objects/MapCoordinateGenerator" parent_id_path=PackedInt32Array(1573320358) index="0" unique_id=987654321]
 entries = Array[ExtResource("2_qbx6w")]([SubResource("Resource_5714e"), SubResource("Resource_1egrp")])
 
+[node name="Modifiers" parent="Objects" parent_id_path=PackedInt32Array(1539187237) index="6" unique_id=1092594344]
+ambient_color = Color(0.5370987, 0.5370987, 0.60124344, 1)
+
 [node name="DepthTracker" parent="Objects" parent_id_path=PackedInt32Array(1539187237) index="7" unique_id=1775806529]
 hp_to_open = 3000

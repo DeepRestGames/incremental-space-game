@@ -9,7 +9,6 @@ var _player_in_area: bool = false
 
 
 func _ready() -> void:
-	EventBus.action_trigger_interact.connect(_on_interact)
 	body_entered.connect(_on_body_entered)
 	body_exited.connect(_on_body_exited)
 	# Open up: grow from nothing, like the ground caving in.
@@ -18,8 +17,10 @@ func _ready() -> void:
 			.tween_property(_sprite, "scale", Vector2.ONE, 0.5)
 
 
-func _on_interact() -> void:
-	if _player_in_area:
+## A fresh press only
+func _unhandled_input(event: InputEvent) -> void:
+	if _player_in_area and event.is_action_pressed("interact"):
+		get_viewport().set_input_as_handled()
 		GameManager.descend()
 
 
