@@ -17,12 +17,11 @@ z_index = -10
 
 [node name="Parallax2D" type="Parallax2D" parent="Background" unique_id=1285738294]
 repeat_size = Vector2(3840, 2161)
-repeat_times = 3
+repeat_times = 5
 
 [node name="SeamlessBackground" type="Sprite2D" parent="Background/Parallax2D" unique_id=162343160]
 unique_name_in_owner = true
 texture = ExtResource("2_kxg8u")
-offset = Vector2(-2000, -2000)
 
 [node name="Objects" type="Node2D" parent="." unique_id=1539187237]
 y_sort_enabled = true

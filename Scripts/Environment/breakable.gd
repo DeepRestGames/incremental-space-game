@@ -151,10 +151,6 @@ func take_damage(damage_value: int, is_crit: bool) -> void:
 	else:
 		hit.play()
 
-		
-		
-
-
 
 func spawn_drop(entry_index: int, amount: int) -> void:
 	if amount <= 0:

@@ -46,11 +46,9 @@ metadata/_custom_type_script = "uid://b403aot4lk3oo"
 
 [node name="Parallax2D" parent="Background" parent_id_path=PackedInt32Array(1409712605) index="0" unique_id=1285738294]
 scale = Vector2(0.7, 0.7)
-repeat_times = 5
 
 [node name="SeamlessBackground" parent="Background/Parallax2D" index="0" unique_id=162343160]
 modulate = Color(0.88, 0.88, 0.88, 1)
-offset = Vector2(0, 0)
 
 [node name="Parallax2D2" type="Parallax2D" parent="Background" parent_id_path=PackedInt32Array(1409712605) index="1" unique_id=601970982]
 repeat_size = Vector2(1024, 512)
