@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://dq3kxlnugqpay" path="res://Scripts/UI/expedition_ended.gd" id="1_script"]
 [ext_resource type="PackedScene" uid="uid://dtydx2v6tt14k" path="res://Scenes/UI/inventory/ResourceList.tscn" id="3_reslist"]
 
-[node name="ExpeditionEnded" type="Control" unique_id=73982163 node_paths=PackedStringArray("title_label", "time_label", "destroyed_label", "depth_label", "resource_list", "loss_label")]
+[node name="ExpeditionEnded" type="Control" unique_id=73982163 node_paths=PackedStringArray("title_label", "death_tip_label", "time_label", "destroyed_label", "depth_label", "resource_list", "loss_label")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -12,6 +12,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_script")
 title_label = NodePath("MainPanel/TitleLabel")
+death_tip_label = NodePath("MainPanel/DeathTipLabel")
 time_label = NodePath("MainPanel/ColumnsContainer/StatsContainer/TimeLabel")
 destroyed_label = NodePath("MainPanel/ColumnsContainer/StatsContainer/DestroyedLabel")
 depth_label = NodePath("MainPanel/ColumnsContainer/StatsContainer/DepthLabel")
@@ -55,6 +56,22 @@ grow_horizontal = 2
 theme_override_colors/font_color = Color(0, 0.8, 1, 1)
 theme_override_font_sizes/font_size = 36
 text = "EXPEDITION ENDED"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="DeathTipLabel" type="Label" parent="MainPanel" unique_id=541791534]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -320.0
+offset_top = 65.0
+offset_right = 320.0
+offset_bottom = 99.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(1, 0.52156866, 0.52156866, 1)
+theme_override_font_sizes/font_size = 24
+text = "RETURN TO SHIP TIP!!"
 horizontal_alignment = 1
 vertical_alignment = 1
 

@@ -24,7 +24,7 @@ var _static_timer: float = 0.0
 @onready var message_label: Label = %MessageLabel
 @onready var static_noise: TextureRect = %StaticNoise
 @onready var beep_player: AudioStreamPlayer = %BeepPlayer
-
+@onready var alert_player: AudioStreamPlayer = %AlertPlayer
 
 func _ready() -> void:
 	visibility_changed.connect(_on_visibility_changed)
@@ -68,16 +68,19 @@ func show_message(text: String, urgent: bool = false) -> void:
 
 	# Start as a thin horizontal line in the middle with heavy static that clears as it opens.
 	scale = Vector2(0.0, 0.04)
-	static_noise.modulate.a = 0.35
-	beep_player.pitch_scale = 1.15 if urgent else 1.55
-	beep_player.play()
+	static_noise.modulate.a = 0.65
+	if urgent:
+		alert_player.play()
+	else:
+		beep_player.pitch_scale = 1.55
+		beep_player.play()
 
 	_tween = create_tween()
 	_tween.tween_property(self, "scale:x", 1.0, slit_width_time) \
 			.set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
 	_tween.tween_property(self, "scale:y", 1.0, slit_open_time) \
 			.set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
-	_tween.parallel().tween_property(static_noise, "modulate:a", 0.12, slit_open_time)
+	_tween.parallel().tween_property(static_noise, "modulate:a", 0.25, slit_open_time)
 	_tween.tween_property(message_label, "visible_ratio", 1.0, type_time)
 	_tween.tween_interval(hold_time)
 	_tween.tween_property(self, "scale:y", 0.04, close_time) \

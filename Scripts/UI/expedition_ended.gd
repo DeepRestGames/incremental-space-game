@@ -1,6 +1,7 @@
 extends Control
 
 @export var title_label: Label
+@export var death_tip_label: Label
 ## Title shown when the expedition ended because the player ran out of oxygen.
 @export var asphyxiated_title: String = "ASPHYXIATED"
 @export var time_label: Label
@@ -16,7 +17,9 @@ func _ready() -> void:
 	# ship keeps whatever title the scene was authored with.
 	if title_label and GameManager.expedition_end_reason == "oxygen":
 		title_label.text = asphyxiated_title
-
+	if death_tip_label:
+		death_tip_label.visible = GameManager.expedition_end_reason == "oxygen"
+	
 	# Display stats
 	var total_seconds = GameManager.expedition_time_spent
 	var minutes = int(total_seconds / 60)

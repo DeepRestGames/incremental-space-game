@@ -102,6 +102,8 @@ var _expedition_start_time_msec: int = 0
 var expedition_success: bool = true
 ## Why the last expedition ended (e.g. "oxygen"). Empty when it ended normally.
 var expedition_end_reason: String = ""
+## How many times each tutorial tip_id has fired (or been retired) this session.
+var _tip_counts: Dictionary[StringName, int] = {}
 
 # Skill levels (skill_id -> current_points)
 # Private on purpose: every write has to go through set_skill_points(),
@@ -451,3 +453,24 @@ func initialize_sfx_player() -> void:
 	sfx_player.volume_db = -1.0
 	add_child(sfx_player)
 	
+
+
+#region tutorial tips
+## Fires `radio_message` up to `max_times` times for `tip_id`.
+func try_show_tip(tip_id: StringName, text: String, max_times: int = 1, urgent: bool = false) -> bool:
+	var count: int = _tip_counts.get(tip_id, 0)
+	if count >= max_times:
+		return false
+	_tip_counts[tip_id] = count + 1
+	EventBus.radio_message.emit(text, urgent)
+	return true
+
+
+## Marks `tip_id` as learned so it never triggers later (e.g. player moved on their own).
+func retire_tip(tip_id: StringName) -> void:
+	_tip_counts[tip_id] = 999
+
+
+func is_tip_retired(tip_id: StringName, max_times: int = 1) -> bool:
+	return _tip_counts.get(tip_id, 0) >= max_times
+#endregion

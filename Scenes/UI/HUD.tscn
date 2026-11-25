@@ -27,6 +27,7 @@
 [ext_resource type="Texture2D" uid="uid://baab6f6ycatf3" path="res://Assets/UI/HUD/O2barEmpty.svg" id="18_o2empty"]
 [ext_resource type="Material" uid="uid://id7xkdr5ogh8" path="res://Shaders/ShaderMaterials/ChromaticAberrationMaterial.tres" id="20_cn5rm"]
 [ext_resource type="PackedScene" uid="uid://cw6u2dtceucpa" path="res://Scenes/UI/inventory/InventoryPanel.tscn" id="22_khvou"]
+[ext_resource type="Script" uid="uid://dle1o2nlnmwjs" path="res://Scripts/UI/misc/TutorialHints.gd" id="28_gcvgm"]
 
 [node name="HUDCanvasLayer" type="CanvasLayer" unique_id=1829917660]
 
@@ -342,6 +343,7 @@ antialiased = true
 polygon = PackedVector2Array(14, 0, -10, -8, -5, 0, -10, 8)
 
 [node name="ShipRadio" parent="HUD" unique_id=771380091 instance=ExtResource("16_p4bpa")]
+custom_minimum_size = Vector2(600, 0)
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -582,3 +584,11 @@ mouse_filter = 2
 metadata/_edit_lock_ = true
 
 [node name="InventoryPanel" parent="." unique_id=2043500793 instance=ExtResource("22_khvou")]
+
+[node name="TutorialHints" type="Node" parent="." unique_id=1432370892]
+script = ExtResource("28_gcvgm")
+
+[node name="IdleTimer" type="Timer" parent="TutorialHints" unique_id=916666790]
+unique_name_in_owner = true
+wait_time = 5.0
+one_shot = true
