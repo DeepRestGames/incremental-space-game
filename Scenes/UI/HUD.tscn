@@ -22,6 +22,7 @@
 [ext_resource type="Script" uid="uid://bjq2cwyn63mmj" path="res://Scripts/UI/HUD/ShipIndicator.gd" id="15_5h4o4"]
 [ext_resource type="Texture2D" uid="uid://bvjhtluwi86x4" path="res://Assets/UI/HUD/miniO2HUD.svg" id="15_gmqj4"]
 [ext_resource type="Theme" uid="uid://bgbggt38glq0v" path="res://Assets/UI/Themes/HUD_theme.tres" id="16_jbjhr"]
+[ext_resource type="PackedScene" uid="uid://bunkaeqa2kl3f" path="res://Scenes/UI/misc/ShipRadio.tscn" id="16_p4bpa"]
 [ext_resource type="Texture2D" uid="uid://c7yiw74xjb0pq" path="res://Assets/UI/HUD/O2barFull.svg" id="17_jbjhr"]
 [ext_resource type="Texture2D" uid="uid://baab6f6ycatf3" path="res://Assets/UI/HUD/O2barEmpty.svg" id="18_o2empty"]
 [ext_resource type="Material" uid="uid://id7xkdr5ogh8" path="res://Shaders/ShaderMaterials/ChromaticAberrationMaterial.tres" id="20_cn5rm"]
@@ -340,6 +341,20 @@ color = Color(0.050980393, 0.9490196, 0.9490196, 1)
 antialiased = true
 polygon = PackedVector2Array(14, 0, -10, -8, -5, 0, -10, 8)
 
+[node name="ShipRadio" parent="HUD" unique_id=771380091 instance=ExtResource("16_p4bpa")]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -212.0
+offset_top = -232.0
+offset_right = 212.0
+offset_bottom = -152.0
+grow_horizontal = 2
+grow_vertical = 0
+
 [node name="ExpeditionIntro" parent="." unique_id=1033768906 instance=ExtResource("13_intro")]
 visible = false
 
@@ -358,6 +373,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 texture = ExtResource("14_dds1n")
+metadata/_edit_lock_ = true
 
 [node name="OxygenBarNew" type="HBoxContainer" parent="." unique_id=1313877727]
 anchors_preset = 7
@@ -563,5 +579,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+metadata/_edit_lock_ = true
 
 [node name="InventoryPanel" parent="." unique_id=2043500793 instance=ExtResource("22_khvou")]

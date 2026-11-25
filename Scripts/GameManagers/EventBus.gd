@@ -42,6 +42,8 @@ extends Node
 @warning_ignore("unused_signal") signal update_current_hp_HUD(hp_amount)
 ## The visor boot animation finished: HUD readouts that wait for it can appear.
 @warning_ignore("unused_signal") signal hud_booted
+## Sends a `[ SHIP AI ]` transmission to the HUD radio banner (`urgent` uses DangerPanel).
+@warning_ignore("unused_signal") signal radio_message(text: String, urgent: bool)
 
 # UI state
 ## Emitted whenever a full-screen UI opens or closes. Anything whose visibility

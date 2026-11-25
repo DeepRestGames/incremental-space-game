@@ -1,0 +1,59 @@
+[gd_scene format=3 uid="uid://bunkaeqa2kl3f"]
+
+[ext_resource type="Script" uid="uid://cqs1lpovw7ibp" path="res://Scripts/UI/misc/ShipRadio.gd" id="1_fw6ej"]
+[ext_resource type="AudioStream" uid="uid://k6qvcpuxotul" path="res://Assets/Audio/SFX/BubblePop.wav" id="2_ldgr0"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_ldgr0"]
+frequency = 0.35
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_hjp0y"]
+width = 256
+height = 64
+noise = SubResource("FastNoiseLite_ldgr0")
+
+[node name="ShipRadio" type="PanelContainer" unique_id=771380091]
+clip_children = 2
+custom_minimum_size = Vector2(420, 0)
+mouse_filter = 2
+script = ExtResource("1_fw6ej")
+
+[node name="Content" type="MarginContainer" parent="." unique_id=397124556]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 18
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 18
+theme_override_constants/margin_bottom = 12
+
+[node name="VBox" type="VBoxContainer" parent="Content" unique_id=915565571]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="HeaderLabel" type="Label" parent="Content/VBox" unique_id=293434366]
+unique_name_in_owner = true
+modulate = Color(0.050980393, 0.9490196, 0.9490196, 0.7490196)
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+text = "[ GRUMPYPETAL-AI // TIP ]"
+
+[node name="MessageLabel" type="Label" parent="Content/VBox" unique_id=1838115992]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(380, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+autowrap_mode = 3
+
+[node name="StaticNoise" type="TextureRect" parent="." unique_id=1594369767]
+unique_name_in_owner = true
+modulate = Color(0.050980393, 0.9490196, 0.9490196, 0.12156863)
+layout_mode = 2
+mouse_filter = 2
+texture = SubResource("NoiseTexture2D_hjp0y")
+expand_mode = 1
+stretch_mode = 1
+
+[node name="BeepPlayer" type="AudioStreamPlayer" parent="." unique_id=1242390310]
+unique_name_in_owner = true
+stream = ExtResource("2_ldgr0")
+volume_db = -10.0
+bus = &"SFX"
