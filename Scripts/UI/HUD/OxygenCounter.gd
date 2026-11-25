@@ -2,20 +2,14 @@ extends HBoxContainer
 
 ## Segmented oxygen readout.
 
-## Alpha the draining segment fades down to. 0.0 = full swap to the empty art
-@export_range(0.0, 1.0) var pulse_min_alpha: float = 0.0
-## Seconds for one complete pulse cycle
-@export var pulse_time: float = 1.0
+## Full on/off blinks each segment performs before emptying.
+@export_range(1, 10) var blinks_per_segment: int = 3
 
 @onready var pct_label: Label = $"VBoxContainer/Oxy_perc"
 @onready var oxygen_bar: HBoxContainer = $Oxy
 @onready var vignette = $"../VignetteAsphyxiating"
 @onready var chromatic_aberration: ColorRect = $"../ChromaticAberration"
 
-
-## Fully-lit segments at the last update. -1 forces the first paint.
-var _full_segments: int = -1
-var _pulse_tween: Tween
 
 ## How fast the effects chase their target. Higher = snappier. ~4.0 ≈ 1s to settle.
 @export var effect_fade_rate: float = 4.0
@@ -87,44 +81,31 @@ func on_update_oxygen(current: float, max_val: float) -> void:
 		_vignette_target_a = 0.8
 		_aberration_target = 2.5
 	# -------------------------------------------------------------------------------
+	_update_segments(oxygen_ratio)
+
+
+func _update_segments(ratio: float) -> void:
 	var total: int = oxygen_bar.get_child_count()
-	var should_be_full: int = clampi(floori(oxygen_ratio * total), 0, total)
-
-	# Called every frame by the Player, but the bar only changes once per segment.
-	if should_be_full == _full_segments:
-		return
-	_full_segments = should_be_full
-
-	_repaint(oxygen_ratio, should_be_full, total)
-
-
-func _repaint(ratio: float, full: int, total: int) -> void:
-	# Kills the tween if it exists (previous bar)
-	if _pulse_tween:
-		_pulse_tween.kill()
+	var exact: float = ratio * float(total)
+	var full: int = clampi(floori(exact), 0, total)
 
 	for bar_index in total:
 		var fill := _fill_of(bar_index)
 		if fill:
 			fill.modulate.a = 1.0 if bar_index < full else 0.0
 
-	# On an exact boundary
-	if ratio * total <= float(full):
+	if full >= total or exact <= float(full):
 		return
 
 	var frontier := _fill_of(full)
 	if not frontier:
 		return
 
-	# Start
-	frontier.modulate.a = 1.0
-
-	_pulse_tween = create_tween().set_loops()
-	_pulse_tween.set_trans(Tween.TRANS_EXPO)
-	_pulse_tween.tween_property(frontier, "modulate:a", pulse_min_alpha, pulse_time * 0.15)
-	_pulse_tween.tween_property(frontier, "modulate:a", 1.0, pulse_time * 0.15)
-	_pulse_tween.tween_property(frontier, "modulate:a", 1.0, pulse_time * 0.6)
-
+	# Odd number of half-waves (2N + 1): starts at 1.0 (was full), pulses on/off
+	# `blinks_per_segment` times, and lands on 0.0 right as the tab empties.
+	var drained: float = 1.0 - (exact - float(full))
+	var half_waves: float = float(2 * blinks_per_segment + 1)
+	frontier.modulate.a = 0.5 + 0.5 * cos(half_waves * PI * drained)
 
 ## Solid overlay of segment `index`
 func _fill_of(index: int) -> TextureRect:
