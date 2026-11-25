@@ -26,25 +26,6 @@
 [ext_resource type="Material" uid="uid://id7xkdr5ogh8" path="res://Shaders/ShaderMaterials/ChromaticAberrationMaterial.tres" id="20_cn5rm"]
 [ext_resource type="PackedScene" uid="uid://cw6u2dtceucpa" path="res://Scenes/UI/inventory/InventoryPanel.tscn" id="22_khvou"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bg"]
-bg_color = Color(0.12, 0.12, 0.16, 0.7)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(0.25, 0.25, 0.3, 1)
-corner_radius_top_left = 4
-corner_radius_top_right = 4
-corner_radius_bottom_right = 4
-corner_radius_bottom_left = 4
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fill"]
-bg_color = Color(0, 0.75, 1, 1)
-corner_radius_top_left = 2
-corner_radius_top_right = 2
-corner_radius_bottom_right = 2
-corner_radius_bottom_left = 2
-
 [node name="HUDCanvasLayer" type="CanvasLayer" unique_id=1829917660]
 
 [node name="Vignette" type="TextureRect" parent="." unique_id=432924437]
@@ -280,45 +261,6 @@ stretch_mode = 5
 
 [node name="Name" type="Label" parent="HUD/MarginContainer/VBoxContainer/ResourceCounter3/HBoxContainer" unique_id=1193120336]
 layout_mode = 2
-
-[node name="OxygenBar" type="Control" parent="HUD" unique_id=987123456]
-visible = false
-custom_minimum_size = Vector2(300, 50)
-layout_mode = 1
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_left = 50.0
-offset_top = -100.0
-offset_right = 350.0
-offset_bottom = -50.0
-grow_vertical = 0
-metadata/_edit_use_anchors_ = true
-
-[node name="HBoxContainer" type="HBoxContainer" parent="HUD/OxygenBar" unique_id=987123457]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/separation = 15
-
-[node name="ProgressBar" type="ProgressBar" parent="HUD/OxygenBar/HBoxContainer" unique_id=987123458]
-custom_minimum_size = Vector2(200, 24)
-layout_mode = 2
-size_flags_vertical = 4
-theme_override_styles/background = SubResource("StyleBoxFlat_bg")
-theme_override_styles/fill = SubResource("StyleBoxFlat_fill")
-value = 100.0
-show_percentage = false
-
-[node name="PctLabel" type="Label" parent="HUD/OxygenBar/HBoxContainer" unique_id=987123459]
-layout_mode = 2
-size_flags_horizontal = 4
-theme_override_font_sizes/font_size = 20
-text = "100%"
-vertical_alignment = 1
 
 [node name="BombCounter" type="Control" parent="HUD" unique_id=899302715]
 custom_minimum_size = Vector2(200, 50)
