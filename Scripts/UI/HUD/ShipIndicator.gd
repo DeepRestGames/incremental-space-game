@@ -2,13 +2,12 @@
 extends Control
 
 ## Guides $Arrow along a squircle fitted to this Control's rectangle in HUD.tscn.
-## Drag this Control's 4 edges in the 2D editor to position the track visually.
 
 ## 2.0 = pure oval, 5.0 = smooth rounded rectangle, 10.0 = nearly square.
 @export_range(2.0, 12.0, 0.1) var squareness: float = 5.0:
 	set(value):
 		squareness = value
-		queue_redraw()
+		queue_redraw() # updates live without reloading the scene
 ## Point on ExpeditionShip the arrow aims at ((0, 0) = boarding hatch/ramp).
 @export var target_offset: Vector2 = Vector2.ZERO
 
@@ -18,17 +17,20 @@ var _ship: ExpeditionShip
 
 
 func _ready() -> void:
+	# godot editor only
 	if Engine.is_editor_hint():
 		item_rect_changed.connect(queue_redraw)
-		queue_redraw()
+		queue_redraw() 
 		return
+	# in game
 	arrow.hide()
 
 
 func _process(_delta: float) -> void:
+	# skip while editing
 	if Engine.is_editor_hint():
 		return
-
+	# do in game (redraw arrow pointing to ship)
 	if not is_instance_valid(_ship):
 		_ship = get_tree().get_first_node_in_group("ExpeditionShip") as ExpeditionShip
 
@@ -50,8 +52,10 @@ func _process(_delta: float) -> void:
 
 
 func _draw() -> void:
+	# if NOT in editor (in game), skip
 	if not Engine.is_editor_hint():
 		return
+	# Draw ellipsis where arrow resides
 	var pts := PackedVector2Array()
 	const STEPS := 96
 	for i in range(STEPS + 1):
@@ -63,6 +67,7 @@ func _draw() -> void:
 ## Projects `dir` (from this Control's center) onto the squircle boundary.
 ## Shared by _draw() and _process() so the editor preview and gameplay never disagree.
 func _point_on_track(dir: Vector2) -> Vector2:
+	# squircle
 	var radii: Vector2 = size * 0.5
 	if radii.x <= 0.0 or radii.y <= 0.0 or dir.is_zero_approx():
 		return radii

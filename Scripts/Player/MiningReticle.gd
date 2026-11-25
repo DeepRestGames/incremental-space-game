@@ -70,16 +70,13 @@ func _process(_delta: float) -> void:
 	#if not is_active:
 	#return
 
-	# Follow the mouse direction relative to the player
-	var mouse_pos = get_global_mouse_position()
-	var player_pos = global_position
-
-	var dir = (mouse_pos - player_pos)
+	# Follow the mouse anywhere inside `outer_radius`, clamped to the circumference outside it.
+	var dir: Vector2 = get_local_mouse_position()
 	if dir.length_squared() > 1.0:
 		reticle_angle = dir.angle()
 
-	# Update collision shape and sprite positions (local space)
-	var local_target_pos = Vector2.from_angle(reticle_angle) * outer_radius
+	var local_target_pos: Vector2 = dir.limit_length(outer_radius)
+	
 	if collision_shape:
 		collision_shape.position = local_target_pos
 	if digging_circle:
