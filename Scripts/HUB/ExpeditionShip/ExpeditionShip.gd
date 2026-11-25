@@ -62,3 +62,7 @@ func _on_body_exited(body: Node2D) -> void:
 		var ui := get_tree().get_first_node_in_group("level_select")
 		if ui and ui.visible:
 			ui.close()
+
+
+func is_on_screen() -> bool:
+	return %OnScreenNotifier.is_on_screen()

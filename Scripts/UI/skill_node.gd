@@ -165,7 +165,12 @@ func can_remove_point() -> bool:
 		return false
 	var current_pts = GameManager.get_skill_points(skill_id)
 	# If removing the last point (going to 0), ensure no standard descendant of child paths is active
+	if current_pts <= 0:
+		return false
 	if current_pts == 1:
+		# Per il nodo centrale
+		if parent_node == null:
+			return false
 		var descendants = get_child_standard_descendants()
 		for desc in descendants:
 			if GameManager.get_skill_points(desc.skill_id) > 0:
@@ -224,7 +229,7 @@ func remove_point() -> void:
 		return
 
 	var current_points = GameManager.get_skill_points(skill_id)
-	if current_points > 0 and can_remove_point():
+	if can_remove_point():
 		GameManager.set_skill_points(skill_id, current_points - 1)
 		# TODO: MAKE MORE GENERIC
 		GameManager.grant(GameManager.get_skill_cost(skill_id))
