@@ -67,11 +67,10 @@ func update_reticle_size() -> void:
 
 
 func _process(_delta: float) -> void:
-	#if not is_active:
-	#return
 
-	# Follow the mouse anywhere inside `outer_radius`, clamped to the circumference outside it.
+	# Follow the mouse anywhere inside `outer_radius`
 	var dir: Vector2 = get_local_mouse_position()
+	# 1 px deadzone where previous reticle_angle is kept to avoid flickering / snapping
 	if dir.length_squared() > 1.0:
 		reticle_angle = dir.angle()
 
