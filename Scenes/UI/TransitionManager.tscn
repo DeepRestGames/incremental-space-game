@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://cxdxjhbo3vbjw" path="res://Scripts/UI/TransitionManager.gd" id="1_717ti"]
 [ext_resource type="Shader" uid="uid://eu4l862oldev" path="res://Shaders/transition.gdshader" id="2_717ti"]
 [ext_resource type="AudioStream" uid="uid://diq15yxnp1poo" path="res://Assets/UI/transitions/transition_out.wav" id="4_e0j6o"]
+[ext_resource type="PackedScene" uid="uid://txjd0h5f33o8" path="res://Scenes/UI/transitions/DescentCutscene.tscn" id="4_hfy2d"]
 
 [sub_resource type="Gradient" id="Gradient_n1ikg"]
 
@@ -98,3 +99,6 @@ bus = &"SFX"
 stream = ExtResource("4_e0j6o")
 volume_db = -2.0
 bus = &"SFX"
+
+[node name="DescentCutscene" parent="." unique_id=1635492873 instance=ExtResource("4_hfy2d")]
+visible = false

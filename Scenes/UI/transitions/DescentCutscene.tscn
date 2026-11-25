@@ -1,0 +1,200 @@
+[gd_scene format=3 uid="uid://txjd0h5f33o8"]
+
+[ext_resource type="Script" uid="uid://72d4lfhpy573" path="res://Scripts/UI/transitions/DescentCutscene.gd" id="1_xpgcd"]
+[ext_resource type="Texture2D" uid="uid://1g7yxr52x66j" path="res://Assets/Sprites/kenney_particle-pack/PNG (Transparent)/trace_06.png" id="2_kslwa"]
+[ext_resource type="Texture2D" uid="uid://buuds51scm5ib" path="res://Assets/Sprites/kenney_particle-pack/PNG (Transparent)/trace_01.png" id="3_1sd45"]
+[ext_resource type="Texture2D" uid="uid://bsnhljy1tngvp" path="res://Assets/Sprites/particles/chipGlow.png" id="4_ugb4t"]
+[ext_resource type="Texture2D" uid="uid://bat8u0tp60lr7" path="res://Assets/Sprites/player/DrillCable.png" id="5_2iiac"]
+[ext_resource type="Texture2D" uid="uid://cjp4k7l36vp6i" path="res://Assets/Sprites/player/DrillBody.png" id="6_uclhn"]
+[ext_resource type="Texture2D" uid="uid://dwtge20wu4a2f" path="res://Assets/Sprites/player/Backpack.png" id="7_xh7tk"]
+[ext_resource type="Texture2D" uid="uid://cnma827eq6bts" path="res://Assets/Sprites/player/Head.png" id="8_wmoid"]
+[ext_resource type="Texture2D" uid="uid://dfwuycrby063e" path="res://Assets/Sprites/player/Body.png" id="9_ehhh6"]
+[ext_resource type="Texture2D" uid="uid://dxc8tby0uuq8x" path="res://Assets/Sprites/player/DrillTip.png" id="10_b0n5n"]
+[ext_resource type="Texture2D" uid="uid://r4a7erp73m2i" path="res://Assets/Sprites/player/HandBack.png" id="11_fvr1a"]
+[ext_resource type="Texture2D" uid="uid://d4lqax5wkcjw4" path="res://Assets/Sprites/player/HandFront.png" id="12_on1as"]
+[ext_resource type="Texture2D" uid="uid://s705nq4u6mvi" path="res://Assets/Sprites/player/Leg.png" id="13_00xqc"]
+[ext_resource type="Texture2D" uid="uid://c46rquynh15vd" path="res://Assets/Sprites/player/Visor.png" id="14_a74no"]
+[ext_resource type="Texture2D" uid="uid://cy5oo1hlihmjd" path="res://Assets/Sprites/player/ShuttleLanded.png" id="15_21jqx"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_xpgcd"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(960, 20, 1)
+direction = Vector3(0, -1, 0)
+spread = 0.0
+initial_velocity_min = 1650.0
+initial_velocity_max = 1650.0
+gravity = Vector3(0, 0, 0)
+scale_min = 0.19999999
+scale_max = 0.28
+color = Color(0.21927962, 0.42725852, 0.5236386, 0.34117648)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xpgcd"]
+bg_color = Color(0.09019608, 0.21960784, 0.2784314, 1)
+border_width_left = 6
+border_width_right = 6
+border_color = Color(0.03529412, 0.09411765, 0.12941177, 1)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_kslwa"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(570, 20, 1)
+direction = Vector3(0, -1, 0)
+spread = 0.0
+initial_velocity_min = 950.0
+initial_velocity_max = 950.0
+gravity = Vector3(0, 0, 0)
+scale_min = 0.12
+scale_max = 0.16
+color = Color(0.25632027, 0.49100745, 0.5950501, 0.57254905)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_1sd45"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(570, 20, 1)
+direction = Vector3(0, -1, 0)
+spread = 0.0
+initial_velocity_min = 2000.0
+initial_velocity_max = 2900.0
+gravity = Vector3(0, 0, 0)
+scale_min = 0.25
+scale_max = 0.5
+color = Color(5.0055983e-06, 0.6445988, 0.77847743, 0.5137255)
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_ugb4t"]
+blend_mode = 1
+
+[node name="DescentCutscene" type="Control" unique_id=1635492873]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_xpgcd")
+
+[node name="Walls" type="ColorRect" parent="." unique_id=1834464426]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.05490196, 0.14509805, 0.1882353, 1)
+
+[node name="WallStreaks" type="GPUParticles2D" parent="Walls" unique_id=1204021639]
+position = Vector2(960, 1200)
+amount = 24
+texture = ExtResource("2_kslwa")
+lifetime = 0.9
+preprocess = 0.9
+visibility_rect = Rect2(-1000, -1400, 2000, 1500)
+process_material = SubResource("ParticleProcessMaterial_xpgcd")
+
+[node name="Shaft" type="Panel" parent="." unique_id=301732450]
+clip_contents = true
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.19
+anchor_right = 0.81
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_xpgcd")
+
+[node name="ShaftStreaks" type="GPUParticles2D" parent="Shaft" unique_id=1122095873]
+position = Vector2(595.2, 1200)
+amount = 45
+texture = ExtResource("2_kslwa")
+lifetime = 1.5
+preprocess = 1.5
+visibility_rect = Rect2(-1000, -1400, 2000, 1500)
+process_material = SubResource("ParticleProcessMaterial_kslwa")
+
+[node name="WindParticles" type="GPUParticles2D" parent="Shaft" unique_id=857196159]
+position = Vector2(595.2, 1200)
+amount = 28
+texture = ExtResource("3_1sd45")
+lifetime = 0.75
+preprocess = 0.75
+visibility_rect = Rect2(-1000, -1400, 2000, 1500)
+process_material = SubResource("ParticleProcessMaterial_1sd45")
+
+[node name="PlayerRig" type="Node2D" parent="." unique_id=1164306907]
+unique_name_in_owner = true
+position = Vector2(790, 540)
+rotation = -0.4886922
+
+[node name="Glow" type="Sprite2D" parent="PlayerRig" unique_id=41270898]
+modulate = Color(1, 1, 1, 0.4509804)
+material = SubResource("CanvasItemMaterial_ugb4t")
+scale = Vector2(4, 4)
+texture = ExtResource("4_ugb4t")
+
+[node name="Sprite" type="Node2D" parent="PlayerRig" unique_id=566460046]
+position = Vector2(0, 120)
+scale = Vector2(2, 2)
+
+[node name="DrillCable" type="Sprite2D" parent="PlayerRig/Sprite" unique_id=1078558445]
+position = Vector2(-20, -84.5)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("5_2iiac")
+
+[node name="DrillBody" type="Sprite2D" parent="PlayerRig/Sprite" unique_id=1272827387]
+position = Vector2(0, -92.5)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("6_uclhn")
+
+[node name="Backpack" type="Sprite2D" parent="PlayerRig/Sprite" unique_id=544543323]
+position = Vector2(-11.5, -46.25)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("7_xh7tk")
+
+[node name="Head" type="Sprite2D" parent="PlayerRig/Sprite" unique_id=1257922367]
+position = Vector2(0, -62.5)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("8_wmoid")
+
+[node name="Body" type="Sprite2D" parent="PlayerRig/Sprite" unique_id=1043700290]
+position = Vector2(0, -46.25)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("9_ehhh6")
+
+[node name="DrillTip" type="Sprite2D" parent="PlayerRig/Sprite" unique_id=320994950]
+position = Vector2(34.5, -92.5)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("10_b0n5n")
+
+[node name="HandBack" type="Sprite2D" parent="PlayerRig/Sprite" unique_id=1339519884]
+position = Vector2(29, -46.25)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("11_fvr1a")
+
+[node name="HandFront" type="Sprite2D" parent="PlayerRig/Sprite" unique_id=328303906]
+position = Vector2(-54.5, -46.25)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("12_on1as")
+
+[node name="Leg" type="Sprite2D" parent="PlayerRig/Sprite" unique_id=2013953820]
+position = Vector2(-4, -31)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("13_00xqc")
+
+[node name="Visor" type="Sprite2D" parent="PlayerRig/Sprite" unique_id=1086565522]
+position = Vector2(4, -62.5)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("14_a74no")
+
+[node name="ShipRig" type="Node2D" parent="." unique_id=2009025511]
+unique_name_in_owner = true
+position = Vector2(1190, 560)
+rotation = 0.05235988
+
+[node name="ShipSprite" type="Sprite2D" parent="ShipRig" unique_id=1352079049]
+scale = Vector2(0.85, 0.85)
+texture = ExtResource("15_21jqx")
+flip_v = true

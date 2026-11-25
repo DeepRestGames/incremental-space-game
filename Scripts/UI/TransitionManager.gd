@@ -26,9 +26,14 @@ var _transition_tween: Tween
 @onready var audio_stream_player_in: AudioStreamPlayer = $AudioStreamPlayer_in
 #endregion
 
+#region transition
+@onready var descent_cutscene: Control = $DescentCutscene
+#endregion
+
 #region Event Methods
 func _ready() -> void:
 	_reset()
+	descent_cutscene.hide()
 #endregion
 #region Signal Handlers
 #endregion
@@ -37,30 +42,60 @@ func _ready() -> void:
 ## Pause → occlude → swap scene → reveal → unpause.
 ## Callers use this instead of calling change_scene_to_file themselves.
 func change_scene(path: String) -> void:
-	if GameManager.transitioning:
-		push_warning("TransitionManager: a transition is already running, ignoring '%s'." % path)
+	if not _begin_transition(path):
 		return
-	GameManager.transitioning = true
-	GameManager.game_paused = true
 
 	transition_dots_begin()
 	await occlusion_reached
 
-	var previous := get_tree().current_scene
-	var err := get_tree().change_scene_to_file(path)
-	if err != OK:
-		push_error("TransitionManager: could not load '%s' (error %d)." % [path, err])
-	else:
-		# change_scene_to_file is deferred, so wait for the swap to actually
-		# land. Otherwise the reveal uncovers the scene we are leaving.
-		while get_tree().current_scene == previous:
-			await get_tree().process_frame
+	await _swap_scene(path)
 
 	transition_dots_end()
 	await finished
 
+	_end_transition()
+
+
+## Same pause/signal contract as change_scene(), using the shaft cutscene instead of dots.
+func change_scene_descent(path: String) -> void:
+	if not _begin_transition(path):
+		return
+
+	started.emit()
+	await descent_cutscene.play_enter()
+	occlusion_reached.emit()
+
+	await _swap_scene(path)
+
+	await descent_cutscene.play_hold_and_exit()
+	_end_transition()
+	finished.emit()
+
+
+func _begin_transition(path: String) -> bool:
+	if GameManager.transitioning:
+		push_warning("TransitionManager: a transition is already running, ignoring '%s'." % path)
+		return false
+	GameManager.transitioning = true
+	GameManager.game_paused = true
+	return true
+
+
+func _end_transition() -> void:
 	GameManager.game_paused = false
 	GameManager.transitioning = false
+
+
+func _swap_scene(path: String) -> void:
+	var previous := get_tree().current_scene
+	var err := get_tree().change_scene_to_file(path)
+	if err != OK:
+		push_error("TransitionManager: could not load '%s' (error %d)." % [path, err])
+		return
+	# change_scene_to_file is deferred, so wait for the swap to actually
+	# land. Otherwise the reveal uncovers the scene we are leaving.
+	while get_tree().current_scene == previous:
+		await get_tree().process_frame
 #endregion
 
 #region Regular Methods

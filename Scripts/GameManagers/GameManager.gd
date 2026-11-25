@@ -233,7 +233,7 @@ func descend() -> void:
 		# Descending refills half the tank (testing value), never above full.
 		player.current_oxygen = minf(player.current_oxygen + 0.5 * player.max_oxygen, player.max_oxygen)
 		_carried_player_state = player.get_carry_state()
-	TransitionManager.change_scene(get_selected_level().get_scene_path_at(current_depth))
+	TransitionManager.change_scene_descent(get_selected_level().get_scene_path_at(current_depth))
 
 ## Returns the carried state once, then forgets it, so a later fresh Player
 ## (e.g. the next expedition) can't pick up stale values.

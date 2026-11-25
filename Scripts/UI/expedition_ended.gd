@@ -5,6 +5,7 @@ extends Control
 @export var asphyxiated_title: String = "ASPHYXIATED"
 @export var time_label: Label
 @export var destroyed_label: Label
+@export var depth_label: Label
 @export var resource_list: ResourceList
 @export var loss_label: Label
 
@@ -20,9 +21,13 @@ func _ready() -> void:
 	var total_seconds = GameManager.expedition_time_spent
 	var minutes = int(total_seconds / 60)
 	var seconds = int(total_seconds) % 60
-	time_label.text = "• Time Spent: %02d:%02d" % [minutes, seconds]
+	time_label.text = "Time Spent: %02d:%02d" % [minutes, seconds]
 	
-	destroyed_label.text = "• Nodes Mined: %d" % GameManager.expedition_destroyed_nodes
+	destroyed_label.text = "Nodes Mined: %d" % GameManager.expedition_destroyed_nodes
+	
+	depth_label.visible = GameManager.current_depth > 0
+	if depth_label.visible:
+		depth_label.text = "Max Depth: %d" % GameManager.current_depth
 
 	resource_list.show_resources(GameManager.expedition_resources_collected, _gathered, _amount_text)
 

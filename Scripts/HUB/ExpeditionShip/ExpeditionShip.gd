@@ -3,7 +3,7 @@ extends Area2D
 
 
 @export var custom_texture: Texture2D
-@export var ship_modulate = Color(1.0, 1.0, 1.0, 1.0)
+@export var ship_modulate: Color = Color(1.0, 1.0, 1.0, 1.0)
 
 var player_in_area: bool = false
 

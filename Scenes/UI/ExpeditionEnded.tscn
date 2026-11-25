@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://dq3kxlnugqpay" path="res://Scripts/UI/expedition_ended.gd" id="1_script"]
 [ext_resource type="PackedScene" uid="uid://dtydx2v6tt14k" path="res://Scenes/UI/inventory/ResourceList.tscn" id="3_reslist"]
 
-[node name="ExpeditionEnded" type="Control" unique_id=73982163 node_paths=PackedStringArray("title_label", "time_label", "destroyed_label", "resource_list", "loss_label")]
+[node name="ExpeditionEnded" type="Control" unique_id=73982163 node_paths=PackedStringArray("title_label", "time_label", "destroyed_label", "depth_label", "resource_list", "loss_label")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -14,6 +14,7 @@ script = ExtResource("1_script")
 title_label = NodePath("MainPanel/TitleLabel")
 time_label = NodePath("MainPanel/ColumnsContainer/StatsContainer/TimeLabel")
 destroyed_label = NodePath("MainPanel/ColumnsContainer/StatsContainer/DestroyedLabel")
+depth_label = NodePath("MainPanel/ColumnsContainer/StatsContainer/DepthLabel")
 resource_list = NodePath("MainPanel/ColumnsContainer/InventoryContainer/List")
 loss_label = NodePath("MainPanel/ColumnsContainer/InventoryContainer/LossLabel")
 
@@ -88,13 +89,19 @@ text = "STATS"
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_font_sizes/font_size = 20
-text = "• Time Spent: 00:00"
+text = "Time Spent: 00:00"
 
 [node name="DestroyedLabel" type="Label" parent="MainPanel/ColumnsContainer/StatsContainer" unique_id=489201]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_font_sizes/font_size = 20
-text = "• Rocks Destroyed: 0"
+text = "Rocks Destroyed: 0"
+
+[node name="DepthLabel" type="Label" parent="MainPanel/ColumnsContainer/StatsContainer" unique_id=1843732759]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "Max Depth: X"
 
 [node name="VSeparator" type="VSeparator" parent="MainPanel/ColumnsContainer" unique_id=5610293]
 layout_mode = 2

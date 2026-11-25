@@ -97,6 +97,9 @@ func _ready() -> void:
 		area2d.area_exited.connect(_on_area_exited)
 
 func on_interacted() -> void:
+	if is_dead:
+		return  # still in the tree while its death animation and sound play
+		
 	if not player_is_in_range:
 		return
 
@@ -108,12 +111,11 @@ func on_interacted() -> void:
 
 	take_damage(damage, is_crit)
 	spawn_damage_number(damage, is_crit)
-	
-	if is_dead:
-		return  # still in the tree while its destroy sound plays
 
 
 func take_damage(damage_value: int, is_crit: bool) -> void:
+	if is_dead:
+		return
 	EventBus.breakable_damaged.emit(damage_value, is_crit)
 	
 	# Il danno oltre gli HP rimasti non conta: senza questo, il colpo che sfonda
@@ -148,10 +150,6 @@ func take_damage(damage_value: int, is_crit: bool) -> void:
 
 	else:
 		hit.play()
-
-		
-		
-
 
 
 func spawn_drop(entry_index: int, amount: int) -> void:
@@ -242,13 +240,26 @@ func die() -> void:
 	for entry_index in drops.size():
 		spawn_drop(entry_index, _amounts[entry_index] + extra_drops)
 
-	hide()
 	set_physics_process(false)
 	set_process(false)
-
 	collision_walk.set_deferred("disabled", true)
 
 	destroy.play()
-	await destroy.finished
-
+	await _play_death_animation()
+	hide()
+	# The sound may already be over: awaiting `finished` then would hang forever.
+	if destroy.playing:
+		await destroy.finished
 	queue_free()
+
+
+## Flash white, swell a little, then shrink to nothing.
+#TODO: Enrico, se vuoi fare una animazione di morte più decente
+func _play_death_animation() -> void:
+	var tween := create_tween().set_parallel()
+	tween.tween_property(sprite_canvas, "instance_shader_parameters/flash_value", 1.0, 0.05)
+	tween.tween_property(sprite_canvas, "scale", sprite_canvas.scale * 1.15, 0.06) \
+			.set_ease(Tween.EASE_OUT)
+	tween.chain().tween_property(sprite_canvas, "scale", Vector2.ZERO, 0.14) \
+			.set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_IN)
+	await tween.finished

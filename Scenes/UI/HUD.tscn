@@ -17,7 +17,7 @@
 [ext_resource type="Texture2D" uid="uid://1whuycuvjxsl" path="res://Assets/UI/HUD_mockup_clean_2.png" id="10_jt2rc"]
 [ext_resource type="Script" uid="uid://bc3f476l57gt1" path="res://Scripts/UI/HUD/MoneyCounter.gd" id="10_money"]
 [ext_resource type="Resource" uid="uid://d1r5ngv5sjq48" path="res://GameResources/Materials/blue_diamond.tres" id="11_p4bpa"]
-[ext_resource type="PackedScene" path="res://Scenes/UI/ExpeditionIntro.tscn" id="13_intro"]
+[ext_resource type="PackedScene" uid="uid://d4f1sfj1pbhqq" path="res://Scenes/UI/ExpeditionIntro.tscn" id="13_intro"]
 [ext_resource type="Texture2D" uid="uid://d1pk75jr5hq0n" path="res://Assets/UI/HUD/redVignette.svg" id="14_dds1n"]
 [ext_resource type="Texture2D" uid="uid://bvjhtluwi86x4" path="res://Assets/UI/HUD/miniO2HUD.svg" id="15_gmqj4"]
 [ext_resource type="Theme" uid="uid://bgbggt38glq0v" path="res://Assets/UI/Themes/HUD_theme.tres" id="16_jbjhr"]
@@ -81,6 +81,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 metadata/_edit_use_anchors_ = true
 
 [node name="InteractionPrompt" type="Label" parent="HUD" unique_id=1193440688]
