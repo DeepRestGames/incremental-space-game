@@ -23,6 +23,24 @@ custom_minimum_size = Vector2(420, 0)
 mouse_filter = 2
 script = ExtResource("1_fw6ej")
 
+[node name="NoiseBleed" type="MarginContainer" parent="." unique_id=1015688453]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_left = -6
+theme_override_constants/margin_top = -2
+theme_override_constants/margin_right = -2
+theme_override_constants/margin_bottom = -2
+
+[node name="StaticNoise" type="TextureRect" parent="NoiseBleed" unique_id=1594369767]
+unique_name_in_owner = true
+modulate = Color(0.050980393, 0.9490196, 0.9490196, 0.12156863)
+layout_mode = 2
+mouse_filter = 2
+texture = SubResource("NoiseTexture2D_hjp0y")
+expand_mode = 1
+stretch_mode = 1
+flip_v = true
+
 [node name="Content" type="MarginContainer" parent="." unique_id=397124556]
 layout_mode = 2
 mouse_filter = 2
@@ -47,16 +65,8 @@ unique_name_in_owner = true
 custom_minimum_size = Vector2(380, 0)
 layout_mode = 2
 theme_override_font_sizes/font_size = 28
+text = "test test test"
 autowrap_mode = 3
-
-[node name="StaticNoise" type="TextureRect" parent="." unique_id=1594369767]
-unique_name_in_owner = true
-modulate = Color(0.050980393, 0.9490196, 0.9490196, 0.12156863)
-layout_mode = 2
-mouse_filter = 2
-texture = SubResource("NoiseTexture2D_hjp0y")
-expand_mode = 1
-stretch_mode = 1
 
 [node name="BeepPlayer" type="AudioStreamPlayer" parent="." unique_id=1242390310]
 unique_name_in_owner = true

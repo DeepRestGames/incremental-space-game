@@ -1,3 +1,4 @@
+@tool
 extends PanelContainer
 
 ## Diegetic `[ SHIP AI ]` radio banner: unzips from a center slit with static noise,
@@ -28,6 +29,12 @@ var _static_timer: float = 0.0
 
 func _ready() -> void:
 	visibility_changed.connect(_on_visibility_changed)
+	
+	# tool guard
+	if Engine.is_editor_hint():
+		_on_visibility_changed()
+		return
+	
 	EventBus.radio_message.connect(show_message)
 
 	if get_tree().current_scene == self:
@@ -44,6 +51,10 @@ func _on_visibility_changed() -> void:
 
 
 func _process(delta: float) -> void:
+	# for tool
+	if not static_noise:
+		return
+	
 	_static_timer += delta
 	if _static_timer >= static_flicker_interval:
 		_static_timer = 0.0
