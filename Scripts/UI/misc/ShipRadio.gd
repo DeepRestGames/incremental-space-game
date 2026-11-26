@@ -19,6 +19,7 @@ const COLOR_URGENT := Color(0.933, 0.169, 0.345, 0.95)
 @export var static_flicker_interval: float = 0.06
 
 var _tween: Tween
+var _closing: bool = false
 var _static_timer: float = 0.0
 
 @onready var header_label: Label = %HeaderLabel
@@ -36,6 +37,8 @@ func _ready() -> void:
 		return
 	
 	EventBus.radio_message.connect(show_message)
+	EventBus.radio_dismiss.connect(dismiss)
+	EventBus.ui_state_changed.connect(_on_ui_state_changed)
 
 	if get_tree().current_scene == self:
 		# Standalone F6 demo so you can tune the slit & static right in this scene!
@@ -63,6 +66,7 @@ func _process(delta: float) -> void:
 
 
 func show_message(text: String, urgent: bool = false) -> void:
+	_closing = false
 	if _tween:
 		_tween.kill()
 
@@ -93,7 +97,23 @@ func show_message(text: String, urgent: bool = false) -> void:
 			.set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
 	_tween.parallel().tween_property(static_noise, "modulate:a", 0.25, slit_open_time)
 	_tween.tween_property(message_label, "visible_ratio", 1.0, type_time)
+	
 	_tween.tween_interval(hold_time)
+	_tween.tween_callback(dismiss)
+
+
+func _on_ui_state_changed() -> void:
+	if GameManager.is_world_obscured():
+		dismiss()
+
+
+func dismiss() -> void:
+	if not visible or _closing:
+		return
+	_closing = true
+	if _tween:
+		_tween.kill()
+	_tween = create_tween().set_pause_mode(Tween.TWEEN_PAUSE_PROCESS)
 	_tween.tween_property(self, "scale:y", 0.04, close_time) \
 			.set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN)
 	_tween.tween_property(self, "scale:x", 0.0, slit_width_time * 0.8)

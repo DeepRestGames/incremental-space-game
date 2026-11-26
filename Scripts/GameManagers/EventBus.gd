@@ -44,6 +44,7 @@ extends Node
 @warning_ignore("unused_signal") signal hud_booted
 ## Sends a `[ SHIP AI ]` transmission to the HUD radio banner (`urgent` uses DangerPanel).
 @warning_ignore("unused_signal") signal radio_message(text: String, urgent: bool)
+@warning_ignore("unused_signal") signal radio_dismiss
 
 # UI state
 ## Emitted whenever a full-screen UI opens or closes. Anything whose visibility

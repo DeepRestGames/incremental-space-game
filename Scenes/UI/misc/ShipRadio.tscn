@@ -39,7 +39,7 @@ mouse_filter = 2
 texture = SubResource("NoiseTexture2D_hjp0y")
 expand_mode = 1
 stretch_mode = 1
-flip_v = true
+flip_h = true
 
 [node name="Content" type="MarginContainer" parent="." unique_id=397124556]
 layout_mode = 2

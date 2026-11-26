@@ -71,7 +71,7 @@ offset_bottom = 99.0
 grow_horizontal = 2
 theme_override_colors/font_color = Color(1, 0.52156866, 0.52156866, 1)
 theme_override_font_sizes/font_size = 24
-text = "RETURN TO SHIP TIP!!"
+text = "Return to the ship while you still have oxygen, fool!"
 horizontal_alignment = 1
 vertical_alignment = 1
 
