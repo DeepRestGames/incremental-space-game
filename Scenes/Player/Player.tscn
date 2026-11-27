@@ -1136,14 +1136,11 @@ rotation = 1.5707941
 shape = SubResource("CapsuleShape2D_ji083")
 
 [node name="DustParticles" parent="." unique_id=1543541744 instance=ExtResource("5_epg6k")]
-visible = false
 position = Vector2(0, -20)
 scale = Vector2(2, 2)
 emitting = false
 
 [node name="PlayerSprite" type="Sprite2D" parent="." unique_id=725788908]
-visible = false
-position = Vector2(169.62743, 0)
 texture = ExtResource("4_4wape")
 offset = Vector2(0, -64)
 flip_h = true
@@ -1152,6 +1149,7 @@ vframes = 6
 frame = 5
 
 [node name="Sprite" type="Node2D" parent="." unique_id=461852998]
+visible = false
 scale = Vector2(0.97, 1.05)
 
 [node name="HandBack" type="Sprite2D" parent="Sprite" unique_id=850538727]

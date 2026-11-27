@@ -1,0 +1,18 @@
+[gd_resource type="StyleBoxTexture" format=3 uid="uid://1ruhs5o0bf6f"]
+
+[ext_resource type="Texture2D" uid="uid://dmrhbuwtt7cbq" path="res://Assets/UI/PanelBorder.svg" id="1_vx6pj"]
+
+[resource]
+content_margin_left = 5.0
+content_margin_top = 5.0
+content_margin_right = 5.0
+content_margin_bottom = 5.0
+texture = ExtResource("1_vx6pj")
+texture_margin_left = 18.4
+texture_margin_top = 76.0
+texture_margin_right = 31.0
+texture_margin_bottom = 31.2
+expand_margin_left = 16.0
+expand_margin_top = 2.0
+expand_margin_right = 2.0
+expand_margin_bottom = 2.0

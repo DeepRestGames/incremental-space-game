@@ -1,24 +1,30 @@
 extends Control
 
-@export var title_label: Label
+#Death warning panel - only shown when you die
+@export var death_label: Label
+@export var death_warning_panel: PanelContainer
 @export var death_tip_label: Label
+@export var death_effect: Label
 ## Title shown when the expedition ended because the player ran out of oxygen.
 @export var asphyxiated_title: String = "ASPHYXIATED"
+@export var asphyxiated_tip: String = "Get back to your ship before you run out of oxygen!"
 @export var time_label: Label
 @export var destroyed_label: Label
 @export var depth_label: Label
 @export var resource_list: ResourceList
 @export var loss_label: Label
 
+
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
 
 	# Only override the title for a specific cause of death; returning to the
 	# ship keeps whatever title the scene was authored with.
-	if title_label and GameManager.expedition_end_reason == "oxygen":
-		title_label.text = asphyxiated_title
-	if death_tip_label:
-		death_tip_label.visible = GameManager.expedition_end_reason == "oxygen"
+	if death_label and GameManager.expedition_end_reason == "oxygen":
+		death_label.text = asphyxiated_title
+	if death_tip_label and GameManager.expedition_end_reason == "oxygen":
+		death_tip_label.text = asphyxiated_tip
+		
 	
 	# Display stats
 	var total_seconds = GameManager.expedition_time_spent
@@ -34,10 +40,10 @@ func _ready() -> void:
 
 	resource_list.show_resources(GameManager.expedition_resources_collected, _gathered, _amount_text)
 
-	loss_label.visible = not GameManager.expedition_success
-	if loss_label.visible:
+	death_warning_panel.visible = not GameManager.expedition_success
+	if death_warning_panel.visible:
 		var kept_pct := roundi(SkillModifiers.get_failure_keep_ratio() * 100)
-		loss_label.text = "Lost on the way back: kept %d%% of your cargo" % kept_pct
+		death_effect.text = "Lost %d%% of your cargo" % (100-kept_pct)
 
 
 func _gathered(_t: ResourceType, amount: int) -> bool:

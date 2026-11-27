@@ -1,6 +1,10 @@
 [gd_resource type="Theme" format=3 uid="uid://cejvp2v78r022"]
 
 [ext_resource type="FontFile" uid="uid://ul4rqbhlgb1f" path="res://Assets/Fonts/oxanium/ttf/Oxanium-Regular.ttf" id="1_mf7nv"]
+[ext_resource type="FontFile" uid="uid://bo6sros8myby6" path="res://Assets/Fonts/oxanium/ttf/Oxanium-Medium.ttf" id="2_ha40p"]
+[ext_resource type="StyleBox" uid="uid://1ruhs5o0bf6f" path="res://Scripts/UI/elements/box_texture_regular.tres" id="2_n48s3"]
+[ext_resource type="StyleBox" uid="uid://dl3wag6kvbqpt" path="res://Scripts/UI/elements/box_texture_red.tres" id="3_lfrpt"]
+[ext_resource type="FontFile" uid="uid://c7ja2qj7yn1xc" path="res://Assets/Fonts/oxanium/ttf/Oxanium-SemiBold.ttf" id="4_gy8b0"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mkei4"]
 content_margin_left = 24.0
@@ -89,15 +93,20 @@ corner_radius_top_left = 16
 corner_radius_bottom_right = 16
 corner_detail = 1
 
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_yf5fn"]
+color = Color(0.04750001, 0.95, 0.95, 0.49803922)
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_g4v7s"]
+color = Color(0.93, 0.1674, 0.34533986, 0.49803922)
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4pe34"]
 bg_color = Color(0, 0.029166672, 0.07, 0.7411765)
-border_width_left = 6
+border_width_left = 2
 border_width_top = 2
 border_width_right = 2
 border_width_bottom = 2
 border_color = Color(0.050980393, 0.9490196, 0.9490196, 1)
-corner_radius_top_left = 16
-corner_radius_bottom_right = 16
+corner_radius_bottom_right = 30
 corner_detail = 1
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vlyh7"]
@@ -144,7 +153,11 @@ border_width_right = 2
 border_width_bottom = 2
 border_color = Color(0.051, 0.949, 0.949, 1)
 
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_gy8b0"]
+color = Color(0.04750001, 0.95, 0.95, 0.49803922)
+
 [resource]
+default_font = ExtResource("2_ha40p")
 Button/colors/font_color = Color(1, 1, 1, 1)
 Button/colors/font_focus_color = Color(0.6509804, 0.96862745, 0.96862745, 1)
 Button/colors/font_hover_color = Color(0.6509804, 0.96862745, 0.96862745, 1)
@@ -157,14 +170,22 @@ Button/styles/normal = SubResource("StyleBoxFlat_lfrpt")
 Button/styles/pressed = SubResource("StyleBoxFlat_gy8b0")
 DangerPanel/base_type = &"PanelContainer"
 DangerPanel/styles/panel = SubResource("StyleBoxFlat_mf7nv")
+HSeparator/styles/separator = SubResource("StyleBoxLine_yf5fn")
+HSeparator/styles/separator_red = SubResource("StyleBoxLine_g4v7s")
+Label/font_sizes/font_size = 18
 Panel/styles/panel = SubResource("StyleBoxFlat_4pe34")
-PanelContainer/styles/panel = SubResource("StyleBoxFlat_4pe34")
+PanelContainer/styles/panel = ExtResource("2_n48s3")
+PanelContainer/styles/panel_red = ExtResource("3_lfrpt")
 ProcessorBar/base_type = &"ProgressBar"
 ProcessorBar/styles/background = SubResource("StyleBoxFlat_vlyh7")
 ProcessorBar/styles/fill = SubResource("StyleBoxFlat_2qu4d")
+RichTextLabel/font_sizes/bold_font_size = 15
+RichTextLabel/fonts/bold_font = ExtResource("4_gy8b0")
+RichTextLabel/fonts/normal_font = ExtResource("2_ha40p")
 SlotDanger/base_type = &"PanelContainer"
 SlotDanger/styles/panel = SubResource("StyleBoxFlat_xxrw1")
 SlotGlow/base_type = &"PanelContainer"
 SlotGlow/styles/panel = SubResource("StyleBoxFlat_hd4dl")
 SlotPanel/base_type = &"PanelContainer"
 SlotPanel/styles/panel = SubResource("StyleBoxFlat_ighw5")
+VSeparator/styles/separator = SubResource("StyleBoxLine_gy8b0")

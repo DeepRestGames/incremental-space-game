@@ -1,23 +1,35 @@
 [gd_scene format=3 uid="uid://dmey4x1v84j3c"]
 
 [ext_resource type="Script" uid="uid://dq3kxlnugqpay" path="res://Scripts/UI/expedition_ended.gd" id="1_script"]
+[ext_resource type="Theme" uid="uid://cejvp2v78r022" path="res://Assets/UI/Themes/UI_theme.tres" id="2_lxyge"]
+[ext_resource type="StyleBox" uid="uid://dl3wag6kvbqpt" path="res://Scripts/UI/elements/box_texture_red.tres" id="3_b0seq"]
+[ext_resource type="FontFile" uid="uid://c7ja2qj7yn1xc" path="res://Assets/Fonts/oxanium/ttf/Oxanium-SemiBold.ttf" id="3_lm3tt"]
 [ext_resource type="PackedScene" uid="uid://dtydx2v6tt14k" path="res://Scenes/UI/inventory/ResourceList.tscn" id="3_reslist"]
+[ext_resource type="Texture2D" uid="uid://bnfqoeeva7jpy" path="res://Assets/UI/HeaderGlowRed.png" id="4_fykly"]
+[ext_resource type="FontFile" uid="uid://c8hh141vhoegi" path="res://Assets/Fonts/oxanium/ttf/Oxanium-Bold.ttf" id="4_wofar"]
+[ext_resource type="Texture2D" uid="uid://bff8vsousa43m" path="res://Assets/UI/HeaderGlowBlue.png" id="6_8uwvl"]
 
-[node name="ExpeditionEnded" type="Control" unique_id=73982163 node_paths=PackedStringArray("title_label", "death_tip_label", "time_label", "destroyed_label", "depth_label", "resource_list", "loss_label")]
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_g4v7s"]
+color = Color(0.93, 0.1674, 0.34533986, 0.49803922)
+
+[node name="ExpeditionEnded" type="Control" unique_id=73982163 node_paths=PackedStringArray("death_label", "death_warning_panel", "death_tip_label", "death_effect", "time_label", "destroyed_label", "depth_label", "resource_list", "loss_label")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("2_lxyge")
 script = ExtResource("1_script")
-title_label = NodePath("MainPanel/TitleLabel")
-death_tip_label = NodePath("MainPanel/DeathTipLabel")
-time_label = NodePath("MainPanel/ColumnsContainer/StatsContainer/TimeLabel")
-destroyed_label = NodePath("MainPanel/ColumnsContainer/StatsContainer/DestroyedLabel")
-depth_label = NodePath("MainPanel/ColumnsContainer/StatsContainer/DepthLabel")
-resource_list = NodePath("MainPanel/ColumnsContainer/InventoryContainer/List")
-loss_label = NodePath("MainPanel/ColumnsContainer/InventoryContainer/LossLabel")
+death_label = NodePath("VBoxContainer/MarginContainer/DeathWarningPanel/VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/DeathLabel")
+death_warning_panel = NodePath("VBoxContainer/MarginContainer/DeathWarningPanel")
+death_tip_label = NodePath("VBoxContainer/MarginContainer/DeathWarningPanel/VBoxContainer/MarginContainer/VBoxContainer/MarginContainer4/DeathTipLabel")
+death_effect = NodePath("VBoxContainer/MarginContainer/DeathWarningPanel/VBoxContainer/MarginContainer/VBoxContainer/MarginContainer3/DeathEffect")
+time_label = NodePath("VBoxContainer/MainPanel/MarginContainer/VBoxContainer/MarginContainerBody/ColumnsContainer/StatsContainer/TimeLabel")
+destroyed_label = NodePath("VBoxContainer/MainPanel/MarginContainer/VBoxContainer/MarginContainerBody/ColumnsContainer/StatsContainer/DestroyedLabel")
+depth_label = NodePath("VBoxContainer/MainPanel/MarginContainer/VBoxContainer/MarginContainerBody/ColumnsContainer/StatsContainer/DepthLabel")
+resource_list = NodePath("VBoxContainer/MainPanel/MarginContainer/VBoxContainer/MarginContainerBody/ColumnsContainer/InventoryContainer/List")
+loss_label = NodePath("VBoxContainer/MainPanel/MarginContainer/VBoxContainer/MarginContainerBody/ColumnsContainer/InventoryContainer/LossLabel")
 
 [node name="BackgroundDim" type="ColorRect" parent="." unique_id=89237645]
 layout_mode = 1
@@ -28,8 +40,8 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.04, 0.04, 0.06, 0.85)
 
-[node name="MainPanel" type="Panel" parent="." unique_id=98712345]
-custom_minimum_size = Vector2(700, 420)
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=166813686]
+custom_minimum_size = Vector2(700, 500)
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -37,131 +49,210 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -350.0
-offset_top = -210.0
+offset_top = -250.0
 offset_right = 350.0
-offset_bottom = 210.0
+offset_bottom = 250.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="TitleLabel" type="Label" parent="MainPanel" unique_id=12398457]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -200.0
-offset_top = 25.0
-offset_right = 200.0
-offset_bottom = 60.0
-grow_horizontal = 2
-theme_override_colors/font_color = Color(0, 0.8, 1, 1)
-theme_override_font_sizes/font_size = 36
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer" unique_id=1822778587]
+layout_mode = 2
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 30
+
+[node name="DeathWarningPanel" type="PanelContainer" parent="VBoxContainer/MarginContainer" unique_id=1451711367]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_styles/panel = ExtResource("3_b0seq")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/MarginContainer/DeathWarningPanel" unique_id=1716964967]
+layout_mode = 2
+
+[node name="WarningLabel" type="RichTextLabel" parent="VBoxContainer/MarginContainer/DeathWarningPanel/VBoxContainer" unique_id=753419018]
+layout_mode = 2
+theme_override_colors/default_color = Color(0.93333334, 0.16862746, 0.34509805, 1)
+bbcode_enabled = true
+text = "[img]res://Assets/UI/WarningHeader.png[/img] [img]res://Assets/UI/WarningHeader.png[/img] [img]res://Assets/UI/WarningHeader.png[/img] [img]res://Assets/UI/WarningHeader.png[/img] [img]res://Assets/UI/WarningHeader.png[/img]   [b]WARNING[/b]   [img]res://Assets/UI/WarningHeader.png[/img] [img]res://Assets/UI/WarningHeader.png[/img] [img]res://Assets/UI/WarningHeader.png[/img] [img]res://Assets/UI/WarningHeader.png[/img] [img]res://Assets/UI/WarningHeader.png[/img]"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HSeparator2" type="HSeparator" parent="VBoxContainer/MarginContainer/DeathWarningPanel/VBoxContainer" unique_id=1085294101]
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxLine_g4v7s")
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/MarginContainer/DeathWarningPanel/VBoxContainer" unique_id=1995839480]
+layout_mode = 2
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 30
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/MarginContainer/DeathWarningPanel/VBoxContainer/MarginContainer" unique_id=1611536312]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/MarginContainer/DeathWarningPanel/VBoxContainer/MarginContainer/VBoxContainer" unique_id=503549126]
+layout_mode = 2
+theme_override_constants/margin_bottom = 15
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/MarginContainer/DeathWarningPanel/VBoxContainer/MarginContainer/VBoxContainer/MarginContainer" unique_id=924191219]
+custom_maximum_size = Vector2(-1, 70)
+propagate_maximum_size = true
+layout_mode = 2
+texture = ExtResource("4_fykly")
+expand_mode = 5
+
+[node name="DeathLabel" type="Label" parent="VBoxContainer/MarginContainer/DeathWarningPanel/VBoxContainer/MarginContainer/VBoxContainer/MarginContainer" unique_id=65845535]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.93333334, 0.16862746, 0.34509805, 1)
+theme_override_fonts/font = ExtResource("4_wofar")
+theme_override_font_sizes/font_size = 24
+text = "DEATH CAUSE"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MarginContainer3" type="MarginContainer" parent="VBoxContainer/MarginContainer/DeathWarningPanel/VBoxContainer/MarginContainer/VBoxContainer" unique_id=1379027465]
+layout_mode = 2
+theme_override_constants/margin_bottom = 15
+
+[node name="DeathEffect" type="Label" parent="VBoxContainer/MarginContainer/DeathWarningPanel/VBoxContainer/MarginContainer/VBoxContainer/MarginContainer3" unique_id=35868195]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 24
+text = "Death Effect"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="VBoxContainer/MarginContainer/DeathWarningPanel/VBoxContainer/MarginContainer/VBoxContainer" unique_id=1671585947]
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxLine_g4v7s")
+
+[node name="MarginContainer4" type="MarginContainer" parent="VBoxContainer/MarginContainer/DeathWarningPanel/VBoxContainer/MarginContainer/VBoxContainer" unique_id=583424965]
+layout_mode = 2
+theme_override_constants/margin_top = 15
+
+[node name="DeathTipLabel" type="Label" parent="VBoxContainer/MarginContainer/DeathWarningPanel/VBoxContainer/MarginContainer/VBoxContainer/MarginContainer4" unique_id=1040593420]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "Death Tip"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MainPanel" type="PanelContainer" parent="VBoxContainer" unique_id=467543026]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/MainPanel" unique_id=916545152]
+layout_mode = 2
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 30
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/MainPanel/MarginContainer" unique_id=451538236]
+layout_mode = 2
+
+[node name="MarginContainerTitle" type="MarginContainer" parent="VBoxContainer/MainPanel/MarginContainer/VBoxContainer" unique_id=276041890]
+layout_mode = 2
+theme_override_constants/margin_bottom = 15
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/MainPanel/MarginContainer/VBoxContainer/MarginContainerTitle" unique_id=1630275461]
+custom_maximum_size = Vector2(-1, 70)
+propagate_maximum_size = true
+layout_mode = 2
+texture = ExtResource("6_8uwvl")
+expand_mode = 5
+
+[node name="TitleLabel" type="Label" parent="VBoxContainer/MainPanel/MarginContainer/VBoxContainer/MarginContainerTitle" unique_id=12398457]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.050980393, 0.9490196, 0.9490196, 1)
+theme_override_fonts/font = ExtResource("4_wofar")
+theme_override_font_sizes/font_size = 24
 text = "EXPEDITION ENDED"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="DeathTipLabel" type="Label" parent="MainPanel" unique_id=541791534]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -320.0
-offset_top = 65.0
-offset_right = 320.0
-offset_bottom = 99.0
-grow_horizontal = 2
-theme_override_colors/font_color = Color(1, 0.52156866, 0.52156866, 1)
-theme_override_font_sizes/font_size = 24
-text = "Return to the ship while you still have oxygen, fool!"
-horizontal_alignment = 1
-vertical_alignment = 1
+[node name="HSeparator" type="HSeparator" parent="VBoxContainer/MainPanel/MarginContainer/VBoxContainer" unique_id=2054985027]
+layout_mode = 2
 
-[node name="ColumnsContainer" type="HBoxContainer" parent="MainPanel" unique_id=3459812]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -300.0
-offset_top = -110.0
-offset_right = 300.0
-offset_bottom = 90.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="MarginContainerBody" type="MarginContainer" parent="VBoxContainer/MainPanel/MarginContainer/VBoxContainer" unique_id=314087217]
+layout_mode = 2
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="ColumnsContainer" type="HBoxContainer" parent="VBoxContainer/MainPanel/MarginContainer/VBoxContainer/MarginContainerBody" unique_id=3459812]
+layout_mode = 2
 theme_override_constants/separation = 40
 alignment = 1
 
-[node name="StatsContainer" type="VBoxContainer" parent="MainPanel/ColumnsContainer" unique_id=984521]
+[node name="StatsContainer" type="VBoxContainer" parent="VBoxContainer/MainPanel/MarginContainer/VBoxContainer/MarginContainerBody/ColumnsContainer" unique_id=984521]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 15
 
-[node name="StatsTitle" type="Label" parent="MainPanel/ColumnsContainer/StatsContainer" unique_id=741029]
+[node name="StatsTitle" type="Label" parent="VBoxContainer/MainPanel/MarginContainer/VBoxContainer/MarginContainerBody/ColumnsContainer/StatsContainer" unique_id=741029]
 layout_mode = 2
-theme_override_colors/font_color = Color(0, 0.8, 1, 0.7)
+theme_override_colors/font_color = Color(0.050980393, 0.9490196, 0.9490196, 1)
+theme_override_fonts/font = ExtResource("3_lm3tt")
 theme_override_font_sizes/font_size = 24
 text = "STATS"
 
-[node name="TimeLabel" type="Label" parent="MainPanel/ColumnsContainer/StatsContainer" unique_id=329048]
+[node name="TimeLabel" type="Label" parent="VBoxContainer/MainPanel/MarginContainer/VBoxContainer/MarginContainerBody/ColumnsContainer/StatsContainer" unique_id=329048]
 unique_name_in_owner = true
 layout_mode = 2
-theme_override_font_sizes/font_size = 20
 text = "Time Spent: 00:00"
 
-[node name="DestroyedLabel" type="Label" parent="MainPanel/ColumnsContainer/StatsContainer" unique_id=489201]
+[node name="DestroyedLabel" type="Label" parent="VBoxContainer/MainPanel/MarginContainer/VBoxContainer/MarginContainerBody/ColumnsContainer/StatsContainer" unique_id=489201]
 unique_name_in_owner = true
 layout_mode = 2
-theme_override_font_sizes/font_size = 20
 text = "Rocks Destroyed: 0"
 
-[node name="DepthLabel" type="Label" parent="MainPanel/ColumnsContainer/StatsContainer" unique_id=1843732759]
+[node name="DepthLabel" type="Label" parent="VBoxContainer/MainPanel/MarginContainer/VBoxContainer/MarginContainerBody/ColumnsContainer/StatsContainer" unique_id=1843732759]
 unique_name_in_owner = true
 layout_mode = 2
-theme_override_font_sizes/font_size = 20
 text = "Max Depth: X"
 
-[node name="VSeparator" type="VSeparator" parent="MainPanel/ColumnsContainer" unique_id=5610293]
+[node name="VSeparator" type="VSeparator" parent="VBoxContainer/MainPanel/MarginContainer/VBoxContainer/MarginContainerBody/ColumnsContainer" unique_id=5610293]
+visible = false
 layout_mode = 2
-theme_override_constants/separation = 1
+theme_override_constants/separation = 4
 
-[node name="InventoryContainer" type="VBoxContainer" parent="MainPanel/ColumnsContainer" unique_id=230985]
+[node name="InventoryContainer" type="VBoxContainer" parent="VBoxContainer/MainPanel/MarginContainer/VBoxContainer/MarginContainerBody/ColumnsContainer" unique_id=230985]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 15
 
-[node name="InventoryTitle" type="Label" parent="MainPanel/ColumnsContainer/InventoryContainer" unique_id=102938]
+[node name="InventoryTitle" type="Label" parent="VBoxContainer/MainPanel/MarginContainer/VBoxContainer/MarginContainerBody/ColumnsContainer/InventoryContainer" unique_id=102938]
 layout_mode = 2
-theme_override_colors/font_color = Color(0, 0.8, 1, 0.7)
+theme_override_colors/font_color = Color(0.050980393, 0.9490196, 0.9490196, 1)
+theme_override_fonts/font = ExtResource("3_lm3tt")
 theme_override_font_sizes/font_size = 24
-text = "INVENTORY"
+text = "RETRIEVED CARGO"
 
-[node name="LossLabel" type="Label" parent="MainPanel/ColumnsContainer/InventoryContainer" unique_id=1503927716]
+[node name="LossLabel" type="Label" parent="VBoxContainer/MainPanel/MarginContainer/VBoxContainer/MarginContainerBody/ColumnsContainer/InventoryContainer" unique_id=1503927716]
 visible = false
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 0.333, 0.333, 1)
 text = "Lost on the way back"
 
-[node name="List" parent="MainPanel/ColumnsContainer/InventoryContainer" unique_id=1987123455 instance=ExtResource("3_reslist")]
+[node name="List" parent="VBoxContainer/MainPanel/MarginContainer/VBoxContainer/MarginContainerBody/ColumnsContainer/InventoryContainer" unique_id=1987123455 instance=ExtResource("3_reslist")]
 layout_mode = 2
 columns = 5
 
-[node name="ButtonsContainer" type="HBoxContainer" parent="MainPanel" unique_id=903487]
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -220.0
-offset_top = -80.0
-offset_right = 220.0
-offset_bottom = -35.0
-grow_horizontal = 2
-grow_vertical = 0
-theme_override_constants/separation = 20
-alignment = 1
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/MainPanel/MarginContainer/VBoxContainer" unique_id=333024579]
+layout_mode = 2
+size_flags_horizontal = 4
 
-[node name="HangarButton" type="Button" parent="MainPanel/ButtonsContainer" unique_id=238941]
+[node name="MarginContainerButtons" type="MarginContainer" parent="VBoxContainer/MainPanel/MarginContainer/VBoxContainer/HBoxContainer" unique_id=523122435]
+layout_mode = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_right = 15
+
+[node name="HangarButton" type="Button" parent="VBoxContainer/MainPanel/MarginContainer/VBoxContainer/HBoxContainer/MarginContainerButtons" unique_id=238941]
 custom_minimum_size = Vector2(200, 45)
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
@@ -171,7 +262,13 @@ theme_override_colors/font_hover_color = Color(0, 0.8, 1, 1)
 theme_override_font_sizes/font_size = 22
 text = "HANGAR"
 
-[node name="AgainButton" type="Button" parent="MainPanel/ButtonsContainer" unique_id=890234]
+[node name="MarginContainerButtons2" type="MarginContainer" parent="VBoxContainer/MainPanel/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1002016804]
+layout_mode = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_right = 15
+
+[node name="AgainButton" type="Button" parent="VBoxContainer/MainPanel/MarginContainer/VBoxContainer/HBoxContainer/MarginContainerButtons2" unique_id=890234]
 custom_minimum_size = Vector2(200, 45)
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
@@ -181,5 +278,5 @@ theme_override_colors/font_hover_color = Color(0, 0.8, 1, 1)
 theme_override_font_sizes/font_size = 22
 text = "AGAIN"
 
-[connection signal="pressed" from="MainPanel/ButtonsContainer/HangarButton" to="." method="_on_hangar_pressed"]
-[connection signal="pressed" from="MainPanel/ButtonsContainer/AgainButton" to="." method="_on_again_pressed"]
+[connection signal="pressed" from="VBoxContainer/MainPanel/MarginContainer/VBoxContainer/HBoxContainer/MarginContainerButtons/HangarButton" to="." method="_on_hangar_pressed"]
+[connection signal="pressed" from="VBoxContainer/MainPanel/MarginContainer/VBoxContainer/HBoxContainer/MarginContainerButtons2/AgainButton" to="." method="_on_again_pressed"]

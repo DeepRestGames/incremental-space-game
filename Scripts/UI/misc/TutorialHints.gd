@@ -12,7 +12,7 @@ const TIP_OXYGEN_LOW := &"oxygen_low"
 @export var move_tip: String = "Use WASD to move."
 @export var mine_tip: String = "Hold Left Click over a rock to mine it."
 @export var mine_spam_tip: String = "HOLD Left Click / E to mine!"
-@export var oxygen_low_tip: String = "Watch your oxygen! Head back to the ship before it runs out."
+@export var oxygen_low_tip: String = "Oxygen low! Head back to the ship before it runs out."
 
 @export_group("Click Spam")
 ## Separate clicks within `spam_window` seconds that trigger `mine_spam_tip`.
