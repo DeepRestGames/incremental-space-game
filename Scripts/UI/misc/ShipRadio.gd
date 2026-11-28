@@ -6,7 +6,7 @@ extends PanelContainer
 
 const AI_NAME := "GRUMPYPETAL-AI"
 const HEADER_NORMAL := ("[ %s // COMMS ]" % AI_NAME)
-const HEADER_URGENT := ("[ %s // WARNING ]" % AI_NAME)
+const HEADER_URGENT := ("[ %s // ALERT ]" % AI_NAME)
 const COLOR_NORMAL := Color(0.051, 0.949, 0.949, 0.75)
 const COLOR_URGENT := Color(0.933, 0.169, 0.345, 0.95)
 
@@ -27,6 +27,7 @@ var _static_timer: float = 0.0
 @onready var static_noise: TextureRect = %StaticNoise
 @onready var beep_player: AudioStreamPlayer = %BeepPlayer
 @onready var alert_player: AudioStreamPlayer = %AlertPlayer
+@onready var warning_header: RichTextLabel = %WarningHeader
 
 func _ready() -> void:
 	visibility_changed.connect(_on_visibility_changed)
@@ -74,6 +75,7 @@ func show_message(text: String, urgent: bool = false) -> void:
 	theme_type_variation = &"DangerPanel" if urgent else &""
 	header_label.text = HEADER_URGENT if urgent else HEADER_NORMAL
 	header_label.modulate = COLOR_URGENT if urgent else COLOR_NORMAL
+	warning_header.visible = urgent
 
 	message_label.text = text
 	message_label.visible_ratio = 0.0

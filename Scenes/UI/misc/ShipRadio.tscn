@@ -19,7 +19,7 @@ color_ramp = SubResource("Gradient_3qbn0")
 
 [node name="ShipRadio" type="PanelContainer" unique_id=771380091]
 clip_children = 2
-custom_minimum_size = Vector2(420, 0)
+custom_minimum_size = Vector2(420, 110)
 mouse_filter = 2
 script = ExtResource("1_fw6ej")
 
@@ -39,7 +39,6 @@ mouse_filter = 2
 texture = SubResource("NoiseTexture2D_hjp0y")
 expand_mode = 1
 stretch_mode = 1
-flip_h = true
 
 [node name="Content" type="MarginContainer" parent="." unique_id=397124556]
 layout_mode = 2
@@ -52,6 +51,19 @@ theme_override_constants/margin_bottom = 12
 [node name="VBox" type="VBoxContainer" parent="Content" unique_id=915565571]
 layout_mode = 2
 mouse_filter = 2
+
+[node name="WarningHeader" type="RichTextLabel" parent="Content/VBox" unique_id=1146932232]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+theme_override_colors/default_color = Color(0.93333334, 0.16862746, 0.34509805, 1)
+bbcode_enabled = true
+text = "[img]res://Assets/UI/WarningHeader.png[/img] [img]res://Assets/UI/WarningHeader.png[/img] [img]res://Assets/UI/WarningHeader.png[/img]   [b]WARNING[/b]   [img]res://Assets/UI/WarningHeader.png[/img] [img]res://Assets/UI/WarningHeader.png[/img] [img]res://Assets/UI/WarningHeader.png[/img]"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="HeaderLabel" type="Label" parent="Content/VBox" unique_id=293434366]
 unique_name_in_owner = true

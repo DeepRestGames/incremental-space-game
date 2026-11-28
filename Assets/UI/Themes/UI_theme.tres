@@ -82,17 +82,6 @@ corner_radius_top_left = 8
 corner_radius_bottom_right = 8
 corner_detail = 1
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mf7nv"]
-bg_color = Color(0.043137256, 0.0627451, 0.1254902, 1)
-border_width_left = 6
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(0.93333334, 0.16862746, 0.34509805, 1)
-corner_radius_top_left = 16
-corner_radius_bottom_right = 16
-corner_detail = 1
-
 [sub_resource type="StyleBoxLine" id="StyleBoxLine_yf5fn"]
 color = Color(0.04750001, 0.95, 0.95, 0.49803922)
 
@@ -169,7 +158,7 @@ Button/styles/hover = SubResource("StyleBoxFlat_n48s3")
 Button/styles/normal = SubResource("StyleBoxFlat_lfrpt")
 Button/styles/pressed = SubResource("StyleBoxFlat_gy8b0")
 DangerPanel/base_type = &"PanelContainer"
-DangerPanel/styles/panel = SubResource("StyleBoxFlat_mf7nv")
+DangerPanel/styles/panel = ExtResource("3_lfrpt")
 HSeparator/styles/separator = SubResource("StyleBoxLine_yf5fn")
 HSeparator/styles/separator_red = SubResource("StyleBoxLine_g4v7s")
 Label/font_sizes/font_size = 18
